@@ -1,7 +1,10 @@
 package com.yscn.knucommunity.Util;
 
+import android.util.Log;
+
 import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
+import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
 
 import org.apache.http.client.HttpClient;
@@ -19,6 +22,7 @@ import org.jsoup.select.Elements;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
 import java.util.ArrayList;
@@ -28,6 +32,8 @@ import java.util.HashMap;
  * Created by GwonHyeok on 14. 11. 19..
  */
 public class NetworkUtil {
+    public static enum SchoolRestraunt {SHAL, GYUNG, GISUK, INSA}
+
     private static NetworkUtil instance;
 
     private HttpClient httpClient = new DefaultHttpClient();
@@ -41,6 +47,26 @@ public class NetworkUtil {
             instance = new NetworkUtil();
         }
         return instance;
+    }
+
+
+    public ArrayList<SchoolRestrauntItems> getRestrauntInfo(SchoolRestraunt restraunt) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<String, String>();
+        ArrayList<SchoolRestrauntItems> itemses = new ArrayList<SchoolRestrauntItems>();
+        parameter.put("restraunt", restraunt.toString().toLowerCase());
+        InputStreamReader inputStreamReader = new InputStreamReader(postData(UrlList.SCHOOL_RESTRAUNT_INFO, parameter));
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(inputStreamReader);
+        if (checkResultData(jsonObject)) {
+            JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+            for (Object object : jsonArray) {
+                JSONObject object1 = (JSONObject) object;
+                String foodName = URLDecode(object1.get("foodname").toString());
+                String foodPrice = URLDecode(object1.get("foodprice").toString());
+                itemses.add(new SchoolRestrauntItems(foodName, foodPrice));
+            }
+        }
+        return itemses;
     }
 
     public ArrayList<LibrarySeatItems> getLibrarySeatInfo() throws IOException {
@@ -108,6 +134,10 @@ public class NetworkUtil {
         return dataMap;
     }
 
+    private String URLDecode(String str) throws UnsupportedEncodingException {
+        return URLDecoder.decode(str, "UTF-8");
+    }
+
     private boolean checkResultData(JSONObject jsonObject) {
         return jsonObject.get("result").equals("success");
     }
@@ -120,6 +150,8 @@ public class NetworkUtil {
             Object[] key = parameter.keySet().toArray();
             for (Object aKey : key) {
                 entityBuilder.addTextBody(aKey.toString(), parameter.get(aKey));
+                Log.d("Entity Key : ", aKey.toString());
+                Log.d("Entity Value : ", parameter.get(aKey));
             }
             httpPost.setEntity(entityBuilder.build());
         }

@@ -1,7 +1,10 @@
 package com.yscn.knucommunity.Activity;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -9,7 +12,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.NetworkUtil;
+
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
@@ -21,13 +31,60 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
         super.onCreate(bundle);
         viewInit();
         setContentView(R.layout.activity_restrauntdetail);
-        TextView textView = (TextView) findViewById(R.id.restrauntdetail_text);
-        textView.setText(getRestrauntFood());
+        setRestrauntFoodInfo(getIntent().getStringExtra("location"));
     }
 
-    private String getRestrauntFood() {
-        return ("해장라면 : 3800\n" + "틈새라면 : 3500\n" + "떡만두라면 : 3000\n" + "치즈라면 : 2800\n" + "라면 : 2500\n" + "뚝배기불고기 : 5000\n" + "재육덥밥 : 4500\n" + "카래덥밥 : 4500\n" + "김치볶음밥 : 4500\n" + "야채볶음밥 : 4000\n" + "비빔밥 : 4000\n" + "손수재비 : 4500\n" + "칼국수 : 4000\n" + "치즈라볶이 : 4500\n" + "라볶이 : 4000\n" + "쫄면 : 4000\n" + "떡만두국 : 5000\n" + "만두국 : 5000\n" + "떡국 : 4500\n" + "물냉면 : 3500\n" + "비빔냉면 : 3500\n" + "참치김밤 : 2500\n" + "김밥 : 2000\n" + "치즈돈까스 : 5000\n" + "카래돈까스 : 5000\n" + "돈까스 : 4500\n");
+    private Context getContext() {
+        return SchoolRestrauntDetailActivity.this;
+    }
 
+    private void setRestrauntFoodInfo(String restraunt) {
+        new AsyncTask<String, Void, ArrayList<SchoolRestrauntItems>>() {
+            private ProgressDialog dialog;
+
+            @Override
+            protected void onPreExecute() {
+                dialog = new ProgressDialog(getContext());
+                dialog.setIndeterminate(true);
+                dialog.show();
+            }
+
+            @Override
+            protected ArrayList<SchoolRestrauntItems> doInBackground(String... strings) {
+                String str_restaunt = strings[0];
+                NetworkUtil.SchoolRestraunt schoolRestraunt = null;
+                if (str_restaunt.equals("shal")) {
+                    schoolRestraunt = NetworkUtil.SchoolRestraunt.SHAL;
+                } else if (str_restaunt.equals("gisuk")) {
+                    schoolRestraunt = NetworkUtil.SchoolRestraunt.GISUK;
+                } else if (str_restaunt.equals("insa")) {
+                    schoolRestraunt = NetworkUtil.SchoolRestraunt.INSA;
+                } else if (str_restaunt.equals("gyung")) {
+                    schoolRestraunt = NetworkUtil.SchoolRestraunt.GYUNG;
+                } else {
+                    schoolRestraunt = NetworkUtil.SchoolRestraunt.SHAL;
+                }
+                try {
+                    return NetworkUtil.getInstance().getRestrauntInfo(schoolRestraunt);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<SchoolRestrauntItems> itemes) {
+                StringBuilder builder = new StringBuilder();
+                for (SchoolRestrauntItems iteme : itemes) {
+                    builder.append(iteme.getFoodName()).append(" : ").append(iteme.getFoodPrice()).append("\n");
+                }
+                TextView textView = (TextView) findViewById(R.id.restrauntdetail_text);
+                textView.setText(builder.toString());
+                dialog.cancel();
+            }
+        }.execute(restraunt);
     }
 
     private void viewInit() {
