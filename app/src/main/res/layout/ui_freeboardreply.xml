@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f3f3f3"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.yscn.knucommunity.CustomView.CircleImageView
+                android:id="@+id/view"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:src="@drawable/ic_profile" />
+
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/view"
+                android:layout_marginLeft="10dp"
+                android:layout_toEndOf="@+id/view"
+                android:layout_toRightOf="@+id/view"
+                android:text="권혁"
+                android:textColor="#FF616161" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/textView2"
+                android:layout_marginRight="10dp"
+                android:text="17:24"
+                android:textColor="#757575" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/textView3"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@+id/textView"
+                android:layout_toStartOf="@+id/textView"
+                android:text="2014.10.16"
+                android:textColor="#757575" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/textView3"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignStart="@+id/textView3"
+                android:layout_below="@+id/view"
+                android:text="머리가 아플땐 약 드시고 가만히 누워 자는게 최고입니다." />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.yscn.knucommunity">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyBOmS6DbaCn9OygngWov4VVrQoaW4xXNkE" />
+
+        <activity
+            android:name=".Activity.Splash"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity.MainActivity"
+            android:label="@string/app_name" />
+        <activity android:name=".Activity.StudentGroundActivity" />
+        <activity android:name=".Activity.MajorInfoActivity" />
+        <activity android:name=".Activity.MajorDetailActivity" />
+        <activity android:name=".Activity.ClubInfoActivity" />
+        <activity android:name=".Activity.SchoolRestrauntActivity" />
+        <activity android:name=".Activity.ClubDetailActivity" />
+        <activity android:name=".Activity.StudentCouncilActivity" />
+        <activity android:name=".Activity.SchoolRestrauntDetailActivity" />
+        <activity android:name=".Activity.ShuttleBusActivity" />
+        <activity android:name=".Activity.LibraryActivity" />
+        <activity android:name=".Activity.MarketMainActivity" />
+        <activity android:name=".Activity.MarketDetailActivity" />
+        <activity android:name=".Activity.CommunittyActivity" />
+        <activity android:name=".Activity.GreenLightListActivity" />
+        <activity android:name=".Activity.GreenLightDetailActivity" />
+        <activity android:name=".Activity.FreeBoardListActivity" />
+        <activity android:name=".Activity.FreeBoardDetailActivity" />
+        <activity android:name=".Activity.DeliveryFoodActivity" />
+        <activity android:name=".Activity.FaqListActivity" />
+        <activity android:name=".Activity.LinkActivity" />
+        <activity android:name=".Activity.NoticeActivity" />
+        <activity android:name=".Activity.StudentInfoActivity" />
+        <activity android:name=".Activity.LoginActivity" />
+        <activity android:name=".Activity.FaqDetailActivity" />
+        <activity android:name=".Activity.MeetingActivity" />
+        <activity android:name=".Activity.MeetingWriteActivity" />
+        <activity android:name=".Activity.FreeBoardReplyActivity" />
+        <activity android:name=".Activity.CampusMapActivity" />
+        <activity android:name=".Activity.RiffleMapActivity" />
+    </application>
+
+</manifest>

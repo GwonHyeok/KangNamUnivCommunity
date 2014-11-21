@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_gravity="center"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/ui_studentcouncil_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:singleLine="true"
+        android:text="여울림이라고 합니다."
+        android:textColor="#FF424242"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/ui_studentcouncil_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="6dp"
+        android:singleLine="true"
+        android:text="여울은 강이나바다의 바닥이 얕거나 폭이 좁아 물살..."
+        android:textColor="#FF757575" />
+
+</LinearLayout>

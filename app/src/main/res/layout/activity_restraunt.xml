@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="4">
+
+    <TextView
+        android:id="@+id/schoolrestraunt_shal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FF42A5F5"
+        android:gravity="center"
+        android:text="샬롬관"
+        android:textColor="@android:color/white"
+        android:textSize="36sp" />
+
+
+    <TextView
+        android:id="@+id/schoolrestraunt_insa"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FF1E88E5"
+        android:gravity="center"
+        android:text="인사관"
+        android:textColor="@android:color/white"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/schoolrestraunt_gyung"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FF1565C0"
+        android:gravity="center"
+        android:text="경천관"
+        android:textColor="@android:color/white"
+        android:textSize="36sp" />
+
+    <TextView
+        android:id="@+id/schoolrestraunt_gisuk"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#FF0D47A1"
+        android:gravity="center"
+        android:text="기숙사"
+        android:textColor="@android:color/white"
+        android:textSize="36sp" />
+</LinearLayout>

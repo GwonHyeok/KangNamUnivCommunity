@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <fragment
+        android:id="@+id/campusmap"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.yscn.knucommunity.Activity.CampusMapActivity" />
+
+    <FrameLayout
+        android:id="@+id/campusmap_simple_list"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_gravity="bottom"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/campusmap_simple_text"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
+            android:layout_marginTop="20dp"
+            android:background="#E6fafafa"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:text="강남대학교 이공관"
+            android:textSize="18sp" />
+
+        <LinearLayout
+            android:id="@+id/campusmap_show_maplist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:background="#00fafafa"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_map_up" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_map" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/campusmap_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_gravity="bottom"
+        android:visibility="visible">
+
+
+        <ListView
+            android:id="@+id/campusmap_listview"
+            android:layout_width="match_parent"
+            android:layout_height="140dp"
+            android:layout_gravity="bottom"
+            android:background="#E6fafafa"
+            android:padding="5dp"
+            android:paddingTop="100dp" />
+
+        <LinearLayout
+            android:id="@+id/campusmap_hide_maplist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="25dp"
+            android:background="#E6fafafa"
+            android:gravity="center">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_map_down" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginRight="5dp"
+            android:src="@drawable/ic_map" />
+    </FrameLayout>
+</FrameLayout>

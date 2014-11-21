@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_weight="40"
+        android:background="#FF5E3AAE">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/major_name"
+            android:layout_alignLeft="@+id/major_name"
+            android:layout_alignStart="@+id/major_name"
+            android:text="학과이름"
+            android:textColor="#FFEF5350" />
+
+        <TextView
+            android:id="@+id/major_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:text="컴퓨터미디어정보공학부"
+            android:textColor="@android:color/white"
+            android:textSize="26sp" />
+
+        <View
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignLeft="@+id/major_name"
+            android:layout_alignStart="@+id/major_name"
+            android:layout_below="@+id/major_name"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="#FFEF5350" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="#FFB39DDB" />
+
+        <TextView
+            android:id="@+id/major_homepage_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/view"
+            android:layout_alignLeft="@+id/view"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/view"
+            android:text="http://cme.kangnam.ac.kr"
+            android:textColor="#FFB39DDB" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout2">
+
+        <LinearLayout
+            android:id="@+id/major_detail_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/major_go_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="200dp"
+        android:src="@drawable/ic_gopage" />
+</RelativeLayout>

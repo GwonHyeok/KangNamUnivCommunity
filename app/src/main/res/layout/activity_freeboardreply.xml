@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFAFAFA">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="안녕하세요"
+                android:textColor="#FF424242"
+                android:textSize="22sp" />
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <ScrollView
+        android:id="@+id/scrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/freeboard_reply_mainview"
+        android:layout_below="@+id/linearLayout">
+
+        <LinearLayout
+            android:id="@+id/freeboard_reply_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+    </ScrollView>
+
+
+    <RelativeLayout
+        android:id="@+id/freeboard_replyspace"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/scrollView"
+        android:background="#fffafafa"
+        android:visibility="gone">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/imageView1"
+            android:layout_toStartOf="@+id/imageView1"
+            android:background="@android:color/transparent"
+            android:hint="댓글을 입력해주세요"
+            android:paddingLeft="10dp"
+            android:textColor="#FFBBBBBB"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/ic_reply_upload"
+            android:padding="15dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/freeboard_reply_mainview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:background="#fffafafa">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/ic_post_reply" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_toRightOf="@+id/imageView"
+            android:text="댓글달기"
+            android:textColor="#FFBBBBBB"
+            android:textSize="19sp" />
+    </RelativeLayout>
+
+</RelativeLayout>

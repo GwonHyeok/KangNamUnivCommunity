@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="230dp"
+        android:layout_weight="40"
+        android:background="#FFD64423">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignRight="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:text="동아리이름"
+            android:textColor="#FFFFEA00" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="10dp"
+            android:text="올클리어"
+            android:textColor="@android:color/white"
+            android:textSize="26sp" />
+
+        <View
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignLeft="@+id/textView"
+            android:layout_alignStart="@+id/textView"
+            android:layout_below="@+id/textView"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="#FFFFEA00" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_alignLeft="@+id/textView2"
+            android:layout_alignParentBottom="true"
+            android:layout_alignStart="@+id/textView2"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:background="#FFFFAB91" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/textView4"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_alignLeft="@+id/textView3"
+            android:layout_alignRight="@+id/textView3"
+            android:layout_alignStart="@+id/textView3"
+            android:layout_marginBottom="3dp"
+            android:text="동아리소개"
+            android:textColor="#FFFFAB91" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/view"
+            android:layout_alignLeft="@+id/view"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignStart="@+id/view"
+            android:text="춤을 즐길 줄 아는 사람들의 모임 ALL CLEAR"
+            android:textColor="#FFFFAB91" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/relativeLayout2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_club_name" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/imageView"
+                    android:layout_toRightOf="@+id/imageView"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="동아리 회장"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="권혁(kh4975@naver.com)"
+                        android:textColor="#757575" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:src="@drawable/ic_club_name" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/imageView1"
+                    android:layout_toRightOf="@+id/imageView1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="동아리 부회장"
+                        android:textColor="#424242" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="서홍일(suhhongyiel@gmail.com)"
+                        android:textColor="#757575" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:background="#bdbdbd" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="10dp"
+                android:text="상세 정보가 없습니다."
+                android:textColor="#424242" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

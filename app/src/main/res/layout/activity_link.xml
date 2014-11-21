@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_link"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="50"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/linearLayout"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="30dp"
+            android:text="웹 사이트"
+            android:textColor="#FFFFFFFF"
+            android:textSize="28sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/link_homepage_knu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button_link"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="강남대학교 홈 페이지"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/link_homepage_eclass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView3"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button_link"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="e - Class 홈 페이지"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/link_homepage_sugang"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView4"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="55dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button_link"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="수강신청 홈 페이지"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="50"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/link_app_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:text="어플리케이션"
+            android:textColor="#FFFFFFFF"
+            android:textSize="28sp" />
+
+        <TextView
+            android:id="@+id/link_app_knu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/link_app_title"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_button_link"
+            android:drawableLeft="@drawable/ic_knu_app"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="강남대학교 앱"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/link_app_knu_sugang"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/link_app_knu"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_button_link"
+            android:drawableLeft="@drawable/ic_apply_subject"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="강남대 수강신청 앱"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/link_app_knu_timetable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/link_app_knu_sugang"
+            android:layout_marginLeft="55dp"
+            android:layout_marginRight="55dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/bg_button_link"
+            android:drawableLeft="@drawable/ic_knu_table"
+            android:gravity="center"
+            android:padding="8dp"
+            android:text="강남대 시간표 앱"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</LinearLayout>

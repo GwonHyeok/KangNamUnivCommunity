@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#E9E9E9"
+        android:gravity="center"
+        android:text="욕설, 상대방을 향한 비방은 관리자에 의해 삭제될 수 있습니다."
+        android:textColor="#FF757575" />
+
+    <ListView
+        android:id="@+id/greenlight_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView"
+        android:background="#f8f8f8"
+        android:divider="#d7d7d7"
+        android:dividerHeight="1dp" />
+</RelativeLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="35">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_meeting" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/open_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="20dp"
+                android:src="@drawable/ic_nav_menu_white" />
+
+            <ImageView
+                android:id="@+id/meeting_write"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:padding="20dp"
+                android:src="@drawable/ic_nav_write_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:padding="20dp"
+                android:text="미팅"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/meeting_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="65"
+        android:divider="@android:color/transparent" />
+</LinearLayout>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_margin="10dp"
+    android:background="@drawable/ic_major_box"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/professor_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:text="이름 : "
+        android:textColor="#ff424242" />
+
+    <TextView
+        android:id="@+id/professor_major"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:text="전공 : "
+        android:textColor="#ff424242" />
+
+    <TextView
+        android:id="@+id/professor_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:text="전화번호 : "
+        android:textColor="#ff424242" />
+
+    <TextView
+        android:id="@+id/professor_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:text="이메일 :"
+        android:textColor="#ff424242" />
+</LinearLayout>
