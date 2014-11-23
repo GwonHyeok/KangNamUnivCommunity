@@ -1,6 +1,5 @@
 package com.yscn.knucommunity.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -12,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.NetworkUtil;
@@ -40,12 +40,11 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
 
     private void setRestrauntFoodInfo(String restraunt) {
         new AsyncTask<String, Void, ArrayList<SchoolRestrauntItems>>() {
-            private ProgressDialog dialog;
+            private ClearProgressDialog dialog;
 
             @Override
             protected void onPreExecute() {
-                dialog = new ProgressDialog(getContext());
-                dialog.setIndeterminate(true);
+                dialog = new ClearProgressDialog(getContext());
                 dialog.show();
             }
 

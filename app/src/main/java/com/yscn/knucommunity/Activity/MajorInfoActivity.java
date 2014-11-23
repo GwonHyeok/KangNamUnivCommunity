@@ -1,6 +1,5 @@
 package com.yscn.knucommunity.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -16,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.MajorSimpleListAdapter;
@@ -40,12 +40,11 @@ public class MajorInfoActivity extends ActionBarActivity implements AdapterView.
 
     private void listViewInit() {
         new AsyncTask<Void, Void, ArrayList<MajorSimpleListItems>>() {
-            private ProgressDialog dialog;
+            private ClearProgressDialog dialog;
 
             @Override
             protected void onPreExecute() {
-                dialog = new ProgressDialog(getContext());
-                dialog.setIndeterminate(true);
+                dialog = new ClearProgressDialog(getContext());
                 dialog.show();
             }
 

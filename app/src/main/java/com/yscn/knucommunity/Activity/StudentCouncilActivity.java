@@ -1,6 +1,5 @@
 package com.yscn.knucommunity.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -15,10 +14,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
+import com.yscn.knucommunity.Items.StudentCouncilListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.StudentCouncilAdapter;
-import com.yscn.knucommunity.Items.StudentCouncilListItems;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -79,15 +79,12 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
 
     private void getCouncilData() {
         new AsyncTask<Void, Void, HashMap<String, ArrayList<StudentCouncilListItems>>>() {
-            private ProgressDialog dialog;
+            private ClearProgressDialog dialog;
             private Context mContext = getContext();
 
             @Override
             protected void onPreExecute() {
-                dialog = new ProgressDialog(StudentCouncilActivity.this);
-                dialog.setTitle("제목");
-                dialog.setMessage("메세지");
-                dialog.setIndeterminate(true);
+                dialog = new ClearProgressDialog(StudentCouncilActivity.this);
                 dialog.show();
             }
 

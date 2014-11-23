@@ -1,6 +1,5 @@
 package com.yscn.knucommunity.Activity;
 
-import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -11,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.PieGraph;
 import com.yscn.knucommunity.CustomView.PieSlice;
 import com.yscn.knucommunity.Items.LibrarySeatItems;
@@ -66,12 +66,11 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
             final View view = inflater.inflate(R.layout.activity_libraryusage, container, false);
 
             new AsyncTask<Void, Void, ArrayList<LibrarySeatItems>>() {
-                private ProgressDialog dialog;
+                private ClearProgressDialog dialog;
 
                 @Override
                 protected void onPreExecute() {
-                    dialog = new ProgressDialog(getActivity());
-                    dialog.setIndeterminate(true);
+                    dialog = new ClearProgressDialog(getActivity());
                     dialog.show();
                 }
 

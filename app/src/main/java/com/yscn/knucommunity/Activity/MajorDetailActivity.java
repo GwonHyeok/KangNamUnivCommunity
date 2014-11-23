@@ -1,6 +1,5 @@
 package com.yscn.knucommunity.Activity;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -12,6 +11,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.NetworkUtil;
@@ -51,12 +51,11 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
 
     private void setProfessorData() {
         new AsyncTask<Void, Void, ArrayList<MajorDetailItems>>() {
-            private ProgressDialog dialog;
+            private ClearProgressDialog dialog;
 
             @Override
             protected void onPreExecute() {
-                dialog = new ProgressDialog(getContext());
-                dialog.setIndeterminate(true);
+                dialog = new ClearProgressDialog(getContext());
                 dialog.show();
             }
 
