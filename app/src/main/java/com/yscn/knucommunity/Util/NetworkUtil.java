@@ -3,6 +3,7 @@ package com.yscn.knucommunity.Util;
 import android.util.Log;
 
 import com.yscn.knucommunity.Items.LibrarySeatItems;
+import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
@@ -49,6 +50,28 @@ public class NetworkUtil {
         return instance;
     }
 
+    public ArrayList<MajorDetailItems> getMajorDetailInfo(int majorType) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<String, String>();
+        ArrayList<MajorDetailItems> itemses = new ArrayList<MajorDetailItems>();
+        parameter.put("majorIdentifier", String.valueOf(majorType));
+        InputStreamReader inputStreamReader = new InputStreamReader(postData(UrlList.PROFESSOR_GET_DETAIL_INFO, parameter));
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(inputStreamReader);
+        if (checkResultData(jsonObject)) {
+            JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+            for (Object dataObject : jsonArray) {
+                JSONObject dataJsonObject = (JSONObject) dataObject;
+                String name = URLDecode(dataJsonObject.get("name").toString());
+                String major = URLDecode(dataJsonObject.get("major").toString());
+                String phoneNumber = URLDecode(dataJsonObject.get("phone").toString());
+                String email = URLDecode(dataJsonObject.get("email").toString());
+                itemses.add(new MajorDetailItems(name, major, phoneNumber, email));
+            }
+        } else {
+            return null;
+        }
+        return itemses;
+    }
 
     public ArrayList<SchoolRestrauntItems> getRestrauntInfo(SchoolRestraunt restraunt) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();

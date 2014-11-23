@@ -9,6 +9,7 @@ public class UrlList {
     public static final String STUDENT_GET_COUNCIL_INFO = MAIN_URL + "StudentCouncilGetInfo.php";
     public static final String MAJOR_GET_SIMPLE_INFO = MAIN_URL + "MajorGetInfo.php";
     public static final String SCHOOL_RESTRAUNT_INFO = MAIN_URL + "SchoolRestraunt.php";
+    public static final String PROFESSOR_GET_DETAIL_INFO = MAIN_URL + "ProfessorGetInfo.php";
     public static final String LIBRARY_SEAT_URL = "http://223.194.112.88/SEAT/domian5.asp";
 
 
