@@ -74,6 +74,10 @@ public class MenuBaseActivity extends ActionBarActivity implements View.OnClickL
         menu.showMenu();
     }
 
+    protected void toggleSlidingMenu() {
+        menu.toggle();
+    }
+
     @Override
     public void onClick(View view) {
         int id = view.getId();

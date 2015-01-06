@@ -51,7 +51,9 @@
         <activity android:name=".Activity.GreenLightDetailActivity" />
         <activity android:name=".Activity.FreeBoardListActivity" />
         <activity android:name=".Activity.FreeBoardDetailActivity" />
-        <activity android:name=".Activity.DeliveryFoodActivity" />
+        <activity
+            android:name=".Activity.DeliveryFoodActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.FaqListActivity" />
         <activity android:name=".Activity.LinkActivity" />
         <activity

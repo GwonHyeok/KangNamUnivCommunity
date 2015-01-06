@@ -17,4 +17,11 @@
     <string name="base_text_register_nickname">닉네임 : %1$s</string>
     <string name="base_text_register_name">이름 : %1$s</string>
     <string name="base_text_register_studentnumber">학번 : %1$s</string>
+
+    <string name="delivery_koreanfood">한식</string>
+    <string name="delivery_chinesefood">중식</string>
+    <string name="delivery_japanesefood">일식</string>
+    <string name="delivery_food">양식</string>
+    <string name="delivery_fastfood">패스트푸드</string>
+    <string name="delivery_etceterafood">기타</string>
 </resources>

@@ -2,4 +2,6 @@
 <resources>
     <color name="background_tab_pressed">#6633B5E5</color>
     <color name="background_register_app">#FF1B9CE3</color>
+
+    <color name="delivery_main_color">#EF6C00</color>
 </resources>

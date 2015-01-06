@@ -1,19 +1,20 @@
 package com.yscn.knucommunity.Activity;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
+import android.graphics.PorterDuff;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Spinner;
 
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
+import com.yscn.knucommunity.Items.DeliveryListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.DeliveryListAdapter;
-import com.yscn.knucommunity.Items.DeliveryListItems;
+import com.yscn.knucommunity.Ui.DeliverySpinnerAdapter;
 
 import java.util.ArrayList;
 
@@ -21,36 +22,70 @@ import java.util.ArrayList;
  * Created by GwonHyeok on 14. 11. 4..
  */
 public class DeliveryFoodActivity extends MenuBaseActivity {
+    private DeliverySpinnerAdapter deliverySpinnerAdapter;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
+        setContentView(R.layout.activity_deliveryfood);
+
         actionBarInit();
-        ListView listView = new ListView(this);
-        ArrayList<DeliveryListItems> itemses = new ArrayList<DeliveryListItems>();
+        viewInit();
+    }
+
+    private void viewInit() {
+        ListView listView = (ListView) findViewById(R.id.delivery_listview);
+        ArrayList<DeliveryListItems> itemses = new ArrayList<>();
         itemses.add(new DeliveryListItems("", ""));
         itemses.add(new DeliveryListItems("", ""));
         itemses.add(new DeliveryListItems("", ""));
         listView.setAdapter(new DeliveryListAdapter(this, R.layout.ui_deliveryfood_card, itemses));
         listView.setDividerHeight(0);
-        setContentView(listView);
+
+        Spinner spinner = (Spinner) findViewById(R.id.delivery_spinner);
+        String[] deliveryList = getResources().getStringArray(R.array.delivery_list);
+        deliverySpinnerAdapter = new DeliverySpinnerAdapter(this, R.layout.ui_deliveryspinner, deliveryList);
+        spinner.setAdapter(deliverySpinnerAdapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                // Change Food Items
+
+                // Set Current Position cause change color selected Item
+                deliverySpinnerAdapter.setCurrentPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Do Nothing
+            }
+        });
+
+        /* Spinner DropDown Button Color Change */
+        spinner.getBackground().setColorFilter(getResources().getColor(android.R.color.white), PorterDuff.Mode.MULTIPLY);
     }
 
     private void actionBarInit() {
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0XffEF6C00);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.delivery_main_color));
         }
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        /* 액션바 */
-        ActionBar actionBar = getSupportActionBar();
-        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_community_base, null);
-        ((TextView) view.findViewById(R.id.actionbar_community_base_title)).setText("패스트푸드");
-        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(view, layout);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#EF6C00")));
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setElevation(0);
-
+        toolbar.setNavigationIcon(R.drawable.ic_nav_menu_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleSlidingMenu();
+            }
+        });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.delivery_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 }

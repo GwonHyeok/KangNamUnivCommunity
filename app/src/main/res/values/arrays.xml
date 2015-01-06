@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="delivery_list">
+        <item>@string/delivery_koreanfood</item>
+        <item>@string/delivery_chinesefood</item>
+        <item>@string/delivery_japanesefood</item>
+        <item>@string/delivery_food</item>
+        <item>@string/delivery_fastfood</item>
+        <item>@string/delivery_etceterafood</item>
+    </string-array>
+</resources>
