@@ -54,7 +54,9 @@
         <activity android:name=".Activity.DeliveryFoodActivity" />
         <activity android:name=".Activity.FaqListActivity" />
         <activity android:name=".Activity.LinkActivity" />
-        <activity android:name=".Activity.NoticeActivity" />
+        <activity
+            android:name=".Activity.NoticeActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.StudentInfoActivity"
             android:theme="@style/NoActionBarTheme" />

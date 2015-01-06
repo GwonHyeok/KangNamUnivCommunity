@@ -1,7 +1,6 @@
 package com.yscn.knucommunity.Activity;
 
 import android.annotation.TargetApi;
-import android.graphics.RectF;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,17 +8,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v4.view.ViewPager;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.AbsListView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nineoldandroids.view.ViewHelper;
-import com.yscn.knucommunity.CustomView.AlphaForegroundColorSpan;
 import com.yscn.knucommunity.CustomView.KenBurnsSupportView;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
@@ -30,10 +24,9 @@ import com.yscn.knucommunity.R;
 
 public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder, ViewPager.OnPageChangeListener {
 
-    private static AccelerateDecelerateInterpolator sSmoothInterpolator = new AccelerateDecelerateInterpolator();
-
     private KenBurnsSupportView mHeaderPicture;
     private View mHeader;
+    private final String[] TITLES = {"공지사항", "학사제도", "장학제도"};
 
     private PagerSlidingTabStrip mPagerSlidingTabStrip;
     private ViewPager mViewPager;
@@ -43,15 +36,9 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
     private int mMinHeaderHeight;
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
-    private ImageView mHeaderLogo;
     private TextView actionBarHeaderTitleView;
 
-    private RectF mRect1 = new RectF();
-    private RectF mRect2 = new RectF();
-
     private TypedValue mTypedValue = new TypedValue();
-    private SpannableString mSpannableString;
-    private AlphaForegroundColorSpan mAlphaForegroundColorSpan;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -65,7 +52,6 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
         mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.notice_header_picture);
         mHeaderPicture.setResourceIds(R.drawable.bg_notice_1, R.drawable.bg_notice_2, R.drawable.bg_notice_3, R.drawable.bg_notice_4);
-        mHeaderLogo = (ImageView) findViewById(R.id.notice_header_logo);
         mHeader = findViewById(R.id.header);
 
         mPagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.notice_tabs);
@@ -79,16 +65,9 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
         mPagerSlidingTabStrip.setViewPager(mViewPager);
         mPagerSlidingTabStrip.setOnPageChangeListener(this);
-        mSpannableString = new SpannableString("공지사항");
-        mAlphaForegroundColorSpan = new AlphaForegroundColorSpan(0xffffffff);
 
-//        ViewHelper.setAlpha(getActionBarIconView(), 0f);
-        getSupportActionBar().hide();
         actionBarHeaderTitleView = (TextView) findViewById(R.id.notice_header_title);
         findViewById(R.id.open_menu).setOnClickListener(this);
-
-//        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(0x00ffffff));
-
     }
 
     @Override
@@ -103,6 +82,7 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
     @Override
     public void onPageSelected(int position) {
+        actionBarHeaderTitleView.setText(TITLES[position]);
         SparseArrayCompat<ScrollTabHolder> scrollTabHolders = mPagerAdapter.getScrollTabHolders();
         ScrollTabHolder currentHolder = scrollTabHolders.valueAt(position);
 
@@ -115,14 +95,12 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
             int scrollY = getScrollY(view);
             ViewHelper.setTranslationY(mHeader, Math.max(-scrollY, mMinHeaderTranslation));
             float ratio = clamp(ViewHelper.getTranslationY(mHeader) / mMinHeaderTranslation, 0.0f, 1.0f);
-//            interpolate(mHeaderLogo, getActionBarIconView(), sSmoothInterpolator.getInterpolation(ratio));
             setTitleAlpha(clamp(5.0F * ratio - 4.0F, 0.0F, 1.0F));
         }
     }
 
     @Override
     public void adjustScroll(int scrollHeight) {
-        // nothing
     }
 
     public int getScrollY(AbsListView view) {
@@ -146,26 +124,6 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
         return Math.max(Math.min(value, min), max);
     }
 
-    private void interpolate(View view1, View view2, float interpolation) {
-        getOnScreenRect(mRect1, view1);
-        getOnScreenRect(mRect2, view2);
-
-        float scaleX = 1.0F + interpolation * (mRect2.width() / mRect1.width() - 1.0F);
-        float scaleY = 1.0F + interpolation * (mRect2.height() / mRect1.height() - 1.0F);
-        float translationX = 0.5F * (interpolation * (mRect2.left + mRect2.right - mRect1.left - mRect1.right));
-        float translationY = 0.5F * (interpolation * (mRect2.top + mRect2.bottom - mRect1.top - mRect1.bottom));
-
-        ViewHelper.setTranslationX(view1, translationX);
-        ViewHelper.setTranslationY(view1, translationY - ViewHelper.getTranslationY(mHeader));
-        ViewHelper.setScaleX(view1, scaleX);
-        ViewHelper.setScaleY(view1, scaleY);
-    }
-
-    private RectF getOnScreenRect(RectF rect, View view) {
-        rect.set(view.getLeft(), view.getTop(), view.getRight(), view.getBottom());
-        return rect;
-    }
-
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     public int getActionBarHeight() {
         if (mActionBarHeight != 0) {
@@ -184,31 +142,17 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
     }
 
     private void setTitleAlpha(float alpha) {
-        mAlphaForegroundColorSpan.setAlpha(alpha);
-        mSpannableString.setSpan(mAlphaForegroundColorSpan, 0, mSpannableString.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-
-        actionBarHeaderTitleView.setText(mSpannableString);
-    }
-
-    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    private ImageView getActionBarIconView() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB) {
-            return (ImageView) findViewById(android.R.id.home);
-        }
-
-        return (ImageView) findViewById(android.support.v7.appcompat.R.id.home);
+        actionBarHeaderTitleView.setAlpha(alpha);
     }
 
     public class PagerAdapter extends FragmentPagerAdapter {
 
         private SparseArrayCompat<ScrollTabHolder> mScrollTabHolders;
-        private final String[] TITLES = {"공지사항", "학사제도", "장학제도"};
         private ScrollTabHolder mListener;
 
         public PagerAdapter(FragmentManager fm) {
             super(fm);
-            mScrollTabHolders = new SparseArrayCompat<ScrollTabHolder>();
+            mScrollTabHolders = new SparseArrayCompat<>();
         }
 
         public void setTabHolderScrollingContent(ScrollTabHolder listener) {
