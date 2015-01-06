@@ -191,10 +191,8 @@ public class NetworkUtil {
 
     public ArrayList<MajorDetailItems> getMajorDetailInfo(int majorType) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HashMap<String, String> parameter = new HashMap<String, String>();
         ArrayList<MajorDetailItems> itemses = new ArrayList<MajorDetailItems>();
-        parameter.put("majorIdentifier", String.valueOf(majorType));
-        HttpResponse httpResponse = postData(UrlList.PROFESSOR_GET_DETAIL_INFO, parameter);
+        HttpResponse httpResponse = postData(UrlList.PROFESSOR_GET_DETAIL_INFO + String.valueOf(majorType), null);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
         if (checkResultData(jsonObject)) {
@@ -215,10 +213,8 @@ public class NetworkUtil {
 
     public ArrayList<SchoolRestrauntItems> getRestrauntInfo(SchoolRestraunt restraunt) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HashMap<String, String> parameter = new HashMap<String, String>();
-        ArrayList<SchoolRestrauntItems> itemses = new ArrayList<SchoolRestrauntItems>();
-        parameter.put("restraunt", restraunt.toString().toLowerCase());
-        HttpResponse httpResponse = postData(UrlList.SCHOOL_RESTRAUNT_INFO, parameter);
+        ArrayList<SchoolRestrauntItems> itemses = new ArrayList<>();
+        HttpResponse httpResponse = postData(UrlList.SCHOOL_RESTRAUNT_INFO + restraunt.name().toLowerCase(), null);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
         if (checkResultData(jsonObject)) {
