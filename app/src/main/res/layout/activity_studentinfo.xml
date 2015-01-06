@@ -22,9 +22,9 @@
 
         <com.yscn.knucommunity.CustomView.CircleImageView
             android:id="@+id/studentinfo_profile_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textView"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_above="@+id/studentinfo_name"
             android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:src="@drawable/ic_profile"
@@ -32,7 +32,7 @@
             app:border_width="4dp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/studentinfo_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -119,6 +119,7 @@
                     android:textColor="#FF4D4D4D" />
 
                 <TextView
+                    android:id="@+id/studentinfo_studentnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="201401239"

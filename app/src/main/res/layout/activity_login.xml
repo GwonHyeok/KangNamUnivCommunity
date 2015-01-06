@@ -9,17 +9,17 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/ic_login_text"
+        android:layout_above="@+id/linearLayout"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/linearLayout" />
+        android:src="@drawable/ic_login_text" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/login_id"
@@ -30,7 +30,9 @@
             android:drawableLeft="@drawable/ic_login_id"
             android:drawablePadding="5dp"
             android:hint="학번"
-            android:paddingLeft="5dp" />
+            android:inputType="numberDecimal"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
 
         <EditText
             android:id="@+id/login_pw"
@@ -42,7 +44,9 @@
             android:drawableLeft="@drawable/ic_login_pw"
             android:drawablePadding="5dp"
             android:hint="비밀번호"
-            android:paddingLeft="5dp" />
+            android:inputType="textPassword"
+            android:paddingLeft="5dp"
+            android:singleLine="true" />
 
         <RelativeLayout
             android:id="@+id/login_button"

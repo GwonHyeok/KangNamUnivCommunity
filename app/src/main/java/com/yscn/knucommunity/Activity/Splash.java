@@ -7,6 +7,8 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.UserData;
+import com.yscn.knucommunity.Util.UserDataPreference;
 
 
 public class Splash extends ActionBarActivity {
@@ -38,7 +40,15 @@ public class Splash extends ActionBarActivity {
     }
 
     private boolean loginCheck() {
-        return false;
+        UserDataPreference userDataPreference = new UserDataPreference(getContext());
+        if (userDataPreference.getStudentNumber() == null) {
+            return false;
+        } else {
+            UserData.getInstance().setStudentName(userDataPreference.getStudentName());
+            UserData.getInstance().setStudentNumber(userDataPreference.getStudentNumber());
+            UserData.getInstance().setUserToken(userDataPreference.getToken());
+            return true;
+        }
     }
 
     private Context getContext() {

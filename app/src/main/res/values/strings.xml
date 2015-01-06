@@ -9,4 +9,12 @@
     <string name="base_text_professor_phone">전화번호 : %1$s</string>
     <string name="base_text_professor_major">전공 : %1$s</string>
     <string name="base_text_professor_email">이메일 : %1$s</string>
+
+    <string name="register_text">등록</string>
+    <string name="register_fail">회원가입에 실패하였습니다.</string>
+    <string name="register_success">회원가입에 성공하였습니다.</string>
+    <string name="register_already_exist">이미 존재하는 계정입니다.</string>
+    <string name="base_text_register_nickname">닉네임 : %1$s</string>
+    <string name="base_text_register_name">이름 : %1$s</string>
+    <string name="base_text_register_studentnumber">학번 : %1$s</string>
 </resources>
