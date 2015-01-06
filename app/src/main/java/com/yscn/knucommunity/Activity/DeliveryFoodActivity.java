@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -42,10 +43,23 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
         listView.setAdapter(new DeliveryListAdapter(this, R.layout.ui_deliveryfood_card, itemses));
         listView.setDividerHeight(0);
 
-        Spinner spinner = (Spinner) findViewById(R.id.delivery_spinner);
+        final Spinner spinner = (Spinner) findViewById(R.id.delivery_spinner);
         String[] deliveryList = getResources().getStringArray(R.array.delivery_list);
         deliverySpinnerAdapter = new DeliverySpinnerAdapter(this, R.layout.ui_deliveryspinner, deliveryList);
         spinner.setAdapter(deliverySpinnerAdapter);
+        spinner.setOnHierarchyChangeListener(new ViewGroup.OnHierarchyChangeListener() {
+            @Override
+            public void onChildViewAdded(View parent, View child) {
+                if (Build.VERSION.SDK_INT >= 16) {
+                    spinner.setDropDownVerticalOffset(spinner.getHeight());
+                }
+            }
+
+            @Override
+            public void onChildViewRemoved(View parent, View child) {
+
+            }
+        });
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

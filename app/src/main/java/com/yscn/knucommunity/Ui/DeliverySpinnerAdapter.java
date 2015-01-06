@@ -1,7 +1,9 @@
 package com.yscn.knucommunity.Ui;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +38,13 @@ public class DeliverySpinnerAdapter extends ArrayAdapter<String> {
         TextView text = (TextView) view;
         String item = getItem(position);
         text.setText(item);
+
+        Resources r = getContext().getResources();
+        float px = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 34, r.getDisplayMetrics());
+
+        ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
+        layoutParams.height = (int) px;
+        text.setLayoutParams(layoutParams);
 
         if (position == this.currentPosition) {
             text.setTextColor(getContext().getResources().getColor(R.color.delivery_main_color));
