@@ -1,21 +1,18 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
+import com.yscn.knucommunity.Items.FaqListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.FaqListAdapter;
-import com.yscn.knucommunity.Items.FaqListItems;
 
 import java.util.ArrayList;
 
@@ -44,18 +41,28 @@ public class FaqListActivity extends MenuBaseActivity implements AdapterView.OnI
 
     private void actionBarInit() {
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xFFe64a19);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.faq_main_color));
         }
 
-        /* 액션바 */
-        ActionBar actionBar = getSupportActionBar();
-        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_community_base, null);
-        ((TextView) view.findViewById(R.id.actionbar_community_base_title)).setText("질문과 답변");
-        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(view, layout);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#e64a19")));
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setElevation(0);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setTitle(getString(R.string.community_faq_title));
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        toolbar.setNavigationIcon(R.drawable.ic_nav_menu_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleSlidingMenu();
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.board_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override

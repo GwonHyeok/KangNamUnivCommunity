@@ -4,4 +4,7 @@
     <color name="background_register_app">#FF1B9CE3</color>
 
     <color name="delivery_main_color">#EF6C00</color>
+    <color name="freeboard_main_color">#ffffbc00</color>
+    <color name="faq_main_color">#FFe64a19</color>
+    <color name="greenlight_main_color">#ffAD1457</color>
 </resources>

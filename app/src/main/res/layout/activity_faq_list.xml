@@ -4,10 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/faq_main_color" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_below="@id/toolbar"
         android:background="#E9E9E9"
         android:gravity="center"
         android:text="질문을 하기 전에 같은 내용의 질문이 있는지 찾아보고 하세요."

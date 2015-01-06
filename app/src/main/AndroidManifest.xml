@@ -47,14 +47,20 @@
         <activity android:name=".Activity.MarketMainActivity" />
         <activity android:name=".Activity.MarketDetailActivity" />
         <activity android:name=".Activity.CommunittyActivity" />
-        <activity android:name=".Activity.GreenLightListActivity" />
+        <activity
+            android:name=".Activity.GreenLightListActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.GreenLightDetailActivity" />
-        <activity android:name=".Activity.FreeBoardListActivity" />
+        <activity
+            android:name=".Activity.FreeBoardListActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.FreeBoardDetailActivity" />
         <activity
             android:name=".Activity.DeliveryFoodActivity"
             android:theme="@style/NoActionBarTheme" />
-        <activity android:name=".Activity.FaqListActivity" />
+        <activity
+            android:name=".Activity.FaqListActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.LinkActivity" />
         <activity
             android:name=".Activity.NoticeActivity"

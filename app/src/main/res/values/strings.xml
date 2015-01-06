@@ -24,4 +24,8 @@
     <string name="delivery_food">양식</string>
     <string name="delivery_fastfood">패스트푸드</string>
     <string name="delivery_etceterafood">기타</string>
+
+    <string name="community_freeboard_title">자유개시판</string>
+    <string name="community_faq_title">질문과 답변</string>
+    <string name="community_greenlight_title">그린라이트</string>
 </resources>

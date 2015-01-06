@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:apps="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/delivery_search"
+        android:icon="@drawable/ic_nav_search"
+        android:title=""
+        apps:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/delivery_write"
+        android:icon="@drawable/ic_nav_write_white"
+        android:title=""
+        apps:showAsAction="ifRoom" />
+
+</menu>
