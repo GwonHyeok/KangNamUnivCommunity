@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="10dp"
-                android:text="상세 정보가 없습니다."
+                android:text="상세 정보가 있다가 없어졌습니다."
                 android:textColor="#424242" />
 
         </LinearLayout>
