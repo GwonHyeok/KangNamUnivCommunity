@@ -1,5 +1,7 @@
 package com.yscn.knucommunity.CustomView;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -19,7 +21,7 @@ import com.yscn.knucommunity.R;
 /**
  * Created by GwonHyeok on 14. 11. 4..
  */
-public class MenuBaseActivity extends ActionBarActivity implements View.OnClickListener {
+public class MenuBaseActivity extends ActionBarActivity {
     public SlidingMenu menu;
 
     @Override
@@ -62,12 +64,50 @@ public class MenuBaseActivity extends ActionBarActivity implements View.OnClickL
          */
 
         /* Menu Click Listener */
-        menu.findViewById(R.id.slidingmenu_studentinfo).setOnClickListener(this);
-        menu.findViewById(R.id.slidingmenu_studentground).setOnClickListener(this);
-        menu.findViewById(R.id.slidingmenu_community).setOnClickListener(this);
-        menu.findViewById(R.id.slidingmenu_link).setOnClickListener(this);
-        menu.findViewById(R.id.slidingmenu_market).setOnClickListener(this);
-        menu.findViewById(R.id.slidingmenu_notice).setOnClickListener(this);
+        menu.findViewById(R.id.slidingmenu_studentinfo).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(new Intent(getContext(), StudentInfoActivity.class));
+            }
+        });
+        menu.findViewById(R.id.slidingmenu_studentground).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(new Intent(getContext(), StudentGroundActivity.class));
+            }
+        });
+        menu.findViewById(R.id.slidingmenu_community).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(new Intent(getContext(), CommunittyActivity.class));
+            }
+        });
+        menu.findViewById(R.id.slidingmenu_link).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(new Intent(getContext(), LinkActivity.class));
+            }
+        });
+        menu.findViewById(R.id.slidingmenu_market).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(new Intent(getContext(), MarketMainActivity.class));
+            }
+        });
+        menu.findViewById(R.id.slidingmenu_notice).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startNewActivity(new Intent(getContext(), NoticeActivity.class));
+            }
+        });
+    }
+
+    protected Activity getActivity() {
+        return this;
+    }
+
+    protected Context getContext() {
+        return MenuBaseActivity.this;
     }
 
     protected void openSlidingMenu() {
@@ -76,26 +116,6 @@ public class MenuBaseActivity extends ActionBarActivity implements View.OnClickL
 
     protected void toggleSlidingMenu() {
         menu.toggle();
-    }
-
-    @Override
-    public void onClick(View view) {
-        int id = view.getId();
-        if (id == R.id.slidingmenu_studentground) {
-            startNewActivity(new Intent(this, StudentGroundActivity.class));
-        } else if (id == R.id.slidingmenu_notice) {
-            startNewActivity(new Intent(this, NoticeActivity.class));
-        } else if (id == R.id.slidingmenu_market) {
-            startNewActivity(new Intent(this, MarketMainActivity.class));
-        } else if (id == R.id.slidingmenu_link) {
-            startNewActivity(new Intent(this, LinkActivity.class));
-        } else if (id == R.id.slidingmenu_community) {
-            startNewActivity(new Intent(this, CommunittyActivity.class));
-        } else if (id == R.id.slidingmenu_studentinfo) {
-            startNewActivity(new Intent(this, StudentInfoActivity.class));
-        } else if (id == R.id.open_menu) {
-            openSlidingMenu();
-        }
     }
 
     private void startNewActivity(Intent intent) {

@@ -13,10 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UserData;
 
@@ -83,9 +83,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
         if (requestCode == GET_PICTURE_RESULT_CODE && resultCode == RESULT_OK) {
             try {
                 /* ImageLoader가 init 되어 있지 않으면 init */
-                if (!ImageLoader.getInstance().isInited()) {
-                    ImageLoader.getInstance().init(ImageLoaderConfiguration.createDefault(getContext()));
-                }
+                ImageLoaderUtil.getInstance().initImageLoader();
 
                 /* 유저가 선택한 이미지를 ImageView에 적용 */
                 ImageLoader.getInstance().displayImage(data.getData().toString(), (CircleImageView) findViewById(R.id.register_profile));

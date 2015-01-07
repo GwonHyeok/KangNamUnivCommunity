@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
+import com.yscn.knucommunity.Items.MeetingListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.MeetingListAdapter;
-import com.yscn.knucommunity.Items.MeetingListItems;
 
 import java.util.ArrayList;
 
@@ -36,7 +36,6 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
 
     @Override
     public void onClick(View view) {
-        super.onClick(view);
         int id = view.getId();
         if (id == R.id.meeting_write) {
             startActivity(new Intent(this, MeetingWriteActivity.class));

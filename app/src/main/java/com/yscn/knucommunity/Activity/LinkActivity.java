@@ -38,7 +38,6 @@ public class LinkActivity extends MenuBaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View view) {
-        super.onClick(view);
         int id = view.getId();
         if (id == R.id.link_app_knu) {
             startActivity(getApplicationIntent(LINK.APP_KNU));

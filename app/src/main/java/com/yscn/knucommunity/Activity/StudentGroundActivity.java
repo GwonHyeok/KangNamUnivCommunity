@@ -89,7 +89,6 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
 
     @Override
     public void onClick(View view) {
-        super.onClick(view);
         int id = view.getId();
         if (id == R.id.studentground_major) {
             startActivity(new Intent(this, MajorInfoActivity.class));

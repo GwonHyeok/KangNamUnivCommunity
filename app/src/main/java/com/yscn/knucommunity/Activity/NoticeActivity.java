@@ -22,7 +22,7 @@ import com.yscn.knucommunity.CustomView.ScrollTabHolder;
 import com.yscn.knucommunity.CustomView.ScrollTabHolderFragment;
 import com.yscn.knucommunity.R;
 
-public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder, ViewPager.OnPageChangeListener {
+public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder, ViewPager.OnPageChangeListener, View.OnClickListener {
 
     private KenBurnsSupportView mHeaderPicture;
     private View mHeader;
@@ -143,6 +143,11 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
     private void setTitleAlpha(float alpha) {
         actionBarHeaderTitleView.setAlpha(alpha);
+    }
+
+    @Override
+    public void onClick(View v) {
+        openSlidingMenu();
     }
 
     public class PagerAdapter extends FragmentPagerAdapter {
