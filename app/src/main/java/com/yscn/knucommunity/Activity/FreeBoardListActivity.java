@@ -1,42 +1,120 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListView;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.CircleImageView;
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.Items.FreeBoardListItems;
 import com.yscn.knucommunity.R;
-import com.yscn.knucommunity.Ui.FreeBoardListAdapter;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
+import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UrlList;
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
  */
-public class FreeBoardListActivity extends MenuBaseActivity implements AdapterView.OnItemClickListener {
+public class FreeBoardListActivity extends MenuBaseActivity implements View.OnClickListener {
+    private int pageIndex = 1;
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_freeboard_list);
         actionBarInit();
-        viewInit();
+        getListData();
     }
 
-    private void viewInit() {
-        ArrayList<FreeBoardListItems> items = new ArrayList<FreeBoardListItems>();
-        items.add(new FreeBoardListItems("", "", "", 0));
-        items.add(new FreeBoardListItems("", "", "", 0));
-        items.add(new FreeBoardListItems("", "", "", 0));
-        ListView freeBoardListView = (ListView) findViewById(R.id.freeboard_list);
-        freeBoardListView.setOnItemClickListener(this);
-        freeBoardListView.setAdapter(new FreeBoardListAdapter(this, R.layout.ui_freeboardillist, items));
+    private void getListData() {
+        new AsyncTask<Void, Void, ArrayList<FreeBoardListItems>>() {
+            private ClearProgressDialog progressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                progressDialog = new ClearProgressDialog(getContext());
+                progressDialog.show();
+            }
+
+            @Override
+            protected ArrayList<FreeBoardListItems> doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().getFreeboardList(pageIndex);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<FreeBoardListItems> listItemses) {
+                if (listItemses != null) {
+                    addScrollViewData(listItemses);
+                }
+                progressDialog.cancel();
+            }
+        }.execute();
+    }
+
+    private void addScrollViewData(ArrayList<FreeBoardListItems> listItemses) {
+        ScrollView scrollView = (ScrollView) findViewById(R.id.freeboard_list);
+        View childView = scrollView.getChildAt(0);
+
+        ImageLoaderUtil.getInstance().initImageLoader();
+
+        if (childView instanceof LinearLayout) {
+            String dataTimeFormat = "yyyy-MM-dd hh:mm:ss";
+            String newDateTimeFormat = "yyyy.MM.dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
+            SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
+
+            String time;
+            for (FreeBoardListItems listItems : listItemses) {
+                try {
+                    Date date = simpleDateFormat.parse(listItems.getTime());
+                    time = newDateFormat.format(date);
+                } catch (java.text.ParseException ignore) {
+                    // Date Parse Exception
+                    time = listItems.getTime();
+                }
+
+                View listView = LayoutInflater.from(getContext()).inflate(R.layout.ui_freeboardillist, (ViewGroup) childView, false);
+                ((TextView) listView.findViewById(R.id.freeboard_list_title)).setText(listItems.getTitle());
+                ((TextView) listView.findViewById(R.id.freeboard_list_time)).setText(time);
+                ((TextView) listView.findViewById(R.id.freeboard_list_commentsize)).setText(String.valueOf(listItems.getReplyCount()));
+                ((TextView) listView.findViewById(R.id.freeboard_list_writer)).setText(listItems.getName());
+                ImageView profileImageView = (CircleImageView) listView.findViewById(R.id.freeboard_list_profile);
+
+                ImageLoader.getInstance().displayImage(
+                        UrlList.PROFILE_IMAGE_URL + listItems.getStudentnumber(), profileImageView,
+                        ImageLoaderUtil.getInstance().getDefaultOptions());
+
+                // 개시글 리스트의 listItems를 View에 태그로 저장
+                // 클릭했을 경우에 상세 내용을 보기위해 사용
+                listView.setTag(listItems);
+                listView.setOnClickListener(this);
+                ((LinearLayout) childView).addView(listView);
+            }
+        }
     }
 
     private void actionBarInit() {
@@ -67,7 +145,20 @@ public class FreeBoardListActivity extends MenuBaseActivity implements AdapterVi
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        startActivity(new Intent(this, FreeBoardDetailActivity.class));
+    public void onClick(View view) {
+        Object tag = view.getTag();
+        if (tag != null) {
+
+            if (tag instanceof FreeBoardListItems) {
+                FreeBoardListItems listItems = (FreeBoardListItems) tag;
+                Intent intent = new Intent(getContext(), FreeBoardDetailActivity.class);
+                intent.putExtra("contentID", listItems.getContentid());
+                intent.putExtra("writerName", listItems.getName());
+                intent.putExtra("writerStudentNumber", listItems.getStudentnumber());
+                intent.putExtra("title", listItems.getTitle());
+                intent.putExtra("time", listItems.getTime());
+                startActivity(intent);
+            }
+        }
     }
 }

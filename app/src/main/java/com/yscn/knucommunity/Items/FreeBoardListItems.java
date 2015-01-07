@@ -5,14 +5,17 @@ package com.yscn.knucommunity.Items;
  */
 public class FreeBoardListItems {
 
-    private String title, time, name;
+    private String title, time, name, studentnumber, contentid;
     private int replyCount;
 
-    public FreeBoardListItems(String title, String name, String time, int replyCount) {
+    public FreeBoardListItems(String title, String studentnumber, String contentid, String name,
+                              String time, int replyCount) {
         this.time = time;
         this.title = title;
         this.replyCount = replyCount;
         this.name = name;
+        this.studentnumber = studentnumber;
+        this.contentid = contentid;
     }
 
     public String getTitle() {
@@ -29,5 +32,13 @@ public class FreeBoardListItems {
 
     public String getName() {
         return name;
+    }
+
+    public String getStudentnumber() {
+        return studentnumber;
+    }
+
+    public String getContentid() {
+        return contentid;
     }
 }

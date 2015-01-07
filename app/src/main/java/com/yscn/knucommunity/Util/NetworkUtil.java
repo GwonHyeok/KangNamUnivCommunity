@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 
+import com.yscn.knucommunity.Items.FreeBoardListItems;
 import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
@@ -294,6 +295,40 @@ public class NetworkUtil {
         dataMap.put("riffle", riffleItem);
         dataMap.put("drag", dragItem);
         return dataMap;
+    }
+
+    public ArrayList<FreeBoardListItems> getFreeboardList(int page) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.FREEBOARD_GET_LIST + page, null);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+        if (!checkResultData(object)) {
+            return null;
+        }
+        ArrayList<FreeBoardListItems> list = new ArrayList<>();
+        JSONArray jsonArray = (JSONArray) object.get("data");
+        for (Object obj : jsonArray) {
+            JSONObject jsonObject = (JSONObject) obj;
+            String studentnumber = jsonObject.get("studentnumber").toString();
+            String title = jsonObject.get("title").toString();
+            String contentid = jsonObject.get("contentid").toString();
+            String writername = jsonObject.get("writername").toString();
+            String time = jsonObject.get("time").toString();
+            String commentsize = jsonObject.get("commentsize").toString();
+            list.add(new FreeBoardListItems(title, studentnumber, contentid, writername, time, Integer.parseInt(commentsize)));
+        }
+        return list;
+    }
+
+    public String getFreeboardContent(String contentID) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.FREEBOARD_GET_CONTENT + contentID, null);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+        if (!checkResultData(object)) {
+            return null;
+        }
+        return object.get("content").toString();
     }
 
     private String URLDecode(String str) throws UnsupportedEncodingException {
