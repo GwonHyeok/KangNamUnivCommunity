@@ -54,7 +54,9 @@
         <activity
             android:name=".Activity.FreeBoardListActivity"
             android:theme="@style/NoActionBarTheme" />
-        <activity android:name=".Activity.FreeBoardDetailActivity" />
+        <activity
+            android:name=".Activity.FreeBoardDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.DeliveryFoodActivity"
             android:theme="@style/NoActionBarTheme" />
@@ -72,7 +74,9 @@
         <activity android:name=".Activity.FaqDetailActivity" />
         <activity android:name=".Activity.MeetingActivity" />
         <activity android:name=".Activity.MeetingWriteActivity" />
-        <activity android:name=".Activity.FreeBoardReplyActivity" />
+        <activity
+            android:name=".Activity.FreeBoardReplyActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.CampusMapActivity" />
         <activity android:name=".Activity.RiffleMapActivity" />
         <activity android:name=".Activity.AccountRegisterActivity" />

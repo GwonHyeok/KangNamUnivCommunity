@@ -5,6 +5,7 @@ import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 
+import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.Items.FreeBoardListItems;
 import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.Items.MajorDetailItems;
@@ -329,6 +330,27 @@ public class NetworkUtil {
             return null;
         }
         return object.get("content").toString();
+    }
+
+    public ArrayList<CommentListItems> getComment(String contentID) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.GET_COMMENT + contentID, null);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+        if (!checkResultData(object)) {
+            return null;
+        }
+        ArrayList<CommentListItems> list = new ArrayList<>();
+        JSONArray jsonArray = (JSONArray) object.get("data");
+        for (Object obj : jsonArray) {
+            JSONObject jsonObject = (JSONObject) obj;
+            String studentnumber = jsonObject.get("studentnumber").toString();
+            String writername = jsonObject.get("name").toString();
+            String time = jsonObject.get("time").toString();
+            String comment = jsonObject.get("content").toString();
+            list.add(new CommentListItems(writername, comment, studentnumber, time));
+        }
+        return list;
     }
 
     private String URLDecode(String str) throws UnsupportedEncodingException {

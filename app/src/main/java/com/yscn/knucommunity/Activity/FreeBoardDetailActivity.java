@@ -1,14 +1,12 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -105,35 +103,35 @@ public class FreeBoardDetailActivity extends ActionBarActivity implements View.O
 
     private void viewInit() {
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xFFFAFAFA);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.board_white_main_color));
         }
 
-         /* 액션바 */
-        ActionBar actionBar = getSupportActionBar();
-        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_community_base, null);
-        ((TextView) view.findViewById(R.id.actionbar_community_base_title)).setText("");
-        ((ImageView) view.findViewById(R.id.actionbar_community_base_image)).setImageResource(R.drawable.ic_cancel);
-        ((ImageView) view.findViewById(R.id.actionbar_community_first_image)).setImageResource(R.drawable.ic_trash);
-        ((ImageView) view.findViewById(R.id.actionbar_community_second_image)).setImageResource(R.drawable.ic_share);
-        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(view, layout);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FAFAFA")));
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setElevation(0);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        view.findViewById(R.id.actionbar_community_base_image).setOnClickListener(new View.OnClickListener() {
+        toolbar.setNavigationIcon(R.drawable.ic_cancel);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                FreeBoardDetailActivity.this.finish();
+            public void onClick(View v) {
+                finish();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.reply_menu, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.freeboard_replayview) {
-            startActivity(new Intent(this, FreeBoardReplyActivity.class));
+            Intent intent = new Intent(this, FreeBoardReplyActivity.class);
+            intent.putExtra("contentID", getIntent().getStringExtra("contentID"));
+            startActivity(intent);
         }
     }
 }
