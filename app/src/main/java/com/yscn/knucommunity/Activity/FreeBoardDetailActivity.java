@@ -131,6 +131,7 @@ public class FreeBoardDetailActivity extends ActionBarActivity implements View.O
         if (id == R.id.freeboard_replayview) {
             Intent intent = new Intent(this, FreeBoardReplyActivity.class);
             intent.putExtra("contentID", getIntent().getStringExtra("contentID"));
+            intent.putExtra("title", getIntent().getStringExtra("title"));
             startActivity(intent);
         }
     }

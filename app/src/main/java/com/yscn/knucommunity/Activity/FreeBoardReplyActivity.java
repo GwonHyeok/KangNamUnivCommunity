@@ -41,6 +41,10 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         setContentView(R.layout.activity_freeboardreply);
         actionBarInit();
         findViewById(R.id.freeboard_reply_mainview).setOnClickListener(this);
+
+        /* set Title Data*/
+        ((TextView) findViewById(R.id.freeboard_reply_title)).setText(getIntent().getStringExtra("title"));
+
         getCommentData();
     }
 
