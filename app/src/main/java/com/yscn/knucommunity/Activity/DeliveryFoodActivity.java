@@ -68,6 +68,10 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
 
                 // Set Current Position cause change color selected Item
                 deliverySpinnerAdapter.setCurrentPosition(position);
+
+                // May Be Some Phone occur spinner drop down button color
+                // white to black when click Other Item
+                spinner.getBackground().setColorFilter(getResources().getColor(android.R.color.white), PorterDuff.Mode.MULTIPLY);
             }
 
             @Override
