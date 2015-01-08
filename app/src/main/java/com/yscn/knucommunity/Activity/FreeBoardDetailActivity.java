@@ -53,7 +53,7 @@ public class FreeBoardDetailActivity extends ActionBarActivity implements View.O
             protected String doInBackground(Void... params) {
                 String conetntID = getIntent().getStringExtra("contentID");
                 try {
-                    return NetworkUtil.getInstance().getFreeboardContent(conetntID);
+                    return NetworkUtil.getInstance().getDefaultboardContent(conetntID);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }

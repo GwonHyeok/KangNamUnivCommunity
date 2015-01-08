@@ -13,6 +13,7 @@ public class UrlList {
     public static final String APP_LOGIN_URL = MAIN_URL + "appLogin/doLogin/m";
     public static final String APP_REGISTER_URL = MAIN_URL + "appRegister/doRegister/m";
     public static final String FREEBOARD_GET_LIST = MAIN_URL + "board/getFreeboardList/m/";
+    public static final String FAQBOARD_GET_LIST = MAIN_URL + "board/getFaqboardList/m/";
     public static final String FREEBOARD_GET_CONTENT = MAIN_URL + "board/getFreeboardContent/m/";
     public static final String GET_COMMENT = MAIN_URL + "board/getComments/m/";
     public static final String PROFILE_IMAGE_URL = MAIN_URL + "profilePicture/";

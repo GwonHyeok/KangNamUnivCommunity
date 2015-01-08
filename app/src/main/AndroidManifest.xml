@@ -71,7 +71,9 @@
             android:name=".Activity.StudentInfoActivity"
             android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.LoginActivity" />
-        <activity android:name=".Activity.FaqDetailActivity" />
+        <activity
+            android:name=".Activity.FaqDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.MeetingActivity" />
         <activity android:name=".Activity.MeetingWriteActivity" />
         <activity

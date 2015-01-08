@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <com.yscn.knucommunity.CustomView.CircleImageView
-        android:id="@+id/view"
+        android:id="@+id/faq_list_profile"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_centerVertical="true"
@@ -20,12 +20,13 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@+id/view"
-        android:layout_toRightOf="@+id/view"
+        android:layout_toEndOf="@id/faq_list_profile"
+        android:layout_toRightOf="@id/faq_list_profile"
         android:gravity="center|left"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/faq_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Q. 안녕하세요"
@@ -33,6 +34,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/faq_list_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -41,7 +43,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/faq_list_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -52,12 +54,13 @@
         android:textColor="#757575" />
 
     <TextView
+        android:id="@+id/faq_reply_size"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/faq_list_time"
         android:layout_marginRight="20dp"
-        android:layout_toLeftOf="@+id/textView"
-        android:layout_toStartOf="@+id/textView"
+        android:layout_toLeftOf="@+id/faq_list_time"
+        android:layout_toStartOf="@+id/faq_list_time"
         android:text="답변 2"
         android:textColor="#00c853" />
 </RelativeLayout>

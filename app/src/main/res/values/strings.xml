@@ -27,5 +27,8 @@
 
     <string name="community_freeboard_title">자유개시판</string>
     <string name="community_faq_title">질문과 답변</string>
+    <string name="comminity_faq_question_title">Q. %1$s</string>
+    <string name="community_faq_reply_txt">답변 %1$s</string>
+    <string name="community_faq_reply_who_txt">%1$s님의 답변</string>
     <string name="community_greenlight_title">그린라이트</string>
 </resources>

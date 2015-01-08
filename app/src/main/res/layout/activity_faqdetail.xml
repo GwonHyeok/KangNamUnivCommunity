@@ -5,10 +5,17 @@
     android:layout_height="match_parent"
     android:background="#FFFAFAFA">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/board_white_main_color" />
+
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
         android:orientation="vertical">
 
         <RelativeLayout
@@ -22,6 +29,7 @@
 
 
             <TextView
+                android:id="@+id/faq_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Q. 가끔가끔아주"
@@ -29,6 +37,7 @@
                 android:textSize="22sp" />
 
             <TextView
+                android:id="@+id/faq_detail_replycount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
@@ -59,19 +68,20 @@
                 android:layout_below="@+id/linearLayout">
 
                 <com.yscn.knucommunity.CustomView.CircleImageView
-                    android:id="@+id/view2"
+                    android:id="@+id/faq_detail_profile"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginLeft="25dp"
                     android:src="@drawable/ic_profile" />
 
                 <TextView
+                    android:id="@+id/faq_detail_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="10dp"
-                    android:layout_toEndOf="@+id/view2"
-                    android:layout_toRightOf="@+id/view2"
+                    android:layout_toEndOf="@id/faq_detail_profile"
+                    android:layout_toRightOf="@id/faq_detail_profile"
                     android:text="권혁"
                     android:textColor="#616161"
                     android:textSize="18sp" />
@@ -85,26 +95,18 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginRight="10dp"
-                        android:text="2014.10.16"
-                        android:textColor="#757575" />
-
-                    <TextView
-                        android:id="@+id/textView"
+                        android:id="@+id/faq_detail_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="25dp"
-                        android:layout_toEndOf="@+id/textView3"
-                        android:layout_toRightOf="@+id/textView3"
-                        android:text="17:24"
+                        android:text="2014.10.16 17:24"
                         android:textColor="#757575" />
+
                 </LinearLayout>
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/faq_detail_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="30dp"

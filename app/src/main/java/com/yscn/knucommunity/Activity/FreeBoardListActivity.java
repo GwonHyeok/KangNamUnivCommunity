@@ -18,7 +18,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
-import com.yscn.knucommunity.Items.FreeBoardListItems;
+import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
@@ -46,7 +46,7 @@ public class FreeBoardListActivity extends MenuBaseActivity implements View.OnCl
     }
 
     private void getListData() {
-        new AsyncTask<Void, Void, ArrayList<FreeBoardListItems>>() {
+        new AsyncTask<Void, Void, ArrayList<DefaultBoardListItems>>() {
             private ClearProgressDialog progressDialog;
 
             @Override
@@ -56,9 +56,10 @@ public class FreeBoardListActivity extends MenuBaseActivity implements View.OnCl
             }
 
             @Override
-            protected ArrayList<FreeBoardListItems> doInBackground(Void... params) {
+            protected ArrayList<DefaultBoardListItems> doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().getFreeboardList(pageIndex);
+                    return NetworkUtil.getInstance().getDefaultboardList(
+                            NetworkUtil.BoardType.FREE, pageIndex);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -66,7 +67,7 @@ public class FreeBoardListActivity extends MenuBaseActivity implements View.OnCl
             }
 
             @Override
-            protected void onPostExecute(ArrayList<FreeBoardListItems> listItemses) {
+            protected void onPostExecute(ArrayList<DefaultBoardListItems> listItemses) {
                 if (listItemses != null) {
                     addScrollViewData(listItemses);
                 }
@@ -75,7 +76,7 @@ public class FreeBoardListActivity extends MenuBaseActivity implements View.OnCl
         }.execute();
     }
 
-    private void addScrollViewData(ArrayList<FreeBoardListItems> listItemses) {
+    private void addScrollViewData(ArrayList<DefaultBoardListItems> listItemses) {
         ScrollView scrollView = (ScrollView) findViewById(R.id.freeboard_list);
         View childView = scrollView.getChildAt(0);
 
@@ -88,7 +89,7 @@ public class FreeBoardListActivity extends MenuBaseActivity implements View.OnCl
             SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
 
             String time;
-            for (FreeBoardListItems listItems : listItemses) {
+            for (DefaultBoardListItems listItems : listItemses) {
                 try {
                     Date date = simpleDateFormat.parse(listItems.getTime());
                     time = newDateFormat.format(date);
@@ -149,8 +150,8 @@ public class FreeBoardListActivity extends MenuBaseActivity implements View.OnCl
         Object tag = view.getTag();
         if (tag != null) {
 
-            if (tag instanceof FreeBoardListItems) {
-                FreeBoardListItems listItems = (FreeBoardListItems) tag;
+            if (tag instanceof DefaultBoardListItems) {
+                DefaultBoardListItems listItems = (DefaultBoardListItems) tag;
                 Intent intent = new Intent(getContext(), FreeBoardDetailActivity.class);
                 intent.putExtra("contentID", listItems.getContentid());
                 intent.putExtra("writerName", listItems.getName());

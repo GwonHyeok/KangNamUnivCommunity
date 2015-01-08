@@ -7,17 +7,17 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
-import com.yscn.knucommunity.Items.FreeBoardListItems;
 
 import java.util.ArrayList;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
  */
-public class FreeBoardListAdapter extends ArrayAdapter<FreeBoardListItems> {
+public class FreeBoardListAdapter extends ArrayAdapter<DefaultBoardListItems> {
 
-    public FreeBoardListAdapter(Context context, int resource, ArrayList<FreeBoardListItems> objects) {
+    public FreeBoardListAdapter(Context context, int resource, ArrayList<DefaultBoardListItems> objects) {
         super(context, resource, objects);
     }
 
@@ -36,7 +36,7 @@ public class FreeBoardListAdapter extends ArrayAdapter<FreeBoardListItems> {
         } else {
             holder = (AdapterHolder) view.getTag();
         }
-        FreeBoardListItems object = getItem(position);
+        DefaultBoardListItems object = getItem(position);
 //        holder.title.setText(object.getTitle());
 //        holder.sumary.setText(object.getSummary());
         return view;

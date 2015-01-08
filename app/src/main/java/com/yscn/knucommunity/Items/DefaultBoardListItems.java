@@ -3,13 +3,13 @@ package com.yscn.knucommunity.Items;
 /**
  * Created by GwonHyeok on 14. 11. 3..
  */
-public class FreeBoardListItems {
+public class DefaultBoardListItems {
 
     private String title, time, name, studentnumber, contentid;
     private int replyCount;
 
-    public FreeBoardListItems(String title, String studentnumber, String contentid, String name,
-                              String time, int replyCount) {
+    public DefaultBoardListItems(String title, String studentnumber, String contentid, String name,
+                                 String time, int replyCount) {
         this.time = time;
         this.title = title;
         this.replyCount = replyCount;
