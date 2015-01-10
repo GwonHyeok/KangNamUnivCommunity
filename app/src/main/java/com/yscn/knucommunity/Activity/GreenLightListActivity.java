@@ -3,7 +3,6 @@ package com.yscn.knucommunity.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -53,12 +52,6 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
             }
         }
 
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.board_menu, menu);
-        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
