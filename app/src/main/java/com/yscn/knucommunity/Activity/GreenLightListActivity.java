@@ -70,6 +70,11 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
     }
 
     @Override
+    protected int getBoardListScrollViewID() {
+        return R.id.greenlight_list;
+    }
+
+    @Override
     public void onClick(View v) {
         Object tag = v.getTag();
         if (tag != null) {

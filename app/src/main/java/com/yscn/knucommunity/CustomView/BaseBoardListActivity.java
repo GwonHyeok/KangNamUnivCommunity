@@ -4,9 +4,11 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
@@ -37,7 +39,34 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
         super.onCreate(bundle);
         setStatusBarColor();
         actionBarInit();
+        scrollViewInit();
         getBoardListData();
+    }
+
+    private void scrollViewInit() {
+        View view = findViewById(getBoardListScrollViewID());
+        if (view instanceof NotifyFooterScrollView) {
+            final NotifyFooterScrollView scrollView = (NotifyFooterScrollView) view;
+
+            scrollView.setonScrollToBottomListener(new NotifyFooterScrollView.onScrollToBottomListener() {
+                @Override
+                public void scrollToBottom() {
+                    // 자료가 15 * pageindex 보다 적으면 호출 하지 않음.
+                    // 자료가 15 * pageindec == 15 * pageindex 일때 pageIndex 하나 올리고 데이터 로딩 호출.
+
+                    View view = scrollView.getChildAt(0);
+                    if (view instanceof LinearLayout) {
+                        int childSize = ((LinearLayout) view).getChildCount();
+                        if (childSize == pageIndex * 15) {
+                            setPageIndex(pageIndex + 1);
+                            getBoardListData();
+                        }
+                    }
+                }
+            });
+        } else {
+            Log.d(getClass().getSimpleName(), "ScrollView is Must NotifyFooterScrollView");
+        }
     }
 
     private void actionBarInit() {
@@ -56,7 +85,7 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
         });
     }
 
-    private void getBoardListData() {
+    protected void getBoardListData() {
         new AsyncTask<Void, Void, ArrayList<DefaultBoardListItems>>() {
             private ClearProgressDialog progressDialog;
 
@@ -133,6 +162,13 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
      * @return get BoardType
      */
     protected abstract NetworkUtil.BoardType getBoardType();
+
+    /**
+     * board list scrollView must NotifyFooterScrollView
+     *
+     * @return board list ScrollView ID
+     */
+    protected abstract int getBoardListScrollViewID();
 
     /**
      * 각 레이아웃들의 갑들을 넣어줌

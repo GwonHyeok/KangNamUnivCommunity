@@ -77,6 +77,11 @@ public class FaqListActivity extends BaseBoardListActivity implements View.OnCli
     }
 
     @Override
+    protected int getBoardListScrollViewID() {
+        return R.id.faq_list;
+    }
+
+    @Override
     public void onClick(View v) {
         Object tag = v.getTag();
         if (tag != null) {

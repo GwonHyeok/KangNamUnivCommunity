@@ -20,7 +20,7 @@
         android:text="욕설, 상대방을 향한 비방은 관리자에 의해 삭제될 수 있습니다."
         android:textColor="#FF757575" />
 
-    <ScrollView
+    <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
         android:id="@+id/greenlight_list"
         android:layout_width="match_parent"
         android:layout_height="fill_parent"
@@ -34,5 +34,5 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
-    </ScrollView>
+    </com.yscn.knucommunity.CustomView.NotifyFooterScrollView>
 </RelativeLayout>

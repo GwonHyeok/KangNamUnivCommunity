@@ -69,6 +69,11 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
     }
 
     @Override
+    protected int getBoardListScrollViewID() {
+        return R.id.freeboard_list;
+    }
+
+    @Override
     public void onClick(View view) {
         Object tag = view.getTag();
         if (tag != null) {
