@@ -21,9 +21,9 @@
             android:id="@+id/greenlight_detail_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="35dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="45dp"
+            android:layout_marginTop="30dp"
             android:text="안녕하세요"
             android:textColor="#FF424242"
             android:textSize="26sp" />
@@ -125,7 +125,7 @@
             android:layout_toRightOf="@+id/imageView"
             android:text="댓글"
             android:textColor="#FFBBBBBB"
-            android:textSize="19sp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 
 </RelativeLayout>

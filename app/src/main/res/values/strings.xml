@@ -25,7 +25,7 @@
     <string name="delivery_fastfood">패스트푸드</string>
     <string name="delivery_etceterafood">기타</string>
 
-    <string name="community_freeboard_title">자유개시판</string>
+    <string name="community_freeboard_title">자유게시판</string>
     <string name="community_faq_title">질문과 답변</string>
     <string name="comminity_faq_question_title">Q. %1$s</string>
     <string name="community_faq_reply_txt">답변 %1$s</string>

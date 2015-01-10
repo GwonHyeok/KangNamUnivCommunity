@@ -24,7 +24,8 @@
             android:layout_alignRight="@+id/textView"
             android:layout_alignStart="@+id/textView"
             android:text="동아리이름"
-            android:textColor="#FFFFEA00" />
+            android:textColor="#FFFFEA00"
+            android:textSize="13sp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -39,7 +40,7 @@
             android:layout_marginTop="10dp"
             android:text="올클리어"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="28sp" />
 
         <View
             android:id="@+id/textView2"
@@ -61,7 +62,7 @@
             android:layout_alignStart="@+id/textView2"
             android:layout_marginBottom="20dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="3dp"
             android:background="#FFFFAB91" />
 
         <TextView
@@ -74,7 +75,8 @@
             android:layout_alignStart="@+id/textView3"
             android:layout_marginBottom="3dp"
             android:text="동아리소개"
-            android:textColor="#FFFFAB91" />
+            android:textColor="#FFffccbc"
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/textView4"
@@ -86,7 +88,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/view"
             android:text="춤을 즐길 줄 아는 사람들의 모임 ALL CLEAR"
-            android:textColor="#FFFFAB91" />
+            android:textColor="#FFFFAB91"
+            android:textSize="13sp"/>
 
     </RelativeLayout>
 

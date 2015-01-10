@@ -20,7 +20,8 @@
             android:layout_alignLeft="@+id/major_name"
             android:layout_alignStart="@+id/major_name"
             android:text="학과이름"
-            android:textColor="#FFEF5350" />
+            android:textColor="#FFEF5350"
+            android:textSize="15sp"/>
 
         <TextView
             android:id="@+id/major_name"
@@ -36,7 +37,7 @@
             android:layout_marginTop="10dp"
             android:text="컴퓨터미디어정보공학부"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:textSize="28sp" />
 
         <View
             android:id="@+id/textView2"
