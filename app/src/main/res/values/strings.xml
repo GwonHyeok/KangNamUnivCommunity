@@ -32,4 +32,5 @@
     <string name="community_faq_reply_who_txt">%1$s님의 답변</string>
     <string name="community_board_reply_count_form">[%1$s]</string>
     <string name="community_greenlight_title">그린라이트</string>
+    <string name="community_board_nodata">정보를 가져오는 중에 문제가 발생하였습니다.</string>
 </resources>

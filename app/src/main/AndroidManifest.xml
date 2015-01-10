@@ -50,7 +50,9 @@
         <activity
             android:name=".Activity.GreenLightListActivity"
             android:theme="@style/NoActionBarTheme" />
-        <activity android:name=".Activity.GreenLightDetailActivity" />
+        <activity
+            android:name=".Activity.GreenLightDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.FreeBoardListActivity"
             android:theme="@style/NoActionBarTheme" />

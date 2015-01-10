@@ -49,7 +49,7 @@ public class NetworkUtil {
 
     public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER}
 
-    public static enum BoardType {FREE, FAQ}
+    public static enum BoardType {FREE, FAQ, GREENLIGHT}
 
     private static NetworkUtil instance;
 
@@ -308,6 +308,8 @@ public class NetworkUtil {
             httpResponse = postData(UrlList.FREEBOARD_GET_LIST + page, null);
         } else if (boardType == BoardType.FAQ) {
             httpResponse = postData(UrlList.FAQBOARD_GET_LIST + page, null);
+        } else if (boardType == BoardType.GREENLIGHT) {
+            httpResponse = postData(UrlList.GREENLIGHT_GET_LIST + page, null);
         } else {
             return null;
         }
@@ -334,13 +336,59 @@ public class NetworkUtil {
 
     public String getDefaultboardContent(String contentID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HttpResponse httpResponse = postData(UrlList.FREEBOARD_GET_CONTENT + contentID, null);
+        HttpResponse httpResponse = postData(UrlList.DEFAULTBOARD_GET_CONTENT + contentID, null);
         JSONObject object = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
         if (!checkResultData(object)) {
             return null;
         }
         return object.get("content").toString();
+    }
+
+    /**
+     * @param contentID greenLight Board Content ID
+     * @return HashMap <String String>
+     * 그린라이트 결과에 대해서 해쉬맵 형태로 넘겨준다.
+     * positivesize : 그린라이트 켬 사이즈.
+     * negativesize : 그린라이트 끔 사이즈.
+     * isChecked : 그 사람이 그린라이트를 체크 했었는지 확인.
+     * @throws IOException
+     * @throws ParseException
+     */
+    public HashMap<String, String> getGreenLightResult(String contentID) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        HttpResponse httpResponse = postData(UrlList.GET_GREENLIGHT_RESULT + contentID, parameter);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+        if (!checkResultData(object)) {
+            return null;
+        }
+        HashMap<String, String> greenLightData = new HashMap<>();
+        greenLightData.put("positivesize", object.get("positivesize").toString());
+        greenLightData.put("negativesize", object.get("negativesize").toString());
+        greenLightData.put("isChecked", object.get("isChecked").toString());
+        return greenLightData;
+    }
+
+
+    public HashMap<String, String> setGreenLightResult(String contentID, boolean isOn) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        parameter.put("result", isOn ? "1" : "0");
+        HttpResponse httpResponse = postData(UrlList.SET_GREENLIGHT_RESULT + contentID, parameter);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+        if (!checkResultData(object)) {
+            return null;
+        }
+        HashMap<String, String> greenLightData = new HashMap<>();
+        greenLightData.put("positivesize", object.get("positivesize").toString());
+        greenLightData.put("negativesize", object.get("negativesize").toString());
+        greenLightData.put("isChecked", object.get("isChecked").toString());
+        return greenLightData;
     }
 
     public ArrayList<CommentListItems> getComment(String contentID) throws IOException, ParseException {
@@ -375,7 +423,6 @@ public class NetworkUtil {
     private HttpResponse postData(String URL, HashMap<String, String> parameter) throws IOException {
         HttpPost httpPost = new HttpPost(URL);
         ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
-
         if (parameter != null) {
             MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
             Object[] key = parameter.keySet().toArray();
