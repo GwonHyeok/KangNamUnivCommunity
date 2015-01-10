@@ -28,6 +28,10 @@ import java.util.Date;
 public abstract class BaseBoardListActivity extends MenuBaseActivity {
     private int pageIndex = 1;
 
+    /**
+     * 반드시 자식 액티비티에서
+     * setContentView를 먼저 호출 한 후 super 클래스를 호출해야한다.
+     */
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
