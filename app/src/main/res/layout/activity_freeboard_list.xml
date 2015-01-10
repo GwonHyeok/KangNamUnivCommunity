@@ -13,11 +13,11 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_below="@id/toolbar"
         android:background="#E9E9E9"
         android:gravity="center"
-        android:text="도배, 관종성 개시글은 관리자에 의해 삭제됩니다."
+        android:text="도배, 관종성 게시글은 관리자에 의해 삭제됩니다."
         android:textColor="#FF757575" />
 
     <ScrollView
