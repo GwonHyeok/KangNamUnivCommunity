@@ -5,12 +5,20 @@
     android:layout_height="match_parent"
     android:background="#FFFAFAFA">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/board_white_main_color" />
+
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar">
 
         <TextView
+            android:id="@+id/greenlight_detail_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
@@ -21,26 +29,16 @@
             android:textSize="26sp" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/greenlight_detail_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@+id/textView"
-            android:layout_toStartOf="@+id/textView"
-            android:text="2014.10.16"
-            android:textColor="#757575" />
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="25dp"
-            android:text="17:24"
+            android:text="2014.10.16 17:24"
             android:textColor="#757575" />
+
+
     </RelativeLayout>
 
     <ScrollView
@@ -55,6 +53,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/greenlight_detail_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="30dp"
