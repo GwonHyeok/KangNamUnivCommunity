@@ -20,18 +20,17 @@
         android:id="@+id/actionbar_community_base_title"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/actionbar_community_base_image"
+        android:layout_toRightOf="@+id/actionbar_community_base_image"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:textSize="23sp"
         android:text="제목"
-        android:textColor="@android:color/white"
-        android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@+id/actionbar_community_base_image"
-        android:layout_toEndOf="@+id/actionbar_community_base_image"
-        android:layout_marginLeft="27dp"
-        android:layout_marginStart="27dp"
-        android:layout_marginBottom="19dp" />
-
+        android:textColor="@android:color/white" />
+    
     <ImageView
         android:id="@+id/actionbar_community_first_image"
         android:layout_width="wrap_content"
