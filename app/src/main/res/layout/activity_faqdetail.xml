@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="77dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="30dp">
 
@@ -45,7 +45,7 @@
                 android:layout_alignParentTop="true"
                 android:text="답변 2"
                 android:textColor="#00c853"
-                android:textSize="22sp" />
+                android:textSize="20sp" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -69,9 +69,9 @@
 
                 <com.yscn.knucommunity.CustomView.CircleImageView
                     android:id="@+id/faq_detail_profile"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginLeft="25dp"
+                    android:layout_width="47dp"
+                    android:layout_height="47dp"
+                    android:layout_marginLeft="19dp"
                     android:src="@drawable/ic_profile" />
 
                 <TextView
@@ -79,7 +79,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="14dp"
                     android:layout_toEndOf="@id/faq_detail_profile"
                     android:layout_toRightOf="@id/faq_detail_profile"
                     android:text="권혁"
@@ -146,7 +146,7 @@
             android:layout_toRightOf="@+id/imageView"
             android:text="답변달기"
             android:textColor="#FFBBBBBB"
-            android:textSize="19sp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 
 </RelativeLayout>
