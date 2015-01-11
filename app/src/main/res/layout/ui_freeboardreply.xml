@@ -14,12 +14,13 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical">
 
             <com.yscn.knucommunity.CustomView.CircleImageView
                 android:id="@+id/freeboard_reply_profile"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/ic_profile" />
@@ -34,7 +35,9 @@
                 android:layout_toEndOf="@id/freeboard_reply_profile"
                 android:layout_toRightOf="@id/freeboard_reply_profile"
                 android:text="권혁"
-                android:textColor="#FF616161" />
+                android:textColor="#FF212121"
+                android:layout_marginTop="12dp"
+                android:textSize="15sp" />
 
 
             <TextView
@@ -46,7 +49,7 @@
                 android:layout_alignTop="@id/freeboard_reply_name"
                 android:layout_marginRight="10dp"
                 android:text="2014.10.16 17:24"
-                android:textColor="#757575" />
+                android:textColor="#7d7d7d" />
 
             <TextView
                 android:id="@+id/freeboard_reply_comment"
@@ -57,7 +60,9 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignStart="@id/freeboard_reply_name"
                 android:layout_below="@id/freeboard_reply_profile"
-                android:text="머리가 아플땐 약 드시고 가만히 누워 자는게 최고입니다." />
+                android:text="머리가 아플땐 약 드시고 가만히 누워 자는게 최고입니다."
+                android:layout_marginBottom="13dp"
+                android:textColor="#FF616161" />
         </RelativeLayout>
 
     </RelativeLayout>

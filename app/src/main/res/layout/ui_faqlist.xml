@@ -7,8 +7,8 @@
 
     <com.yscn.knucommunity.CustomView.CircleImageView
         android:id="@+id/faq_list_profile"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="47dp"
+        android:layout_height="47dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:src="@drawable/ic_profile" />
@@ -58,9 +58,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/faq_list_time"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="30dp"
         android:layout_toLeftOf="@+id/faq_list_time"
         android:layout_toStartOf="@+id/faq_list_time"
         android:text="답변 2"
-        android:textColor="#00c853" />
+        android:textColor="#00c853"
+        android:textSize="16sp"/>
 </RelativeLayout>

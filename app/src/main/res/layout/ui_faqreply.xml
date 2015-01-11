@@ -18,10 +18,10 @@
 
             <com.yscn.knucommunity.CustomView.CircleImageView
                 android:id="@+id/faq_reply_profile"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="47dp"
+                android:layout_height="47dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="25dp"
+                android:layout_marginLeft="19dp"
                 android:src="@drawable/ic_profile" />
 
 
@@ -35,7 +35,7 @@
                 android:layout_toEndOf="@id/faq_reply_profile"
                 android:layout_toRightOf="@id/faq_reply_profile"
                 android:text="권혁님의 답변"
-                android:textColor="#FF616161"
+                android:textColor="#FF414141"
                 android:textSize="18sp" />
 
             <TextView
@@ -56,9 +56,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:paddingLeft="25dp"
-        android:paddingRight="25dp"
-        android:text="머리가 아플땐 약 드시고 가만히 누워 자는게 최고입니다." />
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="머리가 아플땐 약 드시고 가만히 누워 자는게 최고입니다."
+        android:textColor="#424242" />
 
     <View
         android:layout_width="match_parent"
