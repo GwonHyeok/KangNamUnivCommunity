@@ -1,44 +1,33 @@
 package com.yscn.knucommunity.Activity;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
-import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by GwonHyeok on 14. 11. 5..
  */
-public class FaqDetailActivity extends ActionBarActivity {
+public class FaqDetailActivity extends BaseBoardDetailActivity {
 
     @Override
     public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
         setContentView(R.layout.activity_faqdetail);
-        viewInit();
-        setDefaultData();
+        super.onCreate(bundle);
         setContent();
         getReplyData();
     }
@@ -77,7 +66,6 @@ public class FaqDetailActivity extends ActionBarActivity {
 
     private void addReplyData(ArrayList<CommentListItems> itemses) {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fatdetail_main_scroll_activity);
-        ImageLoaderUtil.getInstance().initImageLoader();
 
         for (CommentListItems dataObject : itemses) {
             View replyView = LayoutInflater.from(this).inflate(R.layout.ui_faqreply, linearLayout, false);
@@ -88,31 +76,12 @@ public class FaqDetailActivity extends ActionBarActivity {
             TextView contentView = (TextView) replyView.findViewById(R.id.faq_reply_content);
 
             nameView.setText(getReplyNameFormat(dataObject.getName()));
-            timeView.setText(getSimpleTime(dataObject.getTime()));
+            timeView.setText(getSimpleDetailTime(dataObject.getTime()));
             contentView.setText(dataObject.getComment());
-
-            ImageLoader.getInstance().displayImage(
-                    UrlList.PROFILE_IMAGE_URL + dataObject.getStudentnumber(),
-                    profileView);
+            setProfileImage(profileView, dataObject.getStudentnumber());
 
             linearLayout.addView(replyView);
         }
-    }
-
-    private String getSimpleTime(String defaulttime) {
-        String dataTimeFormat = "yyyy-MM-dd hh:mm:ss";
-        String newDateTimeFormat = "yyyy.MM.dd hh:mm";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
-        SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
-
-        String time;
-        try {
-            Date date = simpleDateFormat.parse(defaulttime);
-            time = newDateFormat.format(date);
-        } catch (java.text.ParseException ignore) {
-            time = defaulttime;
-        }
-        return time;
     }
 
     private String getReplyNameFormat(String replyName) {
@@ -149,7 +118,7 @@ public class FaqDetailActivity extends ActionBarActivity {
         }.execute();
     }
 
-    private void setDefaultData() {
+    protected void setDefaultData() {
         String contentID = getIntent().getStringExtra("contentID");
         String writerName = getIntent().getStringExtra("writerName");
         String studentNumber = getIntent().getStringExtra("writerStudentNumber");
@@ -158,13 +127,17 @@ public class FaqDetailActivity extends ActionBarActivity {
         String replyCount = String.valueOf(getIntent().getIntExtra("replyCount", -1));
 
         ((TextView) findViewById(R.id.faq_detail_name)).setText(writerName);
-        ((TextView) findViewById(R.id.faq_detail_time)).setText(getSimpleTime(time));
+        ((TextView) findViewById(R.id.faq_detail_time)).setText(getSimpleDetailTime(time));
         ((TextView) findViewById(R.id.faq_detail_title)).setText(getDefaulttFaqTitle(title));
         ((TextView) findViewById(R.id.faq_detail_replycount)).setText(getReplyText(replyCount));
 
-        ImageLoaderUtil.getInstance().initImageLoader();
         ImageView profileImageView = (ImageView) findViewById(R.id.faq_detail_profile);
-        ImageLoader.getInstance().displayImage(UrlList.PROFILE_IMAGE_URL + studentNumber, profileImageView);
+        setProfileImage(profileImageView, studentNumber);
+    }
+
+    @Override
+    protected int getStatusBarColor() {
+        return getResources().getColor(R.color.board_white_main_color);
     }
 
     private String getDefaulttFaqTitle(String title) {
@@ -173,34 +146,5 @@ public class FaqDetailActivity extends ActionBarActivity {
 
     private String getReplyText(String reply) {
         return String.format(getString(R.string.community_faq_reply_txt), reply);
-    }
-
-
-    private void viewInit() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.board_white_main_color));
-        }
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationIcon(R.drawable.ic_cancel);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.reply_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    private Context getContext() {
-        return FaqDetailActivity.this;
     }
 }

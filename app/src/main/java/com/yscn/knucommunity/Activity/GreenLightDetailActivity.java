@@ -1,17 +1,13 @@
 package com.yscn.knucommunity.Activity;
 
-import android.content.Context;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.NetworkUtil;
@@ -19,38 +15,20 @@ import com.yscn.knucommunity.Util.NetworkUtil;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
  */
-public class GreenLightDetailActivity extends ActionBarActivity implements View.OnClickListener {
+public class GreenLightDetailActivity extends BaseBoardDetailActivity implements View.OnClickListener {
     private String m_ContentID;
 
     @Override
     public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
         setContentView(R.layout.activity_greenlightdetail);
-        setDefailtData();
-        viewInit();
+        super.onCreate(bundle);
+        greenLightButtonInit();
         setContent();
-    }
-
-    private void setDefailtData() {
-//        intent.putExtra("contentID", listItems.getContentid());
-//        intent.putExtra("writerName", listItems.getName());
-//        intent.putExtra("writerStudentNumber", listItems.getStudentnumber());
-//        intent.putExtra("title", listItems.getTitle());
-//        intent.putExtra("time", listItems.getTime());
-        m_ContentID = getIntent().getStringExtra("contentID");
-        ((TextView) findViewById(R.id.greenlight_detail_title)).setText(getIntent().getStringExtra("title"));
-        ((TextView) findViewById(R.id.greenlight_detail_time)).setText(getSimpleTime(getIntent().getStringExtra("time")));
-    }
-
-    private Context getContext() {
-        return this;
     }
 
     private void setContent() {
@@ -112,54 +90,29 @@ public class GreenLightDetailActivity extends ActionBarActivity implements View.
         lightOff.setText(String.valueOf(negativeSize));
         lightOff.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
         lightOn.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
-
-//        lightOn.setClickable(false);
-//        lightOff.setClickable(false);
     }
 
-    private String getSimpleTime(String defaulttime) {
-        String dataTimeFormat = "yyyy-MM-dd hh:mm:ss";
-        String newDateTimeFormat = "yyyy.MM.dd hh:mm";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
-        SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
-
-        String time;
-        try {
-            Date date = simpleDateFormat.parse(defaulttime);
-            time = newDateFormat.format(date);
-        } catch (java.text.ParseException ignore) {
-            time = defaulttime;
-        }
-        return time;
-    }
-
-    private void viewInit() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xFFFAFAFA);
-        }
-
-         /* 액션바 */
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationIcon(R.drawable.ic_cancel);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
+    private void greenLightButtonInit() {
         /* 그린라이트 버튼 */
         findViewById(R.id.greenlight_light_on).setOnClickListener(this);
         findViewById(R.id.greenlight_light_off).setOnClickListener(this);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.reply_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+    protected void setDefaultData() {
+//        intent.putExtra("contentID", listItems.getContentid());
+//        intent.putExtra("writerName", listItems.getName());
+//        intent.putExtra("writerStudentNumber", listItems.getStudentnumber());
+//        intent.putExtra("title", listItems.getTitle());
+//        intent.putExtra("time", listItems.getTime());
+        m_ContentID = getIntent().getStringExtra("contentID");
+        ((TextView) findViewById(R.id.greenlight_detail_title)).setText(getIntent().getStringExtra("title"));
+        ((TextView) findViewById(R.id.greenlight_detail_time)).setText(getSimpleDetailTime(getIntent().getStringExtra("time")));
+    }
+
+    @Override
+    protected int getStatusBarColor() {
+        return 0xFFFAFAFA;
     }
 
     @Override
