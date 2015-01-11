@@ -103,6 +103,11 @@
                 android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_above="@+id/freeboard_replayview"
+        android:background="#FFBBBBBB" />
 
     <RelativeLayout
         android:id="@+id/freeboard_replayview"
