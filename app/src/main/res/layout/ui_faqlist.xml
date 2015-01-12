@@ -29,7 +29,7 @@
             android:id="@+id/faq_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Q. 안녕하세요"
+            android:text="Q. 9글자 이내로 "
             android:textColor="#FF343434"
             android:textSize="18sp" />
 
@@ -58,7 +58,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/faq_list_time"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="12dp"
         android:layout_toLeftOf="@+id/faq_list_time"
         android:layout_toStartOf="@+id/faq_list_time"
         android:text="답변 2"

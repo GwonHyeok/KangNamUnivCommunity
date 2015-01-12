@@ -56,8 +56,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        android:paddingLeft="22dp"
+        android:paddingRight="22dp"
         android:text="머리가 아플땐 약 드시고 가만히 누워 자는게 최고입니다."
         android:textColor="#424242" />
 
