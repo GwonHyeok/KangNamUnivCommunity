@@ -13,13 +13,14 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:layout_below="@id/toolbar"
         android:background="#E9E9E9"
         android:gravity="center_vertical"
         android:text="욕설, 상대방을 향한 비방은 관리자에 의해 삭제될 수 있습니다."
         android:textColor="#FF757575"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="14dp"
+        android:textSize="13sp"/>
 
     <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
         android:id="@+id/greenlight_list"
