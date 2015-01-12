@@ -59,6 +59,8 @@
             android:background="@null"
             android:hint="찾기"
             android:paddingLeft="10dp"
-            android:textColorHint="#FF666666" />
+            android:textColorHint="#FF666666"
+            android:text=""
+            android:textColor="#ffffff"/>
     </RelativeLayout>
 </RelativeLayout>
