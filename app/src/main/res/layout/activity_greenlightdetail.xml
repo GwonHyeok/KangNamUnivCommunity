@@ -22,11 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="45dp"
+            android:layout_marginLeft="40dp"
             android:layout_marginTop="30dp"
             android:text="안녕하세요"
             android:textColor="#FF424242"
-            android:textSize="26sp" />
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/greenlight_detail_time"
