@@ -412,6 +412,18 @@ public class NetworkUtil {
         return list;
     }
 
+    public boolean writeComment(String contentID, String comment) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        parameter.put("comment", comment);
+        HttpResponse httpResponse = postData(UrlList.WRITE_COMMENT + contentID, parameter);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+        return checkResultData(object);
+    }
+
     private String URLDecode(String str) throws UnsupportedEncodingException {
         return URLDecoder.decode(str, "UTF-8");
     }

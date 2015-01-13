@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -45,6 +46,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         /* set Title Data*/
         ((TextView) findViewById(R.id.freeboard_reply_title)).setText(getIntent().getStringExtra("title"));
 
+        findViewById(R.id.imageView1).setOnClickListener(this);
         getCommentData();
     }
 
@@ -104,6 +106,11 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         }
     }
 
+    private void removeScrollViewData() {
+        LinearLayout mainView = (LinearLayout) findViewById(R.id.freeboard_reply_scrollview);
+        mainView.removeAllViews();
+    }
+
     private String getSimpleTime(String defaulttime) {
         String dataTimeFormat = "yyyy-MM-dd hh:mm:ss";
         String newDateTimeFormat = "yyyy.MM.dd hh:mm";
@@ -157,7 +164,39 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
                 replySpace.setVisibility(View.VISIBLE);
                 replySpace.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slideup));
             }
+        } else if (id == R.id.imageView1) {
+            addComment();
         }
+    }
+
+    private void addComment() {
+        final String comment = ((EditText) findViewById(R.id.freeboard_reply_edittext)).getText().toString();
+        if (comment.isEmpty()) {
+            return;
+        }
+        new AsyncTask<Void, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                boolean result = false;
+                try {
+                    result = NetworkUtil.getInstance().writeComment(
+                            getIntent().getStringExtra("contentID"), comment);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                if (result) {
+                    ((EditText) findViewById(R.id.freeboard_reply_edittext)).setText("");
+                    removeScrollViewData();
+                    getCommentData();
+                }
+            }
+        }.execute();
     }
 
     private Context getContext() {

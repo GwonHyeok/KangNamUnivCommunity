@@ -19,6 +19,7 @@ public class UrlList {
     public static final String GET_GREENLIGHT_RESULT = MAIN_URL + "board/getGreenLightResult/m/";
     public static final String SET_GREENLIGHT_RESULT = MAIN_URL + "board/setGreenLightResult/m/";
     public static final String GET_COMMENT = MAIN_URL + "board/getComments/m/";
+    public static final String WRITE_COMMENT = MAIN_URL + "board/writeComment/m/";
     public static final String PROFILE_IMAGE_URL = MAIN_URL + "profilePicture/";
 
     /* 학교 서버 URL */
