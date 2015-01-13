@@ -21,7 +21,7 @@
             android:layout_alignStart="@+id/major_name"
             android:text="학과이름"
             android:textColor="#FFEF5350"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/major_name"
@@ -34,10 +34,10 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="40dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:text="컴퓨터미디어정보공학부"
             android:textColor="@android:color/white"
-            android:textSize="28sp" />
+            android:textSize="27sp" />
 
         <View
             android:id="@+id/textView2"
@@ -46,20 +46,20 @@
             android:layout_alignLeft="@+id/major_name"
             android:layout_alignStart="@+id/major_name"
             android:layout_below="@+id/major_name"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="4dp"
             android:background="#FFEF5350" />
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_alignLeft="@+id/textView2"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/textView2"
             android:layout_marginBottom="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="2dp"
             android:background="#FFB39DDB" />
 
         <TextView

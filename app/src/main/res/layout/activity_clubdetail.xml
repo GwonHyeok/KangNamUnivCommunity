@@ -25,7 +25,7 @@
             android:layout_alignStart="@+id/textView"
             android:text="동아리이름"
             android:textColor="#FFFFEA00"
-            android:textSize="13sp"/>
+            android:textSize="14sp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -37,10 +37,10 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="40dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="3dp"
             android:text="올클리어"
             android:textColor="@android:color/white"
-            android:textSize="28sp" />
+            android:textSize="27sp" />
 
         <View
             android:id="@+id/textView2"
@@ -49,20 +49,20 @@
             android:layout_alignLeft="@+id/textView"
             android:layout_alignStart="@+id/textView"
             android:layout_below="@+id/textView"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="16dp"
             android:layout_marginTop="5dp"
             android:background="#FFFFEA00" />
 
         <View
             android:id="@+id/view"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="1dp"
             android:layout_alignLeft="@+id/textView2"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/textView2"
             android:layout_marginBottom="20dp"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="2dp"
             android:background="#FFFFAB91" />
 
         <TextView
@@ -106,22 +106,24 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:layout_margin="20dp">
 
                 <ImageView
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_club_name" />
+                    android:src="@drawable/ic_club_name"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical"
                     android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/imageView"
                     android:layout_toRightOf="@+id/imageView"
-                    android:orientation="vertical">
+                    android:layout_toEndOf="@+id/imageView"
+                    android:layout_marginLeft="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -133,21 +135,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="권혁(kh4975@naver.com)"
-                        android:textColor="#757575" />
+                        android:textColor="#757575"
+                        android:textSize="13sp" />
                 </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="8dp">
 
                 <ImageView
                     android:id="@+id/imageView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
-                    android:src="@drawable/ic_club_name" />
+                    android:src="@drawable/ic_club_name"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -155,7 +160,8 @@
                     android:layout_centerVertical="true"
                     android:layout_toEndOf="@+id/imageView1"
                     android:layout_toRightOf="@+id/imageView1"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginLeft="20dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -167,24 +173,25 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="서홍일(suhhongyiel@gmail.com)"
-                        android:textColor="#757575" />
+                        android:textColor="#757575"
+                        android:textSize="13sp" />
                 </LinearLayout>
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2dp"
-                android:layout_marginLeft="40dp"
+                android:layout_marginLeft="48dp"
                 android:layout_marginTop="10dp"
                 android:background="#bdbdbd" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="40dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginLeft="57dp"
+                android:layout_marginTop="15dp"
                 android:text="상세 정보가 없습니다."
-                android:textColor="#424242" />
+                android:textColor="#424242"/>
 
         </LinearLayout>
     </ScrollView>
