@@ -1,20 +1,26 @@
 package com.yscn.knucommunity.CustomView;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
+import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,7 +28,7 @@ import java.util.Date;
  * Created by GwonHyeok on 15. 1. 11..
  */
 public abstract class BaseBoardDetailActivity extends ActionBarActivity {
-    private String board_studenuNumber;
+    private String board_studenuNumber, board_contentID;
 
     /**
      * 반드시 자식 액티비티에서
@@ -35,6 +41,7 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
         actionBarInit();
         setDefaultData();
         board_studenuNumber = getIntent().getStringExtra("writerStudentNumber");
+        board_contentID = getIntent().getStringExtra("contentID");
     }
 
     private void setStatusBarColor() {
@@ -57,10 +64,60 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
         });
     }
 
+    /**
+     * 메뉴 인플레이트
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.reply_menu, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * 옵션 메뉴 선택시 글 삭제 혹은 공유 작업.
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.menu_reply_trash) {
+            deleteBoardContent();
+        } else if (item.getItemId() == R.id.menu_reply_share) {
+            // 공유
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * 글 삭제하는 작업
+     */
+    private void deleteBoardContent() {
+        new AsyncTask<Void, Void, Boolean>() {
+            private ClearProgressDialog progressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                progressDialog = new ClearProgressDialog(getContext());
+                progressDialog.show();
+            }
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                boolean result = false;
+                try {
+                    result = NetworkUtil.getInstance().deleteBoardList(board_contentID);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                if (result) {
+                    finish();
+                }
+                progressDialog.dismiss();
+            }
+        }.execute();
     }
 
     /**

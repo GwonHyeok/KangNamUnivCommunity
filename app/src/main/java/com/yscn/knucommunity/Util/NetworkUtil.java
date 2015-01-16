@@ -424,6 +424,17 @@ public class NetworkUtil {
         return checkResultData(object);
     }
 
+    public boolean deleteBoardList(String contentID) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        HttpResponse httpResponse = postData(UrlList.DELETE_BOARD_LIST + contentID, parameter);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+        return checkResultData(object);
+    }
+
     private String URLDecode(String str) throws UnsupportedEncodingException {
         return URLDecoder.decode(str, "UTF-8");
     }
