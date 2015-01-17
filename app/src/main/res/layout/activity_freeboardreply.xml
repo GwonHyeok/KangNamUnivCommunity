@@ -51,7 +51,7 @@
         android:id="@+id/freeboard_replyspace"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:layout_alignBottom="@+id/scrollView"
+        android:layout_alignParentBottom="true"
         android:background="#fffafafa"
         android:visibility="gone">
 
@@ -68,7 +68,8 @@
             android:background="@android:color/transparent"
             android:hint="댓글을 입력해주세요"
             android:paddingLeft="10dp"
-            android:textColor="#FFBBBBBB"
+            android:textColorHint="#FFBBBBBB"
+            android:textColor="#FF4d4d4d"
             android:textSize="16sp" />
 
         <ImageView
