@@ -10,6 +10,7 @@ public class UserData {
     private String studentNumber;
     private String studentName;
     private String userToken;
+    private String userRating;
     private Bitmap userProfile;
 
     private UserData() {
@@ -27,12 +28,12 @@ public class UserData {
         return studentNumber;
     }
 
-    public String getStudentName() {
-        return studentName;
-    }
-
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public String getStudentName() {
+        return studentName;
     }
 
     public void setStudentName(String studentName) {
@@ -53,5 +54,13 @@ public class UserData {
 
     public void setUserProfile(Bitmap userProfile) {
         this.userProfile = userProfile;
+    }
+
+    public String getUserRating() {
+        return userRating;
+    }
+
+    public void setUserRating(String userRating) {
+        this.userRating = userRating;
     }
 }

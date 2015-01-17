@@ -167,6 +167,7 @@ public class NetworkUtil {
                 if (result.equals("hasmember")) {
                     /* 멤버가 있을경우 토큰을 메모리에 올려놓고 Preference에 저장 */
                     String token = apploginjsonObject.get("token").toString();
+                    String rating = apploginjsonObject.get("rating").toString();
                     UserData.getInstance().setUserToken(token);
                     log("Token  : " + token);
 
@@ -176,6 +177,7 @@ public class NetworkUtil {
                     preference.setStudentNumber(studentnumber);
                     preference.setToken(token);
                     preference.setStudentName(studentname);
+                    preference.setStudentRating(rating);
                     return LoginStatus.SUCCESS;
                 } else if (result.equals("nomember")) {
                     return LoginStatus.NOMEMBER;

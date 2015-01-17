@@ -118,6 +118,7 @@ public class Splash extends ActionBarActivity {
             UserData.getInstance().setStudentName(userDataPreference.getStudentName());
             UserData.getInstance().setStudentNumber(userDataPreference.getStudentNumber());
             UserData.getInstance().setUserToken(userDataPreference.getToken());
+            UserData.getInstance().setUserRating(userDataPreference.getStudentRating());
             return true;
         }
     }
