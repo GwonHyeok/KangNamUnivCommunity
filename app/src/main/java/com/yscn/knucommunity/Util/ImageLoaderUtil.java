@@ -3,6 +3,7 @@ package com.yscn.knucommunity.Util;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 /**
  * Created by GwonHyeok on 15. 1. 8..
@@ -30,6 +31,7 @@ public class ImageLoaderUtil {
     public DisplayImageOptions getDefaultOptions() {
         return new DisplayImageOptions.Builder()
                 .cacheInMemory(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
                 .build();
     }
 }
