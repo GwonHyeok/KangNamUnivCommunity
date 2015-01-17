@@ -13,8 +13,6 @@ import com.yscn.knucommunity.R;
  */
 public class MainActivity extends BaseDoubleKillActivity implements View.OnClickListener {
 
-    public enum ACTIVITY {STUDENTINFO, LINK, RESTRAUNT, STUDENTGROUND, MARKET, Communitty}
-
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -73,4 +71,6 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
 
         }
     }
+
+    public enum ACTIVITY {STUDENTINFO, LINK, RESTRAUNT, STUDENTGROUND, MARKET, Communitty}
 }

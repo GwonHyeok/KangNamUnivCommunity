@@ -24,16 +24,19 @@ public class KenBurnsSupportView extends FrameLayout {
     private static final String TAG = "KenBurnsView";
 
     private final Handler mHandler;
+    private final Random random = new Random();
     private int[] mResourceIds;
     private ImageView[] mImageViews;
     private int mActiveImageIndex = -1;
-
-    private final Random random = new Random();
     private int mSwapMs = 10000;
     private int mFadeInOutMs = 400;
 
     private float maxScaleFactor = 1.5F;
     private float minScaleFactor = 1.2F;
+
+    public KenBurnsSupportView(Context context) {
+        this(context, null);
+    }
 
     private Runnable mSwapImageRunnable = new Runnable() {
         @Override
@@ -42,10 +45,6 @@ public class KenBurnsSupportView extends FrameLayout {
             mHandler.postDelayed(mSwapImageRunnable, mSwapMs - mFadeInOutMs * 2);
         }
     };
-
-    public KenBurnsSupportView(Context context) {
-        this(context, null);
-    }
 
     public KenBurnsSupportView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -154,4 +153,6 @@ public class KenBurnsSupportView extends FrameLayout {
             mImageViews[i].setImageResource(mResourceIds[i]);
         }
     }
+
+
 }

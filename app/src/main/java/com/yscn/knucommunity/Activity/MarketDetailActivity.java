@@ -11,9 +11,9 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.Items.MarketDetailListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.MarketDetailListAdapter;
-import com.yscn.knucommunity.Items.MarketDetailListItems;
 
 import java.util.ArrayList;
 

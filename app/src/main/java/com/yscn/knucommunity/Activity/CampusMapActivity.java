@@ -23,8 +23,6 @@ import com.yscn.knucommunity.R;
  * Created by GwonHyeok on 14. 11. 6..
  */
 public class CampusMapActivity extends ActionBarActivity implements GoogleMap.OnMapClickListener, GoogleMap.OnMyLocationButtonClickListener, View.OnClickListener, AdapterView.OnItemClickListener {
-    private GoogleMap mMap;
-
     private final String GEO_EGONG = "geo:37.2770829,127.1341592";
     private final String GEO_GYEONCHEON = "geo:37.2765152,127.1339019";
     private final String GEO_HUSENG = "geo:37.2769126,127.1335131";
@@ -37,6 +35,7 @@ public class CampusMapActivity extends ActionBarActivity implements GoogleMap.On
     private final String GEO_INSA = "geo:37.2752595,127.1307101";
     private final String GEO_YESUL = "geo:37.27607,127.1309304";
     private final String GEO_UNDONG = "geo:37.2746936,127.1313567";
+    private GoogleMap mMap;
 
     @Override
     public void onCreate(Bundle bundle) {

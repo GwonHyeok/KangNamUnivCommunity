@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
+import com.yscn.knucommunity.R;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;

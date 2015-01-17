@@ -14,8 +14,6 @@ import com.yscn.knucommunity.R;
  * Created by GwonHyeok on 14. 11. 4..
  */
 public class LinkActivity extends MenuBaseActivity implements View.OnClickListener {
-    private enum LINK {APP_KNU, APP_SUGANG, APP_TIMETABLE, HOMEPAGE_ECLASS, HOMEPAGE_KNU, HOMEPAGE_SUB_KNU, HOMEPAGE_SUGANG}
-
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
@@ -98,4 +96,6 @@ public class LinkActivity extends MenuBaseActivity implements View.OnClickListen
         }
         return packageName;
     }
+
+    private enum LINK {APP_KNU, APP_SUGANG, APP_TIMETABLE, HOMEPAGE_ECLASS, HOMEPAGE_KNU, HOMEPAGE_SUB_KNU, HOMEPAGE_SUGANG}
 }

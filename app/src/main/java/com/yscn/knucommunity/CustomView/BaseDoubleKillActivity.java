@@ -1,6 +1,5 @@
 package com.yscn.knucommunity.CustomView;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;

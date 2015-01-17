@@ -45,14 +45,7 @@ import java.util.HashMap;
  * Created by GwonHyeok on 14. 11. 19..
  */
 public class NetworkUtil {
-    public static enum SchoolRestraunt {SHAL, GYUNG, GISUK, INSA}
-
-    public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER}
-
-    public static enum BoardType {FREE, FAQ, GREENLIGHT}
-
     private static NetworkUtil instance;
-
     private HttpClient httpClient = new DefaultHttpClient();
 
     private NetworkUtil() {
@@ -66,6 +59,9 @@ public class NetworkUtil {
         return instance;
     }
 
+    private static int parseInt(String str) {
+        return Integer.parseInt(str.replace(" ", ""));
+    }
 
     public LoginStatus RegisterAppServer(String studentnumber, String nickname, String name) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
@@ -218,7 +214,7 @@ public class NetworkUtil {
 
     public boolean registerGCMID(int appVersion, String gcmID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HashMap<String,String> parameter = new HashMap<>();
+        HashMap<String, String> parameter = new HashMap<>();
         parameter.put("appversion", String.valueOf(appVersion));
         parameter.put("gcmregisterid", gcmID);
         parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
@@ -408,7 +404,6 @@ public class NetworkUtil {
         return greenLightData;
     }
 
-
     public HashMap<String, String> setGreenLightResult(String contentID, boolean isOn) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
@@ -514,7 +509,9 @@ public class NetworkUtil {
         Log.d(tag, message);
     }
 
-    private static int parseInt(String str) {
-        return Integer.parseInt(str.replace(" ", ""));
-    }
+    public static enum SchoolRestraunt {SHAL, GYUNG, GISUK, INSA}
+
+    public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER}
+
+    public static enum BoardType {FREE, FAQ, GREENLIGHT}
 }

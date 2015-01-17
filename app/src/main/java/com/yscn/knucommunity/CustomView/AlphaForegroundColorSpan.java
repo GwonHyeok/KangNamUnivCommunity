@@ -11,7 +11,7 @@ public class AlphaForegroundColorSpan extends ForegroundColorSpan {
 
     public AlphaForegroundColorSpan(int color) {
         super(color);
-	}
+    }
 
     public AlphaForegroundColorSpan(Parcel src) {
         super(src);
@@ -23,17 +23,17 @@ public class AlphaForegroundColorSpan extends ForegroundColorSpan {
         dest.writeFloat(mAlpha);
     }
 
-	@Override
-	public void updateDrawState(TextPaint ds) {
-		ds.setColor(getAlphaColor());
-	}
-
-    public void setAlpha(float alpha) {
-        mAlpha = alpha;
+    @Override
+    public void updateDrawState(TextPaint ds) {
+        ds.setColor(getAlphaColor());
     }
 
     public float getAlpha() {
         return mAlpha;
+    }
+
+    public void setAlpha(float alpha) {
+        mAlpha = alpha;
     }
 
     private int getAlphaColor() {

@@ -16,13 +16,10 @@ import java.util.ArrayList;
 
 public class SampleListFragment extends ScrollTabHolderFragment implements OnScrollListener {
 
-    public static enum Type {NOTICE, HAKSA, JANG}
-
     private static final String ARG_POSITION = "position";
-
+    private static Type type;
     private ListView mListView;
     private ArrayList<String> mListItems;
-    private static Type type;
     private int mPosition;
 
     public synchronized static Fragment newInstance(int position, Type type) {
@@ -118,5 +115,7 @@ public class SampleListFragment extends ScrollTabHolderFragment implements OnScr
     public void onScrollStateChanged(AbsListView view, int scrollState) {
         // nothing
     }
+
+    public static enum Type {NOTICE, HAKSA, JANG}
 
 }

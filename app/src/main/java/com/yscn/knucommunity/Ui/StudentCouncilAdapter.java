@@ -6,8 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
+import com.yscn.knucommunity.R;
 
 import java.util.ArrayList;
 import java.util.HashMap;

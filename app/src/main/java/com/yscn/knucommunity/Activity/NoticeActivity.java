@@ -24,10 +24,9 @@ import com.yscn.knucommunity.R;
 
 public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder, ViewPager.OnPageChangeListener, View.OnClickListener {
 
+    private final String[] TITLES = {"공지사항", "학사제도", "장학제도"};
     private KenBurnsSupportView mHeaderPicture;
     private View mHeader;
-    private final String[] TITLES = {"공지사항", "학사제도", "장학제도"};
-
     private PagerSlidingTabStrip mPagerSlidingTabStrip;
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
@@ -39,6 +38,10 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
     private TextView actionBarHeaderTitleView;
 
     private TypedValue mTypedValue = new TypedValue();
+
+    public static float clamp(float value, float max, float min) {
+        return Math.max(Math.min(value, min), max);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -118,10 +121,6 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
         }
 
         return -top + firstVisiblePosition * c.getHeight() + headerHeight;
-    }
-
-    public static float clamp(float value, float max, float min) {
-        return Math.max(Math.min(value, min), max);
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
