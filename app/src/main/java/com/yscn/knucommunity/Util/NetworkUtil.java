@@ -193,6 +193,40 @@ public class NetworkUtil {
         }
     }
 
+    /**
+     * @return data[0] == REGISTERID, data[1] == APPVERSION
+     * @throws IOException
+     * @throws ParseException
+     */
+    public String[] getGCMRegisterData() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        HttpResponse httpResponse = postData(UrlList.APP_GET_GCM_REGISTERID, parameter);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+        String[] data = new String[2];
+        if (checkResultData(jsonObject)) {
+            data[0] = jsonObject.get("regid").toString();
+            data[1] = jsonObject.get("appver").toString();
+        }
+        return data;
+    }
+
+    public boolean registerGCMID(int appVersion, String gcmID) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String,String> parameter = new HashMap<>();
+        parameter.put("appversion", String.valueOf(appVersion));
+        parameter.put("gcmregisterid", gcmID);
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        HttpResponse httpResponse = postData(UrlList.APP_REGISTER_GCM_REGISTERID, parameter);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+        return checkResultData(jsonObject);
+    }
+
     public ArrayList<MajorDetailItems> getMajorDetailInfo(int majorType) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         ArrayList<MajorDetailItems> itemses = new ArrayList<MajorDetailItems>();

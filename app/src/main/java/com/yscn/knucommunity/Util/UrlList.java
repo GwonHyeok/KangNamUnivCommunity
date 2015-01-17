@@ -11,6 +11,8 @@ public class UrlList {
     public static final String SCHOOL_RESTRAUNT_INFO = MAIN_URL + "schoolRestraunt/get/m/";
     public static final String PROFESSOR_GET_DETAIL_INFO = MAIN_URL + "professorInfo/get/m/";
     public static final String APP_LOGIN_URL = MAIN_URL + "appLogin/doLogin/m";
+    public static final String APP_GET_GCM_REGISTERID = MAIN_URL + "appLogin/checkGCMRegisterID";
+    public static final String APP_REGISTER_GCM_REGISTERID = MAIN_URL + "appLogin/registerGCMID";
     public static final String APP_REGISTER_URL = MAIN_URL + "appRegister/doRegister/m";
     public static final String FREEBOARD_GET_LIST = MAIN_URL + "board/getFreeboardList/m/";
     public static final String FAQBOARD_GET_LIST = MAIN_URL + "board/getFaqboardList/m/";
