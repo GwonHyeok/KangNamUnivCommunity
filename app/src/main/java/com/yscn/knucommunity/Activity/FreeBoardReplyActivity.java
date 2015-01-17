@@ -1,19 +1,20 @@
 package com.yscn.knucommunity.Activity;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.view.animation.AnimationUtils;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -35,6 +36,7 @@ import java.util.Date;
  * Created by GwonHyeok on 14. 11. 5..
  */
 public class FreeBoardReplyActivity extends ActionBarActivity implements View.OnClickListener {
+    private boolean isReplyMode = false;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -156,16 +158,46 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.freeboard_reply_mainview) {
-            RelativeLayout replySpace = (RelativeLayout) findViewById(R.id.freeboard_replyspace);
-            if (replySpace.isShown()) {
-                replySpace.setVisibility(View.GONE);
-                replySpace.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slidedown));
-            } else {
-                replySpace.setVisibility(View.VISIBLE);
-                replySpace.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slideup));
+            final View replyImageView = findViewById(R.id.imageView);
+            final EditText replyEditText = (EditText) findViewById(R.id.freeboard_reply_edittext);
+            View replyButtonView = findViewById(R.id.imageView1);
+
+            int moveX = (int) (replyImageView.getX() + replyImageView.getWidth());
+
+            replyEditText.setCursorVisible(!isReplyMode);
+            replyEditText.setEnabled(!isReplyMode);
+            replyEditText.setSelection(replyEditText.length());
+            replyButtonView.setVisibility(isReplyMode ? View.GONE : View.VISIBLE);
+            replyEditText.setHint(isReplyMode ?
+                    getString(R.string.community_reply_text) : getString(R.string.community_reply_need_text));
+
+            ValueAnimator animation = ValueAnimator.ofFloat(0, -moveX);
+            animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    replyImageView.setTranslationX((float) animation.getAnimatedValue());
+                    replyEditText.setTranslationX((float) animation.getAnimatedValue());
+                }
+            });
+
+            if (!isReplyMode) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.showSoftInput(replyEditText, InputMethodManager.SHOW_IMPLICIT);
+                    }
+                }, 400);
             }
+
+            animation.setDuration(400);
+            animation.start();
+
+            isReplyMode = !isReplyMode;
+
         } else if (id == R.id.imageView1) {
             addComment();
+            onClick(findViewById(R.id.freeboard_reply_mainview));
         }
     }
 

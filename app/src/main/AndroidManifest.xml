@@ -101,7 +101,8 @@
         <activity android:name=".Activity.MeetingWriteActivity" />
         <activity
             android:name=".Activity.FreeBoardReplyActivity"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/NoActionBarTheme"
+            android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Activity.CampusMapActivity" />
         <activity android:name=".Activity.RiffleMapActivity" />
         <activity android:name=".Activity.AccountRegisterActivity" />

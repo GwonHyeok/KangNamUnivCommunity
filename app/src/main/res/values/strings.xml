@@ -33,4 +33,7 @@
     <string name="community_board_reply_count_form">%1$s</string>
     <string name="community_greenlight_title">그린라이트</string>
     <string name="community_board_nodata">정보를 가져오는 중에 문제가 발생하였습니다.</string>
+
+    <string name="community_reply_text">댓글달기</string>
+    <string name="community_reply_need_text">댓글을 입력해주세요</string>
 </resources>
