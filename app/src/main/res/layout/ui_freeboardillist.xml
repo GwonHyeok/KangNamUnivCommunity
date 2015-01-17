@@ -57,10 +57,11 @@
         android:id="@+id/freeboard_list_commentsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/freeboard_list_time"
-        android:layout_marginRight="30dp"
+        android:layout_marginRight="24dp"
         android:layout_toLeftOf="@+id/freeboard_list_time"
         android:layout_toStartOf="@+id/freeboard_list_time"
         android:text="[17]"
-        android:textSize="16sp"/>
+        android:textSize="17sp"
+        android:layout_alignBaseline="@+id/freeboard_list_time"
+        android:textColor="#FF7395a6" />
 </RelativeLayout>
