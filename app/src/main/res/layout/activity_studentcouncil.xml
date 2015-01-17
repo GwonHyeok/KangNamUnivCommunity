@@ -6,10 +6,17 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FF0D47A1" />
+
     <com.yscn.knucommunity.CustomView.PagerSlidingTabStrip
         android:id="@+id/student_council_tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_below="@id/toolbar"
         android:background="#FF0D47A1"
         app:pstsDividerColor="@android:color/transparent"
         app:pstsShouldExpand="true"

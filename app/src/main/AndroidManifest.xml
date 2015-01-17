@@ -61,7 +61,9 @@
         <activity android:name=".Activity.ClubInfoActivity" />
         <activity android:name=".Activity.SchoolRestrauntActivity" />
         <activity android:name=".Activity.ClubDetailActivity" />
-        <activity android:name=".Activity.StudentCouncilActivity" />
+        <activity
+            android:name=".Activity.StudentCouncilActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.SchoolRestrauntDetailActivity" />
         <activity android:name=".Activity.ShuttleBusActivity" />
         <activity android:name=".Activity.LibraryActivity" />

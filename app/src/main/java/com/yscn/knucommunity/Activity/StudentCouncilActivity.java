@@ -2,17 +2,14 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
@@ -50,21 +47,19 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
             getWindow().setStatusBarColor(0xFF0D47A1);
             getWindow().setNavigationBarColor(0xFF0D47A1);
         }
+
         /* ActionBar Init */
-        ActionBar actionBar = getSupportActionBar();
-        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_base, null);
-        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(view, layout);
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setBackgroundDrawable(new ColorDrawable(0xFF0D47A1));
-        actionBar.setElevation(0);
-        ((TextView) view.findViewById(R.id.actionbar_base_title)).setText("학생회");
-        view.findViewById(R.id.actionbar_base_image).setOnClickListener(new View.OnClickListener() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setTitle("학생회");
+        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
+        toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                StudentCouncilActivity.this.finish();
+            public void onClick(View v) {
+                finish();
             }
         });
 
