@@ -3,15 +3,16 @@
     xmlns:apps="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/delivery_search"
+        android:id="@+id/action_search"
         android:icon="@drawable/ic_nav_search"
         android:title=""
-        apps:showAsAction="ifRoom" />
+        apps:actionViewClass="android.support.v7.widget.SearchView"
+        apps:showAsAction="ifRoom|collapseActionView" />
 
     <item
         android:id="@+id/delivery_write"
         android:icon="@drawable/ic_nav_write_white"
-        android:title=""
+        android:title="write"
         apps:showAsAction="ifRoom" />
 
 </menu>

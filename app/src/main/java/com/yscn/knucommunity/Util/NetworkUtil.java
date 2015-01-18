@@ -332,16 +332,24 @@ public class NetworkUtil {
         return dataMap;
     }
 
-    public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType, int page) throws IOException, ParseException {
+
+    public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType, int page, String content) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HttpResponse httpResponse = null;
+        HashMap<String, String> parameter = null;
+        HttpResponse httpResponse;
+
+        // 검색할 경우 Content 파라미터에 검색을 위한 텍스트가 넘어옴
+        if (content != null) {
+            parameter = new HashMap<>();
+            parameter.put("content", content);
+        }
 
         if (boardType == BoardType.FREE) {
-            httpResponse = postData(UrlList.FREEBOARD_GET_LIST + page, null);
+            httpResponse = postData(UrlList.FREEBOARD_GET_LIST + page, parameter);
         } else if (boardType == BoardType.FAQ) {
-            httpResponse = postData(UrlList.FAQBOARD_GET_LIST + page, null);
+            httpResponse = postData(UrlList.FAQBOARD_GET_LIST + page, parameter);
         } else if (boardType == BoardType.GREENLIGHT) {
-            httpResponse = postData(UrlList.GREENLIGHT_GET_LIST + page, null);
+            httpResponse = postData(UrlList.GREENLIGHT_GET_LIST + page, parameter);
         } else {
             return null;
         }

@@ -1,11 +1,18 @@
 package com.yscn.knucommunity.CustomView;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -29,6 +36,7 @@ import java.util.Date;
  */
 public abstract class BaseBoardListActivity extends MenuBaseActivity {
     private int pageIndex = 1;
+    private String searchText = null;
 
     /**
      * 반드시 자식 액티비티에서
@@ -85,6 +93,23 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
         });
     }
 
+    /**
+     * 스크롤 뷰에 있는 데이터를 전부 지우고
+     * 페이지 인덱스를 1로 변경
+     */
+    private void removeAllListContent() {
+        setPageIndex(1);
+        View view = findViewById(getBoardListScrollViewID());
+        if (view instanceof NotifyFooterScrollView) {
+            NotifyFooterScrollView scrollView = (NotifyFooterScrollView) view;
+            LinearLayout linearLayout = (LinearLayout) scrollView.getChildAt(0);
+            linearLayout.removeAllViews();
+        }
+    }
+
+    /**
+     * 게시판 리스트 정보 가져옴
+     */
     protected void getBoardListData() {
         new AsyncTask<Void, Void, ArrayList<DefaultBoardListItems>>() {
             private ClearProgressDialog progressDialog;
@@ -98,7 +123,7 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
             @Override
             protected ArrayList<DefaultBoardListItems> doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().getDefaultboardList(getBoardType(), getPageIndex());
+                    return NetworkUtil.getInstance().getDefaultboardList(getBoardType(), getPageIndex(), searchText);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -118,7 +143,71 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.board_menu, menu);
-        return super.onCreateOptionsMenu(menu);
+
+        MenuItem searchmenuItem = menu.findItem(R.id.action_search);
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchmenuItem);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setIconifiedByDefault(false);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                /*
+                 * SearchView 에서 데이터가 입력되고 검색 버튼을 눌렀을때
+                 * 스크롤뷰에 있던 내용을 전부 지우고 게시판 리스트 정보를 가져올떄 사용하는 searchText 의 내용 변경 후
+                 * 게시판 정보를 가져온다
+                 */
+                removeAllListContent();
+                searchText = s;
+                getBoardListData();
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return true;
+            }
+        });
+
+        MenuItemCompat.setOnActionExpandListener(searchmenuItem, new MenuItemCompat.OnActionExpandListener() {
+            @Override
+            public boolean onMenuItemActionExpand(MenuItem item) {
+                return true;
+            }
+
+            @Override
+            public boolean onMenuItemActionCollapse(MenuItem item) {
+                /*
+                 * SearchView 가 Collapse 되었을때 검색 정보를 없애고
+                 * 다시 게시판 정보를 가져온다.
+                 */
+                if (searchText != null) {
+                    removeAllListContent();
+                    searchText = null;
+                    getBoardListData();
+                }
+                return true;
+            }
+        });
+        setSearchIconColor(searchView);
+        return true;
+    }
+
+    /**
+     * SearchView 이미지 색 변경
+     * @param searchView SearchView MenuItem
+     */
+    private void setSearchIconColor(SearchView searchView) {
+        LinearLayout ll = (LinearLayout) searchView.getChildAt(0);
+        LinearLayout ll2 = (LinearLayout) ll.getChildAt(2);
+        LinearLayout ll3 = (LinearLayout) ll2.getChildAt(1);
+        SearchView.SearchAutoComplete autoComplete = ((SearchView.SearchAutoComplete) ll3.getChildAt(0));
+        ImageView searchCloseButton = (ImageView) ll3.getChildAt(1);
+        ImageView labelView = (ImageView) ll.getChildAt(1);
+
+        autoComplete.setTextColor(Color.WHITE);
+        searchCloseButton.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+        labelView.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
     }
 
     /**
@@ -134,17 +223,17 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     }
 
     /**
-     * @param pageIndex 보드 정보를 가져올떄 인덱스 값.
-     */
-    protected void setPageIndex(int pageIndex) {
-        this.pageIndex = pageIndex;
-    }
-
-    /**
      * @return get page Index
      */
     protected int getPageIndex() {
         return this.pageIndex;
+    }
+
+    /**
+     * @param pageIndex 보드 정보를 가져올떄 인덱스 값.
+     */
+    protected void setPageIndex(int pageIndex) {
+        this.pageIndex = pageIndex;
     }
 
     /**
