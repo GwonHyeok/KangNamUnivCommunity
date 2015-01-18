@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
         android:paddingTop="6dp"
-        android:paddingBottom="7dp"
+        android:paddingBottom="6dp"
         android:paddingRight="8dp">
 
         <RelativeLayout
@@ -28,7 +28,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="11dp" />
+                android:layout_marginTop="10dp" />
 
 
             <TextView
@@ -66,8 +66,8 @@
                 android:text="머리가 아플땐 약 드시고"
                 android:textColor="#FF616161"
                 android:layout_alignRight="@+id/freeboard_reply_time"
-                android:layout_marginBottom="7dp"
-                android:layout_marginTop="42dp" />
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="41dp" />
         </RelativeLayout>
 
     </RelativeLayout>
