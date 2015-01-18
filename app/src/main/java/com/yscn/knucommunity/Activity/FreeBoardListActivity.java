@@ -36,7 +36,7 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
         if (childView instanceof LinearLayout) {
             for (DefaultBoardListItems listItems : listItemses) {
                 View listView = LayoutInflater.from(getContext()).inflate(R.layout.ui_freeboardillist, (ViewGroup) childView, false);
-                ((TextView) listView.findViewById(R.id.freeboard_list_title)).setText(listItems.getTitle());
+                ((TextView) listView.findViewById(R.id.freeboard_list_title)).setText(getHighLightText(listItems.getTitle()));
                 ((TextView) listView.findViewById(R.id.freeboard_list_time)).setText(getSimpleListTime(listItems.getTime()));
                 ((TextView) listView.findViewById(R.id.freeboard_list_commentsize)).setText(String.valueOf(listItems.getReplyCount()));
                 ((TextView) listView.findViewById(R.id.freeboard_list_writer)).setText(listItems.getName());

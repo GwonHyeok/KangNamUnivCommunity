@@ -10,6 +10,9 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -105,6 +108,22 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
             LinearLayout linearLayout = (LinearLayout) scrollView.getChildAt(0);
             linearLayout.removeAllViews();
         }
+    }
+
+    protected Spannable getHighLightText(String defaultString) {
+        Spannable spannableString = new SpannableString(defaultString);
+        if (this.searchText != null) {
+            int index, length;
+            length = searchText.length();
+            index = defaultString.indexOf(searchText);
+
+            while (index >= 0) {
+                spannableString.setSpan(new ForegroundColorSpan(Color.RED), index, index + length,
+                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                index = defaultString.indexOf(searchText, index + 1);
+            }
+        }
+        return spannableString;
     }
 
     /**

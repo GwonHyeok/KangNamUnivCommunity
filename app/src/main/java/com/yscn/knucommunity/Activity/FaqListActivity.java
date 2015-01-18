@@ -36,7 +36,7 @@ public class FaqListActivity extends BaseBoardListActivity implements View.OnCli
         if (childView instanceof LinearLayout) {
             for (DefaultBoardListItems listItems : listItemses) {
                 View listView = LayoutInflater.from(getContext()).inflate(R.layout.ui_faqlist, (ViewGroup) childView, false);
-                ((TextView) listView.findViewById(R.id.faq_list_title)).setText(getDefaulttFaqTitle(listItems.getTitle()));
+                ((TextView) listView.findViewById(R.id.faq_list_title)).setText(getHighLightText(getDefaulttFaqTitle(listItems.getTitle())));
                 ((TextView) listView.findViewById(R.id.faq_list_time)).setText(getSimpleListTime(listItems.getTime()));
                 ((TextView) listView.findViewById(R.id.faq_reply_size)).setText(
                         getReplyText(String.valueOf(listItems.getReplyCount())));

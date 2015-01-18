@@ -37,7 +37,7 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
         if (childView instanceof LinearLayout) {
             for (DefaultBoardListItems listItems : listItemses) {
                 View listView = LayoutInflater.from(getContext()).inflate(R.layout.ui_greenlightlsit, (ViewGroup) childView, false);
-                ((TextView) listView.findViewById(R.id.greenlight_list_title)).setText(listItems.getTitle());
+                ((TextView) listView.findViewById(R.id.greenlight_list_title)).setText(getHighLightText(listItems.getTitle()));
                 ((TextView) listView.findViewById(R.id.greenlight_list_time)).setText(getSimpleListTime(listItems.getTime()));
 
                 String replyCount = String.format(getString(R.string.community_board_reply_count_form),
