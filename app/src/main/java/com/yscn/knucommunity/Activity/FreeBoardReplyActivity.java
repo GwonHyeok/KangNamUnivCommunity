@@ -48,7 +48,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         /* set Title Data*/
         ((TextView) findViewById(R.id.freeboard_reply_title)).setText(getIntent().getStringExtra("title"));
 
-        findViewById(R.id.imageView1).setOnClickListener(this);
+        findViewById(R.id.reply_textview).setOnClickListener(this);
         getCommentData();
     }
 
@@ -160,7 +160,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         if (id == R.id.freeboard_reply_mainview) {
             final View replyImageView = findViewById(R.id.imageView);
             final EditText replyEditText = (EditText) findViewById(R.id.freeboard_reply_edittext);
-            View replyButtonView = findViewById(R.id.imageView1);
+            View replyButtonView = findViewById(R.id.reply_textview);
 
             int moveX = (int) (replyImageView.getX() + replyImageView.getWidth());
 
@@ -195,7 +195,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
 
             isReplyMode = !isReplyMode;
 
-        } else if (id == R.id.imageView1) {
+        } else if (id == R.id.reply_textview) {
             addComment();
             onClick(findViewById(R.id.freeboard_reply_mainview));
         }

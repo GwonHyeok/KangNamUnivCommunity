@@ -36,10 +36,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/freeboard_reply_mainview"
-        android:layout_below="@+id/linearLayout"
-        >
+        android:layout_below="@+id/linearLayout">
 
-        <LinearLayout
+    <LinearLayout
             android:id="@+id/freeboard_reply_scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -74,25 +73,34 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="14dp"
+            android:layout_marginRight="14dp"
             android:layout_toEndOf="@+id/imageView"
             android:layout_toRightOf="@+id/imageView"
             android:background="@android:color/transparent"
             android:cursorVisible="false"
             android:enabled="false"
             android:hint="@string/community_reply_text"
+            android:maxHeight="80dp"
+            android:minHeight="40dp"
             android:textColor="#FF4d4d4d"
             android:textColorHint="#FFBBBBBB"
             android:textSize="16sp" />
 
-        <ImageView
-            android:id="@+id/imageView1"
+        <TextView
+            android:id="@+id/reply_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/freeboard_reply_edittext"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:background="@drawable/ic_reply_upload"
-            android:padding="15dp"
+            android:layout_alignTop="@id/freeboard_reply_edittext"
+            android:background="#f2f2f2"
+            android:gravity="center_vertical"
+            android:minHeight="40dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:text="등록"
+            android:textColor="#4fa3d3"
+            android:textSize="16sp"
             android:visibility="gone" />
     </RelativeLayout>
 
