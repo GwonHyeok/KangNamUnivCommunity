@@ -10,7 +10,7 @@
         apps:showAsAction="ifRoom|collapseActionView" />
 
     <item
-        android:id="@+id/delivery_write"
+        android:id="@+id/action_write"
         android:icon="@drawable/ic_nav_write_white"
         android:title="write"
         apps:showAsAction="ifRoom" />

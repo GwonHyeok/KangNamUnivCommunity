@@ -2,6 +2,7 @@ package com.yscn.knucommunity.CustomView;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -21,6 +22,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.Activity.BoardWriteActivity;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
@@ -38,6 +40,7 @@ import java.util.Date;
  * Created by GwonHyeok on 15. 1. 10..
  */
 public abstract class BaseBoardListActivity extends MenuBaseActivity {
+    private final int BOARD_WRITE_RESPONSE = 0X01;
     private int pageIndex = 1;
     private String searchText = null;
 
@@ -176,9 +179,8 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
                  * 스크롤뷰에 있던 내용을 전부 지우고 게시판 리스트 정보를 가져올떄 사용하는 searchText 의 내용 변경 후
                  * 게시판 정보를 가져온다
                  */
-                removeAllListContent();
                 searchText = s;
-                getBoardListData();
+                reloadViewData();
                 return true;
             }
 
@@ -201,9 +203,8 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
                  * 다시 게시판 정보를 가져온다.
                  */
                 if (searchText != null) {
-                    removeAllListContent();
                     searchText = null;
-                    getBoardListData();
+                    reloadViewData();
                 }
                 return true;
             }
@@ -212,8 +213,31 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
         return true;
     }
 
+    protected void reloadViewData() {
+        removeAllListContent();
+        getBoardListData();
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_write) {
+            Intent intent = new Intent(getContext(), BoardWriteActivity.class);
+            intent.putExtra("boardType", getBoardType().getValue());
+            startActivityForResult(intent, BOARD_WRITE_RESPONSE);
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BOARD_WRITE_RESPONSE && resultCode == RESULT_OK) {
+            reloadViewData();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     /**
      * SearchView 이미지 색 변경
+     *
      * @param searchView SearchView MenuItem
      */
     private void setSearchIconColor(SearchView searchView) {

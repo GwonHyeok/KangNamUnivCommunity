@@ -333,6 +333,27 @@ public class NetworkUtil {
     }
 
 
+    public boolean writeBoardContent(int boardType, String title, String content) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        HttpResponse httpResponse;
+
+        parameter.put("title", title);
+        parameter.put("content", content);
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+
+        if (boardType == -1) {
+            return false;
+        }
+
+        httpResponse = postData(UrlList.BOARD_WRITE_CONTENT + boardType, parameter);
+
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+        return checkResultData(object);
+    }
+
     public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType, int page, String content) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = null;
@@ -521,5 +542,18 @@ public class NetworkUtil {
 
     public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER}
 
-    public static enum BoardType {FREE, FAQ, GREENLIGHT}
+    public static enum BoardType {
+        FREE(1), FAQ(2), GREENLIGHT(3);
+
+        private final int num;
+
+        private BoardType(int num) {
+            this.num = num;
+        }
+
+        public int getValue() {
+            return num;
+        }
+
+    }
 }

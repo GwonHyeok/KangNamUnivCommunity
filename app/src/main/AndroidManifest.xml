@@ -108,6 +108,10 @@
         <activity android:name=".Activity.CampusMapActivity" />
         <activity android:name=".Activity.RiffleMapActivity" />
         <activity android:name=".Activity.AccountRegisterActivity" />
+        <activity
+            android:name=".Activity.BoardWriteActivity"
+            android:theme="@style/NoActionBarTheme"
+            android:windowSoftInputMode="stateHidden" />
     </application>
 
 </manifest>
