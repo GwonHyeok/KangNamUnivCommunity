@@ -1,9 +1,15 @@
 package com.yscn.knucommunity.Activity;
 
+import android.animation.ValueAnimator;
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,14 +28,21 @@ import java.util.ArrayList;
 /**
  * Created by GwonHyeok on 14. 11. 5..
  */
-public class FaqDetailActivity extends BaseBoardDetailActivity {
+public class FaqDetailActivity extends BaseBoardDetailActivity implements View.OnClickListener {
+    private boolean isReplyMode = false;
 
     @Override
     public void onCreate(Bundle bundle) {
         setContentView(R.layout.activity_faqdetail);
         super.onCreate(bundle);
+        viewInit();
         setContent();
         getReplyData();
+    }
+
+    private void viewInit() {
+        findViewById(R.id.view).setOnClickListener(this);
+        findViewById(R.id.reply_textview).setOnClickListener(this);
     }
 
     private void getReplyData() {
@@ -81,6 +94,15 @@ public class FaqDetailActivity extends BaseBoardDetailActivity {
             setProfileImage(profileView, dataObject.getStudentnumber());
 
             linearLayout.addView(replyView);
+        }
+    }
+
+    private void removeAllReplyData() {
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fatdetail_main_scroll_activity);
+        int childCount = linearLayout.getChildCount();
+        if (childCount > 1) {
+            Log.d(getClass().getSimpleName(), "removeAllReplyData");
+            linearLayout.removeViews(1, childCount - 1);
         }
     }
 
@@ -146,5 +168,84 @@ public class FaqDetailActivity extends BaseBoardDetailActivity {
 
     private String getReplyText(String reply) {
         return String.format(getString(R.string.community_faq_reply_txt), reply);
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.view) {
+            final View replyImageView = findViewById(R.id.imageView);
+            final EditText replyEditText = (EditText) findViewById(R.id.reply_edittext);
+            View replyButtonView = findViewById(R.id.reply_textview);
+
+            int moveX = (int) (replyImageView.getX() + replyImageView.getWidth());
+
+            replyEditText.setCursorVisible(!isReplyMode);
+            replyEditText.setEnabled(!isReplyMode);
+            replyEditText.setSelection(replyEditText.length());
+            replyButtonView.setVisibility(isReplyMode ? View.GONE : View.VISIBLE);
+            replyEditText.setHint(isReplyMode ?
+                    getString(R.string.community_reply_text) : getString(R.string.community_reply_need_text));
+
+            ValueAnimator animation = ValueAnimator.ofFloat(0, -moveX);
+            animation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    replyImageView.setTranslationX((float) animation.getAnimatedValue());
+                    replyEditText.setTranslationX((float) animation.getAnimatedValue());
+                }
+            });
+
+            if (!isReplyMode) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputMethodManager.showSoftInput(replyEditText, InputMethodManager.SHOW_IMPLICIT);
+                    }
+                }, 400);
+            }
+
+            animation.setDuration(400);
+            animation.start();
+
+            isReplyMode = !isReplyMode;
+
+        } else if (id == R.id.reply_textview) {
+            addComment();
+            onClick(findViewById(R.id.view));
+        }
+    }
+
+    private void addComment() {
+        final String comment = ((EditText) findViewById(R.id.reply_edittext)).getText().toString();
+
+        if (comment.isEmpty()) {
+            return;
+        }
+
+        new AsyncTask<Void, Void, Boolean>() {
+
+            @Override
+            protected Boolean doInBackground(Void... params) {
+                boolean result = false;
+                try {
+                    result = NetworkUtil.getInstance().writeComment(
+                            getIntent().getStringExtra("contentID"), comment);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return result;
+            }
+
+            @Override
+            protected void onPostExecute(Boolean result) {
+                if (result) {
+                    ((EditText) findViewById(R.id.reply_edittext)).setText("");
+                    removeAllReplyData();
+                    getReplyData();
+                }
+            }
+        }.execute();
     }
 }
