@@ -10,6 +10,7 @@ import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
+import com.yscn.knucommunity.Items.MeetingListItems;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
 
@@ -333,6 +334,66 @@ public class NetworkUtil {
     }
 
 
+    public boolean writeMeetingContent(String content, String schoolname, String majorname,
+                                       String studentcount, String gender) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("writer", UserData.getInstance().getStudentNumber());
+        parameter.put("content", content);
+        parameter.put("schoolname", schoolname);
+        parameter.put("majorname", majorname);
+        parameter.put("studentcount", studentcount);
+        parameter.put("gender", gender);
+        HttpResponse httpResponse = postData(UrlList.WRITE_MEETING_BOARD_LIST, parameter);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+        return checkResultData(jsonObject);
+    }
+
+    public ArrayList<MeetingListItems> getMeetingBoardList(int page) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        ArrayList<MeetingListItems> itemses = new ArrayList<>();
+
+        HttpResponse httpResponse = postData(UrlList.MEETING_BOARD_GET_LIST + page, null);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+
+        if (!checkResultData(jsonObject)) {
+            return null;
+        }
+
+        JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+
+        for (Object obj : jsonArray) {
+            JSONObject object = (JSONObject) obj;
+            MeetingListItems.TYPE type = null;
+
+            String matchingResult = object.get("matchingresult").toString();
+            String gender = object.get("gender").toString();
+//            String content = object.get("content").toString();
+            String schoolName = object.get("schoolname").toString();
+            String majorName = object.get("majorname").toString();
+            String time = object.get("time").toString();
+            String replyCount = object.get("commentcount").toString();
+            String peopleCount = object.get("studentcount").toString();
+            String contentid = object.get("contentid").toString();
+
+            if (gender.equals("male")) {
+                type = MeetingListItems.TYPE.BOY_GROUP;
+            } else if (gender.equals("female")) {
+                type = MeetingListItems.TYPE.GIRL_GROUP;
+            }
+            if (matchingResult.equals("1")) {
+                type = MeetingListItems.TYPE.SUCCESS_GROUP;
+            }
+
+            itemses.add(new MeetingListItems(Integer.parseInt(contentid), type, schoolName, majorName, time,
+                    Integer.parseInt(replyCount), Integer.parseInt(peopleCount), gender));
+        }
+        return itemses;
+    }
+
     public boolean writeBoardContent(int boardType, String title, String content) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
@@ -543,7 +604,7 @@ public class NetworkUtil {
     public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER}
 
     public static enum BoardType {
-        FREE(1), FAQ(2), GREENLIGHT(3);
+        FREE(1), FAQ(2), GREENLIGHT(3), MEETING(4);
 
         private final int num;
 

@@ -42,8 +42,8 @@ public class MeetingListAdapter extends ArrayAdapter<MeetingListItems> {
             holder = (AdapterHolder) view.getTag();
         }
         MeetingListItems object = getItem(position);
-        holder.title.setText(object.getTitle());
-        holder.sumary.setText(object.getSummary());
+//        holder.title.setText(object.getTitle());
+//        holder.sumary.setText(object.getSummary());
         holder.time.setText(object.getTime());
         holder.reply.setText("[" + object.getReplyCount() + "]");
         holder.people.setText(String.valueOf(object.getPeopleCount()));

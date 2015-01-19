@@ -36,4 +36,11 @@
 
     <string name="community_reply_text">댓글달기</string>
     <string name="community_reply_need_text">댓글을 입력해주세요</string>
+
+    <string name="community_gender_dialog_title">성별을 선택하여주세요</string>
+    <string name="gender_male">남자</string>
+    <string name="gender_female">여자</string>
+    <string name="community_meeting_male_count">남자 %1$s명</string>
+    <string name="community_meeting_female_count">여자 %1$s명</string>
+    <string name="OK">확인</string>
 </resources>

@@ -8,4 +8,9 @@
         <item>@string/delivery_fastfood</item>
         <item>@string/delivery_etceterafood</item>
     </string-array>
+
+    <string-array name="gender_list">
+        <item>@string/gender_male</item>
+        <item>@string/gender_female</item>
+    </string-array>
 </resources>

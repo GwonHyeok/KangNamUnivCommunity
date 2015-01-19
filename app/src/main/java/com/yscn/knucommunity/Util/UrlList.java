@@ -25,6 +25,8 @@ public class UrlList {
     public static final String GET_COMMENT = MAIN_URL + "board/getComments/m/";
     public static final String DELETE_BOARD_LIST = MAIN_URL + "board/deleteBoardList/m/";
     public static final String WRITE_COMMENT = MAIN_URL + "board/writeComment/m/";
+    public static final String WRITE_MEETING_BOARD_LIST = MAIN_URL + "board/writeMeetingBoard/m/";
+    public static final String MEETING_BOARD_GET_LIST = MAIN_URL + "board/getMeetingBoardList/m/";
     public static final String PROFILE_IMAGE_URL = MAIN_URL + "profilePicture/";
 
 
