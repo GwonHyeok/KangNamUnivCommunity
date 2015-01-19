@@ -20,8 +20,9 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="10dp"
-        android:layout_toEndOf="@id/faq_list_profile"
+        android:layout_toLeftOf="@+id/faq_reply_size"
         android:layout_toRightOf="@id/faq_list_profile"
+        android:layout_toStartOf="@+id/faq_reply_size"
         android:gravity="center|left"
         android:orientation="vertical">
 
@@ -29,6 +30,7 @@
             android:id="@+id/faq_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:singleLine="true"
             android:text="Q. 9글자 이내로 "
             android:textColor="#FF343434"
             android:textSize="18sp" />

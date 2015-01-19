@@ -32,6 +32,9 @@
                 android:id="@+id/faq_detail_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_toLeftOf="@+id/faq_detail_replycount"
                 android:text="Q. 가끔가끔아주"
                 android:textColor="#FF424242"
                 android:textSize="24sp" />
@@ -40,12 +43,13 @@
                 android:id="@+id/faq_detail_replycount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/faq_detail_title"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:text="답변 2"
                 android:textColor="#00c853"
-                android:textSize="19sp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:textSize="19sp" />
         </RelativeLayout>
     </LinearLayout>
 
@@ -109,13 +113,13 @@
                 android:id="@+id/faq_detail_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
                 android:lineSpacingExtra="5dp"
+                android:paddingLeft="22dp"
+                android:paddingRight="22dp"
                 android:text="안드로이드는 휴대 전화를 비롯한 휴대용 장치를 위한 운영 체제와 미들웨어, 사용자 인터페이스 그리고 표준 응용 프로그램을 포함하고 있는 소프트웨어 스택이자 모바일 운영 체제이다. 안드로이드는 개발자들이 자바 언어로 응용 프로그램을 작성할 수 있게 하였으며, 컴파일된 바이트코드를 구동할 수 있는 런타임 라이브러리를 제공한다. 또한 안드로이드 소프트웨어 개발 키트를 통해 응용 프로그램을 개발하기 위해 필요한 각종 도구들과 API를 제공한다."
                 android:textColor="#424242"
-                android:textSize="15sp"
-                android:layout_marginTop="18dp"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp" />
+                android:textSize="15sp" />
         </LinearLayout>
     </ScrollView>
 
