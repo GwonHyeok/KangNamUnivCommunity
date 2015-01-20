@@ -378,6 +378,8 @@ public class NetworkUtil {
             String replyCount = object.get("commentcount").toString();
             String peopleCount = object.get("studentcount").toString();
             String contentid = object.get("contentid").toString();
+            String writer = object.get("writer").toString();
+            String studenuName = object.get("studentname").toString();
 
             if (gender.equals("male")) {
                 type = MeetingListItems.TYPE.BOY_GROUP;
@@ -389,7 +391,7 @@ public class NetworkUtil {
             }
 
             itemses.add(new MeetingListItems(Integer.parseInt(contentid), type, schoolName, majorName, time,
-                    Integer.parseInt(replyCount), Integer.parseInt(peopleCount), gender));
+                    Integer.parseInt(replyCount), Integer.parseInt(peopleCount), gender, writer, studenuName));
         }
         return itemses;
     }

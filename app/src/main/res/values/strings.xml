@@ -42,5 +42,6 @@
     <string name="gender_female">여자</string>
     <string name="community_meeting_male_count">남자 %1$s명</string>
     <string name="community_meeting_female_count">여자 %1$s명</string>
+    <string name="community_meeting_people_count">%1$s명</string>
     <string name="OK">확인</string>
 </resources>

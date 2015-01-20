@@ -22,18 +22,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginLeft="62dp"
-            android:layout_marginRight="20dp"
             android:layout_marginTop="30dp">
 
 
             <TextView
                 android:id="@+id/faq_detail_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
+                android:paddingLeft="62dp"
                 android:layout_toLeftOf="@+id/faq_detail_replycount"
                 android:text="Q. 가끔가끔아주"
                 android:textColor="#FF424242"
@@ -42,9 +40,11 @@
             <TextView
                 android:id="@+id/faq_detail_replycount"
                 android:layout_width="wrap_content"
+                android:layout_marginRight="20dp"
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/faq_detail_title"
                 android:layout_alignParentEnd="true"
+                android:visibility="visible"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:text="답변 2"

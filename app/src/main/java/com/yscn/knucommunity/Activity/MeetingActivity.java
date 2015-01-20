@@ -91,7 +91,7 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
     private void addScrollViewData(ArrayList<MeetingListItems> itemses) {
         LinearLayout linearLayout = (LinearLayout) scrollView.getChildAt(0);
 
-        for (MeetingListItems listItems : itemses) {
+        for (final MeetingListItems listItems : itemses) {
             View view = LayoutInflater.from(getContext()).inflate(R.layout.ui_meetinglist, linearLayout, false);
             TextView peopleCountView = (TextView) view.findViewById(R.id.meeting_people_num);
             TextView titleView = (TextView) view.findViewById(R.id.meeting_title);
@@ -125,6 +125,22 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
             schoolInfoView.setText(schoolName + " " + majorType);
             meetingTimeView.setText(getSimpleListTime(time));
             replyCountView.setText(String.valueOf(replyCount));
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), MeetingDetailActivity.class);
+                    intent.putExtra("people", listItems.getPeopleCount());
+                    intent.putExtra("school", listItems.getSchoolname());
+                    intent.putExtra("major", listItems.getMajorname());
+                    intent.putExtra("gender", listItems.getGender());
+                    intent.putExtra("time", listItems.getTime());
+                    intent.putExtra("studentname", listItems.getStudentname());
+                    intent.putExtra("writerStudentNumber", listItems.getWriter());
+                    intent.putExtra("contentID", String.valueOf(listItems.getContentid()));
+                    startActivity(intent);
+                }
+            });
             linearLayout.addView(view);
         }
     }
