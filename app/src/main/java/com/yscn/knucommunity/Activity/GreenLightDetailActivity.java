@@ -1,5 +1,6 @@
 package com.yscn.knucommunity.Activity;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -96,6 +97,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
         /* 그린라이트 버튼 */
         findViewById(R.id.greenlight_light_on).setOnClickListener(this);
         findViewById(R.id.greenlight_light_off).setOnClickListener(this);
+        findViewById(R.id.view).setOnClickListener(this);
     }
 
     @Override
@@ -122,6 +124,11 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
             clickGreenRightButton(true);
         } else if (id == R.id.greenlight_light_off) {
             clickGreenRightButton(false);
+        } else if (id == R.id.view) {
+            Intent intent = new Intent(this, GreenLightReplyActivity.class);
+            intent.putExtra("contentID", getIntent().getStringExtra("contentID"));
+            intent.putExtra("title", getIntent().getStringExtra("title"));
+            startActivity(intent);
         }
     }
 

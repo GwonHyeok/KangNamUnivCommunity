@@ -97,6 +97,10 @@
             android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.LoginActivity" />
         <activity
+            android:name=".Activity.GreenLightReplyActivity"
+            android:theme="@style/NoActionBarTheme"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
             android:name=".Activity.FaqDetailActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="stateHidden" />
