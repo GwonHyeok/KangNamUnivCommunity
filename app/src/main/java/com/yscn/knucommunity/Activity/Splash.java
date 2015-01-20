@@ -5,10 +5,13 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -25,10 +28,7 @@ import java.io.IOException;
 
 public class Splash extends ActionBarActivity {
 
-    public static final String EXTRA_MESSAGE = "message";
-    public static final String PROPERTY_REG_ID = "registration_id";
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
-    private static final String PROPERTY_APP_VERSION = "appVersion";
     private final String GCM_SENDER_ID = "513704487484";
     private GoogleCloudMessaging googleCloudMessaging;
 
@@ -39,6 +39,11 @@ public class Splash extends ActionBarActivity {
 
         /* 스팰래쉬 화면이므로 액션바 제거 */
         getSupportActionBar().hide();
+
+        Window w = getWindow();
+        if (Build.VERSION.SDK_INT >= 19) {
+            w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
 
         int SPLASH_DELAY_TIME = 1300;
 

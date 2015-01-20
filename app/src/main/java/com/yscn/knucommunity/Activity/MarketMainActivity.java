@@ -1,10 +1,13 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.yscn.knucommunity.R;
@@ -35,10 +38,10 @@ public class MarketMainActivity extends ActionBarActivity implements View.OnClic
             view.setBackgroundResource(R.drawable.bg_shop_3);
         }
 
-        getSupportActionBar().hide();
-//        if (Build.VERSION.SDK_INT >= 21) {
-//            getWindow().setStatusBarColor(0xFF7CB342);
-//        }
+        Window w = getWindow();
+        if (Build.VERSION.SDK_INT >= 19) {
+            w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
 
         ViewPager pager = (ViewPager) findViewById(R.id.shop_viewpager);
         findViewById(R.id.shop_move_detail).setOnClickListener(this);

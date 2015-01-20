@@ -68,7 +68,9 @@
         <activity android:name=".Activity.SchoolRestrauntDetailActivity" />
         <activity android:name=".Activity.ShuttleBusActivity" />
         <activity android:name=".Activity.LibraryActivity" />
-        <activity android:name=".Activity.MarketMainActivity" />
+        <activity
+            android:name=".Activity.MarketMainActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.MarketDetailActivity" />
         <activity android:name=".Activity.CommunittyActivity" />
         <activity
