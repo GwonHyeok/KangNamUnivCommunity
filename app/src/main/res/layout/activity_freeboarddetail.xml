@@ -100,7 +100,7 @@
                 android:text="안드로이드는 휴대 전화를 비롯한 휴대용 장치를 위한 운영 체제와 미들웨어, 사용자 인터페이스 그리고 표준 응용 프로그램을 포함하고 있는 소프트웨어 스택이자 모바일 운영 체제이다. 안드로이드는 개발자들이 자바 언어로 응용 프로그램을 작성할 수 있게 하였으며, 컴파일된 바이트코드를 구동할 수 있는 런타임 라이브러리를 제공한다. 또한 안드로이드 소프트웨어 개발 키트를 통해 응용 프로그램을 개발하기 위해 필요한 각종 도구들과 API를 제공한다."
                 android:textColor="#424242"
                 android:textSize="15sp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="14dp"
                 android:paddingLeft="22dp"
                 android:paddingRight="22dp" />
         </LinearLayout>
@@ -129,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="14dp"
             android:layout_toEndOf="@+id/imageView"
             android:layout_toRightOf="@+id/imageView"
             android:text="댓글"

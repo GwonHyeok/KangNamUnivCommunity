@@ -35,7 +35,7 @@
     <string name="community_board_nodata">정보를 가져오는 중에 문제가 발생하였습니다.</string>
 
     <string name="community_reply_text">댓글달기</string>
-    <string name="community_reply_need_text">댓글을 입력해주세요</string>
+    <string name="community_reply_need_text">입력해주세요</string>
 
     <string name="community_gender_dialog_title">성별을 선택하여주세요</string>
     <string name="gender_male">남자</string>
