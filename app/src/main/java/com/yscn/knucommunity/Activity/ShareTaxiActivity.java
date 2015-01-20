@@ -55,6 +55,8 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
 
         for (int i = 0; i < 4; i++) {
             View view = LayoutInflater.from(this).inflate(R.layout.ui_sharetaxilist, linearLayout, false);
+            view.findViewById(R.id.share_taxi_start_locaction_textview).setSelected(true);
+            view.findViewById(R.id.share_taxi_stop_locaction_textview).setSelected(true);
             linearLayout.addView(view);
         }
 
