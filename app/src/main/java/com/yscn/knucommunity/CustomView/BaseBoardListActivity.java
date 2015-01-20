@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
@@ -41,6 +42,7 @@ import java.util.Date;
  */
 public abstract class BaseBoardListActivity extends MenuBaseActivity {
     private final int BOARD_WRITE_RESPONSE = 0X01;
+    protected SwipeRefreshLayout swipeRefreshLayout;
     private int pageIndex = 1;
     private String searchText = null;
 
@@ -59,6 +61,13 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
 
     private void scrollViewInit() {
         View view = findViewById(getBoardListScrollViewID());
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.board_list_swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reloadViewData();
+            }
+        });
         if (view instanceof NotifyFooterScrollView) {
             final NotifyFooterScrollView scrollView = (NotifyFooterScrollView) view;
 
@@ -139,7 +148,9 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
             @Override
             protected void onPreExecute() {
                 progressDialog = new ClearProgressDialog(getContext());
-                progressDialog.show();
+                if (!swipeRefreshLayout.isRefreshing()) {
+                    progressDialog.show();
+                }
             }
 
             @Override
@@ -156,6 +167,9 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
             protected void onPostExecute(ArrayList<DefaultBoardListItems> listItemses) {
                 if (listItemses != null) {
                     addScrollViewData(listItemses);
+                }
+                if (swipeRefreshLayout != null) {
+                    swipeRefreshLayout.setRefreshing(false);
                 }
                 progressDialog.cancel();
             }

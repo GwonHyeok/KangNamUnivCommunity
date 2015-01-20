@@ -3,6 +3,7 @@ package com.yscn.knucommunity.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -32,6 +33,7 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
     private final int BOARD_WRITE_RESPONSE = 0X01;
     private int pageIndex = 1;
     private NotifyFooterScrollView scrollView;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -43,6 +45,13 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
     }
 
     private void viewInit() {
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.board_list_swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reloadViewData();
+            }
+        });
         scrollView = (NotifyFooterScrollView) findViewById(R.id.meeting_list);
         scrollView.setonScrollToBottomListener(new NotifyFooterScrollView.onScrollToBottomListener() {
             @Override
@@ -66,7 +75,9 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
             @Override
             protected void onPreExecute() {
                 clearProgressDialog = new ClearProgressDialog(getContext());
-                clearProgressDialog.show();
+                if (!swipeRefreshLayout.isRefreshing()) {
+                    clearProgressDialog.show();
+                }
             }
 
             @Override
@@ -83,6 +94,7 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
             @Override
             protected void onPostExecute(ArrayList<MeetingListItems> itemses) {
                 addScrollViewData(itemses);
+                swipeRefreshLayout.setRefreshing(false);
                 clearProgressDialog.cancel();
             }
         }.execute();

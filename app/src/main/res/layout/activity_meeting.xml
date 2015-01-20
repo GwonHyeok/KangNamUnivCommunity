@@ -34,16 +34,22 @@
 
     </FrameLayout>
 
-    <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
-        android:id="@+id/meeting_list"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/board_list_swiperefresh"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="65"
-        android:divider="@android:color/transparent">
+        android:layout_weight="65">
 
-        <LinearLayout
+        <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
+            android:id="@+id/meeting_list"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </com.yscn.knucommunity.CustomView.NotifyFooterScrollView>
+            android:layout_height="match_parent"
+            android:divider="@android:color/transparent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </com.yscn.knucommunity.CustomView.NotifyFooterScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>
