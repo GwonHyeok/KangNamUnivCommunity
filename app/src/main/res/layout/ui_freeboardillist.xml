@@ -2,7 +2,7 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="84dp"
     android:orientation="vertical">
 
     <com.yscn.knucommunity.CustomView.CircleImageView
@@ -19,13 +19,13 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
+        android:layout_toLeftOf="@+id/freeboard_list_commentsize"
         android:layout_toRightOf="@+id/freeboard_list_profile"
+        android:layout_toStartOf="@+id/freeboard_list_commentsize"
         android:gravity="center|left"
         android:orientation="vertical"
-        android:layout_toLeftOf="@+id/freeboard_list_commentsize"
-        android:layout_toStartOf="@+id/freeboard_list_commentsize">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
 
         <TextView
             android:id="@+id/freeboard_list_title"
@@ -60,11 +60,17 @@
         android:id="@+id/freeboard_list_commentsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/freeboard_list_time"
         android:layout_marginRight="24dp"
         android:layout_toLeftOf="@+id/freeboard_list_time"
         android:layout_toStartOf="@+id/freeboard_list_time"
         android:text="[17]"
-        android:textSize="17sp"
-        android:layout_alignBaseline="@+id/freeboard_list_time"
-        android:textColor="#FF7395a6" />
+        android:textColor="#FF7395a6"
+        android:textSize="17sp" />
+
+    <include
+        layout="@layout/ui_list_divider"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true" />
 </RelativeLayout>

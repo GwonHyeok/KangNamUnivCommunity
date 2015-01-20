@@ -10,10 +10,10 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="6dp"
         android:paddingBottom="6dp"
-        android:paddingRight="8dp">
+        android:paddingLeft="10dp"
+        android:paddingRight="8dp"
+        android:paddingTop="6dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -24,11 +24,11 @@
                 android:id="@+id/freeboard_reply_profile"
                 android:layout_width="47dp"
                 android:layout_height="47dp"
-                android:src="@drawable/ic_profile"
-                android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginTop="10dp" />
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_profile" />
 
 
             <TextView
@@ -51,9 +51,9 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@id/freeboard_reply_name"
+                android:layout_marginRight="8dp"
                 android:text="2014.10.16 17:24"
-                android:textColor="#7d7d7d"
-                android:layout_marginRight="8dp" />
+                android:textColor="#7d7d7d" />
 
             <TextView
                 android:id="@+id/freeboard_reply_comment"
@@ -62,16 +62,18 @@
                 android:layout_alignLeft="@id/freeboard_reply_name"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignStart="@id/freeboard_reply_name"
-                android:text="머리가 아플땐 약 드시고"
-                android:textColor="#FF616161"
                 android:layout_alignRight="@+id/freeboard_reply_time"
+                android:layout_alignStart="@id/freeboard_reply_name"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="41dp" />
+                android:layout_marginTop="41dp"
+                android:text="머리가 아플땐 약 드시고"
+                android:textColor="#FF616161" />
         </RelativeLayout>
 
     </RelativeLayout>
 
-
-
+    <include
+        layout="@layout/ui_list_divider"
+        android:layout_width="match_parent"
+        android:layout_height="4dp" />
 </LinearLayout>

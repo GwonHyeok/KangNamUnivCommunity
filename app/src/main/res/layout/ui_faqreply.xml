@@ -65,5 +65,9 @@
         android:layout_width="match_parent"
         android:layout_height="15dp" />
 
-
+    <include
+        layout="@layout/ui_list_divider"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:layout_alignParentBottom="true" />
 </LinearLayout>
