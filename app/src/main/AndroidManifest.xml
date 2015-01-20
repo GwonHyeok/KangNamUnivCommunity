@@ -127,6 +127,9 @@
             android:name=".Activity.BoardWriteActivity"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activity.ShareTaxiActivity"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

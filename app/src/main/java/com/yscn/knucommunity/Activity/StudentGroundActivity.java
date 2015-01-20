@@ -79,6 +79,7 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
         findViewById(R.id.studentground_council).setOnClickListener(this);
         findViewById(R.id.studentground_shuttlebus).setOnClickListener(this);
         findViewById(R.id.studentground_library).setOnClickListener(this);
+        findViewById(R.id.studentground_taxi).setOnClickListener(this);
         findViewById(R.id.open_menu).setOnClickListener(this);
         findViewById(R.id.studentground_map).setOnClickListener(this);
     }
@@ -104,6 +105,8 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
             startActivity(new Intent(this, LibraryActivity.class));
         } else if (id == R.id.studentground_map) {
             startActivity(new Intent(this, CampusMapActivity.class));
+        } else if (id == R.id.studentground_taxi) {
+            startActivity(new Intent(this, ShareTaxiActivity.class));
         }
     }
 

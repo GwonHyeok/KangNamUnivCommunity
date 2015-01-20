@@ -43,5 +43,6 @@
     <string name="community_meeting_male_count">남자 %1$s명</string>
     <string name="community_meeting_female_count">여자 %1$s명</string>
     <string name="community_meeting_people_count">%1$s명</string>
+    <string name="sharetaxi_time_format">%1$s월 %2$s년</string>
     <string name="OK">확인</string>
 </resources>
