@@ -11,6 +11,7 @@ import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
 import com.yscn.knucommunity.Items.MeetingListItems;
+import com.yscn.knucommunity.Items.NoticeItems;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
 
@@ -28,6 +29,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.ByteArrayOutputStream;
@@ -417,7 +419,63 @@ public class NetworkUtil {
         return checkResultData(object);
     }
 
-    public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType, int page, String content) throws IOException, ParseException {
+    private ArrayList<NoticeItems> noticeParser(NoticeType noticeType, int timeout) throws IOException {
+        ArrayList<NoticeItems> itemses = new ArrayList<>();
+        String id = "", title = "", time = "", readcount = "", url = "";
+        String BASE_URL = null, PARSE_URL = null;
+
+        if (noticeType == NoticeType.NOTICE) {
+            BASE_URL = "http://web.kangnam.ac.kr/plaza/infom/notice/";
+            PARSE_URL = BASE_URL + "notice_list.jsp";
+        } else if (noticeType == NoticeType.HAKSA) {
+            BASE_URL = "http://web.kangnam.ac.kr/plaza/infom/eduinfo/";
+            PARSE_URL = BASE_URL + "eduinfo_list.jsp";
+        } else if (noticeType == NoticeType.JANGHAK) {
+            BASE_URL = "http://web.kangnam.ac.kr/plaza/infom/scholar/";
+            PARSE_URL = BASE_URL + "scholar_list.jsp";
+        }
+
+        Document document = Jsoup.parse(new URL(PARSE_URL), timeout);
+
+        Elements elements = document.getElementsByClass("boardList");
+        Elements tableBodyElements = elements.get(0).getElementsByTag("tbody")
+                .get(0).getElementsByTag("tr");
+        for (Element tableElement : tableBodyElements) {
+            int i = 0;
+            for (Element tableDocument : tableElement.getElementsByTag("td")) {
+                switch (i) {
+                    case 0:
+                        id = tableDocument.text();
+                        break;
+                    case 1:
+                        title = tableDocument.text();
+                        url = BASE_URL + tableDocument.select("a").first().attr("href");
+                        break;
+                    case 2:
+                        time = tableDocument.text();
+                        break;
+                    case 3:
+                        readcount = tableDocument.text();
+                        break;
+                }
+                i++;
+            }
+            itemses.add(new NoticeItems(id, title, url, time, readcount));
+        }
+        return itemses;
+    }
+
+
+    public HashMap<String, ArrayList<NoticeItems>> getNoticeList() throws IOException {
+        HashMap<String, ArrayList<NoticeItems>> itemes = new HashMap<>();
+        itemes.put("notice", noticeParser(NoticeType.NOTICE, 5000));
+        itemes.put("haksa", noticeParser(NoticeType.HAKSA, 5000));
+        itemes.put("janghak", noticeParser(NoticeType.JANGHAK, 5000));
+        return itemes;
+    }
+
+    public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType,
+                                                                int page, String content) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = null;
         HttpResponse httpResponse;
@@ -604,6 +662,8 @@ public class NetworkUtil {
     public static enum SchoolRestraunt {SHAL, GYUNG, GISUK, INSA}
 
     public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER}
+
+    private enum NoticeType {NOTICE, HAKSA, JANGHAK}
 
     public static enum BoardType {
         FREE(1), FAQ(2), GREENLIGHT(3), MEETING(4);

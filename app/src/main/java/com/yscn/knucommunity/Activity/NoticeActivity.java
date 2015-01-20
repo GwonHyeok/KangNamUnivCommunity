@@ -1,6 +1,7 @@
 package com.yscn.knucommunity.Activity;
 
 import android.annotation.TargetApi;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -14,28 +15,33 @@ import android.widget.AbsListView;
 import android.widget.TextView;
 
 import com.nineoldandroids.view.ViewHelper;
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.KenBurnsSupportView;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
+import com.yscn.knucommunity.CustomView.NoticeListFragment;
 import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
-import com.yscn.knucommunity.CustomView.SampleListFragment;
 import com.yscn.knucommunity.CustomView.ScrollTabHolder;
 import com.yscn.knucommunity.CustomView.ScrollTabHolderFragment;
+import com.yscn.knucommunity.Items.NoticeItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.NetworkUtil;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder, ViewPager.OnPageChangeListener, View.OnClickListener {
 
     private final String[] TITLES = {"공지사항", "학사제도", "장학제도"};
-    private KenBurnsSupportView mHeaderPicture;
     private View mHeader;
-    private PagerSlidingTabStrip mPagerSlidingTabStrip;
     private ViewPager mViewPager;
     private PagerAdapter mPagerAdapter;
 
     private int mActionBarHeight;
-    private int mMinHeaderHeight;
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
     private TextView actionBarHeaderTitleView;
+    private PagerSlidingTabStrip mPagerSlidingTabStrip;
 
     private TypedValue mTypedValue = new TypedValue();
 
@@ -47,13 +53,13 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mMinHeaderHeight = getResources().getDimensionPixelSize(R.dimen.min_header_height);
+        int mMinHeaderHeight = getResources().getDimensionPixelSize(R.dimen.min_header_height);
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
         mMinHeaderTranslation = -mMinHeaderHeight + getActionBarHeight();
 
         setContentView(R.layout.activity_notice);
 
-        mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.notice_header_picture);
+        KenBurnsSupportView mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.notice_header_picture);
         mHeaderPicture.setResourceIds(R.drawable.bg_notice_1, R.drawable.bg_notice_2, R.drawable.bg_notice_3, R.drawable.bg_notice_4);
         mHeader = findViewById(R.id.header);
 
@@ -61,16 +67,41 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
         mViewPager = (ViewPager) findViewById(R.id.notice_viewpager);
         mViewPager.setOffscreenPageLimit(3);
 
-        mPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        mPagerAdapter.setTabHolderScrollingContent(this);
-
-        mViewPager.setAdapter(mPagerAdapter);
-
-        mPagerSlidingTabStrip.setViewPager(mViewPager);
+        getNoticeData();
         mPagerSlidingTabStrip.setOnPageChangeListener(this);
-
         actionBarHeaderTitleView = (TextView) findViewById(R.id.notice_header_title);
         findViewById(R.id.open_menu).setOnClickListener(this);
+    }
+
+    private void getNoticeData() {
+        new AsyncTask<Void, Void, HashMap<String, ArrayList<NoticeItems>>>() {
+            private ClearProgressDialog clearProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog.show();
+            }
+
+            @Override
+            protected HashMap<String, ArrayList<NoticeItems>> doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().getNoticeList();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(HashMap<String, ArrayList<NoticeItems>> itemes) {
+                mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), itemes);
+                mPagerAdapter.setTabHolderScrollingContent(NoticeActivity.this);
+                mViewPager.setAdapter(mPagerAdapter);
+                mPagerSlidingTabStrip.setViewPager(mViewPager);
+                clearProgressDialog.cancel();
+            }
+        }.execute();
     }
 
     @Override
@@ -153,10 +184,12 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
         private SparseArrayCompat<ScrollTabHolder> mScrollTabHolders;
         private ScrollTabHolder mListener;
+        private HashMap<String, ArrayList<NoticeItems>> itemes;
 
-        public PagerAdapter(FragmentManager fm) {
+        public PagerAdapter(FragmentManager fm, HashMap<String, ArrayList<NoticeItems>> objects) {
             super(fm);
             mScrollTabHolders = new SparseArrayCompat<>();
+            itemes = objects;
         }
 
         public void setTabHolderScrollingContent(ScrollTabHolder listener) {
@@ -175,19 +208,7 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
         @Override
         public Fragment getItem(int position) {
-            SampleListFragment.Type type = SampleListFragment.Type.NOTICE;
-            switch (position) {
-                case 0:
-                    type = SampleListFragment.Type.NOTICE;
-                    break;
-                case 1:
-                    type = SampleListFragment.Type.HAKSA;
-                    break;
-                case 2:
-                    type = SampleListFragment.Type.JANG;
-                    break;
-            }
-            ScrollTabHolderFragment fragment = (ScrollTabHolderFragment) SampleListFragment.newInstance(position, type);
+            ScrollTabHolderFragment fragment = (ScrollTabHolderFragment) NoticeListFragment.newInstance(position, itemes);
 
             mScrollTabHolders.put(position, fragment);
             if (mListener != null) {
