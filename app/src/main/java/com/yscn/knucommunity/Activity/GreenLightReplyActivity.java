@@ -96,7 +96,7 @@ public class GreenLightReplyActivity extends ActionBarActivity implements View.O
             /* Set Profile Image */
             ImageLoaderUtil.getInstance().initImageLoader();
             ImageLoader.getInstance().displayImage(
-                    UrlList.PROFILE_IMAGE_URL + dataObject.getStudentnumber(),
+                    UrlList.PROFILE_THUMB_IMAGE_URL + dataObject.getStudentnumber(),
                     profileImageView,
                     ImageLoaderUtil.getInstance().getDefaultOptions());
 

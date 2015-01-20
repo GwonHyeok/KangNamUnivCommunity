@@ -138,7 +138,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
                     case SUCCESS:
                         showToastMessage(getString(R.string.register_success));
                         finish();
-                        Intent intent = new Intent(getContext(), MainActivity.class);
+                        Intent intent = new Intent(getContext(), Splash.class);
                         startActivity(intent);
                         break;
                     case HASMEMBER:

@@ -32,7 +32,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -71,15 +70,26 @@ public class NetworkUtil {
         ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
         String defaultStorage = Environment.getExternalStorageDirectory().getPath();
         String temporaryFilePath = defaultStorage + "/" + "temp_knucommunity_profileimage.png";
+        String temporaryThumbnailPath = defaultStorage + "/" + "temp_knucommunity_thumbprofileimage.png";
+
         File profileImageFile = new File(temporaryFilePath);
+        File profileThumbImageFile = new File(temporaryThumbnailPath);
 
         Bitmap bitmap = UserData.getInstance().getUserProfile();
+
+        /* 원본 사진 Bitmap 에서 저장 */
         FileOutputStream fileOutputStream = new FileOutputStream(profileImageFile);
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, byteArrayOutputStream);
-        byte[] bitmapdata = byteArrayOutputStream.toByteArray();
-        fileOutputStream.write(bitmapdata);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, fileOutputStream);
         fileOutputStream.flush();
+
+        /* 원본사진 크기 160 * 160 으로 줄여서 저장 */
+        int origin_height = bitmap.getHeight();
+        int origin_width = bitmap.getWidth();
+        fileOutputStream = new FileOutputStream(profileThumbImageFile);
+        bitmap = Bitmap.createScaledBitmap(bitmap, 160, origin_height / (origin_width / 160), true);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, fileOutputStream);
+        fileOutputStream.flush();
+        fileOutputStream.close();
 
         HttpPost httpPost = new HttpPost(UrlList.APP_REGISTER_URL);
         HttpEntity entity = MultipartEntityBuilder.create()
@@ -87,14 +97,12 @@ public class NetworkUtil {
                 .addTextBody("nickname", nickname, contentType)
                 .addTextBody("name", name, contentType)
                 .addBinaryBody("userfile", profileImageFile)
+                .addBinaryBody("usersmallfile", profileThumbImageFile)
                 .build();
         httpPost.setEntity(entity);
         HttpResponse httpResponse = httpClient.execute(httpPost);
 
-        byteArrayOutputStream.close();
-        fileOutputStream.close();
-
-        if (profileImageFile.delete()) {
+        if (profileImageFile.delete() || profileThumbImageFile.delete()) {
             Log.d(getClass().getSimpleName(), "Delete Temporary ImageFile");
             UserData.getInstance().setUserProfile(null);
         }

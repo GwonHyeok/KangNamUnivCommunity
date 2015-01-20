@@ -275,7 +275,7 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     protected void setProfileImage(ImageView profileImageView, String studentNumber) {
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(
-                UrlList.PROFILE_IMAGE_URL + studentNumber, profileImageView,
+                UrlList.PROFILE_THUMB_IMAGE_URL + studentNumber, profileImageView,
                 ImageLoaderUtil.getInstance().getDefaultOptions());
     }
 

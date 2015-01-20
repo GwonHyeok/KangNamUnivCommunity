@@ -27,7 +27,7 @@ public class StudentInfoActivity extends MenuBaseActivity {
 
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(
-                UrlList.PROFILE_IMAGE_URL + UserData.getInstance().getStudentNumber(),
+                UrlList.PROFILE_THUMB_IMAGE_URL + UserData.getInstance().getStudentNumber(),
                 (CircleImageView) findViewById(R.id.studentinfo_profile_image),
                 ImageLoaderUtil.getInstance().getDefaultOptions());
     }
