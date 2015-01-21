@@ -31,7 +31,7 @@ public class ShareTaxiPagerAdapter extends PagerAdapter {
         textView.setTextColor(Color.WHITE);
         textView.setText(String.valueOf(mDay[position][1]));
         textView.setGravity(Gravity.CENTER);
-        textView.setTextSize(30);
+        textView.setTextSize(64);
         viewGroup.addView(textView);
         return textView;
     }

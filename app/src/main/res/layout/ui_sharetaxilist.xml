@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="133dp"
+    android:layout_height="126dp"
     android:orientation="vertical">
 
     <include
         layout="@layout/ui_list_divider"
         android:layout_width="match_parent"
-        android:layout_height="4dp"
+        android:layout_height="3dp"
         android:layout_alignParentBottom="true" />
 
     <View
         android:layout_width="3dp"
         android:layout_height="match_parent"
-        android:layout_marginLeft="22dp"
+        android:layout_marginLeft="24dp"
         android:background="#ffd0d0d0" />
 
     <TextView
         android:id="@+id/textView12"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="6dp"
-        android:background="@drawable/bg_meeting_success"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/bg_sharetaxi_general"
         android:gravity="center"
         android:text="2"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:textSize="17sp"/>
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -40,13 +41,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
+            android:paddingLeft="16dp"
             android:paddingRight="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="출발 : " />
+                android:text="출발 : "
+                android:textSize="13sp"
+                android:textColor="#b3b3b3" />
 
             <TextView
                 android:id="@+id/share_taxi_start_locaction_textview"
@@ -55,21 +58,25 @@
                 android:ellipsize="marquee"
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
-                android:text="기흥역 4번 출구우우우우우우우"
-                android:textSize="22sp" />
+                android:text="기흥역 4번 출구"
+                android:textSize="21sp"
+                android:textColor="#4d4d4d" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:paddingLeft="16dp"
+            android:paddingRight="10dp"
+            android:paddingTop="4dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="도착 : " />
+                android:text="도착 : "
+                android:textSize="13sp"
+                android:textColor="#b3b3b3" />
 
             <TextView
                 android:id="@+id/share_taxi_stop_locaction_textview"
@@ -79,7 +86,8 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:text="기흥구청"
-                android:textSize="22sp" />
+                android:textSize="21sp"
+                android:textColor="#4d4d4d" />
         </LinearLayout>
 
         <LinearLayout
@@ -87,14 +95,16 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:paddingTop="10dp">
+            android:paddingLeft="16dp"
+            android:paddingTop="12dp"
+            android:paddingRight="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="with : " />
+                android:text="with : "
+                android:textSize="13sp"
+                android:textColor="#b3b3b3" />
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -107,29 +117,29 @@
                     android:orientation="horizontal">
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
+                        android:layout_width="31dp"
+                        android:layout_height="31dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
                         android:background="@drawable/ic_profile" />
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
+                        android:layout_width="31dp"
+                        android:layout_height="31dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
                         android:background="@drawable/ic_profile" />
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
+                        android:layout_width="31dp"
+                        android:layout_height="31dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
                         android:background="@drawable/ic_profile" />
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
+                        android:layout_width="31dp"
+                        android:layout_height="31dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp"
                         android:background="@drawable/ic_profile" />
@@ -143,8 +153,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:paddingRight="22dp"
+        android:paddingRight="18dp"
         android:paddingTop="30dp"
-        android:text="8:41AM" />
+        android:text="8:41 AM"
+        android:textColor="#666666"
+        android:textSize="19sp"
+        android:layout_alignBottom="@+id/textView12" />
 
 </RelativeLayout>
