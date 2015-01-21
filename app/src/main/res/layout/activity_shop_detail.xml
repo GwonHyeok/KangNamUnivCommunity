@@ -13,8 +13,9 @@
         android:gravity="center_vertical"
         android:text="사기거래에 조심하세요. 개인의 부주의는 책임지지 않습니다."
         android:textColor="#FF757575"
-        android:layout_marginLeft="14dp"
-        android:textSize="13sp"/>
+
+        android:textSize="13sp"
+        android:paddingLeft="14dp" />
 
     <ListView
         android:id="@+id/shop_detail_list"

@@ -15,12 +15,12 @@
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:layout_below="@id/toolbar"
-        android:layout_marginLeft="14dp"
         android:background="#E9E9E9"
         android:gravity="center_vertical"
         android:text="욕설, 상대방을 향한 비방은 관리자에 의해 삭제될 수 있습니다."
         android:textColor="#FF757575"
-        android:textSize="13sp" />
+        android:textSize="13sp"
+        android:paddingLeft="14dp" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/board_list_swiperefresh"
