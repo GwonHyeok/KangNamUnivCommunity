@@ -32,7 +32,7 @@
             android:layout_margin="20dp"
             android:text="학생마당"
             android:textColor="@android:color/white"
-            android:textSize="28sp" />
+            android:textSize="30sp" />
 
         <ScrollView
             android:id="@+id/studentgroup_scrollview"
@@ -76,7 +76,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="학생회"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -98,7 +99,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="학과"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -120,7 +122,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="중앙 동아리"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -150,7 +153,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="캠퍼스 지도"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -172,7 +176,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="도서관"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -193,8 +198,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="달구지 시간"
-                            android:textColor="@android:color/white" />
+                            android:text="달구지"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -224,7 +230,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="학생식당"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -246,7 +253,8 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="택시합승"
-                            android:textColor="@android:color/white" />
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
                     </LinearLayout>
 
                 </LinearLayout>
