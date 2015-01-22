@@ -116,6 +116,8 @@ public class NoticeListFragment extends ScrollTabHolderFragment implements OnScr
                 view = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
                 holder = new AdapterHolder();
                 holder.title = (TextView) view.findViewById(android.R.id.text1);
+                holder.title.setTextColor(0xff474747);
+
                 view.setTag(holder);
             } else {
                 holder = (AdapterHolder) view.getTag();
