@@ -5,13 +5,20 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UrlList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -30,7 +37,7 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
     }
 
     private void setContent() {
-        new AsyncTask<Void, Void, String>() {
+        new AsyncTask<Void, Void, JSONObject>() {
             private ClearProgressDialog progressDialog;
 
             @Override
@@ -40,7 +47,7 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
             }
 
             @Override
-            protected String doInBackground(Void... params) {
+            protected JSONObject doInBackground(Void... params) {
                 String conetntID = getIntent().getStringExtra("contentID");
                 try {
                     return NetworkUtil.getInstance().getDefaultboardContent(conetntID);
@@ -51,9 +58,29 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
             }
 
             @Override
-            protected void onPostExecute(String content) {
+            protected void onPostExecute(JSONObject object) {
                 /* 에러 처리 필요함 NULL 일 경우 */
+                ImageLoaderUtil.getInstance().initImageLoader();
+                String content = object.get("content").toString();
+                JSONArray fileArray = (JSONArray) object.get("file");
+
                 ((TextView) findViewById(R.id.freeboard_detail_content)).setText(content);
+
+                for (Object obj : fileArray) {
+                    LinearLayout dataView =
+                            (LinearLayout) findViewById(R.id.freeboard_detail_content_dataview);
+
+                    ImageView imageView = new ImageView(getContext());
+                    int viewLRPadding = (int) ApplicationUtil.getInstance().dpToPx(22);
+                    int viewBPadding = (int) ApplicationUtil.getInstance().dpToPx(14);
+                    imageView.setPadding(viewLRPadding, 0, viewLRPadding, viewBPadding);
+                    dataView.addView(imageView);
+
+                    ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
+                            imageView, ImageLoaderUtil.getInstance().getDefaultOptions());
+                }
+
+
                 progressDialog.cancel();
             }
         }.execute();

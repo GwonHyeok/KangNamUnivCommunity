@@ -1,6 +1,7 @@
 package com.yscn.knucommunity.Util;
 
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
@@ -42,6 +43,8 @@ import java.net.URLDecoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Created by GwonHyeok on 14. 11. 19..
@@ -406,20 +409,37 @@ public class NetworkUtil {
         return itemses;
     }
 
-    public boolean writeBoardContent(int boardType, String title, String content) throws IOException, ParseException {
+    public boolean writeBoardContent(int boardType, String title, String content, HashMap<String, Uri> file) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HashMap<String, String> parameter = new HashMap<>();
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         HttpResponse httpResponse;
+        int fileSize = file.size();
 
-        parameter.put("title", title);
-        parameter.put("content", content);
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        multipartEntityBuilder.addTextBody("title", title, getDefaultContentType());
+        multipartEntityBuilder.addTextBody("content", content, getDefaultContentType());
+        multipartEntityBuilder.addTextBody("studentnumber", UserData.getInstance().getStudentNumber(), getDefaultContentType());
+        multipartEntityBuilder.addTextBody("filesize", String.valueOf(fileSize), getDefaultContentType());
+
+        if (file.size() > 0) {
+            Set<String> keySet = file.keySet();
+            Iterator<String> key = keySet.iterator();
+
+            for (int i = 0; key.hasNext(); i++) {
+                String realPath = ApplicationUtil.getInstance().UriToPath(file.get(key.next()));
+                File realPathFile = new File(realPath);
+                Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
+                multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
+            }
+        }
 
         if (boardType == -1) {
             return false;
         }
 
-        httpResponse = postData(UrlList.BOARD_WRITE_CONTENT + boardType, parameter);
+        HttpPost httpPost = new HttpPost(UrlList.BOARD_WRITE_CONTENT + boardType);
+        httpPost.setEntity(multipartEntityBuilder.build());
+        httpResponse = httpClient.execute(httpPost);
+//        httpResponse = postData(UrlList.BOARD_WRITE_CONTENT + boardType, parameter);
 
         JSONObject object = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
@@ -524,7 +544,7 @@ public class NetworkUtil {
         return list;
     }
 
-    public String getDefaultboardContent(String contentID) throws IOException, ParseException {
+    public JSONObject getDefaultboardContent(String contentID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HttpResponse httpResponse = postData(UrlList.DEFAULTBOARD_GET_CONTENT + contentID, null);
         JSONObject object = (JSONObject) jsonParser.parse(
@@ -532,7 +552,7 @@ public class NetworkUtil {
         if (!checkResultData(object)) {
             return null;
         }
-        return object.get("content").toString();
+        return object;
     }
 
     /**
@@ -647,6 +667,10 @@ public class NetworkUtil {
         }
 
         return httpClient.execute(httpPost);
+    }
+
+    private ContentType getDefaultContentType() {
+        return ContentType.create("text/plain", Charset.forName("UTF-8"));
     }
 
     private HashMap<String, String> getTextParameters(String[] keystrings, String[] valuestrings) {

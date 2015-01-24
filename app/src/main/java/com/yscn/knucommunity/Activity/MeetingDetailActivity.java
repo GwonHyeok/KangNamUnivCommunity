@@ -23,6 +23,7 @@ import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -129,7 +130,7 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
     }
 
     private void setContent() {
-        new AsyncTask<Void, Void, String>() {
+        new AsyncTask<Void, Void, JSONObject>() {
             private ClearProgressDialog clearProgressDialog;
 
             @Override
@@ -139,7 +140,7 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
             }
 
             @Override
-            protected String doInBackground(Void... params) {
+            protected JSONObject doInBackground(Void... params) {
                 String conetntID = getIntent().getStringExtra("contentID");
                 try {
                     return NetworkUtil.getInstance().getDefaultboardContent(conetntID);
@@ -151,9 +152,9 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
 
 
             @Override
-            protected void onPostExecute(String value) {
+            protected void onPostExecute(JSONObject value) {
                 clearProgressDialog.cancel();
-                ((TextView) findViewById(R.id.faq_detail_content)).setText(value);
+                ((TextView) findViewById(R.id.faq_detail_content)).setText(value.get("content").toString());
             }
         }.execute();
     }

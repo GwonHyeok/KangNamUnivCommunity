@@ -14,12 +14,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UrlList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -111,7 +117,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
     }
 
     private void setContent() {
-        new AsyncTask<Void, Void, String>() {
+        new AsyncTask<Void, Void, JSONObject>() {
             private ClearProgressDialog clearProgressDialog;
 
             @Override
@@ -121,7 +127,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
             }
 
             @Override
-            protected String doInBackground(Void... params) {
+            protected JSONObject doInBackground(Void... params) {
                 String conetntID = getIntent().getStringExtra("contentID");
                 try {
                     return NetworkUtil.getInstance().getDefaultboardContent(conetntID);
@@ -133,9 +139,27 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
 
             @Override
-            protected void onPostExecute(String value) {
+            protected void onPostExecute(JSONObject value) {
+                ImageLoaderUtil.getInstance().initImageLoader();
+                String content = value.get("content").toString();
+                JSONArray fileArray = (JSONArray) value.get("file");
+
+                ((TextView) findViewById(R.id.faq_detail_content)).setText(content);
+
+                for (Object obj : fileArray) {
+                    LinearLayout dataView =
+                            (LinearLayout) findViewById(R.id.faq_detail_photo_content_view);
+
+                    ImageView imageView = new ImageView(getContext());
+                    int viewLRPadding = (int) ApplicationUtil.getInstance().dpToPx(22);
+                    int viewBPadding = (int) ApplicationUtil.getInstance().dpToPx(14);
+                    imageView.setPadding(viewLRPadding, 0, viewLRPadding, viewBPadding);
+                    dataView.addView(imageView);
+
+                    ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
+                            imageView, ImageLoaderUtil.getInstance().getDefaultOptions());
+                }
                 clearProgressDialog.cancel();
-                ((TextView) findViewById(R.id.faq_detail_content)).setText(value);
             }
         }.execute();
     }

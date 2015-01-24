@@ -1,30 +1,44 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
 
 /**
  * Created by GwonHyeok on 15. 1. 19..
  */
-public class BoardWriteActivity extends ActionBarActivity {
+public class BoardWriteActivity extends ActionBarActivity implements View.OnClickListener {
     private EditText titleView, contentView;
-    private TextView boardTypeView;
     private int boardType;
+    private int GET_PICTURE_RESULT_CODE = 0X10;
+    private HashMap<String, Uri> fileListMap = new HashMap<>();
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -38,7 +52,7 @@ public class BoardWriteActivity extends ActionBarActivity {
         String boardTypeMessage;
         this.titleView = (EditText) findViewById(R.id.board_write_title);
         this.contentView = (EditText) findViewById(R.id.board_write_content);
-        this.boardTypeView = (TextView) findViewById(R.id.board_write_boardtype);
+        TextView boardTypeView = (TextView) findViewById(R.id.board_write_boardtype);
         this.boardType = getIntent().getIntExtra("boardType", -1);
 
         switch (boardType) {
@@ -54,7 +68,9 @@ public class BoardWriteActivity extends ActionBarActivity {
             default:
                 boardTypeMessage = "null";
         }
-        this.boardTypeView.setText(boardTypeMessage);
+        boardTypeView.setText(boardTypeMessage);
+
+        this.findViewById(R.id.board_write_photo_main).setOnClickListener(this);
 
     }
 
@@ -100,7 +116,7 @@ public class BoardWriteActivity extends ActionBarActivity {
                 try {
                     String title = titleView.getText().toString();
                     String content = contentView.getText().toString();
-                    result = NetworkUtil.getInstance().writeBoardContent(boardType, title, content);
+                    result = NetworkUtil.getInstance().writeBoardContent(boardType, title, content, fileListMap);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -122,4 +138,101 @@ public class BoardWriteActivity extends ActionBarActivity {
         }.execute();
     }
 
+    private void getPictureData() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), GET_PICTURE_RESULT_CODE);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == GET_PICTURE_RESULT_CODE && resultCode == RESULT_OK) {
+            addBoardPhotodata(data.getData());
+        }
+    }
+
+    private void addBoardPhotodata(Uri uri) {
+        if (fileListMap.get(uri.toString()) != null) {
+            /* 이미 파일이 목록에 있을때 return */
+            return;
+        }
+        fileListMap.put(uri.toString(), uri);
+        final LinearLayout photoDataView = (LinearLayout) findViewById(R.id.board_write_photo_data);
+        final View photoChildView = LayoutInflater.from(this).inflate(R.layout.ui_boardwrite_photo, photoDataView, false);
+        photoDataView.addView(photoChildView);
+
+        final ImageView photoThumbnailView = (ImageView) photoChildView.findViewById(R.id.board_write_photo_thumbnail);
+        final TextView photoSizeView = (TextView) photoChildView.findViewById(R.id.board_write_photo_size);
+        final TextView photoDiskUsageView = (TextView) photoChildView.findViewById(R.id.board_write_photo_diskusage);
+        final ImageButton photoCancelView = (ImageButton) photoChildView.findViewById(R.id.board_write_photo_cancel);
+        photoCancelView.setTag(uri.toString());
+
+
+        /* 이미지 메모리에 올리지를 않고 크기를 구해와서 사진크기와 용량 설정 */
+        InputStream input;
+        try {
+            input = getContentResolver().openInputStream(uri);
+            BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+            options.inPreferredConfig = Bitmap.Config.ARGB_8888;
+            BitmapFactory.decodeStream(input, null, options);
+            int height = options.outHeight;
+            int width = options.outWidth;
+            int fileSize = input.available();
+
+            photoSizeView.setText(width + "x" + height);
+            photoDiskUsageView.setText(convertByteToUnitSuffix(fileSize));
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        /* 지우기 버튼 리스너 */
+        photoCancelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tagUri = (String) v.getTag();
+                Log.d(getClass().getSimpleName(), "Child URI TAG: " + tagUri);
+                photoDataView.removeView(photoChildView);
+                fileListMap.remove(tagUri);
+                invalidateScrollView();
+            }
+        });
+
+        /* 사진 썸네일 적용 */
+        ImageLoaderUtil.getInstance().initImageLoader();
+        ImageLoader.getInstance().displayImage(uri.toString(), photoThumbnailView,
+                ImageLoaderUtil.getInstance().getDefaultOptions());
+        invalidateScrollView();
+    }
+
+    // 스크롤 뷰가 보여 지고 있을때 사이즈가 0이면 GONE
+    // 스크롤 뷰가 보여지지 않고 있을때 사이즈가 0보다 크면 VISIBLE
+    private void invalidateScrollView() {
+        View scrollView = findViewById(R.id.board_write_photo_scrollview);
+        if (scrollView.isShown() && fileListMap.size() == 0) {
+            scrollView.setVisibility(View.GONE);
+        } else if (!scrollView.isShown() && fileListMap.size() > 0) {
+            scrollView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private String convertByteToUnitSuffix(int src_byte) {
+        if (src_byte < 1024) {
+            return src_byte + "B";
+        } else if (src_byte < 1024 * 1024) {
+            return Math.round((float) src_byte / (float) 1024) + "KB";
+        } else {
+            return Math.round(((float) src_byte / (float) (1024 * 1024) * 10)) / 10.0 + "Mb";
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.board_write_photo_main) {
+            getPictureData();
+        }
+    }
 }

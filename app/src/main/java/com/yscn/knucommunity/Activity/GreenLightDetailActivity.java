@@ -6,13 +6,21 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UrlList;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -35,8 +43,8 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
     private void setContent() {
         new AsyncTask<Void, Void, Void>() {
             private ClearProgressDialog clearProgressDialog;
-            private String content;
             private HashMap<String, String> greenLightResult;
+            private JSONObject jsonObject;
 
             @Override
             protected void onPreExecute() {
@@ -47,7 +55,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    content = NetworkUtil.getInstance().getDefaultboardContent(m_ContentID);
+                    jsonObject = NetworkUtil.getInstance().getDefaultboardContent(m_ContentID);
                     greenLightResult = NetworkUtil.getInstance().getGreenLightResult(m_ContentID);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
@@ -57,13 +65,26 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
 
             @Override
             protected void onPostExecute(Void value) {
-                if (content != null && greenLightResult != null) {
-                    ((TextView) findViewById(R.id.greenlight_detail_content)).setText(content);
+                if (jsonObject != null && greenLightResult != null) {
+                    ImageLoaderUtil.getInstance().initImageLoader();
+                    JSONArray fileArray = (JSONArray) jsonObject.get("file");
+                    ((TextView) findViewById(R.id.greenlight_detail_content)).setText(jsonObject.get("content").toString());
 
                     String isChecked = greenLightResult.get("isChecked");
 
-                    Log.d(getClass().getSimpleName(), "isChecked : " + isChecked);
-                    Log.d(getClass().getSimpleName(), "contentID : " + m_ContentID);
+                    for (Object obj : fileArray) {
+                        LinearLayout dataView =
+                                (LinearLayout) findViewById(R.id.greenlight_detail_photo_content_view);
+
+                        ImageView imageView = new ImageView(getContext());
+                        int viewLRPadding = (int) ApplicationUtil.getInstance().dpToPx(22);
+                        int viewBPadding = (int) ApplicationUtil.getInstance().dpToPx(14);
+                        imageView.setPadding(viewLRPadding, 0, viewLRPadding, viewBPadding);
+                        dataView.addView(imageView);
+
+                        ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
+                                imageView, ImageLoaderUtil.getInstance().getDefaultOptions());
+                    }
 
                     if (isChecked.equals("checked")) {
                         Log.d(getClass().getSimpleName(), "Checked GreenLight");

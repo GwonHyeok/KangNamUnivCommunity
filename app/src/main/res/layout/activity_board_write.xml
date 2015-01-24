@@ -22,11 +22,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"
+            android:gravity="center_vertical|right"
+            android:paddingRight="14dp"
             android:text="등록"
             android:textColor="#5592ae"
-            android:textSize="20sp"
-            android:gravity="center_vertical|right"
-            android:paddingRight="14dp" />
+            android:textSize="20sp" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -38,12 +38,12 @@
     <TextView
         android:id="@+id/board_write_boardtype"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:gravity="center_vertical"
         android:paddingLeft="20dp"
         android:text="자유게시판"
         android:textColor="#5c5c5c"
-        android:textSize="19sp"/>
+        android:textSize="19sp" />
 
     <View
         android:layout_width="match_parent"
@@ -53,13 +53,13 @@
     <EditText
         android:id="@+id/board_write_title"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:hint="제목을 입력해주세요."
-        android:textColorHint="#808080"
         android:paddingLeft="20dp"
         android:textColor="#5c5c5c"
+        android:textColorHint="#808080"
         android:textSize="18sp" />
 
     <View
@@ -67,14 +67,35 @@
         android:layout_height="1dp"
         android:background="#9e9e9e" />
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/board_write_photo_main"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center_vertical"
-        android:paddingLeft="20dp"
-        android:text="이미지 첨부"
-        android:textColor="#5c5c5c"
-        android:textSize="19sp" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="이미지 첨부"
+            android:textColor="#5c5c5c"
+            android:textSize="19sp" />
+
+        <ScrollView
+            android:id="@+id/board_write_photo_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:id="@+id/board_write_photo_data"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
+    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -94,13 +115,13 @@
             android:background="@android:color/transparent"
             android:gravity="top"
             android:hint="내용을 입력해 주세요."
-            android:textColorHint="#808080"
             android:paddingBottom="10dp"
             android:paddingLeft="20dp"
+            android:paddingRight="14dp"
             android:paddingTop="14dp"
             android:textColor="#5c5c5c"
-            android:textSize="15sp"
-            android:paddingRight="14dp" />
+            android:textColorHint="#808080"
+            android:textSize="15sp" />
 
         <View
             android:layout_width="match_parent"
@@ -119,30 +140,29 @@
             android:paddingRight="20dp"
             android:paddingTop="10dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="# 이것만은 지켜주세요!"
-                android:textColor="#5592ae"
-                android:textSize="18sp" />
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:text="# 이것만은 지켜주세요!"-->
+            <!--android:textColor="#5592ae"-->
+            <!--android:textSize="18sp" />-->
+
+            <!--<TextView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:paddingTop="8dp"-->
+            <!--android:text="1. 정치적, 종교적, 음란성, 사행성의 내용은 삼가해주세요.\n2. 욕설과 같이 분쟁하는 내용도 삼가해주세요.\n3. 되도록 경어체를 사용해주세요."-->
+            <!--android:textColor="#5c5c5c"-->
+            <!--android:textSize="15sp" />-->
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:paddingTop="8dp"
-                android:text="1. 정치적, 종교적, 음란성, 사행성의 내용은 삼가해주세요.\n2. 욕설과 같이 분쟁하는 내용도 삼가해주세요.\n3. 되도록 경어체를 사용해주세요."
-                android:textColor="#5c5c5c"
-                android:textSize="15sp"/>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:paddingTop="8dp"
-                android:text="위 내용을 지키지 않은 글은 운영자에 의해 삭제될 수 있습니다."
-                android:textColor="#e53935"
+                android:text="문제가 일어날 수 있는 글은 운영자에 의해 삭제될 수 있습니다."
+               android:textColor="#e53935"
                 android:textSize="16sp" />
         </LinearLayout>
     </RelativeLayout>
