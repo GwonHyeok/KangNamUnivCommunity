@@ -135,7 +135,7 @@ public class NetworkUtil {
 
     public LoginStatus LoginAppServer(String studentnumber, String password) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HashMap<String, String> parameters = new HashMap<String, String>();
+        HashMap<String, String> parameters = new HashMap<>();
         String studentname = "";
         parameters.put("user_id", studentnumber);
         parameters.put("user_pwd", password);
@@ -244,7 +244,7 @@ public class NetworkUtil {
 
     public ArrayList<MajorDetailItems> getMajorDetailInfo(int majorType) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        ArrayList<MajorDetailItems> itemses = new ArrayList<MajorDetailItems>();
+        ArrayList<MajorDetailItems> itemses = new ArrayList<>();
         HttpResponse httpResponse = postData(UrlList.PROFESSOR_GET_DETAIL_INFO + String.valueOf(majorType), null);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
@@ -283,7 +283,7 @@ public class NetworkUtil {
     }
 
     public ArrayList<LibrarySeatItems> getLibrarySeatInfo() throws IOException {
-        ArrayList<LibrarySeatItems> itemses = new ArrayList<LibrarySeatItems>();
+        ArrayList<LibrarySeatItems> itemses = new ArrayList<>();
         URL url = new URL(UrlList.LIBRARY_SEAT_URL);
         Document document = Jsoup.parse(url, 10000);
         Elements elements = document.getElementsByTag("tr");
@@ -302,7 +302,7 @@ public class NetworkUtil {
 
     public ArrayList<MajorSimpleListItems> getMajorSimpleInfo() throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        ArrayList<MajorSimpleListItems> itemses = new ArrayList<MajorSimpleListItems>();
+        ArrayList<MajorSimpleListItems> itemses = new ArrayList<>();
         HttpResponse httpResponse = postData(UrlList.MAJOR_GET_SIMPLE_INFO, null);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
@@ -320,9 +320,9 @@ public class NetworkUtil {
     }
 
     public HashMap<String, ArrayList<StudentCouncilListItems>> getCouncilInfo() throws IOException, ParseException {
-        HashMap<String, ArrayList<StudentCouncilListItems>> dataMap = new HashMap<String, ArrayList<StudentCouncilListItems>>();
-        ArrayList<StudentCouncilListItems> riffleItem = new ArrayList<StudentCouncilListItems>();
-        ArrayList<StudentCouncilListItems> dragItem = new ArrayList<StudentCouncilListItems>();
+        HashMap<String, ArrayList<StudentCouncilListItems>> dataMap = new HashMap<>();
+        ArrayList<StudentCouncilListItems> riffleItem = new ArrayList<>();
+        ArrayList<StudentCouncilListItems> dragItem = new ArrayList<>();
         HttpResponse httpResponse = postData(UrlList.STUDENT_GET_COUNCIL_INFO, null);
         JSONParser jsonParser = new JSONParser();
         JSONObject object = (JSONObject) jsonParser.parse(
@@ -677,7 +677,7 @@ public class NetworkUtil {
     }
 
     private HashMap<String, String> getTextParameters(String[] keystrings, String[] valuestrings) {
-        HashMap<String, String> hashMap = new HashMap<String, String>();
+        HashMap<String, String> hashMap = new HashMap<>();
         if (keystrings.length == valuestrings.length) {
             int size = keystrings.length;
             for (int i = 0; i < size; i++) {
