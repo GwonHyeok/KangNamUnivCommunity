@@ -41,6 +41,6 @@
         android:gravity="center"
         android:text="장터로 이동"
         android:textColor="@android:color/white"
-        android:textSize="26sp" />
+        android:textSize="24sp" />
 
 </LinearLayout>

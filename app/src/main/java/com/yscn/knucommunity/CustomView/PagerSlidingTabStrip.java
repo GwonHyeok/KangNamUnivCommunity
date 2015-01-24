@@ -62,14 +62,14 @@ public class PagerSlidingTabStrip extends HorizontalScrollView {
     private float currentPositionOffset = 0f;
     private Paint rectPaint;
     private Paint dividerPaint;
-    private int indicatorColor = 0xffFFFFFF;
+    private int indicatorColor = 0xffffeb3b;
     private int underlineColor = 0x7fbfbfbf;
-    private int dividerColor = 0xAAFFFFFF;
+    private int dividerColor = 0xffffeb3b;
     private boolean shouldExpand = false;
     private boolean textAllCaps = true;
     private int scrollOffset = 52;
-    private int indicatorHeight = 2;
-    private int underlineHeight = 2;
+    private int indicatorHeight = 3;
+    private int underlineHeight = 1;
     private int dividerPadding = 12;
     private int tabPadding = 24;
     private int dividerWidth = 1;
