@@ -24,6 +24,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.CoreProtocolPNames;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -60,6 +61,8 @@ public class NetworkUtil {
     public static NetworkUtil getInstance() {
         if (instance == null) {
             instance = new NetworkUtil();
+            String userAgent = System.getProperty("http.agent");
+            instance.httpClient.getParams().setParameter(CoreProtocolPNames.USER_AGENT, userAgent);
         }
         return instance;
     }
