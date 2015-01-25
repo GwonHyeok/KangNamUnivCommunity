@@ -33,9 +33,12 @@
             android:layout_height="48dip"
             android:layout_gravity="bottom"
             apps:pstsDividerColor="@android:color/transparent"
+            apps:pstsIndicatorColor="#ffFFFFFF"
+            apps:pstsIndicatorHeight="2dp"
             apps:pstsShouldExpand="true"
             apps:pstsTabBackground="@android:color/transparent"
-            apps:pstsTabTextSize="18sp" />
+            apps:pstsTabTextSize="18sp"
+            apps:pstsUnderlineColor="#7fbfbfbf" />
     </FrameLayout>
 
     <RelativeLayout

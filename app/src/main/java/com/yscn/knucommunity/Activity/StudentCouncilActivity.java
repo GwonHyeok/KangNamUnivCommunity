@@ -2,6 +2,7 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -66,6 +67,7 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
         /* ViewPager Init */
         tabStrip = (PagerSlidingTabStrip) findViewById(R.id.student_council_tabs);
         viewPager = (ViewPager) findViewById(R.id.student_council_viewpager);
+        tabStrip.setTypeface(null, Typeface.NORMAL);
         tabStrip.setOnPageChangeListener(this);
 
         /* RiffleMap Icon */

@@ -19,8 +19,11 @@
         android:layout_below="@id/toolbar"
         android:background="#FF0D47A1"
         app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="#ffffeb3b"
+        app:pstsIndicatorHeight="3dp"
         app:pstsShouldExpand="true"
-        app:pstsTabTextSize="18sp" />
+        app:pstsTabTextSize="18sp"
+        app:pstsUnderlineHeight="1dp" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/student_council_viewpager"
