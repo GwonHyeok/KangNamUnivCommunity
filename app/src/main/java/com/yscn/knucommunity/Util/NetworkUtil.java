@@ -1,6 +1,7 @@
 package com.yscn.knucommunity.Util;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Base64;
@@ -133,6 +134,52 @@ public class NetworkUtil {
         /* 그외의 예상 하지 못한 오류때문에 */
         return LoginStatus.FAIL;
     }
+
+    public boolean editProfilePicture(Uri uri) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+
+        String defaultStorage = Environment.getExternalStorageDirectory().getPath();
+
+        String temporaryThumbnailPath = defaultStorage + "/" + "temp_knucommunity_thumbprofileimage.png";
+
+        File profileImageFile = new File(ApplicationUtil.getInstance().UriToPath(uri));
+        File profileThumbImageFile = new File(temporaryThumbnailPath);
+
+        Bitmap bitmap = BitmapFactory.decodeFile(profileImageFile.getAbsolutePath());
+
+        /* 원본사진 크기 160 * 160 으로 줄여서 저장 */
+        int origin_height = bitmap.getHeight();
+        int origin_width = bitmap.getWidth();
+
+        FileOutputStream fileOutputStream = new FileOutputStream(profileThumbImageFile);
+        bitmap = Bitmap.createScaledBitmap(bitmap, 160, origin_height / (origin_width / 160), true);
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, fileOutputStream);
+        fileOutputStream.flush();
+        fileOutputStream.close();
+
+        HttpPost httpPost = new HttpPost(UrlList.PROFILE_IMAGE_EDIT_URL);
+        HttpEntity entity = MultipartEntityBuilder.create()
+                .addTextBody("studentnumber", UserData.getInstance().getStudentNumber())
+                .addBinaryBody("userfile", profileImageFile)
+                .addBinaryBody("usersmallfile", profileThumbImageFile)
+                .build();
+        httpPost.setEntity(entity);
+        HttpResponse httpResponse = httpClient.execute(httpPost);
+
+        if (profileThumbImageFile.delete()) {
+            Log.d(getClass().getSimpleName(), "Delete Temporary ImageFile");
+        }
+
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+
+        if (checkResultData(jsonObject)) {
+            return jsonObject.get("status").equals("success");
+        }
+        return false;
+    }
+
 
     public LoginStatus LoginAppServer(String studentnumber, String password) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
