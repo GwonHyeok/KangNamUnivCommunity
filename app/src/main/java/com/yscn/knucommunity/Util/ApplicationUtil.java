@@ -2,11 +2,14 @@ package com.yscn.knucommunity.Util;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.graphics.Point;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.TypedValue;
+import android.view.Display;
+import android.view.WindowManager;
 
 /**
  * Created by GwonHyeok on 2015. 1. 23..
@@ -23,6 +26,20 @@ public class ApplicationUtil {
             instance = new ApplicationUtil();
         }
         return instance;
+    }
+
+    public int getScreenHeight() {
+        Context context = ApplicationContextProvider.getContext();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+
+        if (Build.VERSION.SDK_INT >= 13) {
+            Point size = new Point();
+            display.getSize(size);
+            return size.y;
+        } else {
+            return display.getHeight();  // deprecated
+        }
     }
 
     public String UriToPath(Uri uri) {

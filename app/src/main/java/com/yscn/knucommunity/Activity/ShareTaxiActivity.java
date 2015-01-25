@@ -1,5 +1,6 @@
 package com.yscn.knucommunity.Activity;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -22,9 +23,10 @@ import java.util.Date;
 /**
  * Created by GwonHyeok on 15. 1. 20..
  */
-public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener {
+public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private String mDate[][];
     private String mYear[];
+    private ViewPager viewPager;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -36,7 +38,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
         setDayArray();
 
         // Viewpager init
-        ViewPager viewPager = (ViewPager) findViewById(R.id.share_taxi_viewpager);
+        viewPager = (ViewPager) findViewById(R.id.share_taxi_viewpager);
         viewPager.setAdapter(new ShareTaxiPagerAdapter(this, mDate));
         viewPager.setCurrentItem(1);
         viewPager.setOnPageChangeListener(this);
@@ -46,6 +48,9 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
         if (Build.VERSION.SDK_INT >= 19) {
             w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+
+        findViewById(R.id.share_taxi_nextday).setOnClickListener(this);
+        findViewById(R.id.share_taxi_yesterday).setOnClickListener(this);
 
         setTaxiData();
     }
@@ -57,10 +62,16 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
             View view = LayoutInflater.from(this).inflate(R.layout.ui_sharetaxilist, linearLayout, false);
             view.findViewById(R.id.share_taxi_start_locaction_textview).setSelected(true);
             view.findViewById(R.id.share_taxi_stop_locaction_textview).setSelected(true);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ShareTaxiActivity.this, ShareTaxiDetailActivity.class);
+                    intent.putExtra("writerStudentNumber", "201401239");
+                    startActivity(intent);
+                }
+            });
             linearLayout.addView(view);
         }
-
-
     }
 
     /*
@@ -140,5 +151,15 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.share_taxi_nextday) {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() + 1, true);
+        } else if (id == R.id.share_taxi_yesterday) {
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1, true);
+        }
     }
 }

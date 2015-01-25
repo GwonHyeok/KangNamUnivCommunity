@@ -715,7 +715,7 @@ public class NetworkUtil {
     private enum NoticeType {NOTICE, HAKSA, JANGHAK}
 
     public static enum BoardType {
-        FREE(1), FAQ(2), GREENLIGHT(3), MEETING(4);
+        FREE(1), FAQ(2), GREENLIGHT(3), MEETING(4), SHARETAXT(5);
 
         private final int num;
 

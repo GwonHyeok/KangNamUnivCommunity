@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize" />
+
+    <RelativeLayout
+        android:id="@+id/share_taxi_detail_locationview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:padding="20dp">
+
+        <!-- 출발 지점 부분 레이아웃 -->
+        <LinearLayout
+            android:id="@+id/share_taxi_detail_start_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="출발 : " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="죽전역 4번 출구"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <!-- 도착 지점 부분 레이아웃 -->
+        <LinearLayout
+            android:id="@+id/share_taxi_detail_end_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share_taxi_detail_start_layout"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="출발 : " />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="예술관"
+                android:textSize="22sp" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/share_taxi_detail_end_layout"
+            android:text="2명"
+            android:textColor="#ffd600"
+            android:textSize="22sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/share_taxi_detail_writer_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/share_taxi_detail_locationview">
+
+        <com.yscn.knucommunity.CustomView.CircleImageView
+            android:id="@+id/freeboard_detail_profile"
+            android:layout_width="47dp"
+            android:layout_height="47dp"
+            android:layout_marginLeft="19dp"
+            android:src="@drawable/ic_profile" />
+
+        <TextView
+            android:id="@+id/freeboard_detail_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:layout_toEndOf="@id/freeboard_detail_profile"
+            android:layout_toRightOf="@id/freeboard_detail_profile"
+            android:text="권혁"
+            android:textColor="#FF414141"
+            android:textSize="19sp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/freeboard_detail_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="25dp"
+                android:text="2014.10.16 17:24"
+                android:textColor="#757575" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ScrollView
+        android:id="@+id/share_taxi_detail_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/share_taxi_detail_button"
+        android:layout_below="@+id/share_taxi_detail_writer_profile"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="택시를 타겠습니다.\n택시\n택시를 타겠습니다" />
+    </ScrollView>
+
+    <!-- 택시 합승, 출발 버튼 -->
+    <TextView
+        android:id="@+id/share_taxi_detail_button"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@+id/share_taxi_detail_with_info_root_view"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:background="@drawable/bg_button_share_taxi_ride"
+        android:gravity="center"
+        android:text="택시 합승"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <!-- 합승자 정보 뷰 -->
+    <RelativeLayout
+        android:id="@+id/share_taxi_detail_with_info_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/share_taxi_detail_replyview"
+        android:background="#F0F0F0"
+        android:visibility="visible">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFBBBBBB" />
+
+        <RelativeLayout
+            android:id="@+id/share_taxi_detail_with_info_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="24dp"
+                android:src="@drawable/ic_shareperson" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/imageview"
+                android:paddingLeft="24dp"
+                android:text="합승자 정보"
+                android:textColor="#FFBBBBBB"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/share_taxi_detail_folding_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="24dp"
+                android:src="@drawable/ic_unfold" />
+        </RelativeLayout>
+
+        <!-- 폴더가 열렸을때 뜨는 뷰 -->
+        <LinearLayout
+            android:id="@+id/share_taxi_detail_with_folding_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share_taxi_detail_with_info_view"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dp">
+
+                <com.yscn.knucommunity.CustomView.CircleImageView
+                    android:id="@+id/share_taxi_detail_with_circle_view"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="64dp"
+                    android:src="@drawable/ic_profile" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@+id/share_taxi_detail_with_call_view"
+                    android:layout_toRightOf="@+id/share_taxi_detail_with_circle_view"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="권혁"
+                        android:textColor="#474747" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="20dp"
+                        android:text="010-****-****"
+                        android:textColor="#616161" />
+
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/share_taxi_detail_with_call_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="21dp"
+                    android:src="@drawable/ic_sharetaxi_call" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:paddingTop="4dp">
+
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <!-- 합승자 정보 프로필 이미지 -->
+        <HorizontalScrollView
+            android:id="@+id/share_taxi_detail_scroll_info_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/share_taxi_detail_with_info_view"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="64dp"
+            android:paddingRight="20dp"
+            android:paddingTop="4dp"
+            android:scrollbars="none"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.yscn.knucommunity.CustomView.CircleImageView
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:background="@drawable/ic_profile" />
+
+                <com.yscn.knucommunity.CustomView.CircleImageView
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:background="@drawable/ic_profile" />
+
+                <com.yscn.knucommunity.CustomView.CircleImageView
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:background="@drawable/ic_profile" />
+
+                <com.yscn.knucommunity.CustomView.CircleImageView
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:background="@drawable/ic_profile" />
+            </LinearLayout>
+        </HorizontalScrollView>
+
+    </RelativeLayout>
+
+    <!-- 댓글 구역 부분 -->
+    <RelativeLayout
+        android:id="@+id/share_taxi_detail_replyview"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#FFBBBBBB" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:background="@drawable/ic_post_reply" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:layout_toEndOf="@+id/imageView"
+            android:layout_toRightOf="@+id/imageView"
+            android:text="댓글"
+            android:textColor="#FFBBBBBB"
+            android:textSize="16sp" />
+    </RelativeLayout>
+</RelativeLayout>
