@@ -68,14 +68,17 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
                 if (jsonObject != null && greenLightResult != null) {
                     ImageLoaderUtil.getInstance().initImageLoader();
                     JSONArray fileArray = (JSONArray) jsonObject.get("file");
+
                     ((TextView) findViewById(R.id.greenlight_detail_content)).setText(jsonObject.get("content").toString());
+                    ((TextView) findViewById(R.id.greenlight_detail_title)).setText(jsonObject.get("title").toString());
 
                     String isChecked = greenLightResult.get("isChecked");
 
-                    for (Object obj : fileArray) {
-                        LinearLayout dataView =
-                                (LinearLayout) findViewById(R.id.greenlight_detail_photo_content_view);
+                    LinearLayout dataView =
+                            (LinearLayout) findViewById(R.id.greenlight_detail_photo_content_view);
+                    dataView.removeAllViews();
 
+                    for (Object obj : fileArray) {
                         ImageView imageView = new ImageView(getContext());
                         int viewLRPadding = (int) ApplicationUtil.getInstance().dpToPx(22);
                         int viewBPadding = (int) ApplicationUtil.getInstance().dpToPx(14);
@@ -100,6 +103,13 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
                 clearProgressDialog.cancel();
             }
         }.execute();
+    }
+
+    @Override
+    protected void onActivityResult(int resultCode, int requestCode, Intent data) {
+        if (resultCode == BOARD_EDIT_MODE && requestCode == RESULT_OK) {
+            setContent();
+        }
     }
 
     private void setGreenLightOn(String positiveSize, String negativeSize) {
@@ -131,6 +141,11 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
         m_ContentID = getIntent().getStringExtra("contentID");
         ((TextView) findViewById(R.id.greenlight_detail_title)).setText(getIntent().getStringExtra("title"));
         ((TextView) findViewById(R.id.greenlight_detail_time)).setText(getSimpleDetailTime(getIntent().getStringExtra("time")));
+    }
+
+    @Override
+    protected NetworkUtil.BoardType getBoardType() {
+        return NetworkUtil.BoardType.GREENLIGHT;
     }
 
     @Override

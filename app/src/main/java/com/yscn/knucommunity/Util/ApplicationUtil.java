@@ -27,40 +27,38 @@ public class ApplicationUtil {
 
     public String UriToPath(Uri uri) {
         Context context = ApplicationContextProvider.getContext();
-        boolean isKitKat = Build.VERSION.SDK_INT >= 19;
 
         if (isGooglePhotoUri(uri)) {
             return uri.getLastPathSegment();
         }
 
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
-            //com.android.providers.media.documents/document/image:1234 ...
-            //
-            if (isMediaDocument(uri)) {
-                final String docId = DocumentsContract.getDocumentId(uri);
-                final String[] split = docId.split(":");
-                final String type = split[0];
+        if (Build.VERSION.SDK_INT >= 19) {
+            if (DocumentsContract.isDocumentUri(context, uri)) {
+                if (isMediaDocument(uri)) {
+                    final String docId = DocumentsContract.getDocumentId(uri);
+                    final String[] split = docId.split(":");
+                    final String type = split[0];
 
-                Uri contentUri = null;
+                    Uri contentUri = null;
 
-                switch (type) {
-                    case "image":
-                        contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
-                        break;
-                    case "video":
-                        return null;
-                    case "audio":
-                        return null;
+                    switch (type) {
+                        case "image":
+                            contentUri = MediaStore.Images.Media.EXTERNAL_CONTENT_URI;
+                            break;
+                        case "video":
+                            return null;
+                        case "audio":
+                            return null;
+                    }
+
+                    final String selection = MediaStore.Images.Media._ID + "=?";
+                    final String[] selectionArgs = new String[]{
+                            split[1]
+                    };
+
+                    return getDataColumn(context, contentUri, selection, selectionArgs);
                 }
-
-                final String selection = MediaStore.Images.Media._ID + "=?";
-                final String[] selectionArgs = new String[]{
-                        split[1]
-                };
-
-                return getDataColumn(context, contentUri, selection, selectionArgs);
             }
-
         }
 
         // content://media/external/images/media/....

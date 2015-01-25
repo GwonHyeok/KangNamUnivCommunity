@@ -31,7 +31,6 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="12dp"
             android:gravity="center"
-            android:text="1820x1080"
             android:textColor="#737373"
             android:textSize="16sp" />
 
@@ -40,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
-            android:text="4.1M"
             android:textColor="#737373"
             android:textSize="16sp"
             android:gravity="center_vertical" />

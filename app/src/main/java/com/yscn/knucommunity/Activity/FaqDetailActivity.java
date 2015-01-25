@@ -2,6 +2,7 @@ package com.yscn.knucommunity.Activity;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -103,6 +104,13 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BOARD_EDIT_MODE && resultCode == RESULT_OK) {
+            setContent();
+        }
+    }
+
     private void removeAllReplyData() {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fatdetail_main_scroll_activity);
         int childCount = linearLayout.getChildCount();
@@ -142,14 +150,17 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
             protected void onPostExecute(JSONObject value) {
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = value.get("content").toString();
+                String title = value.get("title").toString();
                 JSONArray fileArray = (JSONArray) value.get("file");
 
                 ((TextView) findViewById(R.id.faq_detail_content)).setText(content);
+                ((TextView) findViewById(R.id.faq_detail_title)).setText(title);
+
+                LinearLayout dataView =
+                        (LinearLayout) findViewById(R.id.faq_detail_photo_content_view);
+                dataView.removeAllViews();
 
                 for (Object obj : fileArray) {
-                    LinearLayout dataView =
-                            (LinearLayout) findViewById(R.id.faq_detail_photo_content_view);
-
                     ImageView imageView = new ImageView(getContext());
                     int viewLRPadding = (int) ApplicationUtil.getInstance().dpToPx(22);
                     int viewBPadding = (int) ApplicationUtil.getInstance().dpToPx(14);
@@ -179,6 +190,11 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
         ImageView profileImageView = (ImageView) findViewById(R.id.faq_detail_profile);
         setProfileImage(profileImageView, studentNumber);
+    }
+
+    @Override
+    protected NetworkUtil.BoardType getBoardType() {
+        return NetworkUtil.BoardType.FAQ;
     }
 
     @Override

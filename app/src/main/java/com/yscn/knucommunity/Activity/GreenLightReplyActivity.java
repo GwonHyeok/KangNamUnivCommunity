@@ -150,7 +150,7 @@ public class GreenLightReplyActivity extends ActionBarActivity implements View.O
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.reply_menu, menu);
+        getMenuInflater().inflate(R.menu.board_detail_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

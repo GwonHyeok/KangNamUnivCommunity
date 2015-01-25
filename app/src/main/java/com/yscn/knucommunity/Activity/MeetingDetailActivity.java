@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -159,6 +160,15 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
         }.execute();
     }
 
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        super.onPrepareOptionsMenu(menu);
+
+        /* 미팅은 무조건 글을 수정 할 수 없다. */
+        menu.getItem(1).setVisible(false);
+        return true;
+    }
+
     protected void setDefaultData() {
         Intent intent = getIntent();
         int peopleCount = intent.getIntExtra("people", -1);
@@ -175,6 +185,11 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
 
         ImageView profileImageView = (ImageView) findViewById(R.id.faq_detail_profile);
         setProfileImage(profileImageView, studentNumber);
+    }
+
+    @Override
+    protected NetworkUtil.BoardType getBoardType() {
+        return NetworkUtil.BoardType.MEETING;
     }
 
     @Override

@@ -3,14 +3,14 @@
     xmlns:apps="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/menu_reply_trash"
+        android:id="@+id/action_trash"
         android:icon="@drawable/ic_trash"
         android:title=""
         apps:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/menu_reply_share"
-        android:icon="@drawable/ic_share"
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_edit"
         android:title=""
         apps:showAsAction="ifRoom" />
 

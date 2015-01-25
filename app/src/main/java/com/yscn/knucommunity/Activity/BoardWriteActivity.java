@@ -24,7 +24,11 @@ import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UrlList;
 
+import org.json.JSONException;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -38,6 +42,8 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
     private EditText titleView, contentView;
     private int boardType;
     private int GET_PICTURE_RESULT_CODE = 0X10;
+    private boolean isEditMode = false;
+    private String contentID;
     private HashMap<String, Uri> fileListMap = new HashMap<>();
 
     @Override
@@ -46,6 +52,10 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         setContentView(R.layout.activity_board_write);
         actionBarInit();
         viewInit();
+
+        if (this.isEditMode) {
+            setPreContent();
+        }
     }
 
     private void viewInit() {
@@ -54,6 +64,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         this.contentView = (EditText) findViewById(R.id.board_write_content);
         TextView boardTypeView = (TextView) findViewById(R.id.board_write_boardtype);
         this.boardType = getIntent().getIntExtra("boardType", -1);
+        this.isEditMode = getIntent().getBooleanExtra("isEditMode", false);
 
         switch (boardType) {
             case 1:
@@ -72,6 +83,48 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
         this.findViewById(R.id.board_write_photo_main).setOnClickListener(this);
 
+    }
+
+    private void setPreContent() {
+        contentID = getIntent().getStringExtra("contentid");
+        Log.d(getClass().getSimpleName(), "Pre Content : " + contentID);
+
+        new AsyncTask<Void, Void, JSONObject>() {
+            private ClearProgressDialog clearProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog.show();
+            }
+
+            @Override
+            protected JSONObject doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().getDefaultboardContent(contentID);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject jsonObject) {
+                if (jsonObject != null) {
+                    String title = jsonObject.get("title").toString();
+                    String content = jsonObject.get("content").toString();
+                    JSONArray fileArray = (JSONArray) jsonObject.get("file");
+
+                    titleView.setText(title);
+                    contentView.setText(content);
+
+                    for (Object fileURL : fileArray) {
+                        addBoardPhotoData(fileURL.toString());
+                    }
+                }
+                clearProgressDialog.dismiss();
+            }
+        }.execute();
     }
 
     private void actionBarInit() {
@@ -116,8 +169,9 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
                 try {
                     String title = titleView.getText().toString();
                     String content = contentView.getText().toString();
-                    result = NetworkUtil.getInstance().writeBoardContent(boardType, title, content, fileListMap);
-                } catch (IOException | ParseException e) {
+                    result = NetworkUtil.getInstance().writeBoardContent(boardType, title, content,
+                            fileListMap, isEditMode, contentID);
+                } catch (IOException | ParseException | JSONException e) {
                     e.printStackTrace();
                 }
                 return result;
@@ -150,6 +204,36 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         if (requestCode == GET_PICTURE_RESULT_CODE && resultCode == RESULT_OK) {
             addBoardPhotodata(data.getData());
         }
+    }
+
+    private void addBoardPhotoData(String url) {
+
+        fileListMap.put(url, null);
+
+        final LinearLayout photoDataView = (LinearLayout) findViewById(R.id.board_write_photo_data);
+        final View photoChildView = LayoutInflater.from(this).inflate(R.layout.ui_boardwrite_photo, photoDataView, false);
+        photoDataView.addView(photoChildView);
+
+        final ImageView photoThumbnailView = (ImageView) photoChildView.findViewById(R.id.board_write_photo_thumbnail);
+        final ImageButton photoCancelView = (ImageButton) photoChildView.findViewById(R.id.board_write_photo_cancel);
+
+        photoCancelView.setTag(url);
+
+                /* 사진 썸네일 적용 */
+        ImageLoaderUtil.getInstance().initImageLoader();
+        ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + url, photoThumbnailView,
+                ImageLoaderUtil.getInstance().getDefaultOptions());
+
+        photoCancelView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tagUri = v.getTag().toString();
+                photoDataView.removeView(photoChildView);
+                fileListMap.remove(tagUri);
+                invalidateScrollView();
+            }
+        });
+        invalidateScrollView();
     }
 
     private void addBoardPhotodata(Uri uri) {

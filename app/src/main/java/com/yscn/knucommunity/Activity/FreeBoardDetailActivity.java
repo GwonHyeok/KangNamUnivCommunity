@@ -62,14 +62,19 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
                 /* 에러 처리 필요함 NULL 일 경우 */
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = object.get("content").toString();
+                String title = object.get("title").toString();
+
                 JSONArray fileArray = (JSONArray) object.get("file");
 
                 ((TextView) findViewById(R.id.freeboard_detail_content)).setText(content);
+                ((TextView) findViewById(R.id.freeboard_detail_title)).setText(title);
+
+                /* Reset Already Added Photo View */
+                LinearLayout dataView =
+                        (LinearLayout) findViewById(R.id.freeboard_detail_content_dataview);
+                dataView.removeViews(1, dataView.getChildCount() - 1);
 
                 for (Object obj : fileArray) {
-                    LinearLayout dataView =
-                            (LinearLayout) findViewById(R.id.freeboard_detail_content_dataview);
-
                     ImageView imageView = new ImageView(getContext());
                     int viewLRPadding = (int) ApplicationUtil.getInstance().dpToPx(22);
                     int viewBPadding = (int) ApplicationUtil.getInstance().dpToPx(14);
@@ -86,6 +91,13 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
         }.execute();
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == BOARD_EDIT_MODE && resultCode == RESULT_OK) {
+            setContent();
+        }
+    }
+
     protected void setDefaultData() {
         String writerName = getIntent().getStringExtra("writerName");
         String writerStudentNumber = getIntent().getStringExtra("writerStudentNumber");
@@ -98,6 +110,11 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
         ImageView profileImageView = (ImageView) findViewById(R.id.freeboard_detail_profile);
 
         setProfileImage(profileImageView, writerStudentNumber);
+    }
+
+    @Override
+    protected NetworkUtil.BoardType getBoardType() {
+        return NetworkUtil.BoardType.FREE;
     }
 
     @Override

@@ -25,6 +25,7 @@ import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.CoreProtocolPNames;
+import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -412,27 +413,47 @@ public class NetworkUtil {
         return itemses;
     }
 
-    public boolean writeBoardContent(int boardType, String title, String content, HashMap<String, Uri> file) throws IOException, ParseException {
+    public boolean writeBoardContent(int boardType, String title, String content, HashMap<String, Uri> file,
+                                     boolean isEditMode, String contentid) throws IOException, ParseException, JSONException {
         JSONParser jsonParser = new JSONParser();
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         HttpResponse httpResponse;
-        int fileSize = file.size();
 
         multipartEntityBuilder.addTextBody("title", title, getDefaultContentType());
         multipartEntityBuilder.addTextBody("content", content, getDefaultContentType());
         multipartEntityBuilder.addTextBody("studentnumber", UserData.getInstance().getStudentNumber(), getDefaultContentType());
-        multipartEntityBuilder.addTextBody("filesize", String.valueOf(fileSize), getDefaultContentType());
+        multipartEntityBuilder.addTextBody("isEditmode", String.valueOf(isEditMode));
+
+        /* 수정 모드일 경우 콘텐트 아이디 post */
+        if (isEditMode) {
+            multipartEntityBuilder.addTextBody("contentID", contentid);
+        }
 
         if (file.size() > 0) {
             Set<String> keySet = file.keySet();
             Iterator<String> key = keySet.iterator();
+            org.json.JSONObject fileObject = new org.json.JSONObject();
+            org.json.JSONArray fileArray = new org.json.JSONArray();
 
             for (int i = 0; key.hasNext(); i++) {
-                String realPath = ApplicationUtil.getInstance().UriToPath(file.get(key.next()));
-                File realPathFile = new File(realPath);
-                Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
-                multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
+                String realPath;
+                String strKey = key.next();
+                Uri value;
+                File realPathFile;
+
+                if ((value = file.get(strKey)) != null) {
+                    realPath = ApplicationUtil.getInstance().UriToPath(value);
+                    realPathFile = new File(realPath);
+                    multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
+                    Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
+                } else {
+                    i--;
+                    fileArray.put(strKey);
+                }
+                fileObject.put("existfile", fileArray);
             }
+            multipartEntityBuilder.addTextBody("existfile", fileObject.toString());
+            Log.d(getClass().getSimpleName(), "already Exist : " + fileObject.toString());
         }
 
         if (boardType == -1) {
