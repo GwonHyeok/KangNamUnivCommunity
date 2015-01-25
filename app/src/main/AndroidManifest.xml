@@ -128,7 +128,7 @@
         <activity
             android:name=".Activity.BoardWriteActivity"
             android:theme="@style/NoActionBarTheme"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden|adjustPan" />
         <activity
             android:name=".Activity.ShareTaxiActivity"
             android:theme="@style/NoActionBarTheme" />
