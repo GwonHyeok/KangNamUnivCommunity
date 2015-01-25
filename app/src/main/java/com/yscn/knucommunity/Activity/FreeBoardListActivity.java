@@ -29,6 +29,7 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
         super.onCreate(bundle);
     }
 
+    @Override
     protected void addScrollViewData(ArrayList<DefaultBoardListItems> listItemses) {
         ScrollView scrollView = (ScrollView) findViewById(R.id.freeboard_list);
         View childView = scrollView.getChildAt(0);

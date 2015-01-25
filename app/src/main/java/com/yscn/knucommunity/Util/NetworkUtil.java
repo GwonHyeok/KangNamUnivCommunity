@@ -537,6 +537,8 @@ public class NetworkUtil {
             httpResponse = postData(UrlList.FAQBOARD_GET_LIST + page, parameter);
         } else if (boardType == BoardType.GREENLIGHT) {
             httpResponse = postData(UrlList.GREENLIGHT_GET_LIST + page, parameter);
+        } else if (boardType == BoardType.MARKET) {
+            httpResponse = postData(UrlList.MARKET_GET_LIST + page, parameter);
         } else {
             return null;
         }
@@ -715,7 +717,7 @@ public class NetworkUtil {
     private enum NoticeType {NOTICE, HAKSA, JANGHAK}
 
     public static enum BoardType {
-        FREE(1), FAQ(2), GREENLIGHT(3), MEETING(4), SHARETAXT(5);
+        FREE(1), FAQ(2), GREENLIGHT(3), MEETING(4), SHARETAXT(5), MARKET(6);
 
         private final int num;
 

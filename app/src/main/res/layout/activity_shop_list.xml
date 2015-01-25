@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FF43a047" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_below="@id/toolbar"
+        android:background="#E9E9E9"
+        android:gravity="center_vertical"
+        android:paddingLeft="14dp"
+        android:text="사기거래에 조심하세요. 개인의 부주의는 책임지지 않습니다."
+        android:textColor="#FF757575"
+        android:textSize="13sp" />
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/board_list_swiperefresh"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView">
+
+        <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
+            android:id="@+id/shop_scrollview"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="#f8f8f8">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </com.yscn.knucommunity.CustomView.NotifyFooterScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

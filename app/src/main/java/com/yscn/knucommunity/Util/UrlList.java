@@ -18,6 +18,7 @@ public class UrlList {
     public static final String BOARD_WRITE_CONTENT = MAIN_URL + "board/writeBoard/m/";
     public static final String FREEBOARD_GET_LIST = MAIN_URL + "board/getFreeboardList/m/";
     public static final String FAQBOARD_GET_LIST = MAIN_URL + "board/getFaqboardList/m/";
+    public static final String MARKET_GET_LIST = MAIN_URL + "board/getMarketList/m/";
     public static final String GREENLIGHT_GET_LIST = MAIN_URL + "board/getGreenLightList/m/";
     public static final String DEFAULTBOARD_GET_CONTENT = MAIN_URL + "board/getDefaultboardContent/m/";
     public static final String GET_GREENLIGHT_RESULT = MAIN_URL + "board/getGreenLightResult/m/";

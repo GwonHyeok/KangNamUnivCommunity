@@ -53,7 +53,8 @@ public class MarketMainActivity extends ActionBarActivity implements View.OnClic
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.shop_move_detail) {
-            startActivity(new Intent(this, MarketDetailActivity.class));
+            finish();
+            startActivity(new Intent(this, MarketListActivity.class));
         }
 
     }

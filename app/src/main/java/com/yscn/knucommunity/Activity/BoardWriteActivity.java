@@ -78,6 +78,9 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
             case 3:
                 boardTypeMessage = getString(R.string.community_greenlight_title);
                 break;
+            case 6:
+                boardTypeMessage = getString(R.string.community_market_title);
+                break;
             default:
                 boardTypeMessage = "null";
         }

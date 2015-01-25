@@ -16,6 +16,7 @@
         android:paddingLeft="20dp">
 
         <TextView
+            android:id="@+id/market_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="안녕하세요"
@@ -23,6 +24,7 @@
             android:textSize="18sp" />
 
         <TextView
+            android:id="@+id/market_list_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
@@ -31,7 +33,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/market_list_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -42,12 +44,13 @@
         android:textColor="#757575" />
 
     <TextView
+        android:id="@+id/market_list_reply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView"
+        android:layout_alignTop="@+id/market_list_time"
         android:layout_marginRight="30dp"
-        android:layout_toLeftOf="@+id/textView"
-        android:layout_toStartOf="@+id/textView"
-        android:text="[17]"
+        android:layout_toLeftOf="@+id/market_list_time"
+        android:layout_toStartOf="@+id/market_list_time"
+        android:text="17"
         android:textSize="16sp"/>
 </RelativeLayout>
