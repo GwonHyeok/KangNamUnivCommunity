@@ -1,9 +1,6 @@
 package com.yscn.knucommunity.Util;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
-import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 
@@ -37,7 +34,6 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -73,47 +69,19 @@ public class NetworkUtil {
         return Integer.parseInt(str.replace(" ", ""));
     }
 
-    public LoginStatus RegisterAppServer(String studentnumber, String nickname, String name) throws IOException, ParseException {
+    public LoginStatus RegisterAppServer(String studentnumber, String nickname, String name, Uri profileURI) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
-        String defaultStorage = Environment.getExternalStorageDirectory().getPath();
-        String temporaryFilePath = defaultStorage + "/" + "temp_knucommunity_profileimage.png";
-        String temporaryThumbnailPath = defaultStorage + "/" + "temp_knucommunity_thumbprofileimage.png";
-
-        File profileImageFile = new File(temporaryFilePath);
-        File profileThumbImageFile = new File(temporaryThumbnailPath);
-
-        Bitmap bitmap = UserData.getInstance().getUserProfile();
-
-        /* 원본 사진 Bitmap 에서 저장 */
-        FileOutputStream fileOutputStream = new FileOutputStream(profileImageFile);
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, fileOutputStream);
-        fileOutputStream.flush();
-
-        /* 원본사진 크기 160 * 160 으로 줄여서 저장 */
-        int origin_height = bitmap.getHeight();
-        int origin_width = bitmap.getWidth();
-        fileOutputStream = new FileOutputStream(profileThumbImageFile);
-        bitmap = Bitmap.createScaledBitmap(bitmap, 160, origin_height / (origin_width / 160), true);
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, fileOutputStream);
-        fileOutputStream.flush();
-        fileOutputStream.close();
 
         HttpPost httpPost = new HttpPost(UrlList.APP_REGISTER_URL);
         HttpEntity entity = MultipartEntityBuilder.create()
                 .addTextBody("studentnumber", studentnumber, contentType)
                 .addTextBody("nickname", nickname, contentType)
                 .addTextBody("name", name, contentType)
-                .addBinaryBody("userfile", profileImageFile)
-                .addBinaryBody("usersmallfile", profileThumbImageFile)
+                .addBinaryBody("userfile", new File(ApplicationUtil.getInstance().UriToPath(profileURI)))
                 .build();
         httpPost.setEntity(entity);
         HttpResponse httpResponse = httpClient.execute(httpPost);
-
-        if (profileImageFile.delete() || profileThumbImageFile.delete()) {
-            Log.d(getClass().getSimpleName(), "Delete Temporary ImageFile");
-            UserData.getInstance().setUserProfile(null);
-        }
 
         InputStreamReader inputStreamReader =
                 new InputStreamReader(httpResponse.getEntity().getContent());
@@ -138,37 +106,15 @@ public class NetworkUtil {
     public boolean editProfilePicture(Uri uri) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
 
-        String defaultStorage = Environment.getExternalStorageDirectory().getPath();
-
-        String temporaryThumbnailPath = defaultStorage + "/" + "temp_knucommunity_thumbprofileimage.png";
-
         File profileImageFile = new File(ApplicationUtil.getInstance().UriToPath(uri));
-        File profileThumbImageFile = new File(temporaryThumbnailPath);
-
-        Bitmap bitmap = BitmapFactory.decodeFile(profileImageFile.getAbsolutePath());
-
-        /* 원본사진 크기 160 * 160 으로 줄여서 저장 */
-        int origin_height = bitmap.getHeight();
-        int origin_width = bitmap.getWidth();
-
-        FileOutputStream fileOutputStream = new FileOutputStream(profileThumbImageFile);
-        bitmap = Bitmap.createScaledBitmap(bitmap, 160, origin_height / (origin_width / 160), true);
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, fileOutputStream);
-        fileOutputStream.flush();
-        fileOutputStream.close();
 
         HttpPost httpPost = new HttpPost(UrlList.PROFILE_IMAGE_EDIT_URL);
         HttpEntity entity = MultipartEntityBuilder.create()
                 .addTextBody("studentnumber", UserData.getInstance().getStudentNumber())
                 .addBinaryBody("userfile", profileImageFile)
-                .addBinaryBody("usersmallfile", profileThumbImageFile)
                 .build();
         httpPost.setEntity(entity);
         HttpResponse httpResponse = httpClient.execute(httpPost);
-
-        if (profileThumbImageFile.delete()) {
-            Log.d(getClass().getSimpleName(), "Delete Temporary ImageFile");
-        }
 
         JSONObject jsonObject = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())

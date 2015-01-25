@@ -2,10 +2,9 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
@@ -29,6 +28,7 @@ import java.io.IOException;
  */
 public class AccountRegisterActivity extends ActionBarActivity implements View.OnClickListener {
     private int GET_PICTURE_RESULT_CODE = 0X10;
+    private Uri profileUri = null;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -81,21 +81,13 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == GET_PICTURE_RESULT_CODE && resultCode == RESULT_OK) {
-            try {
-                /* ImageLoader가 init 되어 있지 않으면 init */
-                ImageLoaderUtil.getInstance().initImageLoader();
+            /* ImageLoader가 init 되어 있지 않으면 init */
+            ImageLoaderUtil.getInstance().initImageLoader();
 
-                /* 유저가 선택한 이미지를 ImageView에 적용 */
-                ImageLoader.getInstance().displayImage(data.getData().toString(), (CircleImageView) findViewById(R.id.register_profile));
+            /* 유저가 선택한 이미지를 ImageView에 적용 */
+            ImageLoader.getInstance().displayImage(data.getData().toString(), (CircleImageView) findViewById(R.id.register_profile));
 
-                /* 이미지를 비트맵으로 변환하고 그 이미지를 UserData 클래스에 저장 */
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), data.getData());
-                UserData.getInstance().setUserProfile(bitmap);
-            } catch (IOException e) {
-                /* 이미지 저장 후 변환하는 과정에서 오류  -- 오류처리 */
-                e.printStackTrace();
-            }
-
+            profileUri = data.getData();
         }
     }
 
@@ -125,7 +117,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
             protected NetworkUtil.LoginStatus doInBackground(String... strings) {
                 NetworkUtil.LoginStatus loginStatus = NetworkUtil.LoginStatus.FAIL;
                 try {
-                    loginStatus = NetworkUtil.getInstance().RegisterAppServer(strings[0], strings[1], strings[2]);
+                    loginStatus = NetworkUtil.getInstance().RegisterAppServer(strings[0], strings[1], strings[2], profileUri);
                 } catch (ParseException | IOException e) {
                     e.printStackTrace();
                 }

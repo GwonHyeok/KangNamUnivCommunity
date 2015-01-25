@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.CircleImageView;
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
@@ -59,6 +60,13 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
 
     private void editProfilePicture(Uri uri) {
         new AsyncTask<Uri, Void, Boolean>() {
+            private ClearProgressDialog clearProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog.show();
+            }
 
             @Override
             protected Boolean doInBackground(Uri... params) {
@@ -80,6 +88,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                             (CircleImageView) findViewById(R.id.studentinfo_profile_image),
                             ImageLoaderUtil.getInstance().getDefaultOptions());
                 }
+                clearProgressDialog.cancel();
             }
         }.execute(uri);
     }
