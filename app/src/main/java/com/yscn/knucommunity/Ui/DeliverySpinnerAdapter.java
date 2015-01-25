@@ -22,6 +22,10 @@ public class DeliverySpinnerAdapter extends ArrayAdapter<String> {
         super(context, resource, objects);
     }
 
+    public int getCurrentPosition() {
+        return this.currentPosition;
+    }
+
     public void setCurrentPosition(int position) {
         this.currentPosition = position;
     }

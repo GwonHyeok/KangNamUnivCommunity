@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
+import com.yscn.knucommunity.Items.DeliveryListItems;
 import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
@@ -517,6 +518,34 @@ public class NetworkUtil {
         itemes.put("haksa", noticeParser(NoticeType.HAKSA, 5000));
         itemes.put("janghak", noticeParser(NoticeType.JANGHAK, 5000));
         return itemes;
+    }
+
+    public ArrayList<DeliveryListItems> getDeliveryFoodList(int page, int foodtype, String content) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse;
+        HashMap<String, String> parameter = new HashMap<>();
+        ArrayList<DeliveryListItems> datalist = new ArrayList<>();
+
+        parameter.put("foodtype", String.valueOf(foodtype));
+        if (content != null) {
+            parameter.put("content", content);
+        }
+        httpResponse = postData(UrlList.DELIVERY_GET_LIST + page, parameter);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+
+        if (checkResultData(jsonObject)) {
+            JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+            for (int i = 0; i < jsonArray.size(); i++) {
+                JSONObject dataObject = (JSONObject) jsonArray.get(i);
+                String name = dataObject.get("name").toString();
+                String phone = dataObject.get("phone").toString();
+                String imagePath = dataObject.get("imagepath").toString();
+                datalist.add(new DeliveryListItems(name, phone, imagePath));
+            }
+            return datalist;
+        } else {
+            return null;
+        }
     }
 
     public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType,

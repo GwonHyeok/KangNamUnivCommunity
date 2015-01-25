@@ -6,7 +6,7 @@ package com.yscn.knucommunity.Util;
 public class UrlList {
     public static final String SCHOLL_SERVER_LOGIN_URL = "https://m.kangnam.ac.kr/knusmart/c/c001.do";
     public static final String LIBRARY_SEAT_URL = "http://223.194.112.88/SEAT/domian5.asp";
-    private static final String MAIN_URL = "http://kh4975.iptime.org:83/";
+    public static final String MAIN_URL = "http://kh4975.iptime.org:83/";
     public static final String STUDENT_GET_COUNCIL_INFO = MAIN_URL + "studentCouncil/get/m";
     public static final String MAJOR_GET_SIMPLE_INFO = MAIN_URL + "majorInfo/get/m";
     public static final String SCHOOL_RESTRAUNT_INFO = MAIN_URL + "schoolRestraunt/get/m/";
@@ -21,6 +21,7 @@ public class UrlList {
     public static final String MARKET_GET_LIST = MAIN_URL + "board/getMarketList/m/";
     public static final String GREENLIGHT_GET_LIST = MAIN_URL + "board/getGreenLightList/m/";
     public static final String DEFAULTBOARD_GET_CONTENT = MAIN_URL + "board/getDefaultboardContent/m/";
+    public static final String DELIVERY_GET_LIST = MAIN_URL + "board/getDeliveryFoodList/m/";
     public static final String GET_GREENLIGHT_RESULT = MAIN_URL + "board/getGreenLightResult/m/";
     public static final String SET_GREENLIGHT_RESULT = MAIN_URL + "board/setGreenLightResult/m/";
     public static final String GET_COMMENT = MAIN_URL + "board/getComments/m/";

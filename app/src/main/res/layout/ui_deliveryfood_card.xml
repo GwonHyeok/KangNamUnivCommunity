@@ -12,11 +12,12 @@
         android:background="@drawable/bg_deliveryfood_card">
 
         <ImageView
+            android:id="@+id/delivery_food_iamgeview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@+id/relativeLayout2"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/bg_mcdonald" />
+            android:scaleType="fitXY"
+            android:layout_alignParentTop="true"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,6 +26,7 @@
             android:background="#4a000000">
 
             <TextView
+                android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="20dp"
@@ -56,6 +58,7 @@
                     android:src="@drawable/ic_call" />
 
                 <TextView
+                    android:id="@+id/phonen_textview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
