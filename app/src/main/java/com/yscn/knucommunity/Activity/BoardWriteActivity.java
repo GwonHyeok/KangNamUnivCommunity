@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -299,6 +301,16 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
             scrollView.setVisibility(View.GONE);
         } else if (!scrollView.isShown() && fileListMap.size() > 0) {
             scrollView.setVisibility(View.VISIBLE);
+
+            // fileList 크기가 1일때 50dp 로 보여줌.
+            // fileList 크기가 1보다 클때 100dp 로 보여줌.
+            ViewGroup.LayoutParams layoutParams = scrollView.getLayoutParams();
+            if (fileListMap.size() == 1) {
+                layoutParams.height = (int) ApplicationUtil.getInstance().dpToPx(50);
+            } else if (fileListMap.size() > 1) {
+                layoutParams.height = (int) ApplicationUtil.getInstance().dpToPx(100);
+            }
+            scrollView.setLayoutParams(layoutParams);
         }
     }
 
