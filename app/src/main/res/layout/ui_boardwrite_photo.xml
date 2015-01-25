@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp"
+    android:layout_height="50dp"
     android:orientation="vertical">
 
 
     <com.yscn.knucommunity.CustomView.CircleImageView
         android:id="@+id/board_write_photo_thumbnail"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:layout_marginLeft="30dp"
@@ -28,19 +28,22 @@
             android:id="@+id/board_write_photo_size"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginRight="12dp"
             android:gravity="center"
-            android:text="1820x1080" />
+            android:text="1820x1080"
+            android:textColor="#737373"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/board_write_photo_diskusage"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:gravity="center"
-            android:text="4.1M" />
+            android:layout_marginLeft="25dp"
+            android:text="4.1M"
+            android:textColor="#737373"
+            android:textSize="16sp"
+            android:gravity="center_vertical" />
     </LinearLayout>
 
     <ImageButton
