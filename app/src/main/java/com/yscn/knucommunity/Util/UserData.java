@@ -1,5 +1,6 @@
 package com.yscn.knucommunity.Util;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 /**
@@ -25,6 +26,10 @@ public class UserData {
     }
 
     public String getStudentNumber() {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        if (studentNumber == null) {
+            studentNumber = userDataPreference.getStudentNumber();
+        }
         return studentNumber;
     }
 
@@ -33,6 +38,10 @@ public class UserData {
     }
 
     public String getStudentName() {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        if (studentName == null) {
+            studentName = userDataPreference.getStudentName();
+        }
         return studentName;
     }
 
@@ -41,6 +50,10 @@ public class UserData {
     }
 
     public String getUserToken() {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        if (userToken == null) {
+            userToken = userDataPreference.getToken();
+        }
         return userToken;
     }
 
@@ -57,10 +70,19 @@ public class UserData {
     }
 
     public String getUserRating() {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        if (userRating == null) {
+            userRating = userDataPreference.getStudentRating();
+        }
         return userRating;
     }
 
     public void setUserRating(String userRating) {
         this.userRating = userRating;
+    }
+
+    private UserDataPreference getUserDataPreference() {
+        Context mContext = ApplicationContextProvider.getContext();
+        return new UserDataPreference(mContext);
     }
 }
