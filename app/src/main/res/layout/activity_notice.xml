@@ -33,7 +33,7 @@
             android:layout_height="48dip"
             android:layout_gravity="bottom"
             apps:pstsDividerColor="@android:color/transparent"
-            apps:pstsIndicatorColor="#ffFFFFFF"
+            apps:pstsIndicatorColor="#ffbc00"
             apps:pstsIndicatorHeight="2dp"
             apps:pstsShouldExpand="true"
             apps:pstsTabBackground="@android:color/transparent"
