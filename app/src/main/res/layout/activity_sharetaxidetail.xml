@@ -12,9 +12,12 @@
     <RelativeLayout
         android:id="@+id/share_taxi_detail_locationview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:layout_below="@id/toolbar"
-        android:padding="20dp">
+        android:paddingRight="20dp"
+        android:paddingLeft="60dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <!-- 출발 지점 부분 레이아웃 -->
         <LinearLayout
@@ -26,13 +29,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="출발 : " />
+                android:text="출발 : "
+                android:textColor="#ffb3b3b3" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="죽전역 4번 출구"
-                android:textSize="22sp" />
+                android:textSize="23sp"
+                android:textColor="#ff424242" />
         </LinearLayout>
 
         <!-- 도착 지점 부분 레이아웃 -->
@@ -46,23 +51,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="출발 : " />
+                android:text="도착 : "
+                android:textColor="#ffb3b3b3" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="예술관"
-                android:textSize="22sp" />
+                android:textSize="23sp"
+                android:textColor="#ff424242" />
         </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/share_taxi_detail_end_layout"
             android:text="2명"
             android:textColor="#ffd600"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:layout_marginTop="16dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -102,9 +109,10 @@
                 android:id="@+id/freeboard_detail_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="25dp"
+                android:layout_marginRight="20dp"
                 android:text="2014.10.16 17:24"
-                android:textColor="#757575" />
+                android:textColor="#757575"
+                android:textSize="18sp" />
         </LinearLayout>
     </RelativeLayout>
 
@@ -114,7 +122,10 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/share_taxi_detail_button"
         android:layout_below="@+id/share_taxi_detail_writer_profile"
-        android:padding="20dp">
+        android:paddingLeft="22dp"
+        android:paddingTop="14dp"
+        android:paddingRight="22dp"
+        android:paddingBottom="14dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -128,9 +139,9 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_above="@+id/share_taxi_detail_with_info_root_view"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
         android:background="@drawable/bg_button_share_taxi_ride"
         android:gravity="center"
         android:text="택시 합승"
@@ -171,9 +182,9 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@id/imageview"
-                android:paddingLeft="24dp"
+                android:paddingLeft="18dp"
                 android:text="합승자 정보"
-                android:textColor="#FFBBBBBB"
+                android:textColor="#FFa6a6a6"
                 android:textSize="18sp" />
 
             <ImageView
@@ -260,11 +271,11 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/share_taxi_detail_with_info_view"
             android:layout_marginBottom="10dp"
-            android:paddingLeft="64dp"
+            android:paddingLeft="58dp"
             android:paddingRight="20dp"
-            android:paddingTop="4dp"
             android:scrollbars="none"
-            android:visibility="visible">
+            android:visibility="visible"
+            android:paddingTop="6dp">
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -274,9 +285,9 @@
                 <com.yscn.knucommunity.CustomView.CircleImageView
                     android:layout_width="31dp"
                     android:layout_height="31dp"
-                    android:layout_marginLeft="4dp"
                     android:layout_marginRight="4dp"
-                    android:background="@drawable/ic_profile" />
+                    android:background="@drawable/ic_profile"
+                    android:layout_marginLeft="2dp" />
 
                 <com.yscn.knucommunity.CustomView.CircleImageView
                     android:layout_width="31dp"
