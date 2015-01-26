@@ -8,4 +8,6 @@
     <color name="board_white_main_color">#FFFAFAFA</color>
     <color name="faq_main_color">#FFe64a19</color>
     <color name="greenlight_main_color">#ffAD1457</color>
+
+    <color name="background_default_preesed_color">#0D000000</color>
 </resources>
