@@ -39,5 +39,6 @@ public class CommunittyActivity extends ActionBarActivity implements View.OnClic
         } else if (id == R.id.communitty_free_board) {
             startActivity(new Intent(this, FreeBoardListActivity.class));
         }
+        finish();
     }
 }
