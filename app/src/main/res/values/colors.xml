@@ -10,4 +10,28 @@
     <color name="greenlight_main_color">#ffAD1457</color>
 
     <color name="background_default_preesed_color">#0D000000</color>
+
+    <color name="background_studentground_detail_0">#5e35b1</color>
+    <color name="background_studentground_detail_1">#039be5</color>
+    <color name="background_studentground_detail_2">#00796b</color>
+    <color name="background_studentground_detail_3">#8bc34a</color>
+    <color name="background_studentground_detail_4">#ff9800</color>
+    <color name="background_studentground_detail_5">#afb42b</color>
+    <color name="background_studentground_detail_6">#d84315</color>
+
+    <color name="highlight_studentground_detail_0">#ff5252</color>
+    <color name="highlight_studentground_detail_1">#3949ab</color>
+    <color name="highlight_studentground_detail_2">#ff4081</color>
+    <color name="highlight_studentground_detail_3">#00897b</color>
+    <color name="highlight_studentground_detail_4">#ffea00</color>
+    <color name="highlight_studentground_detail_5">#f4511e</color>
+    <color name="highlight_studentground_detail_6">#ffea00</color>
+
+    <color name="dull_studentground_detail_0">#b39ddb</color>
+    <color name="dull_studentground_detail_1">#b3e5fc</color>
+    <color name="dull_studentground_detail_2">#b2dfdb</color>
+    <color name="dull_studentground_detail_3">#c5e1a5</color>
+    <color name="dull_studentground_detail_4">#ffde80</color>
+    <color name="dull_studentground_detail_5">#e6ee9c</color>
+    <color name="dull_studentground_detail_6">#ffab91</color>
 </resources>

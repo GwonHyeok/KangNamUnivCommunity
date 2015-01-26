@@ -13,4 +13,35 @@
         <item>@string/gender_male</item>
         <item>@string/gender_female</item>
     </string-array>
+
+    <integer-array name="background_studentground_detail_list">
+        <item>@color/background_studentground_detail_0</item>
+        <item>@color/background_studentground_detail_1</item>
+        <item>@color/background_studentground_detail_2</item>
+        <item>@color/background_studentground_detail_3</item>
+        <item>@color/background_studentground_detail_4</item>
+        <item>@color/background_studentground_detail_5</item>
+        <item>@color/background_studentground_detail_6</item>
+    </integer-array>
+
+    <integer-array name="highlight_studentground_detail_list">
+        <item>@color/highlight_studentground_detail_0</item>
+        <item>@color/highlight_studentground_detail_1</item>
+        <item>@color/highlight_studentground_detail_2</item>
+        <item>@color/highlight_studentground_detail_3</item>
+        <item>@color/highlight_studentground_detail_4</item>
+        <item>@color/highlight_studentground_detail_5</item>
+        <item>@color/highlight_studentground_detail_6</item>
+    </integer-array>
+
+    <integer-array name="dull_studentground_detail_list">
+        <item>@color/dull_studentground_detail_0</item>
+        <item>@color/dull_studentground_detail_1</item>
+        <item>@color/dull_studentground_detail_2</item>
+        <item>@color/dull_studentground_detail_3</item>
+        <item>@color/dull_studentground_detail_4</item>
+        <item>@color/dull_studentground_detail_5</item>
+        <item>@color/dull_studentground_detail_6</item>
+    </integer-array>
+
 </resources>
