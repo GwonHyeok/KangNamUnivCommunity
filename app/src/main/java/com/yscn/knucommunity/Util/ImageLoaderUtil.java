@@ -5,6 +5,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
+import com.yscn.knucommunity.R;
 
 /**
  * Created by GwonHyeok on 15. 1. 8..
@@ -40,6 +41,8 @@ public class ImageLoaderUtil {
         return new DisplayImageOptions.Builder()
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .displayer(new FadeInBitmapDisplayer(400))
+                .showImageForEmptyUri(R.drawable.bg_load_image_error)
+                .showImageOnFail(R.drawable.bg_load_image_error)
                 .build();
     }
 }

@@ -1,18 +1,22 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.FailReason;
+import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
-import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -75,14 +79,33 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
                 dataView.removeViews(1, dataView.getChildCount() - 1);
 
                 for (Object obj : fileArray) {
-                    ImageView imageView = new ImageView(getContext());
-                    int viewLRPadding = (int) ApplicationUtil.getInstance().dpToPx(22);
-                    int viewBPadding = (int) ApplicationUtil.getInstance().dpToPx(14);
-                    imageView.setPadding(viewLRPadding, 0, viewLRPadding, viewBPadding);
-                    dataView.addView(imageView);
+                    View fileImageView = LayoutInflater.from(getContext()).inflate(R.layout.ui_board_image_card, dataView, false);
+                    final ImageView imageView = (ImageView) fileImageView.findViewById(R.id.imageView);
+                    final ProgressBar progressBar = (ProgressBar) fileImageView.findViewById(R.id.progressbar);
+                    dataView.addView(fileImageView);
 
                     ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
-                            imageView, ImageLoaderUtil.getInstance().getNoCacheImageOptions());
+                            imageView, ImageLoaderUtil.getInstance().getNoCacheImageOptions(), new ImageLoadingListener() {
+                                @Override
+                                public void onLoadingStarted(String imageUri, View view) {
+
+                                }
+
+                                @Override
+                                public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
+                                    progressBar.setVisibility(View.GONE);
+                                }
+
+                                @Override
+                                public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
+                                    progressBar.setVisibility(View.GONE);
+                                }
+
+                                @Override
+                                public void onLoadingCancelled(String imageUri, View view) {
+                                    progressBar.setVisibility(View.GONE);
+                                }
+                            });
                 }
 
 
