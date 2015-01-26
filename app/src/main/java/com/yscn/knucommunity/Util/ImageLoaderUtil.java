@@ -34,4 +34,10 @@ public class ImageLoaderUtil {
                 .imageScaleType(ImageScaleType.EXACTLY)
                 .build();
     }
+
+    public DisplayImageOptions getNoCacheImageOptions() {
+        return new DisplayImageOptions.Builder()
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .build();
+    }
 }

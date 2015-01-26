@@ -227,7 +227,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
                 /* 사진 썸네일 적용 */
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + url, photoThumbnailView,
-                ImageLoaderUtil.getInstance().getDefaultOptions());
+                ImageLoaderUtil.getInstance().getNoCacheImageOptions());
 
         photoCancelView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -292,7 +292,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         /* 사진 썸네일 적용 */
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(uri.toString(), photoThumbnailView,
-                ImageLoaderUtil.getInstance().getDefaultOptions());
+                ImageLoaderUtil.getInstance().getNoCacheImageOptions());
         invalidateScrollView();
     }
 

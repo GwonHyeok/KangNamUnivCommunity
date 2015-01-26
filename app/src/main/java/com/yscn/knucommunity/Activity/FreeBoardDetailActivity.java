@@ -82,7 +82,7 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
                     dataView.addView(imageView);
 
                     ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
-                            imageView, ImageLoaderUtil.getInstance().getDefaultOptions());
+                            imageView, ImageLoaderUtil.getInstance().getNoCacheImageOptions());
                 }
 
 
