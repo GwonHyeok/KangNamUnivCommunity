@@ -323,7 +323,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         } else if (src_byte < 1024 * 1024) {
             return Math.round((float) src_byte / (float) 1024) + "KB";
         } else {
-            return Math.round(((float) src_byte / (float) (1024 * 1024) * 10)) / 10.0 + "Mb";
+            return Math.round(((float) src_byte / (float) (1024 * 1024) * 10)) / 10.0 + "MB";
         }
     }
 
