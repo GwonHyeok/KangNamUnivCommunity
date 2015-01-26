@@ -153,6 +153,7 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
                     startActivity(intent);
                 }
             });
+            view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
             linearLayout.addView(view);
         }
     }

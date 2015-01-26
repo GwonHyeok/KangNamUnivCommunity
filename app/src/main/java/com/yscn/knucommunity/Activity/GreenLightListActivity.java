@@ -48,6 +48,7 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
                 // 클릭했을 경우에 상세 내용을 보기위해 사용
                 listView.setTag(listItems);
                 listView.setOnClickListener(this);
+                listView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                 ((LinearLayout) childView).addView(listView);
             }
         }

@@ -70,6 +70,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                     startActivity(intent);
                 }
             });
+            view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
             linearLayout.addView(view);
         }
     }

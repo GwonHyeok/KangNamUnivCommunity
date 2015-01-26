@@ -48,6 +48,7 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
                 // 개시글 리스트의 listItems를 View에 태그로 저장
                 // 클릭했을 경우에 상세 내용을 보기위해 사용
                 listView.setTag(listItems);
+                listView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                 listView.setOnClickListener(this);
                 ((LinearLayout) childView).addView(listView);
             }

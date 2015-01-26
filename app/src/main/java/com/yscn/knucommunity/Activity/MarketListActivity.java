@@ -77,6 +77,7 @@ public class MarketListActivity extends BaseBoardListActivity {
                         startActivity(intent);
                     }
                 });
+                listView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                 ((LinearLayout) childView).addView(listView);
             }
         }
