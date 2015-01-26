@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -17,6 +20,7 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UserData;
 import com.yscn.knucommunity.Util.UserDataPreference;
@@ -39,6 +43,23 @@ public class Splash extends ActionBarActivity {
 
         /* 스팰래쉬 화면이므로 액션바 제거 */
         getSupportActionBar().hide();
+
+        View view = findViewById(R.id.splash);
+        int height = ApplicationUtil.getInstance().getScreenHeight();
+        int width = ApplicationUtil.getInstance().getScreenWidth();
+
+        Bitmap splash = ApplicationUtil.getInstance().decodeSampledBitmap(
+                getResources(),
+                R.drawable.bg_splash,
+                width,
+                height);
+
+        BitmapDrawable bitmapDrawable = new BitmapDrawable(getResources(), splash);
+        if (Build.VERSION.SDK_INT >= 16) {
+            view.setBackground(bitmapDrawable);
+        } else {
+            view.setBackgroundDrawable(bitmapDrawable);
+        }
 
         Window w = getWindow();
         if (Build.VERSION.SDK_INT >= 19) {
