@@ -6,27 +6,38 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
+import com.yscn.knucommunity.CustomView.NotifyFooterScrollView;
+import com.yscn.knucommunity.Items.ShareTaxiListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Ui.ShareTaxiPagerAdapter;
+import com.yscn.knucommunity.Util.ApplicationUtil;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -37,6 +48,8 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
     private String mDate[][];
     private String mYear[];
     private ViewPager viewPager;
+    private int pageIndex = 1;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -64,6 +77,31 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
 
         checkHasPhoneNumber();
         setTaxiData();
+        scrollViewInit();
+    }
+
+    private void scrollViewInit() {
+        swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.board_list_swiperefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                reloadTaxiData();
+            }
+        });
+        final NotifyFooterScrollView scrollView = (NotifyFooterScrollView) findViewById(R.id.share_taxi_scrollview);
+        scrollView.setonScrollToBottomListener(new NotifyFooterScrollView.onScrollToBottomListener() {
+            @Override
+            public void scrollToBottom() {
+                View view = scrollView.getChildAt(0);
+                if (view instanceof LinearLayout) {
+                    int childSize = ((LinearLayout) view).getChildCount();
+                    if (childSize == pageIndex * 15) {
+                        pageIndex = (pageIndex + 1);
+                        setTaxiData();
+                    }
+                }
+            }
+        });
     }
 
     private void checkHasPhoneNumber() {
@@ -89,7 +127,6 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
             @Override
             protected void onPostExecute(JSONObject jsonObject) {
                 clearprogressdialog.cancel();
-
                 if (jsonObject == null) {
                     AlertToast.error(getContext(), getString(R.string.error_to_work));
                     return;
@@ -118,23 +155,94 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
     }
 
     private void setTaxiData() {
-        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.share_taxi_data_view);
+        new AsyncTask<Void, Void, ArrayList<ShareTaxiListItems>>() {
+            private String time;
+            private ClearProgressDialog clearProgressdialog;
 
-        for (int i = 0; i < 4; i++) {
-            View view = LayoutInflater.from(this).inflate(R.layout.ui_sharetaxilist, linearLayout, false);
-            view.findViewById(R.id.share_taxi_start_locaction_textview).setSelected(true);
-            view.findViewById(R.id.share_taxi_stop_locaction_textview).setSelected(true);
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ShareTaxiActivity.this, ShareTaxiDetailActivity.class);
-                    intent.putExtra("writerStudentNumber", "201401239");
-                    startActivity(intent);
+            @Override
+            protected void onPreExecute() {
+                clearProgressdialog = new ClearProgressDialog(getContext());
+                clearProgressdialog.show();
+                int position = viewPager.getCurrentItem();
+                String day = mDate[position][1];
+                String month = mDate[position][0];
+                String year = mYear[position];
+                time = year + "-" + month + "-" + day;
+            }
+
+            @Override
+            protected ArrayList<ShareTaxiListItems> doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().getShareTaxiList(time, pageIndex);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
                 }
-            });
-            view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
-            linearLayout.addView(view);
-        }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(ArrayList<ShareTaxiListItems> itemes) {
+                LinearLayout linearLayout = (LinearLayout) findViewById(R.id.share_taxi_data_view);
+                ImageLoaderUtil.getInstance().initImageLoader();
+
+                for (ShareTaxiListItems item : itemes) {
+                    View view = LayoutInflater.from(getContext()).inflate(R.layout.ui_sharetaxilist, linearLayout, false);
+                    TextView departureView = (TextView) view.findViewById(R.id.share_taxi_start_locaction_textview);
+                    TextView destinationView = (TextView) view.findViewById(R.id.share_taxi_stop_locaction_textview);
+                    TextView timeView = (TextView) view.findViewById(R.id.share_taxi_time_textview);
+                    TextView personCountView = (TextView) view.findViewById(R.id.textView12);
+                    ViewGroup thumbnailView = (ViewGroup) view.findViewById(R.id.ui_sharetaxilist_shareperson_thumbnail);
+
+                    destinationView.setSelected(true);
+                    departureView.setSelected(true);
+
+                    destinationView.setText(item.getDestination());
+                    departureView.setText(item.getDeparture());
+                    timeView.setText(getTime(item.getDeparturetime()));
+                    personCountView.setText(String.valueOf(item.getShareperson().length + 1));
+
+                    // 31dp 양옆 마진 4dp
+                    // 탑승자 이미지 뷰
+                    int imageViewSize = (int) ApplicationUtil.getInstance().dpToPx(31);
+                    int margin = (int) ApplicationUtil.getInstance().dpToPx(4);
+
+                    // 본인을 합승자 이미지에 보이게
+                    CircleImageView taxtRootView = (CircleImageView) view.findViewById(R.id.ui_sharetaxtlist_rootperson_thumbnail);
+                    ImageLoader.getInstance().displayImage(
+                            UrlList.PROFILE_THUMB_IMAGE_URL + item.getWriter(),
+                            taxtRootView,
+                            ImageLoaderUtil.getInstance().getDefaultOptions());
+
+                    for (String person : item.getShareperson()) {
+                        CircleImageView imageView = new CircleImageView(getContext());
+                        ImageLoader.getInstance().displayImage(
+                                UrlList.PROFILE_THUMB_IMAGE_URL + person,
+                                imageView,
+                                ImageLoaderUtil.getInstance().getDefaultOptions());
+                        thumbnailView.addView(imageView);
+
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imageView.getLayoutParams();
+                        layoutParams.height = imageViewSize;
+                        layoutParams.width = imageViewSize;
+                        layoutParams.setMargins(margin, 0, margin, 0);
+                        imageView.setLayoutParams(layoutParams);
+                    }
+
+                    view.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(ShareTaxiActivity.this, ShareTaxiDetailActivity.class);
+                            intent.putExtra("writerStudentNumber", "201401239");
+                            startActivity(intent);
+                        }
+                    });
+                    view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
+                    linearLayout.addView(view);
+                }
+                clearProgressdialog.cancel();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        }.execute();
     }
 
     /*
@@ -170,6 +278,13 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
         }
     }
 
+    private void reloadTaxiData() {
+        pageIndex = 1;
+        LinearLayout linearLayout = (LinearLayout) findViewById(R.id.share_taxi_data_view);
+        linearLayout.removeAllViews();
+        setTaxiData();
+    }
+
     private void toolbarInit() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -182,6 +297,19 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                 finish();
             }
         });
+    }
+
+    private String getTime(String src_time) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
+        SimpleDateFormat new_format = new SimpleDateFormat("hh:mm a");
+        String dst_time = "";
+        try {
+            Date newDate = format.parse(src_time);
+            dst_time = new_format.format(newDate);
+        } catch (java.text.ParseException e) {
+            e.printStackTrace();
+        }
+        return dst_time;
     }
 
     @Override
@@ -209,6 +337,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                         mDate[position][0],
                         mYear[position])
         );
+        reloadTaxiData();
     }
 
     @Override

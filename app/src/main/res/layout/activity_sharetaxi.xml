@@ -78,6 +78,11 @@
         </LinearLayout>
     </RelativeLayout>
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/board_list_swiperefresh"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent">
+
     <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
         android:id="@+id/share_taxi_scrollview"
         android:layout_width="match_parent"
@@ -89,4 +94,5 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </com.yscn.knucommunity.CustomView.NotifyFooterScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

@@ -13,6 +13,7 @@ import com.yscn.knucommunity.Items.MajorSimpleListItems;
 import com.yscn.knucommunity.Items.MeetingListItems;
 import com.yscn.knucommunity.Items.NoticeItems;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
+import com.yscn.knucommunity.Items.ShareTaxiListItems;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
 
 import org.apache.http.Header;
@@ -690,6 +691,42 @@ public class NetworkUtil {
                 new InputStreamReader(httpResponse.getEntity().getContent())
         );
         return checkResultData(object);
+    }
+
+    public ArrayList<ShareTaxiListItems> getShareTaxiList(String date, int page) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("time", date);
+        HttpResponse httpResponse = postData(UrlList.GET_SHARETAXI_URL + page, parameter);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+
+        if (jsonObject == null) {
+            return null;
+        }
+
+        if (checkResultData(jsonObject)) {
+            ArrayList<ShareTaxiListItems> itemses = new ArrayList<>();
+            JSONArray rootArray = (JSONArray) jsonObject.get("data");
+            for (Object rootObject : rootArray) {
+                JSONObject rootJsonObject = (JSONObject) rootObject;
+                String writer = rootJsonObject.get("writer").toString();
+                String departuretime = rootJsonObject.get("departuretime").toString();
+                String destination = rootJsonObject.get("destination").toString();
+                String departure = rootJsonObject.get("departure").toString();
+                JSONArray sharePersonArray = (JSONArray) rootJsonObject.get("shareperson");
+                int personSize = sharePersonArray.size();
+                String[] personArray = new String[personSize];
+
+                for (int i = 0; i < personSize; i++) {
+                    personArray[i] = sharePersonArray.get(i).toString();
+                }
+
+                itemses.add(new ShareTaxiListItems(writer, departuretime, destination, departure, personArray));
+            }
+            return itemses;
+        } else {
+            return null;
+        }
     }
 
     public JSONObject registerPhoneNumber(String phonenumber) throws IOException, ParseException {

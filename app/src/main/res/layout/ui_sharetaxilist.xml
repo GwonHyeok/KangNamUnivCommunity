@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_toEndOf="@+id/textView12"
-        android:layout_toLeftOf="@+id/textView11"
+        android:layout_toLeftOf="@+id/share_taxi_time_textview"
         android:layout_toRightOf="@+id/textView12"
         android:orientation="vertical"
         android:paddingTop="13dp">
@@ -48,8 +48,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="출발 : "
-                android:textSize="13sp"
-                android:textColor="#b3b3b3" />
+                android:textColor="#b3b3b3"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/share_taxi_start_locaction_textview"
@@ -59,8 +59,8 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:text="기흥역 4번 출구"
-                android:textSize="21sp"
-                android:textColor="#4d4d4d" />
+                android:textColor="#4d4d4d"
+                android:textSize="21sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -75,8 +75,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="도착 : "
-                android:textSize="13sp"
-                android:textColor="#b3b3b3" />
+                android:textColor="#b3b3b3"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/share_taxi_stop_locaction_textview"
@@ -86,8 +86,8 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:text="기흥구청"
-                android:textSize="21sp"
-                android:textColor="#4d4d4d" />
+                android:textColor="#4d4d4d"
+                android:textSize="21sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -96,15 +96,15 @@
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingLeft="16dp"
-            android:paddingTop="12dp"
-            android:paddingRight="16dp">
+            android:paddingRight="16dp"
+            android:paddingTop="12dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="with : "
-                android:textSize="13sp"
-                android:textColor="#b3b3b3" />
+                android:textColor="#b3b3b3"
+                android:textSize="13sp" />
 
             <HorizontalScrollView
                 android:layout_width="wrap_content"
@@ -112,32 +112,13 @@
                 android:scrollbars="none">
 
                 <LinearLayout
+                    android:id="@+id/ui_sharetaxilist_shareperson_thumbnail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
-                        android:layout_width="31dp"
-                        android:layout_height="31dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/ic_profile" />
-
-                    <com.yscn.knucommunity.CustomView.CircleImageView
-                        android:layout_width="31dp"
-                        android:layout_height="31dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/ic_profile" />
-
-                    <com.yscn.knucommunity.CustomView.CircleImageView
-                        android:layout_width="31dp"
-                        android:layout_height="31dp"
-                        android:layout_marginLeft="4dp"
-                        android:layout_marginRight="4dp"
-                        android:background="@drawable/ic_profile" />
-
-                    <com.yscn.knucommunity.CustomView.CircleImageView
+                        android:id="@+id/ui_sharetaxtlist_rootperson_thumbnail"
                         android:layout_width="31dp"
                         android:layout_height="31dp"
                         android:layout_marginLeft="4dp"
@@ -149,15 +130,15 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/share_taxi_time_textview"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_alignBottom="@+id/textView12"
         android:layout_alignParentRight="true"
         android:paddingRight="18dp"
         android:paddingTop="30dp"
         android:text="8:41 AM"
         android:textColor="#666666"
-        android:textSize="19sp"
-        android:layout_alignBottom="@+id/textView12" />
+        android:textSize="19sp" />
 
 </RelativeLayout>
