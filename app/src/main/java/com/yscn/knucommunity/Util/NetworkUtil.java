@@ -692,6 +692,29 @@ public class NetworkUtil {
         return checkResultData(object);
     }
 
+    public JSONObject registerPhoneNumber(String phonenumber) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("token", UserData.getInstance().getUserToken());
+        parameter.put("phone", phonenumber);
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        HttpResponse httpResponse = postData(UrlList.PHONE_REGISTER_URL, parameter);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
+    public JSONObject getPhoneNumber() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("token", UserData.getInstance().getUserToken());
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        HttpResponse httpResponse = postData(UrlList.GET_PHONE_NUMBER_URL, parameter);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     private String URLDecode(String str) throws UnsupportedEncodingException {
         return URLDecoder.decode(str, "UTF-8");
     }

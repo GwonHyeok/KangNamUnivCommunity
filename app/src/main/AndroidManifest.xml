@@ -137,6 +137,9 @@
         <activity
             android:name=".Activity.ShareTaxiDetailActivity"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".Activity.PhoneNumberInputActivity"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

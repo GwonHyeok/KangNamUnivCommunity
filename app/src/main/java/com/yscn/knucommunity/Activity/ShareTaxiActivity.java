@@ -1,6 +1,8 @@
 package com.yscn.knucommunity.Activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -14,9 +16,17 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Ui.ShareTaxiPagerAdapter;
+import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UserData;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -52,7 +62,59 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
         findViewById(R.id.share_taxi_nextday).setOnClickListener(this);
         findViewById(R.id.share_taxi_yesterday).setOnClickListener(this);
 
+        checkHasPhoneNumber();
         setTaxiData();
+    }
+
+    private void checkHasPhoneNumber() {
+        new AsyncTask<Void, Void, JSONObject>() {
+            private ClearProgressDialog clearprogressdialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearprogressdialog = new ClearProgressDialog(getContext());
+                clearprogressdialog.show();
+            }
+
+            @Override
+            protected JSONObject doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().getPhoneNumber();
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject jsonObject) {
+                clearprogressdialog.cancel();
+
+                if (jsonObject == null) {
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    return;
+                }
+
+                String result = jsonObject.get("result").toString();
+
+                // 성공했을 경우
+                if (result.equals("success")) {
+                    String phonenumber = jsonObject.get("data").toString();
+
+                    // 핸드폰 번호가 없으면 폰 번호 액티비티 실행
+                    if (phonenumber.isEmpty()) {
+                        finish();
+                        startActivity(new Intent(getContext(), PhoneNumberInputActivity.class));
+                    } else {
+                        UserData.getInstance().setPhoneNumber(phonenumber);
+                    }
+                }
+            }
+        }.execute();
+    }
+
+    private Context getContext() {
+        return this;
     }
 
     private void setTaxiData() {

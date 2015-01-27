@@ -12,6 +12,7 @@ public class UserData {
     private String studentName;
     private String userToken;
     private String userRating;
+    private String phoneNumber;
     private Bitmap userProfile;
 
     private UserData() {
@@ -84,5 +85,13 @@ public class UserData {
     private UserDataPreference getUserDataPreference() {
         Context mContext = ApplicationContextProvider.getContext();
         return new UserDataPreference(mContext);
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
