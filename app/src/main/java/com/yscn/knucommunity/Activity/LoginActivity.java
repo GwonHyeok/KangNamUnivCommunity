@@ -7,10 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -48,7 +48,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         String studentID = ((EditText) findViewById(R.id.login_id)).getText().toString();
         String studentPW = ((EditText) findViewById(R.id.login_pw)).getText().toString();
         if (studentID.isEmpty() || studentPW.isEmpty()) {
-            Toast.makeText(this, "아이디나 비밀번호를 입력해 주세요.", Toast.LENGTH_SHORT).show();
+            AlertToast.warning(this, getString(R.string.warning_input_login_form));
         } else {
             new AsyncTask<String, Void, NetworkUtil.LoginStatus>() {
                 private ClearProgressDialog progressdialog;
@@ -63,9 +63,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 protected NetworkUtil.LoginStatus doInBackground(String... strings) {
                     try {
                         return NetworkUtil.getInstance().LoginAppServer(strings[0], strings[1]);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ParseException e) {
+                    } catch (IOException | ParseException e) {
                         e.printStackTrace();
                     }
                     return NetworkUtil.LoginStatus.FAIL;
@@ -83,7 +81,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                         startActivity(new Intent(getContext(), MainActivity.class));
                     } else if (loginStatus == NetworkUtil.LoginStatus.FAIL) {
                         /* 로그인 실패 */
-                        Toast.makeText(getContext(), "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
+                        AlertToast.error(getContext(), getString(R.string.error_login));
                     }
                     progressdialog.cancel();
                 }

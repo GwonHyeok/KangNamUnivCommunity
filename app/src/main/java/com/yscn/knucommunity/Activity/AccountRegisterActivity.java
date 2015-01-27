@@ -15,6 +15,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UserData;
@@ -70,13 +71,42 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
             String studentNumber = UserData.getInstance().getStudentNumber();
             String studentName = UserData.getInstance().getStudentName();
             String nickname = ((EditText) findViewById(R.id.register_nickname)).getText().toString();
-            registerWork(studentNumber, nickname, studentName);
+
+            /* Check Register Account Value */
+            if (isValidatingValue(studentNumber, nickname, studentName)) {
+                registerWork(studentNumber, nickname, studentName);
+            }
         } else if (id == R.id.register_profile) {
             getProfilePicture();
         } else if (id == R.id.actionbar_center_base_image) {
             finish();
         }
     }
+
+    /**
+     * @param studentNumber School StudentNumber
+     * @param nickname      Nickname
+     * @param studentName   StudentName
+     * @return if Validate Value return true
+     */
+    private boolean isValidatingValue(String studentNumber, String nickname, String studentName) {
+        if (studentNumber.isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_input_studentnumber));
+            return false;
+        } else if (nickname.isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_input_nickname));
+            return false;
+        } else if (studentName.isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_input_name));
+            return false;
+        } else if (profileUri == null) {
+            AlertToast.warning(getContext(), getString(R.string.warning_input_profileimage));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
