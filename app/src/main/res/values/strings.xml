@@ -23,6 +23,7 @@
     <string name="warning_input_nickname">닉네임을 입력해 주세요.</string>
     <string name="warning_input_name">이름을 입력해 주세요.</string>
     <string name="warning_input_profileimage">프로필 이미지를 선택해주세요.</string>
+    <string name="warning_no_homepage">홈페이지 정보가 없습니다</string>
 
     <string name="delivery_koreanfood">한식</string>
     <string name="delivery_chinesefood">중식</string>

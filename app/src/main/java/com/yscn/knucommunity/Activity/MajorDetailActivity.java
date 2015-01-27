@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import java.util.ArrayList;
@@ -146,7 +147,11 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
     public void onClick(View view) {
         int id = view.getId();
         if (id == R.id.major_go_page) {
-            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(majorHomepage)));
+            if (majorHomepage.isEmpty()) {
+                AlertToast.warning(getContext(), getString(R.string.warning_no_homepage));
+            } else {
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(majorHomepage)));
+            }
         }
     }
 }
