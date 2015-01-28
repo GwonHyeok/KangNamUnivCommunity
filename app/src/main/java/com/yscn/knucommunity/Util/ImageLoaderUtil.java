@@ -37,6 +37,15 @@ public class ImageLoaderUtil {
                 .build();
     }
 
+    public DisplayImageOptions getThumbProfileImageOptions() {
+        return new DisplayImageOptions.Builder()
+                .cacheInMemory(true)
+                .imageScaleType(ImageScaleType.EXACTLY)
+                .showImageOnFail(R.drawable.ic_profile)
+                .showImageOnLoading(R.drawable.ic_profile)
+                .build();
+    }
+
     public DisplayImageOptions getNoCacheImageOptions() {
         return new DisplayImageOptions.Builder()
                 .imageScaleType(ImageScaleType.EXACTLY)

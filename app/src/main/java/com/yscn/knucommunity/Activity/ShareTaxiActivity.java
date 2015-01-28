@@ -219,7 +219,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                         ImageLoader.getInstance().displayImage(
                                 UrlList.PROFILE_THUMB_IMAGE_URL + person,
                                 imageView,
-                                ImageLoaderUtil.getInstance().getDefaultOptions());
+                                ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
                         thumbnailView.addView(imageView);
 
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imageView.getLayoutParams();
