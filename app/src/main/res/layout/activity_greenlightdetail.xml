@@ -27,7 +27,6 @@
             android:layout_marginLeft="30dp"
             android:layout_marginTop="30dp"
             android:layout_toLeftOf="@+id/greenlight_detail_time"
-            android:text="안녕하세요."
             android:textColor="#FF424242"
             android:textSize="24sp" />
 
@@ -39,7 +38,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="25dp"
-            android:text="2014.10.16 17:24"
             android:textColor="#757575" />
 
 
@@ -62,7 +60,6 @@
                 android:layout_height="match_parent"
                 android:layout_margin="30dp"
                 android:lineSpacingExtra="5dp"
-                android:text="친한 여자 선배가 있어요 두살 차이인데\n평소에 교회에서도 만나고 고향도 같아서 잘\n챙겨주세요\n책도 많이 챙겨주고 아니라고 하면 다시 찾아다 주고\n\n그리고 저도 누나한테 약간은 살갑게 대했던 것 같아요\n가끔 보면 조금 누나가 이뻐진 것 같아서 누나 이뻐지쎴네요\n이렇게도 얘기하고 편하게 농답도 많이 했었거든요"
                 android:textColor="#424242"
                 android:textSize="15sp" />
 

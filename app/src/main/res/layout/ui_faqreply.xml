@@ -34,7 +34,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@id/faq_reply_profile"
                 android:layout_toRightOf="@id/faq_reply_profile"
-                android:text="권혁님의 답변"
                 android:textColor="#FF414141"
                 android:textSize="18sp" />
 
@@ -45,7 +44,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="25dp"
-                android:text="2014.10.16 17:24"
                 android:textColor="#757575" />
         </RelativeLayout>
 
@@ -58,7 +56,6 @@
         android:layout_marginTop="15dp"
         android:paddingLeft="22dp"
         android:paddingRight="22dp"
-        android:text="머리가 아플땐 약 드시고 가만히 누워 자는게 최고입니다."
         android:textColor="#424242" />
 
     <View

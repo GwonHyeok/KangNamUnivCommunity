@@ -33,7 +33,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_toLeftOf="@+id/faq_detail_replycount"
                 android:paddingLeft="62dp"
-                android:text="Q. 가끔가끔아주"
                 android:textColor="#FF424242"
                 android:textSize="24sp" />
 
@@ -45,7 +44,6 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:text="답변 2"
                 android:layout_marginRight="20dp"
                 android:textColor="#00c853"
                 android:textSize="19sp"
@@ -93,7 +91,6 @@
                         android:layout_marginStart="14dp"
                         android:layout_toEndOf="@+id/faq_detail_profile"
                         android:layout_toRightOf="@+id/faq_detail_profile"
-                        android:text="권혁"
                         android:textColor="#FF414141"
                         android:textSize="19sp" />
 
@@ -105,7 +102,6 @@
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
                         android:layout_marginRight="25dp"
-                        android:text="2014.10.16 17:24"
                         android:textColor="#757575" />
                 </RelativeLayout>
 
@@ -119,7 +115,6 @@
                     android:paddingLeft="22dp"
                     android:paddingRight="22dp"
                     android:paddingTop="14dp"
-                    android:text="안드로이드는 휴대 전화를 비롯한 휴대용 장치를 위한 운영 체제와 미들웨어, 사용자 인터페이스 그리고 표준 응용 프로그램을 포함하고 있는 소프트웨어 스택이자 모바일 운영 체제이다. 안드로이드는 개발자들이 자바 언어로 응용 프로그램을 작성할 수 있게 하였으며, 컴파일된 바이트코드를 구동할 수 있는 런타임 라이브러리를 제공한다. 또한 안드로이드 소프트웨어 개발 키트를 통해 응용 프로그램을 개발하기 위해 필요한 각종 도구들과 API를 제공한다."
                     android:textColor="#424242"
                     android:textSize="15sp" />
 

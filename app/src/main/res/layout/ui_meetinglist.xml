@@ -13,9 +13,8 @@
         android:layout_marginLeft="20dp"
         android:background="@drawable/bg_meeting_male"
         android:gravity="center"
-        android:text="3"
         android:textColor="@android:color/white"
-        android:textSize="19sp"/>
+        android:textSize="19sp" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -41,7 +40,6 @@
                 android:id="@+id/meeting_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="남자 4명"
                 android:textColor="#616161"
                 android:textSize="20sp" />
 
@@ -49,7 +47,6 @@
                 android:id="@+id/meeting_school"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="건국대 인미공"
                 android:textColor="#bdbdbd" />
         </LinearLayout>
 
@@ -62,7 +59,6 @@
             android:layout_marginRight="20dp"
             android:layout_toLeftOf="@+id/meeting_time"
             android:layout_toStartOf="@+id/meeting_time"
-            android:text="8"
             android:textColor="#78908c"
             android:textSize="17sp" />
 
@@ -72,7 +68,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:text="2014.10.17" />
+            android:layout_centerVertical="true" />
     </RelativeLayout>
 </RelativeLayout>

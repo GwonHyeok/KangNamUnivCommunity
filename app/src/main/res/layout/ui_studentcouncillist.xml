@@ -14,7 +14,6 @@
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:singleLine="true"
-        android:text="여울림이라고 합니다."
         android:textColor="#FF424242"
         android:textSize="20sp" />
 
@@ -26,7 +25,6 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="6dp"
         android:singleLine="true"
-        android:text="여울은 강이나바다의 바닥이 얕거나 폭이 좁아 물살..."
         android:textColor="#FF757575" />
 
 </LinearLayout>

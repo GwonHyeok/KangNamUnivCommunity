@@ -17,7 +17,6 @@
         android:paddingBottom="2dp"
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
-        android:text="이름 : "
         android:textColor="#ff424242" />
 
     <TextView
@@ -27,7 +26,6 @@
         android:paddingBottom="2dp"
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
-        android:text="전공 : "
         android:textColor="#ff424242" />
 
     <TextView
@@ -37,7 +35,6 @@
         android:paddingBottom="2dp"
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
-        android:text="전화번호 : "
         android:textColor="#ff424242" />
 
     <TextView
@@ -47,6 +44,5 @@
         android:paddingBottom="2dp"
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
-        android:text="이메일 :"
         android:textColor="#ff424242" />
 </LinearLayout>

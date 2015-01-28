@@ -39,7 +39,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@id/freeboard_reply_profile"
                 android:layout_toRightOf="@id/freeboard_reply_profile"
-                android:text="권혁"
                 android:textColor="#FF212121"
                 android:textSize="15sp" />
 
@@ -52,7 +51,6 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@id/freeboard_reply_name"
                 android:layout_marginRight="8dp"
-                android:text="2014.10.16 17:24"
                 android:textColor="#7d7d7d" />
 
             <TextView
@@ -66,7 +64,6 @@
                 android:layout_alignStart="@id/freeboard_reply_name"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="41dp"
-                android:text="머리가 아플땐 약 드시고"
                 android:textColor="#FF616161" />
         </RelativeLayout>
 

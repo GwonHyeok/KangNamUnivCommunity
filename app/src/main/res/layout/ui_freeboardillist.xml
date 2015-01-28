@@ -32,7 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="안녕하세요"
             android:textColor="#FF343434"
             android:textSize="18sp" />
 
@@ -41,7 +40,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="권혁"
             android:textColor="#FF616161" />
     </LinearLayout>
 
@@ -53,7 +51,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:text="2014.10.16"
         android:textColor="#757575" />
 
     <TextView
@@ -64,7 +61,6 @@
         android:layout_marginRight="24dp"
         android:layout_toLeftOf="@+id/freeboard_list_time"
         android:layout_toStartOf="@+id/freeboard_list_time"
-        android:text="[17]"
         android:textColor="#FF7395a6"
         android:textSize="17sp" />
 

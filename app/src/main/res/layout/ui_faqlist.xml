@@ -31,7 +31,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:singleLine="true"
-            android:text="Q. 9글자 이내로 "
             android:textColor="#FF343434"
             android:textSize="18sp" />
 
@@ -40,7 +39,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="권혁"
             android:textColor="#FF616161" />
     </LinearLayout>
 
@@ -52,7 +50,6 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:text="2014.10.16"
         android:textColor="#757575" />
 
     <TextView
@@ -63,7 +60,6 @@
         android:layout_marginRight="12dp"
         android:layout_toLeftOf="@+id/faq_list_time"
         android:layout_toStartOf="@+id/faq_list_time"
-        android:text="답변 2"
         android:textColor="#00c853"
         android:textSize="16sp"/>
 
