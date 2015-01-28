@@ -62,12 +62,16 @@
         <activity android:name=".Activity.MajorInfoActivity" />
         <activity android:name=".Activity.MajorDetailActivity" />
         <activity android:name=".Activity.ClubInfoActivity" />
-        <activity android:name=".Activity.SchoolRestrauntActivity" />
+        <activity
+            android:name=".Activity.SchoolRestrauntActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.ClubDetailActivity" />
         <activity
             android:name=".Activity.StudentCouncilActivity"
             android:theme="@style/NoActionBarTheme" />
-        <activity android:name=".Activity.SchoolRestrauntDetailActivity" />
+        <activity
+            android:name=".Activity.SchoolRestrauntDetailActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity android:name=".Activity.ShuttleBusActivity" />
         <activity android:name=".Activity.LibraryActivity" />
         <activity
@@ -128,7 +132,9 @@
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".Activity.CampusMapActivity" />
         <activity android:name=".Activity.RiffleMapActivity" />
-        <activity android:name=".Activity.AccountRegisterActivity" />
+        <activity
+            android:name=".Activity.AccountRegisterActivity"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.BoardWriteActivity"
             android:theme="@style/NoActionBarTheme"

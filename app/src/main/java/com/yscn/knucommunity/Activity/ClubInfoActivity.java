@@ -68,6 +68,7 @@ public class ClubInfoActivity extends ActionBarActivity implements AdapterView.O
     private void viewInit() {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(0xFFD81B60);
+            getWindow().setNavigationBarColor(0xFFD81B60);
         }
 
         ActionBar actionBar = getSupportActionBar();

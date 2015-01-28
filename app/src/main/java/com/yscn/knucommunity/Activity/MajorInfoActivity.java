@@ -85,6 +85,7 @@ public class MajorInfoActivity extends ActionBarActivity implements AdapterView.
     private void viewInit() {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(0xFF0097a7);
+            getWindow().setNavigationBarColor(0xFF0097a7);
         }
 
         /* 액션바 */

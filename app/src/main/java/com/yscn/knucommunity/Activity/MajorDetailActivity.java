@@ -84,6 +84,7 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
         /* set Status Bar Color */
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(background[index]);
+            getWindow().setNavigationBarColor(background[index]);
         }
     }
 

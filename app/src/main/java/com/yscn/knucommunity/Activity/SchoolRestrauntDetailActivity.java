@@ -2,12 +2,13 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
@@ -29,8 +30,8 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        viewInit();
         setContentView(R.layout.activity_restrauntdetail);
+        viewInit();
         setRestrauntFoodInfo(getIntent().getStringExtra("location"));
     }
 
@@ -87,18 +88,28 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
     }
 
     private void viewInit() {
-        /* 액션바 */
+        /* set Toolbar */
         Intent intent = getIntent();
         int color = intent.getIntExtra("color", 0xFF0097A7);
-        ActionBar actionBar = getSupportActionBar();
-        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_base, null);
 
-        ((TextView) view.findViewById(R.id.actionbar_base_title)).setText(getActionBarTitle());
-        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(view, layout);
-        actionBar.setBackgroundDrawable(new ColorDrawable(color));
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setElevation(0);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle(getActionBarTitle());
+        toolbar.setTitleTextColor(Color.WHITE);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+        toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        if (Build.VERSION.SDK_INT >= 21) {
+            getWindow().setStatusBarColor(color);
+            getWindow().setNavigationBarColor(color);
+        }
     }
 
     private String getActionBarTitle() {

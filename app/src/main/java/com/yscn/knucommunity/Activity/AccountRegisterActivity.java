@@ -2,11 +2,16 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +21,7 @@ import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UserData;
@@ -36,15 +42,18 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_accoutregister);
 
-        /* Remove Action Bar */
-        getSupportActionBar().hide();
+        /* set Toolbar */
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        /* ActionBar Init */
-        View actionbar_view = findViewById(R.id.register_actionbar);
-        TextView title_View = (TextView) actionbar_view.findViewById(R.id.actionbar_center_base_title);
-        View button_view = actionbar_view.findViewById(R.id.actionbar_center_base_image);
-        title_View.setText(getString(R.string.register_text));
-        button_view.setOnClickListener(this);
+        toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         /* Set Default Text */
         String name = UserData.getInstance().getStudentName();
@@ -55,6 +64,25 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
         /* Set Listener */
         findViewById(R.id.register_apply_button).setOnClickListener(this);
         findViewById(R.id.register_profile).setOnClickListener(this);
+
+        /* Set Decoded Sample Bitmap Background */
+        Bitmap bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                getResources(),
+                R.drawable.bg_login,
+                ApplicationUtil.getInstance().getScreenWidth(),
+                ApplicationUtil.getInstance().getScreenHeight()
+        );
+        View view = findViewById(R.id.accountregister_root);
+        if (Build.VERSION.SDK_INT >= 16) {
+            view.setBackground(new BitmapDrawable(getResources(), bitmap));
+        } else {
+            view.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
+        }
+
+        /* if SDK is higher than kitkat set translate statusbar */
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        }
     }
 
     @Override

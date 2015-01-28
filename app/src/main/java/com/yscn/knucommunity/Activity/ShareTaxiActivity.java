@@ -2,6 +2,8 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -73,8 +75,28 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
             w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
+
         findViewById(R.id.share_taxi_nextday).setOnClickListener(this);
         findViewById(R.id.share_taxi_yesterday).setOnClickListener(this);
+
+        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.share_taxi_root);
+        View backView = viewGroup.getChildAt(0);
+
+        int width = ApplicationUtil.getInstance().getScreenWidth();
+        int height = (int) ApplicationUtil.getInstance().dpToPx(205);
+
+        Bitmap bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                getResources(),
+                R.drawable.bg_sharetaxi,
+                width,
+                height
+        );
+
+        if (Build.VERSION.SDK_INT >= 16) {
+            backView.setBackground(new BitmapDrawable(getResources(), bitmap));
+        } else {
+            backView.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
+        }
 
         checkHasPhoneNumber();
         setTaxiData();

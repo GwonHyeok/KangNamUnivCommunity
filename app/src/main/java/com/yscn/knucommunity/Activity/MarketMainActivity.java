@@ -1,6 +1,8 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -12,6 +14,7 @@ import android.widget.ImageView;
 
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.MarketAdapter;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.util.Random;
 
@@ -30,12 +33,35 @@ public class MarketMainActivity extends ActionBarActivity implements View.OnClic
         Random random = new Random();
         int i = random.nextInt(3);
         View view = findViewById(R.id.shop_main);
+        Bitmap bitmap = null;
+
         if (i == 0) {
-            view.setBackgroundResource(R.drawable.bg_shop_1);
+            bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                    getResources(),
+                    R.drawable.bg_shop_1,
+                    ApplicationUtil.getInstance().getScreenWidth(),
+                    ApplicationUtil.getInstance().getScreenHeight()
+            );
         } else if (i == 1) {
-            view.setBackgroundResource(R.drawable.bg_shop_2);
+            bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                    getResources(),
+                    R.drawable.bg_shop_2,
+                    ApplicationUtil.getInstance().getScreenWidth(),
+                    ApplicationUtil.getInstance().getScreenHeight()
+            );
         } else if (i == 2) {
-            view.setBackgroundResource(R.drawable.bg_shop_3);
+            bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                    getResources(),
+                    R.drawable.bg_shop_3,
+                    ApplicationUtil.getInstance().getScreenWidth(),
+                    ApplicationUtil.getInstance().getScreenHeight()
+            );
+        }
+
+        if (Build.VERSION.SDK_INT >= 16) {
+            view.setBackground(new BitmapDrawable(getResources(), bitmap));
+        } else {
+            view.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
         }
 
         Window w = getWindow();

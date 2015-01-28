@@ -1,6 +1,9 @@
 package com.yscn.knucommunity.CustomView;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -13,6 +16,7 @@ import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.util.Random;
 
@@ -37,14 +41,6 @@ public class KenBurnsSupportView extends FrameLayout {
     public KenBurnsSupportView(Context context) {
         this(context, null);
     }
-
-    private Runnable mSwapImageRunnable = new Runnable() {
-        @Override
-        public void run() {
-            swapImage();
-            mHandler.postDelayed(mSwapImageRunnable, mSwapMs - mFadeInOutMs * 2);
-        }
-    };
 
     public KenBurnsSupportView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
@@ -150,9 +146,25 @@ public class KenBurnsSupportView extends FrameLayout {
 
     private void fillImageViews() {
         for (int i = 0; i < mImageViews.length; i++) {
-            mImageViews[i].setImageResource(mResourceIds[i]);
+            Bitmap bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                    getResources(),
+                    mResourceIds[i],
+                    ApplicationUtil.getInstance().getScreenWidth(),
+                    ApplicationUtil.getInstance().getScreenHeight()
+            );
+            if (Build.VERSION.SDK_INT >= 16) {
+                mImageViews[i].setBackground(new BitmapDrawable(getResources(), bitmap));
+            } else {
+                mImageViews[i].setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
+            }
         }
     }
 
-
+    private Runnable mSwapImageRunnable = new Runnable() {
+        @Override
+        public void run() {
+            swapImage();
+            mHandler.postDelayed(mSwapImageRunnable, mSwapMs - mFadeInOutMs * 2);
+        }
+    };
 }

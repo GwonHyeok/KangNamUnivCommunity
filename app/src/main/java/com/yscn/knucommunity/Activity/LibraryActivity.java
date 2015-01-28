@@ -36,6 +36,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
     private void viewInit() {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(0xff3d3d3d);
+            getWindow().setNavigationBarColor(0xff3d3d3d);
         }
         getSupportActionBar().hide();
         findViewById(R.id.library_find).setOnClickListener(this);

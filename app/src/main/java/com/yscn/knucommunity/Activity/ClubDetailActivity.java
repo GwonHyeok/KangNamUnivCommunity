@@ -57,6 +57,7 @@ public class ClubDetailActivity extends ActionBarActivity {
         /* set Status Bar Color */
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(background[index]);
+            getWindow().setNavigationBarColor(background[index]);
         }
     }
 }

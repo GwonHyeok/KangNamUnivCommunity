@@ -327,6 +327,7 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     private void setStatusBarColor() {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(getStatusBarColor());
+            getWindow().setNavigationBarColor(getStatusBarColor());
         }
     }
 

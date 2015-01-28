@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/accountregister_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_register"
+    android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <include
-        android:id="@+id/register_actionbar"
-        layout="@layout/actionbar_center_base"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentTop="true" />
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/register_text"
+            android:textColor="@android:color/white"
+            android:textSize="22sp" />
+    </android.support.v7.widget.Toolbar>
 
     <TextView
         android:id="@+id/register_textview"
@@ -19,12 +28,12 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginLeft="25dp"
         android:layout_marginTop="68dp"
         android:gravity="center_vertical"
         android:text="※ 프로필 이미지, 닉네임을 등록해주세요.\n   (나중에 사용자 정보 창에서 변경 가능합니다.)"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
-        android:layout_marginLeft="25dp" />
+        android:textSize="16sp" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
@@ -146,14 +155,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/background_register_app"
-        android:gravity="center"
+        android:layout_marginBottom="42dp"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
         android:layout_marginRight="30dp"
-        android:layout_marginBottom="42dp">
+        android:layout_marginTop="30dp"
+        android:background="@color/background_register_app"
+        android:gravity="center">
 
-        <LinearLayout
+    <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 

@@ -2,6 +2,8 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.View;
 
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 4..
@@ -32,6 +35,20 @@ public class LinkActivity extends MenuBaseActivity implements View.OnClickListen
         findViewById(R.id.link_homepage_eclass).setOnClickListener(this);
         findViewById(R.id.link_homepage_knu).setOnClickListener(this);
         findViewById(R.id.link_homepage_sugang).setOnClickListener(this);
+
+        View view = findViewById(R.id.link_activity_root);
+        Bitmap bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                getResources(),
+                R.drawable.bg_link,
+                ApplicationUtil.getInstance().getScreenWidth(),
+                ApplicationUtil.getInstance().getScreenHeight()
+        );
+
+        if (Build.VERSION.SDK_INT >= 16) {
+            view.setBackground(new BitmapDrawable(getResources(), bitmap));
+        } else {
+            view.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
+        }
     }
 
     @Override

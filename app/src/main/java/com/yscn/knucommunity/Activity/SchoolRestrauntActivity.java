@@ -21,11 +21,6 @@ public class SchoolRestrauntActivity extends ActionBarActivity implements View.O
         findViewById(R.id.schoolrestraunt_insa).setOnClickListener(this);
         findViewById(R.id.schoolrestraunt_gyung).setOnClickListener(this);
         findViewById(R.id.schoolrestraunt_gisuk).setOnClickListener(this);
-        viewInit();
-    }
-
-    private void viewInit() {
-        getSupportActionBar().hide();
     }
 
     @Override

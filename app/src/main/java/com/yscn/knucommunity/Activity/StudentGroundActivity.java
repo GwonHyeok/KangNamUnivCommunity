@@ -1,6 +1,8 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.ScrollView;
 
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.util.Random;
 
@@ -33,12 +36,33 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
         /* Set Background */
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.studentground_mainview);
         Random random = new Random();
-        int i = random.nextInt(2);
-        if (i == 0) {
-            linearLayout.setBackgroundResource(R.drawable.bg_stndentground_1);
+        int height = ApplicationUtil.getInstance().getScreenHeight();
+        int width = ApplicationUtil.getInstance().getScreenWidth();
+        BitmapDrawable bitmapDrawable;
+        Bitmap bitmap;
+        boolean i = random.nextBoolean();
+
+        if (i) {
+            bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                    getResources(),
+                    R.drawable.bg_stndentground_1,
+                    width,
+                    height);
         } else {
-            linearLayout.setBackgroundResource(R.drawable.bg_studentground_2);
+            bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
+                    getResources(),
+                    R.drawable.bg_studentground_2,
+                    width,
+                    height);
         }
+
+        bitmapDrawable = new BitmapDrawable(getResources(), bitmap);
+        if (Build.VERSION.SDK_INT >= 16) {
+            linearLayout.setBackground(bitmapDrawable);
+        } else {
+            linearLayout.setBackgroundDrawable(bitmapDrawable);
+        }
+
         /* remove ActionBar */
         getSupportActionBar().hide();
 
