@@ -729,6 +729,23 @@ public class NetworkUtil {
         }
     }
 
+    public JSONObject writeShareTaxiBoard(String departuretime, String departure, String destination,
+                                          String peopleCount, String content) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("writer", UserData.getInstance().getStudentNumber());
+        parameter.put("token", UserData.getInstance().getUserToken());
+        parameter.put("departuretime", departuretime);
+        parameter.put("departure", departure);
+        parameter.put("destination", destination);
+        parameter.put("peoplecount", peopleCount);
+        parameter.put("content", content);
+        HttpResponse httpResponse = postData(UrlList.WRITE_SHARETAXI_URL, parameter);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     public JSONObject registerPhoneNumber(String phonenumber) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();

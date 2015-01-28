@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/taxi_share_title"
+            android:textColor="#7d7d7d"
+            android:textSize="23sp" />
+
+        <TextView
+            android:id="@+id/board_write_send"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:background="@drawable/bg_default_select_item_effect"
+            android:gravity="center_vertical|right"
+            android:paddingRight="14dp"
+            android:text="@string/register_text"
+            android:textColor="#5592ae"
+            android:textSize="20sp" />
+
+    </android.support.v7.widget.Toolbar>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1.4dp"
+        android:background="#bdbdbd" />
+
+    <LinearLayout
+        android:id="@+id/taxi_share_write_departure_time"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/taxi_share_write_departure_time"
+            android:textColor="#5c5c5c"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/taxi_share_write_departuretime_textview"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:textColor="#5c5c5c"
+            android:textSize="19sp" />
+    </LinearLayout>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9e9e9e" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/taxi_share_write_departure_location"
+            android:textColor="#5c5c5c"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/taxi_share_write_departure_textview"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/taxi_share_write_departure_location_ex"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:textColor="#5c5c5c"
+            android:textColorHint="#808080"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9e9e9e" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/taxi_share_write_destination_location"
+            android:textColor="#5c5c5c"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/taxi_share_write_destination_textview"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/taxi_share_write_destination_location_ex"
+            android:paddingLeft="5dp"
+            android:singleLine="true"
+            android:textColor="#5c5c5c"
+            android:textColorHint="#808080"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9e9e9e" />
+
+    <LinearLayout
+        android:id="@+id/taxi_share_write_peoplecount"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@string/taxi_share_write_share_people_count"
+            android:textColor="#5c5c5c"
+            android:textSize="19sp" />
+
+        <EditText
+            android:id="@+id/taxi_share_write_peoplecount_textview"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:inputType="numberSigned"
+            android:paddingLeft="5dp"
+            android:textColor="#5c5c5c"
+            android:textColorHint="#808080"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#9e9e9e" />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+
+        <EditText
+            android:id="@+id/taxi_share_write_content_textview"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_above="@+id/linearLayout3"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="내용을 입력해 주세요."
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="14dp"
+            android:paddingTop="14dp"
+            android:textColor="#5c5c5c"
+            android:textColorHint="#808080"
+            android:textSize="15sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/linearLayout3"
+            android:background="#9e9e9e" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/taxi_share_write_info_text"
+                android:textColor="#5c5c5c"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:paddingTop="5dp"
+                android:text="@string/taxi_share_write_info_text1"
+                android:textColor="#e53935"
+                android:textSize="16sp" />
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
