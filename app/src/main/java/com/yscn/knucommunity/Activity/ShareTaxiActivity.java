@@ -201,6 +201,8 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                     departureView.setText(item.getDeparture());
                     timeView.setText(getTime(item.getDeparturetime()));
                     personCountView.setText(String.valueOf(item.getShareperson().length + 1));
+                    personCountView.setBackgroundResource(item.getIsLeave().equals("0") ?
+                            R.drawable.bg_sharetaxi_general : R.drawable.bg_button_share_taxi_success);
 
                     // 31dp 양옆 마진 4dp
                     // 탑승자 이미지 뷰

@@ -710,6 +710,7 @@ public class NetworkUtil {
             for (Object rootObject : rootArray) {
                 JSONObject rootJsonObject = (JSONObject) rootObject;
                 String writer = rootJsonObject.get("writer").toString();
+                String isLeave = rootJsonObject.get("isLeave").toString();
                 String departuretime = rootJsonObject.get("departuretime").toString();
                 String destination = rootJsonObject.get("destination").toString();
                 String departure = rootJsonObject.get("departure").toString();
@@ -721,7 +722,7 @@ public class NetworkUtil {
                     personArray[i] = sharePersonArray.get(i).toString();
                 }
 
-                itemses.add(new ShareTaxiListItems(writer, departuretime, destination, departure, personArray));
+                itemses.add(new ShareTaxiListItems(writer, isLeave, departuretime, destination, departure, personArray));
             }
             return itemses;
         } else {
