@@ -56,7 +56,7 @@
     <string name="community_market_title">장터</string>
     <string name="taxi_share_phone_input"># 더욱 강력한 택시 합승 기능을 위해 필요한 휴대폰 번호를 등록해주세요.</string>
     <string name="phone_input_title">번호등록</string>
-    <string name="phone_input_hint">-빼고 입력, 예 01012345678</string>
+    <string name="phone_input_hint">번호 입력 (예: 01012345678)</string>
     <string name="warning_phone_input">핸드폰 번호를 입력해주세요</string>
     <string name="error_to_work">문제가 발생하였습니다</string>
     <string name="success_phone_input">핸드폰 번호 등록에 성공하였습니다</string>
