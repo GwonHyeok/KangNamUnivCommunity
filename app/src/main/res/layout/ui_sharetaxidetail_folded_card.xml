@@ -2,13 +2,13 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:paddingBottom="5dp"
-    android:paddingTop="5dp">
+    android:paddingBottom="7dp"
+    android:paddingTop="7dp">
 
     <com.yscn.knucommunity.CustomView.CircleImageView
         android:id="@+id/share_taxi_detail_with_circle_view"
-        android:layout_width="31dp"
-        android:layout_height="31dp"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
         android:layout_marginLeft="64dp" />
 
     <LinearLayout
@@ -25,7 +25,8 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:textColor="#474747" />
+            android:textColor="#474747"
+            android:textSize="16sp"/>
 
         <TextView
             android:id="@+id/share_taxi_detail_with_phone_view"
@@ -34,7 +35,8 @@
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
             android:paddingLeft="20dp"
-            android:textColor="#616161" />
+            android:textColor="#616161"
+            android:textSize="15sp"/>
 
     </LinearLayout>
 
@@ -44,6 +46,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:paddingRight="21dp"
+        android:paddingRight="28dp"
         android:src="@drawable/ic_sharetaxi_call" />
 </RelativeLayout>
