@@ -55,7 +55,7 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
         super.onCreate(savedInstanceState);
 
         int mMinHeaderHeight = getResources().getDimensionPixelSize(R.dimen.parallax_min_header_height);
-        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.header_height);
+        mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.parallax_header_height);
         mMinHeaderTranslation = -mMinHeaderHeight + getActionBarHeight();
 
         setContentView(R.layout.activity_notice);
