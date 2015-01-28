@@ -714,6 +714,7 @@ public class NetworkUtil {
                 String departuretime = rootJsonObject.get("departuretime").toString();
                 String destination = rootJsonObject.get("destination").toString();
                 String departure = rootJsonObject.get("departure").toString();
+                String contentid = rootJsonObject.get("contentid").toString();
                 JSONArray sharePersonArray = (JSONArray) rootJsonObject.get("shareperson");
                 int personSize = sharePersonArray.size();
                 String[] personArray = new String[personSize];
@@ -722,12 +723,57 @@ public class NetworkUtil {
                     personArray[i] = sharePersonArray.get(i).toString();
                 }
 
-                itemses.add(new ShareTaxiListItems(writer, isLeave, departuretime, destination, departure, personArray));
+                itemses.add(new ShareTaxiListItems(contentid, writer, isLeave, departuretime,
+                        destination, departure, personArray));
             }
             return itemses;
         } else {
             return null;
         }
+    }
+
+    public JSONObject getShareTaxiContent(String contentid) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        parameter.put("token", UserData.getInstance().getUserToken());
+        HttpResponse httpResponse = postData(UrlList.GET_SHARETAXI_CONTENT_URL + contentid, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+
+    /**
+     * @param contentid board content id
+     * @param isLeave   "0" is Not Leave
+     *                  "1" is Leave
+     * @return resultObject
+     */
+    public JSONObject setShareTaxiLeave(String contentid, String isLeave) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        parameter.put("token", UserData.getInstance().getUserToken());
+        parameter.put("leave", isLeave);
+        parameter.put("contentid", contentid);
+        HttpResponse httpResponse = postData(UrlList.SET_SHARETAXI_LEAVE_URL, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    /**
+     * @param contentid board content id
+     * @param isWith    "0" is not with
+     *                  "1" is with
+     * @return resultObject
+     */
+    public JSONObject setShareTaxiWith(String contentid, String isWith) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        parameter.put("token", UserData.getInstance().getUserToken());
+        parameter.put("with", isWith);
+        parameter.put("contentid", contentid);
+        HttpResponse httpResponse = postData(UrlList.SET_SHARETAXI_WITH_URL, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 
     public JSONObject writeShareTaxiBoard(String departuretime, String departure, String destination,

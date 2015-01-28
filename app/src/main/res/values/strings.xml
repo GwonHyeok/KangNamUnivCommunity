@@ -62,6 +62,13 @@
     <string name="success_phone_input">핸드폰 번호 등록에 성공하였습니다</string>
     <string name="success_board_write">글 작성을 성공하였습니다.</string>
     <string name="taxi_share_title">택시합승</string>
+    <string name="taxi_share_isLeave">택시가 출발했습니다.</string>
+    <string name="taxi_share_want_leave">택시출발</string>
+    <string name="taxi_share_leave">출발</string>
+    <string name="success_taxi_share_set_leave">택시가 출발합니다</string>
+    <string name="success_taxi_share_set_with">택시를 함께 탑니다</string>
+    <string name="taxi_share_people_count">인원 : %1$s명</string>
+    <string name="taxi_share_delay_leave">출발 대기중</string>
     <string name="taxi_share_write_departure_time">출발시간 : </string>
     <string name="taxi_share_write_departure_location">출발장소 : </string>
     <string name="taxi_share_write_destination_location">도착장소 : </string>

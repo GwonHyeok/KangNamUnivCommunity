@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp">
+
+    <com.yscn.knucommunity.CustomView.CircleImageView
+        android:id="@+id/share_taxi_detail_with_circle_view"
+        android:layout_width="31dp"
+        android:layout_height="31dp"
+        android:layout_marginLeft="64dp"
+        android:src="@drawable/ic_profile" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/share_taxi_detail_with_call_view"
+        android:layout_toRightOf="@+id/share_taxi_detail_with_circle_view"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/share_taxi_detail_with_name_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="권혁"
+            android:textColor="#474747" />
+
+        <TextView
+            android:id="@+id/share_taxi_detail_with_phone_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="010-****-****"
+            android:textColor="#616161" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/share_taxi_detail_with_call_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:paddingRight="21dp"
+        android:src="@drawable/ic_sharetaxi_call" />
+</RelativeLayout>

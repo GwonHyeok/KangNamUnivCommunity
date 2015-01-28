@@ -231,15 +231,19 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                         imageView.setLayoutParams(layoutParams);
                     }
 
+                    view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                     view.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
+                            ShareTaxiListItems tag = (ShareTaxiListItems) v.getTag();
                             Intent intent = new Intent(ShareTaxiActivity.this, ShareTaxiDetailActivity.class);
-                            intent.putExtra("writerStudentNumber", "201401239");
+                            intent.putExtra("writerStudentNumber", tag.getWriter());
+                            intent.putExtra("contentid", tag.getContentid());
+                            intent.putExtra("isLeave", tag.getIsLeave());
                             startActivity(intent);
                         }
                     });
-                    view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
+                    view.setTag(item);
                     linearLayout.addView(view);
                 }
                 clearProgressdialog.cancel();

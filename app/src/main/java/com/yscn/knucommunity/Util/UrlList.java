@@ -37,4 +37,7 @@ public class UrlList {
     public static final String GET_PHONE_NUMBER_URL = MAIN_URL + "appLogin/getPhoneNumber";
     public static final String GET_SHARETAXI_URL = MAIN_URL + "board/getShareTaxiBoardList/m/";
     public static final String WRITE_SHARETAXI_URL = MAIN_URL + "board/writeShareTaxiBoard/m/";
+    public static final String GET_SHARETAXI_CONTENT_URL = MAIN_URL + "board/getShareTaxiDetail/m/";
+    public static final String SET_SHARETAXI_LEAVE_URL = MAIN_URL + "board/leaveShareTaxi/";
+    public static final String SET_SHARETAXI_WITH_URL = MAIN_URL + "board/withShareTaxi/";
 }

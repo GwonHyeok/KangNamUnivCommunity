@@ -4,10 +4,11 @@ package com.yscn.knucommunity.Items;
  * Created by GwonHyeok on 15. 1. 28..
  */
 public class ShareTaxiListItems {
-    private String departuretime, destination, departure, writer, isLeave;
+    private String departuretime, destination, departure, writer, isLeave, contentid;
     private String[] shareperson;
 
-    public ShareTaxiListItems(String writer, String isLeave, String departuretime, String destination, String departure, String[] shareperson) {
+    public ShareTaxiListItems(String contentid, String writer, String isLeave, String departuretime, String destination, String departure, String[] shareperson) {
+        this.contentid = contentid;
         this.writer = writer;
         this.isLeave = isLeave;
         this.departuretime = departuretime;
@@ -62,5 +63,13 @@ public class ShareTaxiListItems {
 
     public void setIsLeave(String isLeave) {
         this.isLeave = isLeave;
+    }
+
+    public String getContentid() {
+        return contentid;
+    }
+
+    public void setContentid(String contentid) {
+        this.contentid = contentid;
     }
 }

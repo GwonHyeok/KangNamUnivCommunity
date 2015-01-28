@@ -34,4 +34,6 @@
     <color name="dull_studentground_detail_4">#ffde80</color>
     <color name="dull_studentground_detail_5">#e6ee9c</color>
     <color name="dull_studentground_detail_6">#ffab91</color>
+
+    <color name="share_taxi_highlight_color">#ffe96565</color>
 </resources>
