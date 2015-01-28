@@ -150,7 +150,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.board_detail_menu, menu);
+//        getMenuInflater().inflate(R.menu.board_detail_menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
 

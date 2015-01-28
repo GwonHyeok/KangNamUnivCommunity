@@ -52,7 +52,11 @@
     <string name="community_meeting_people_count">%1$s명</string>
     <string name="sharetaxi_time_format">%1$s월 %2$s년</string>
     <string name="OK">확인</string>
+    <string name="NO">아니오</string>
 
+    <string name="warning_title">경고</string>
+    <string name="want_you_delete">정말로 글을 삭제하시겠습니까?</string>
+    <string name="success_delete_board">성공적으로 글을 삭제하였습니다</string>
     <string name="community_market_title">장터</string>
     <string name="taxi_share_phone_input"># 더욱 강력한 택시 합승 기능을 위해 필요한 휴대폰 번호를 등록해주세요.</string>
     <string name="phone_input_title">번호등록</string>

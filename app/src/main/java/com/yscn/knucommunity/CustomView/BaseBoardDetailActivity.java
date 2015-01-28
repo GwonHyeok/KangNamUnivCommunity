@@ -1,6 +1,8 @@
 package com.yscn.knucommunity.CustomView;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -15,6 +17,7 @@ import android.widget.ImageView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.Activity.BoardWriteActivity;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -30,8 +33,8 @@ import java.util.Date;
  * Created by GwonHyeok on 15. 1. 11..
  */
 public abstract class BaseBoardDetailActivity extends ActionBarActivity {
-    private String board_studenuNumber, board_contentID;
     protected int BOARD_EDIT_MODE = 0X12;
+    private String board_studenuNumber, board_contentID;
 
     /**
      * 반드시 자식 액티비티에서
@@ -82,7 +85,7 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_trash) {
-            deleteBoardContent();
+            showDeleteDialog();
         } else if (item.getItemId() == R.id.action_edit) {
             editBoardContent();
         }
@@ -133,6 +136,7 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
             @Override
             protected void onPostExecute(Boolean result) {
                 if (result) {
+                    AlertToast.success(getContext(), getString(R.string.success_delete_board));
                     finish();
                 }
                 progressDialog.dismiss();
@@ -150,6 +154,23 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
             menu.getItem(1).setVisible(false);
         }
         return true;
+    }
+
+    /**
+     * 정말로 삭제할건지 다이얼로그를 띄운다.
+     */
+    protected void showDeleteDialog() {
+        new AlertDialog.Builder(getContext())
+                .setTitle(getString(R.string.warning_title))
+                .setMessage(getString(R.string.want_you_delete))
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteBoardContent();
+                    }
+                })
+                .setNegativeButton(getString(R.string.NO), null)
+                .show();
     }
 
     /**
