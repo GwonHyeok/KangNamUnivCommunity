@@ -5,8 +5,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NotificationManagerCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -36,22 +38,31 @@ import java.io.IOException;
  */
 public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements View.OnClickListener {
     private boolean isFolded = true;
+    private boolean isButton2 = false;
+    private ClearProgressDialog clearProgressDialog = null;
 
     @Override
     public void onCreate(Bundle bundle) {
         setContentView(R.layout.activity_sharetaxidetail);
         super.onCreate(bundle);
-
         setTaxiData();
-        findViewById(R.id.share_taxi_detail_with_info_root_view).setOnClickListener(this);
 
+        final String contentID = getIntent().getStringExtra("contentID");
+        findViewById(R.id.share_taxi_detail_with_info_root_view).setOnClickListener(this);
         findViewById(R.id.share_taxi_detail_replyview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getContext(), FreeBoardReplyActivity.class);
-                intent.putExtra("contentID", getIntent().getStringExtra("contentid"));
+                intent.putExtra("contentID", contentID);
                 intent.putExtra("title", "");
                 startActivity(intent);
+            }
+        });
+
+        setOnSuccessDeleteListener(new successDeleteListener() {
+            @Override
+            public void successDelete() {
+                /* 글이 삭제되었을때 처리 가능 */
             }
         });
     }
@@ -59,13 +70,11 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
     private void setTaxiData() {
         new AsyncTask<Void, Void, JSONObject>() {
             private String contentid;
-            private ClearProgressDialog dialog;
 
             @Override
             protected void onPreExecute() {
-                dialog = new ClearProgressDialog(getContext());
-                contentid = getIntent().getStringExtra("contentid");
-                dialog.show();
+                showProgressDialog();
+                contentid = getIntent().getStringExtra("contentID");
             }
 
             @Override
@@ -100,8 +109,9 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 TextView writerNameView = (TextView) profileInfoGroup.getChildAt(1);
                 TextView writeTimeView = (TextView) profileInfoGroup.getChildAt(2);
                 TextView taxiButton = (TextView) findViewById(R.id.share_taxi_detail_button);
+                TextView taxiButton2 = (TextView) findViewById(R.id.share_taxi_detail_button2);
 
-                String content = itemes.get("content").toString();
+                final String content = itemes.get("content").toString();
                 String departure = itemes.get("departure").toString();
                 String destination = itemes.get("destination").toString();
                 String writer = itemes.get("writer").toString();
@@ -126,9 +136,16 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
                 /* 나는 이미 택시를 타서 합승자 명단에 있어요 !! */
                 if (Boolean.parseBoolean(isSharePerson)) {
-                    taxiButton.setBackgroundResource(R.drawable.bg_button_share_taxi_ride);
-                    taxiButton.setText(getString(R.string.taxi_share_delay_leave));
-                    taxiButton.setClickable(false);
+                    taxiButton.setBackgroundColor(getResources().getColor(R.color.share_taxi_highlight_color));
+                    taxiButton.setText(getString(R.string.taxi_share_want_leave));
+                    taxiButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                                /* 택시 출발 하고 싶어요 버튼 */
+                            setisLeave(contentid, "1");
+                        }
+                    });
+                    isButton2 = true;
                 } else {
                 /* 택시를 타고 싶어요 */
                     taxiButton.setText(getString(R.string.taxi_share_title));
@@ -150,6 +167,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                     taxiButton.setTextColor(getResources().getColor(R.color.share_taxi_highlight_color));
                     peopleCountTextView.setTextColor(getResources().getColor(R.color.share_taxi_highlight_color));
                     taxiButton.setClickable(false);
+                    isButton2 = false;
                 }
 
                 /* 글 작성자가 자신의 글에 들어왔는데 아직 출발을 안한 상태 */
@@ -165,6 +183,20 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                             }
                         });
                     }
+                    isButton2 = false;
+                }
+
+
+                /* isButton2 가 TRUE 일때 버튼이 보이고 택시 내리는 기능 필요 */
+                taxiButton2.setVisibility(isButton2 ? View.VISIBLE : View.INVISIBLE);
+                if (isButton2) {
+                    taxiButton2.setText(getString(R.string.taxi_share_set_with_cancel));
+                    taxiButton2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            setisWith(contentid, "0");
+                        }
+                    });
                 }
 
                 /* 데이터 정보 보여줌 */
@@ -175,6 +207,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
                     ViewGroup profileGroup = (ViewGroup) profileImageGroup.getChildAt(0);
                     ViewGroup foledGroup = (ViewGroup) findViewById(R.id.share_taxi_detail_with_folding_view);
+
                     profileGroup.removeAllViews();
                     foledGroup.removeAllViews();
 
@@ -192,19 +225,15 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                         layoutParams.height = size;
                         layoutParams.setMargins(margin, 0, margin, 0);
                         circleImageView.setLayoutParams(layoutParams);
-
-                        ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentnumber,
-                                circleImageView,
-                                ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+                        setProfileImage(circleImageView, studentnumber);
 
                         /* 폴더 열렸을때 뷰에 대해서 데이터 넣어 놓기 */
                         View view = LayoutInflater.from(getContext()).inflate(R.layout.ui_sharetaxidetail_folded_card, foledGroup, false);
                         TextView foldedNameView = (TextView) view.findViewById(R.id.share_taxi_detail_with_name_view);
                         TextView foldedPhoneView = (TextView) view.findViewById(R.id.share_taxi_detail_with_phone_view);
                         CircleImageView foldedProfileView = (CircleImageView) view.findViewById(R.id.share_taxi_detail_with_circle_view);
-                        ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentnumber,
-                                foldedProfileView,
-                                ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+                        setProfileImage(foldedProfileView, studentnumber);
+
                         foldedNameView.setText(name);
                         foldedPhoneView.setText(phonenumber);
                         foledGroup.addView(view);
@@ -220,12 +249,69 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                                 startActivity(intent);
                             }
                         });
-                    }
-                }
 
-                dialog.cancel();
+                        /* 만약 작성자가 처음 선택한 사람의 인원이라면 전화 사라짐 */
+                        if (studentnumber.equals("-1")) {
+                            view.findViewById(R.id.share_taxi_detail_with_call_view).setVisibility(View.GONE);
+                            view.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    /* 눌렀을떄 정보 없다 */
+                                }
+                            });
+                        }
+                    }
+                } else {
+                    /* 같은 탑승자가 아닐경우 합승자 뷰 없앰 */
+                    sharePeopleGroup.setVisibility(View.GONE);
+                }
+                cancelProgressDialog();
             }
         }.execute();
+    }
+
+    @Override
+    protected void setProfileImage(ImageView imageView, String studentnumber) {
+        if (!studentnumber.equals("-1")) {
+            ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentnumber,
+                    imageView,
+                    ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+        } else {
+            ImageLoader.getInstance().displayImage("drawable://" + R.drawable.ic_profile,
+                    imageView,
+                    ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        /* 만약 알림에서 눌러서 온거라면 자동으로 택시 출발 처리를 해줌 */
+        /* PendingIntent 요청 할때 PendingIntent.FLAG_UPDATE_CURRENT 를 사용 해야함 */
+        boolean isFromNotify = intent.getBooleanExtra("isFromNotify", false);
+        if (isFromNotify) {
+            String contentID = intent.getStringExtra("contentID");
+            setisLeave(contentID, "1");
+        }
+        super.onNewIntent(intent);
+    }
+
+    private void showProgressDialog() {
+        if (clearProgressDialog == null) {
+            clearProgressDialog = new ClearProgressDialog(getContext());
+        }
+        if (clearProgressDialog.isShowing()) {
+            clearProgressDialog.cancel();
+        }
+        clearProgressDialog.show();
+    }
+
+    private void cancelProgressDialog() {
+        clearProgressDialog.cancel();
     }
 
     /**
@@ -234,12 +320,10 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
      */
     private void setisLeave(final String contentid, final String isLeave) {
         new AsyncTask<Void, Void, JSONObject>() {
-            private ClearProgressDialog dialog;
 
             @Override
             protected void onPreExecute() {
-                dialog = new ClearProgressDialog(getContext());
-                dialog.show();
+                showProgressDialog();
             }
 
             @Override
@@ -254,7 +338,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
             @Override
             protected void onPostExecute(JSONObject object) {
-                dialog.cancel();
+                cancelProgressDialog();
                 if (object == null) {
                     AlertToast.error(getContext(), getString(R.string.error_to_work));
                     return;
@@ -263,6 +347,9 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 String result = object.get("result").toString();
                 if (result.equals("success")) {
                     AlertToast.success(getContext(), getString(R.string.success_taxi_share_set_leave));
+
+                    /* 택시 알림 삭제 */
+                    NotificationManagerCompat.from(getContext()).cancel(0x12);
                 }
                 setTaxiData();
             }
@@ -275,12 +362,10 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
      */
     private void setisWith(final String contentid, final String isWith) {
         new AsyncTask<Void, Void, JSONObject>() {
-            private ClearProgressDialog dialog;
 
             @Override
             protected void onPreExecute() {
-                dialog = new ClearProgressDialog(getContext());
-                dialog.show();
+                showProgressDialog();
             }
 
             @Override
@@ -295,7 +380,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
             @Override
             protected void onPostExecute(JSONObject object) {
-                dialog.cancel();
+                cancelProgressDialog();
                 if (object == null) {
                     AlertToast.error(getContext(), getString(R.string.error_to_work));
                     return;
@@ -304,6 +389,13 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 String result = object.get("result").toString();
                 if (result.equals("success")) {
                     AlertToast.success(getContext(), getString(R.string.success_taxi_share_set_with));
+
+                    if (isWith.equals("0")) {
+
+                        /* 원래 타고 있던 택시라면 지워야함 */
+                        isButton2 = false;
+                        findViewById(R.id.share_taxi_detail_button2).setVisibility(View.GONE);
+                    }
                 }
                 setTaxiData();
             }
@@ -313,6 +405,20 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
     @Override
     protected void setDefaultData() {
 
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (!board_studenuNumber.equals(UserData.getInstance().getStudentNumber())) {
+            /* 지우기 */
+            menu.getItem(0).setVisible(false);
+            /* 수정 */
+            menu.getItem(1).setVisible(false);
+        } else {
+            menu.getItem(0).setVisible(true);
+            menu.getItem(1).setVisible(false);
+        }
+        return true;
     }
 
     @Override
@@ -355,6 +461,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 findViewById(R.id.share_taxi_detail_scroll_info_view).setVisibility(View.GONE);
                 findViewById(R.id.share_taxi_detail_writer_profile).setVisibility(View.GONE);
                 findViewById(R.id.share_taxi_detail_button).setVisibility(View.GONE);
+                findViewById(R.id.share_taxi_detail_button2).setVisibility(View.GONE);
                 findViewById(R.id.share_taxi_detail_content).setVisibility(View.GONE);
                 findViewById(R.id.share_taxi_detail_with_folding_view).setVisibility(View.VISIBLE);
 
@@ -362,13 +469,13 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 foldingButton.setImageResource(R.drawable.ic_unfold);
             } else {
                 ValueAnimator upWithInfoView = ValueAnimator.ofInt(
-                        ((int) locationView.getY() + locationView.getHeight() + rootView.getHeight()), 0);
+                        ((int) locationView.getY() + locationView.getHeight() + (int) rootView.getY()), 0);
 
                 upWithInfoView.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                     @Override
                     public void onAnimationUpdate(ValueAnimator animation) {
                         int y = (int) animation.getAnimatedValue();
-                        rootView.setTranslationY((float) - y);
+                        rootView.setTranslationY((float) -y);
                     }
                 });
                 upWithInfoView.setDuration(400);
@@ -377,6 +484,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 findViewById(R.id.share_taxi_detail_scroll_info_view).setVisibility(View.VISIBLE);
                 findViewById(R.id.share_taxi_detail_writer_profile).setVisibility(View.VISIBLE);
                 findViewById(R.id.share_taxi_detail_button).setVisibility(View.VISIBLE);
+                findViewById(R.id.share_taxi_detail_button2).setVisibility(isButton2 ? View.VISIBLE : View.GONE);
                 findViewById(R.id.share_taxi_detail_content).setVisibility(View.VISIBLE);
                 findViewById(R.id.share_taxi_detail_with_folding_view).setVisibility(View.GONE);
                 ImageView foldingButton = (ImageView) findViewById(R.id.share_taxi_detail_folding_button);

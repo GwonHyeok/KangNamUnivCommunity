@@ -110,7 +110,7 @@
         android:id="@+id/share_taxi_detail_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/share_taxi_detail_button"
+        android:layout_above="@+id/share_taxi_detail_button2"
         android:layout_below="@+id/share_taxi_detail_writer_profile"
         android:paddingBottom="14dp"
         android:paddingLeft="22dp"
@@ -134,6 +134,20 @@
         android:gravity="center"
         android:textColor="@android:color/white"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/share_taxi_detail_button2"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_above="@id/share_taxi_detail_button"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:background="@drawable/bg_button_share_taxi_ride"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:visibility="gone" />
 
     <!-- 합승자 정보 뷰 -->
     <RelativeLayout

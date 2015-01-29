@@ -80,7 +80,7 @@
     <string name="taxi_share_write_departure_time">출발시간 : </string>
     <string name="taxi_share_write_departure_location">출발장소 : </string>
     <string name="taxi_share_write_destination_location">도착장소 : </string>
-    <string name="taxi_share_write_share_people_count">인원수 : </string>
+    <string name="taxi_share_write_share_people_count">현재 인원수 : </string>
     <string name="taxi_share_write_departure_location_ex">(ex : 강남대 입구)</string>
     <string name="taxi_share_write_destination_location_ex">(ex : 이공관)</string>
     <string name="taxi_share_write_info_text">출발 예정시간, 출발장소, 도착장소, 인원 수가 모두 맞는지 다시 한번 확인해주세요.</string>
@@ -90,6 +90,8 @@
     <string name="warning_taxi_share_write_destination">도착장소를 입력해 주세요</string>
     <string name="warning_taxi_share_write_peoplecount">인원 수를 입력해 주세요</string>
     <string name="warning_taxi_share_write_content">내용을 입력해 주세요</string>
-
+    <string name="warning_board_write_title">제목을 입력해 주세요</string>
+    <string name="warning_board_write_content">내용을 입력해 주세요</string>
+    <string name="taxi_share_set_with_cancel">합승취소</string>
 
 </resources>

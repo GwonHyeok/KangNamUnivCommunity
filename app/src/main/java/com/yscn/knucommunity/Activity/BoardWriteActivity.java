@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
@@ -90,6 +91,18 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
     }
 
+    private boolean isValidData() {
+        if (titleView.getText().toString().isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_board_write_title));
+            return false;
+        } else if (contentView.getText().toString().isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_board_write_content));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     private void setPreContent() {
         contentID = getIntent().getStringExtra("contentid");
         Log.d(getClass().getSimpleName(), "Pre Content : " + contentID);
@@ -142,7 +155,9 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         findViewById(R.id.board_write_send).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                writeBoard();
+                if (isValidData()) {
+                    writeBoard();
+                }
             }
         });
 

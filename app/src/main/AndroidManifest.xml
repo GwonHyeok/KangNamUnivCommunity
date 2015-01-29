@@ -146,6 +146,8 @@
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.ShareTaxiDetailActivity"
+            android:clearTaskOnLaunch="true"
+            android:launchMode="singleTask"
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.PhoneNumberInputActivity"

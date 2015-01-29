@@ -417,6 +417,7 @@ public class NetworkUtil {
         multipartEntityBuilder.addTextBody("title", title, getDefaultContentType());
         multipartEntityBuilder.addTextBody("content", content, getDefaultContentType());
         multipartEntityBuilder.addTextBody("studentnumber", UserData.getInstance().getStudentNumber(), getDefaultContentType());
+        multipartEntityBuilder.addTextBody("token", UserData.getInstance().getUserToken());
         multipartEntityBuilder.addTextBody("isEditmode", String.valueOf(isEditMode));
 
         /* 수정 모드일 경우 콘텐트 아이디 post */

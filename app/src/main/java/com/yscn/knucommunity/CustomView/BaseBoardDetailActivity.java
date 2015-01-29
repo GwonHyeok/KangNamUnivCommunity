@@ -34,7 +34,8 @@ import java.util.Date;
  */
 public abstract class BaseBoardDetailActivity extends ActionBarActivity {
     protected int BOARD_EDIT_MODE = 0X12;
-    private String board_studenuNumber, board_contentID;
+    protected String board_studenuNumber, board_contentID;
+    private successDeleteListener mDeleteListener;
 
     /**
      * 반드시 자식 액티비티에서
@@ -138,10 +139,18 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
                 if (result) {
                     AlertToast.success(getContext(), getString(R.string.success_delete_board));
                     finish();
+
+                    if (mDeleteListener != null) {
+                        mDeleteListener.successDelete();
+                    }
                 }
                 progressDialog.dismiss();
             }
         }.execute();
+    }
+
+    protected void setOnSuccessDeleteListener(successDeleteListener mDeleteListener) {
+        this.mDeleteListener = mDeleteListener;
     }
 
     /**
@@ -188,8 +197,8 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
      * @return App Board Detail Time
      */
     protected String getSimpleDetailTime(String defaulttime) {
-        String dataTimeFormat = "yyyy-MM-dd hh:mm:ss";
-        String newDateTimeFormat = "yyyy.MM.dd hh:mm";
+        String dataTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        String newDateTimeFormat = "yyyy.MM.dd HH:mm";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
         SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
 
@@ -220,5 +229,9 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentNumber,
                 imageView, ImageLoaderUtil.getInstance().getDefaultOptions());
+    }
+
+    public interface successDeleteListener {
+        public void successDelete();
     }
 }

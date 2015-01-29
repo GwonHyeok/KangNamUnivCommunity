@@ -1,7 +1,11 @@
 package com.yscn.knucommunity.Activity;
 
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +20,7 @@ import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
 
@@ -31,7 +36,7 @@ import java.util.Date;
 public class ShareTaxiWriteActivity extends ActionBarActivity implements View.OnClickListener {
     private TextView departureTime;
     private EditText departure, destination, peopleCount, content;
-    private String defaultDateFormat = "yyyy.MM.DD hh:mm";
+    private String defaultDateFormat = "yyyy.MM.DD HH:mm";
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -123,6 +128,10 @@ public class ShareTaxiWriteActivity extends ActionBarActivity implements View.On
                 String result = jsonObject.get("result").toString();
 
                 if (result.equals("success")) {
+                    /* 글 작성을 성공 하였을때 알림을 띄워 놓음 */
+                    String contentid = jsonObject.get("contentid").toString();
+                    showWriterLeaveNotification(contentid);
+
                     AlertToast.success(ShareTaxiWriteActivity.this, getString(R.string.success_board_write));
                     setResult(RESULT_OK);
                     finish();
@@ -134,9 +143,28 @@ public class ShareTaxiWriteActivity extends ActionBarActivity implements View.On
         }.execute();
     }
 
+    private void showWriterLeaveNotification(String contentid) {
+        NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(this);
+        NotificationCompat.Builder notification = new NotificationCompat.Builder(this);
+
+        Intent intent = new Intent(this, ShareTaxiDetailActivity.class);
+        intent.putExtra("contentID", contentid);
+        intent.putExtra("writerStudentNumber", UserData.getInstance().getStudentNumber());
+        intent.putExtra("isFromNotify", true);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        notificationManagerCompat.notify(0x12, notification
+                .setSmallIcon(R.drawable.ic_launcher)
+                .addAction(R.drawable.ic_taxi, "택시출발", pendingIntent)
+                .setContentTitle("택시")
+                .setContentText("택시가 출발 했을경우 버튼을 누르셔야 합니다.")
+                .setOngoing(true)
+                .build());
+    }
+
     private String reFormatTime(CharSequence src_time) {
         SimpleDateFormat src_format = new SimpleDateFormat(defaultDateFormat);
-        SimpleDateFormat dst_format = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
+        SimpleDateFormat dst_format = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
         try {
             Date src_date = src_format.parse(src_time.toString());
             return dst_format.format(src_date);

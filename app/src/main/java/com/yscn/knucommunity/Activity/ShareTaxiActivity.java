@@ -240,10 +240,20 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
 
                     for (String person : item.getShareperson()) {
                         CircleImageView imageView = new CircleImageView(getContext());
-                        ImageLoader.getInstance().displayImage(
-                                UrlList.PROFILE_THUMB_IMAGE_URL + person,
-                                imageView,
-                                ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+
+                        /* 이미 있는 사람일 경우 사람 정보가 -1 로 넘어온다. */
+                        if (!person.equals("-1")) {
+                            ImageLoader.getInstance().displayImage(
+                                    UrlList.PROFILE_THUMB_IMAGE_URL + person,
+                                    imageView,
+                                    ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+                        } else {
+                            ImageLoader.getInstance().displayImage(
+                                    "drawable://" + R.drawable.ic_profile,
+                                    imageView,
+                                    ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+                        }
+
                         thumbnailView.addView(imageView);
 
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imageView.getLayoutParams();
@@ -260,7 +270,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                             ShareTaxiListItems tag = (ShareTaxiListItems) v.getTag();
                             Intent intent = new Intent(ShareTaxiActivity.this, ShareTaxiDetailActivity.class);
                             intent.putExtra("writerStudentNumber", tag.getWriter());
-                            intent.putExtra("contentid", tag.getContentid());
+                            intent.putExtra("contentID", tag.getContentid());
                             intent.putExtra("isLeave", tag.getIsLeave());
                             startActivity(intent);
                         }
@@ -329,7 +339,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
     }
 
     private String getTime(String src_time) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD hh:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
         SimpleDateFormat new_format = new SimpleDateFormat("hh:mm a");
         String dst_time = "";
         try {

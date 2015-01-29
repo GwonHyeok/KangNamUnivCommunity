@@ -14,6 +14,7 @@
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:layout_toLeftOf="@+id/share_taxi_detail_with_call_view"
         android:layout_toRightOf="@+id/share_taxi_detail_with_circle_view"
         android:orientation="vertical">
