@@ -50,8 +50,21 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignTop="@id/freeboard_reply_name"
-                android:layout_marginRight="8dp"
+                android:layout_marginRight="24dp"
                 android:textColor="#7d7d7d" />
+
+            <ImageButton
+                android:id="@+id/freeboard_reply_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/freeboard_reply_time"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/freeboard_reply_time"
+                android:background="@drawable/bg_default_select_item_effect"
+                android:padding="8dp"
+                android:src="@drawable/ic_delete_comment"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/freeboard_reply_comment"

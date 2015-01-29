@@ -661,13 +661,24 @@ public class NetworkUtil {
         JSONArray jsonArray = (JSONArray) object.get("data");
         for (Object obj : jsonArray) {
             JSONObject jsonObject = (JSONObject) obj;
+            String commentid = jsonObject.get("commentid").toString();
             String studentnumber = jsonObject.get("studentnumber").toString();
             String writername = jsonObject.get("name").toString();
             String time = jsonObject.get("time").toString();
             String comment = jsonObject.get("content").toString();
-            list.add(new CommentListItems(writername, comment, studentnumber, time));
+            list.add(new CommentListItems(commentid, writername, comment, studentnumber, time));
         }
         return list;
+    }
+
+    public JSONObject deleteComment(String commentid) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
+        parameter.put("token", UserData.getInstance().getUserToken());
+        parameter.put("commentid", commentid);
+        HttpResponse httpResponse = postData(UrlList.DELETE_BOARD_COMMENT_URL, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 
     public boolean writeComment(String contentID, String comment) throws IOException, ParseException {

@@ -5,9 +5,10 @@ package com.yscn.knucommunity.Items;
  */
 public class CommentListItems {
 
-    private String name, comment, studentnumber, time;
+    private String name, comment, studentnumber, time, commentid;
 
-    public CommentListItems(String name, String comment, String studentnumber, String time) {
+    public CommentListItems(String commentid, String name, String comment, String studentnumber, String time) {
+        this.commentid = commentid;
         this.name = name;
         this.comment = comment;
         this.studentnumber = studentnumber;
@@ -28,5 +29,9 @@ public class CommentListItems {
 
     public String getTime() {
         return time;
+    }
+
+    public String getCommentid() {
+        return commentid;
     }
 }

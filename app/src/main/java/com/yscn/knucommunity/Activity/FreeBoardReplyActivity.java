@@ -1,7 +1,9 @@
 package com.yscn.knucommunity.Activity;
 
 import android.animation.ValueAnimator;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,10 +23,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
+import com.yscn.knucommunity.Util.UserData;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -84,9 +89,50 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         }.execute();
     }
 
+    private void deleteComment(final String commentid) {
+        new AsyncTask<Void, Void, JSONObject>() {
+            private ClearProgressDialog clearProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog.show();
+            }
+
+            @Override
+            protected JSONObject doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().deleteComment(commentid);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject itemses) {
+                clearProgressDialog.cancel();
+                if (itemses == null) {
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    return;
+                }
+
+                String result = itemses.get("result").toString();
+                if (result.equals("success")) {
+                    AlertToast.success(getContext(), getString(R.string.success_board_comment_delete));
+                    removeScrollViewData();
+                    getCommentData();
+                } else if (result.equals("fail")) {
+                    /* 토큰이나 데이터, 혹은 자기글이 아님 */
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                }
+            }
+        }.execute();
+    }
+
     private void addCommentData(ArrayList<CommentListItems> itemses) {
         LinearLayout mainView = (LinearLayout) findViewById(R.id.freeboard_reply_scrollview);
-        for (CommentListItems dataObject : itemses) {
+        for (final CommentListItems dataObject : itemses) {
             View view = LayoutInflater.from(this).inflate(R.layout.ui_freeboardreply, mainView, false);
             TextView nameTextView = (TextView) view.findViewById(R.id.freeboard_reply_name);
             TextView commentTextView = (TextView) view.findViewById(R.id.freeboard_reply_comment);
@@ -105,7 +151,32 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
             commentTextView.setText(dataObject.getComment());
             timeTextView.setText(getSimpleTime(dataObject.getTime()));
             mainView.addView(view);
+
+            /* if You Are Write Comment User Visible Delete Icon */
+            if (dataObject.getStudentnumber().equals(UserData.getInstance().getStudentNumber())) {
+                view.findViewById(R.id.freeboard_reply_delete).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.freeboard_reply_delete).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showDeleteCommentDialog(dataObject.getCommentid());
+                    }
+                });
+            }
         }
+    }
+
+    private void showDeleteCommentDialog(final String commentid) {
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.warning_title)
+                .setMessage(R.string.want_you_delete_comment)
+                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteComment(commentid);
+                    }
+                })
+                .setNegativeButton(R.string.NO, null)
+                .show();
     }
 
     private void removeScrollViewData() {

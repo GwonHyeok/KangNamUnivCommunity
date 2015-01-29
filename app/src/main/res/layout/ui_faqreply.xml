@@ -34,6 +34,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@id/faq_reply_profile"
                 android:layout_toRightOf="@id/faq_reply_profile"
+                android:text="이름"
                 android:textColor="#FF414141"
                 android:textSize="18sp" />
 
@@ -44,7 +45,19 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:layout_marginRight="25dp"
+                android:text="2014-10-12 12:31"
                 android:textColor="#757575" />
+
+            <ImageButton
+                android:id="@+id/faq_reply_delete_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_default_select_item_effect"
+                android:padding="8dp"
+                android:src="@drawable/ic_delete_comment"
+                android:visibility="gone" />
         </RelativeLayout>
 
     </RelativeLayout>

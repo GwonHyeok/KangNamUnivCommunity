@@ -1,7 +1,9 @@
 package com.yscn.knucommunity.Activity;
 
 import android.animation.ValueAnimator;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,7 +24,9 @@ import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.NetworkUtil;
+import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
@@ -101,7 +105,7 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
     private void addReplyData(ArrayList<CommentListItems> itemses) {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fatdetail_main_scroll_activity);
 
-        for (CommentListItems dataObject : itemses) {
+        for (final CommentListItems dataObject : itemses) {
             View replyView = LayoutInflater.from(this).inflate(R.layout.ui_faqreply, linearLayout, false);
 
             ImageView profileView = (ImageView) replyView.findViewById(R.id.faq_reply_profile);
@@ -115,7 +119,73 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
             setProfileImage(profileView, dataObject.getStudentnumber());
 
             linearLayout.addView(replyView);
+
+            if (dataObject.getStudentnumber().equals(UserData.getInstance().getStudentNumber())) {
+                View view = replyView.findViewById(R.id.faq_reply_delete_comment);
+                view.setVisibility(View.VISIBLE);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showDeleteCommentDialog(dataObject.getCommentid());
+                    }
+                });
+            }
         }
+    }
+
+    private void showDeleteCommentDialog(final String commentid) {
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.warning_title)
+                .setMessage(R.string.want_you_delete_comment)
+                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteComment(commentid);
+                    }
+                })
+                .setNegativeButton(R.string.NO, null)
+                .show();
+    }
+
+    private void deleteComment(final String commentid) {
+        new AsyncTask<Void, Void, JSONObject>() {
+            private ClearProgressDialog clearProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog.show();
+            }
+
+            @Override
+            protected JSONObject doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().deleteComment(commentid);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject itemses) {
+                clearProgressDialog.cancel();
+                if (itemses == null) {
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    return;
+                }
+
+                String result = itemses.get("result").toString();
+                if (result.equals("success")) {
+                    AlertToast.success(getContext(), getString(R.string.success_board_comment_delete));
+                    removeAllReplyData();
+                    addComment();
+                } else if (result.equals("fail")) {
+                    /* 토큰이나 데이터, 혹은 자기글이 아님 */
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                }
+            }
+        }.execute();
     }
 
     private void removeAllReplyData() {

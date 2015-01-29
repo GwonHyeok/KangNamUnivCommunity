@@ -40,4 +40,5 @@ public class UrlList {
     public static final String GET_SHARETAXI_CONTENT_URL = MAIN_URL + "board/getShareTaxiDetail/m/";
     public static final String SET_SHARETAXI_LEAVE_URL = MAIN_URL + "board/leaveShareTaxi/";
     public static final String SET_SHARETAXI_WITH_URL = MAIN_URL + "board/withShareTaxi/";
+    public static final String DELETE_BOARD_COMMENT_URL = MAIN_URL + "board/deleteComment/m/";
 }
