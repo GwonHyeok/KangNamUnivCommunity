@@ -173,7 +173,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
 
     @Override
     protected int getStatusBarColor() {
-        return 0xFFFAFAFA;
+        return getResources().getColor(R.color.board_white_pirmary_dark_color);
     }
 
     @Override

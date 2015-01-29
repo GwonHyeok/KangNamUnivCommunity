@@ -131,7 +131,7 @@ public class GreenLightReplyActivity extends ActionBarActivity implements View.O
 
     private void actionBarInit() {
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.board_white_main_color));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.board_white_pirmary_dark_color));
         }
 
          /* 액션바 */

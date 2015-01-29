@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,7 +65,17 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
         }
 
         /* remove ActionBar */
-        getSupportActionBar().hide();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        toolbar.setNavigationIcon(R.drawable.ic_nav_menu_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleSlidingMenu();
+            }
+        });
 
         /* Resize view Child From Scrollview  */
         final ScrollView scrollView = (ScrollView) findViewById(R.id.studentgroup_scrollview);
@@ -104,7 +115,6 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
         findViewById(R.id.studentground_shuttlebus).setOnClickListener(this);
         findViewById(R.id.studentground_library).setOnClickListener(this);
         findViewById(R.id.studentground_taxi).setOnClickListener(this);
-        findViewById(R.id.open_menu).setOnClickListener(this);
         findViewById(R.id.studentground_map).setOnClickListener(this);
     }
 

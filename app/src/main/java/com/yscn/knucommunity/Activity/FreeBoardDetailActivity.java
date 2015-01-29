@@ -142,7 +142,7 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
 
     @Override
     protected int getStatusBarColor() {
-        return getResources().getColor(R.color.board_white_main_color);
+        return getResources().getColor(R.color.board_white_pirmary_dark_color);
     }
 
     @Override

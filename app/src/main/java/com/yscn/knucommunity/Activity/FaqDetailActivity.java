@@ -153,7 +153,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
             protected void onPostExecute(JSONObject value) {
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = value.get("content").toString();
-                String title = value.get("title").toString();
+                String title = getDefaulttFaqTitle(value.get("title").toString());
                 JSONArray fileArray = (JSONArray) value.get("file");
 
                 ((TextView) findViewById(R.id.faq_detail_content)).setText(content);
@@ -221,7 +221,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
     @Override
     protected int getStatusBarColor() {
-        return getResources().getColor(R.color.board_white_main_color);
+        return getResources().getColor(R.color.board_white_pirmary_dark_color);
     }
 
     private String getDefaulttFaqTitle(String title) {

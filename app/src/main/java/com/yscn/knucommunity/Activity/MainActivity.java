@@ -30,7 +30,7 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
 
     private void viewInit() {
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xFFEBECF0);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.board_white_pirmary_dark_color));
         }
         getSupportActionBar().hide();
     }
