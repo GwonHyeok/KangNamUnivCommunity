@@ -388,13 +388,15 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
                 String result = object.get("result").toString();
                 if (result.equals("success")) {
-                    AlertToast.success(getContext(), getString(R.string.success_taxi_share_set_with));
+                    if (isWith.equals("1")) {
+                        AlertToast.success(getContext(), getString(R.string.success_taxi_share_set_with));
+                    }
 
                     if (isWith.equals("0")) {
-
                         /* 원래 타고 있던 택시라면 지워야함 */
                         isButton2 = false;
                         findViewById(R.id.share_taxi_detail_button2).setVisibility(View.GONE);
+                        AlertToast.success(getContext(), getString(R.string.success_taxi_share_set_unwith));
                     }
                 }
                 setTaxiData();
