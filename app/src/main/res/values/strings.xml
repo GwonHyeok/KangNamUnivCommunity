@@ -75,7 +75,7 @@
     <string name="taxi_share_leave">출발</string>
     <string name="success_taxi_share_set_leave">택시가 출발합니다</string>
     <string name="success_taxi_share_set_with">택시를 함께 탑니다</string>
-    <string name="success_taxi_share_set_unwith">택시를 합께 타지 않습니다</string>
+    <string name="success_taxi_share_set_unwith">택시 합승이 취소되었습니다</string>
     <string name="taxi_share_people_count">인원 : %1$s명</string>
     <string name="taxi_share_delay_leave">출발 대기중</string>
     <string name="taxi_share_write_departure_time">출발시간 : </string>
