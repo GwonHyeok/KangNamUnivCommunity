@@ -189,10 +189,17 @@ public class ShareTaxiWriteActivity extends ActionBarActivity implements View.On
         } else if (content.getText().toString().isEmpty()) {
             AlertToast.warning(this, getString(R.string.warning_taxi_share_write_content));
             return false;
+        } else if (Integer.parseInt(peopleCount.getText().toString()) < 1 || Integer.parseInt(peopleCount.getText().toString()) >= 4) {
+            /*
+             * 최대로 택시가 탈 수 있는 사람이 4명 이므로
+             * 현재 인원수가 1명보다 적거나 4명보다 같거나 크면 인원수가 이상함
+             * ex) 0명 혹은 4명,5명
+             */
+            AlertToast.warning(this, getString(R.string.warning_taxi_share_write_invalidpeoplecount));
+            return false;
         } else {
             return true;
         }
-
     }
 
     private void showDateTimePicker() {

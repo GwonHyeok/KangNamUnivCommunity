@@ -58,6 +58,7 @@
 
     <string name="warning_title">경고</string>
     <string name="want_you_delete">정말로 글을 삭제하시겠습니까?</string>
+    <string name="want_you_board_edit">정말로 글을 수정하시겠습니까?</string>
     <string name="want_you_delete_comment">정말로 삭제하시겠습니까?</string>
     <string name="success_delete_board">성공적으로 글을 삭제하였습니다</string>
     <string name="community_market_title">장터</string>
@@ -90,6 +91,8 @@
     <string name="warning_taxi_share_write_departure">출발장소를 입력해 주세요</string>
     <string name="warning_taxi_share_write_destination">도착장소를 입력해 주세요</string>
     <string name="warning_taxi_share_write_peoplecount">현재 인원 수를 입력해 주세요</string>
+    <string name="warning_taxi_share_write_invalidpeoplecount">현재 인원 수는 한명 이상 새명 이하여야합니다</string>
+    <string name="error_notexist_board_content">더이상 존재하지 않는 글입니다</string>
     <string name="warning_taxi_share_write_content">내용을 입력해 주세요</string>
     <string name="warning_board_write_title">제목을 입력해 주세요</string>
     <string name="warning_board_write_content">내용을 입력해 주세요</string>

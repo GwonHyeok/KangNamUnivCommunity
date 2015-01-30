@@ -59,10 +59,12 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
             }
         });
 
+        /* 글이 삭제되었을때 처리 가능 */
         setOnSuccessDeleteListener(new successDeleteListener() {
             @Override
             public void successDelete() {
-                /* 글이 삭제되었을때 처리 가능 */
+                /* 글이 삭제 되었을 경우 알림이 계속 존재 할 수 도 있으므로 제거 */
+                cancelTaxiNotify();
             }
         });
     }
@@ -90,6 +92,27 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
             @Override
             protected void onPostExecute(JSONObject itemes) {
+                if (itemes == null) {
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    cancelProgressDialog();
+                    return;
+                }
+                String result = itemes.get("result").toString();
+                if (result.equals("fail")) {
+                    String reason = itemes.get("reason").toString();
+
+                    /* 개시글이 존재 하지 않음 */
+                    if (reason.equals("notexist")) {
+                        /* 혹시 택시 알림이 계속 존재한다면 없앰 */
+                        cancelTaxiNotify();
+                        AlertToast.error(getContext(), getString(R.string.error_notexist_board_content));
+                        finish();
+                    }
+
+                    cancelProgressDialog();
+                    return;
+                }
+
                 Log.d(getClass().getSimpleName(), itemes.toJSONString());
 
                 ImageLoaderUtil.getInstance().initImageLoader();
@@ -270,6 +293,10 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
         }.execute();
     }
 
+    private void cancelTaxiNotify() {
+        NotificationManagerCompat.from(getContext()).cancel(0x12);
+    }
+
     @Override
     protected void setProfileImage(ImageView imageView, String studentnumber) {
         if (!studentnumber.equals("-1")) {
@@ -349,7 +376,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                     AlertToast.success(getContext(), getString(R.string.success_taxi_share_set_leave));
 
                     /* 택시 알림 삭제 */
-                    NotificationManagerCompat.from(getContext()).cancel(0x12);
+                    cancelTaxiNotify();
                 }
                 setTaxiData();
             }
@@ -430,7 +457,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
     @Override
     protected int getStatusBarColor() {
-        return 0;
+        return getResources().getColor(R.color.board_white_pirmary_dark_color);
     }
 
     @Override
