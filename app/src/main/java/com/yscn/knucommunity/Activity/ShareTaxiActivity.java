@@ -356,7 +356,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
     }
 
     private String getTime(String src_time) {
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-DD HH:mm:ss");
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         SimpleDateFormat new_format = new SimpleDateFormat("hh:mm a");
         String dst_time = "";
         try {
