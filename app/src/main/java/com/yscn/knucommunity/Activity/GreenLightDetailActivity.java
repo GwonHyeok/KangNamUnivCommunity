@@ -184,7 +184,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
         } else if (id == R.id.greenlight_light_off) {
             clickGreenRightButton(false);
         } else if (id == R.id.view) {
-            Intent intent = new Intent(this, GreenLightReplyActivity.class);
+            Intent intent = new Intent(this, FreeBoardReplyActivity.class);
             intent.putExtra("contentID", getIntent().getStringExtra("contentID"));
             intent.putExtra("title", getIntent().getStringExtra("title"));
             startActivity(intent);

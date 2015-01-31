@@ -24,14 +24,26 @@ public class AlertToast {
         showToast(context, string, rootLayout);
     }
 
+    public static void success(Context context, int resid) {
+        success(context, context.getString(resid));
+    }
+
     public static void warning(Context context, String string) {
         LinearLayout rootLayout = getView(context, 0xFFF6BE1A);
         showToast(context, string, rootLayout);
     }
 
+    public static void warning(Context context, int resid) {
+        warning(context, context.getString(resid));
+    }
+
     public static void error(Context context, String string) {
         LinearLayout rootLayout = getView(context, 0xFFF44336);
         showToast(context, string, rootLayout);
+    }
+
+    public static void error(Context context, int resid) {
+        error(context, context.getString(resid));
     }
 
     private static void showToast(Context context, String string, View customView) {

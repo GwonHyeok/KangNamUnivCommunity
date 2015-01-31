@@ -25,6 +25,8 @@ import com.yscn.knucommunity.CustomView.ScrollTabHolder;
 import com.yscn.knucommunity.CustomView.ScrollTabHolderFragment;
 import com.yscn.knucommunity.Items.NoticeItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import java.io.IOException;
@@ -81,6 +83,13 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
             @Override
             protected void onPreExecute() {
+                boolean isOnline = ApplicationUtil.getInstance().isOnlineNetwork();
+                if (!isOnline) {
+                    cancel(true);
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    finish();
+                    return;
+                }
                 clearProgressDialog = new ClearProgressDialog(getContext());
                 clearProgressDialog.show();
             }
@@ -97,6 +106,11 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
             @Override
             protected void onPostExecute(HashMap<String, ArrayList<NoticeItems>> itemes) {
+                if (itemes == null) {
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                    finish();
+                    return;
+                }
                 mPagerAdapter = new PagerAdapter(getSupportFragmentManager(), itemes);
                 mPagerAdapter.setTabHolderScrollingContent(NoticeActivity.this);
                 mViewPager.setAdapter(mPagerAdapter);

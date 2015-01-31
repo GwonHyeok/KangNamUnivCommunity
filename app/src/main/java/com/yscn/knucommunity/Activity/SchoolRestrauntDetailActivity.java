@@ -15,6 +15,8 @@ import android.widget.TextView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -45,8 +47,13 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
 
             @Override
             protected void onPreExecute() {
-                dialog = new ClearProgressDialog(getContext());
-                dialog.show();
+                if (ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    dialog = new ClearProgressDialog(getContext());
+                    dialog.show();
+                } else {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(false);
+                }
             }
 
             @Override
@@ -66,9 +73,7 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
                 }
                 try {
                     return NetworkUtil.getInstance().getRestrauntInfo(schoolRestraunt);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
+                } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -76,12 +81,16 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
 
             @Override
             protected void onPostExecute(ArrayList<SchoolRestrauntItems> itemes) {
-                StringBuilder builder = new StringBuilder();
-                for (SchoolRestrauntItems iteme : itemes) {
-                    builder.append(iteme.getFoodName()).append(" : ").append(iteme.getFoodPrice()).append("\n");
+                if (itemes != null) {
+                    StringBuilder builder = new StringBuilder();
+                    for (SchoolRestrauntItems iteme : itemes) {
+                        builder.append(iteme.getFoodName()).append(" : ").append(iteme.getFoodPrice()).append("\n");
+                    }
+                    TextView textView = (TextView) findViewById(R.id.restrauntdetail_text);
+                    textView.setText(builder.toString());
+                } else {
+                    AlertToast.error(getContext(), R.string.error_to_work);
                 }
-                TextView textView = (TextView) findViewById(R.id.restrauntdetail_text);
-                textView.setText(builder.toString());
                 dialog.cancel();
             }
         }.execute(restraunt);

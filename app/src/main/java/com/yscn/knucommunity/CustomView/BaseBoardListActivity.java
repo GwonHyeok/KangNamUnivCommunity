@@ -26,6 +26,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.Activity.BoardWriteActivity;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -147,6 +149,13 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
 
             @Override
             protected void onPreExecute() {
+                boolean isOnline = ApplicationUtil.getInstance().isOnlineNetwork();
+                if (!isOnline) {
+                    cancel(true);
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    swipeRefreshLayout.setRefreshing(false);
+                    return;
+                }
                 progressDialog = new ClearProgressDialog(getContext());
                 if (!swipeRefreshLayout.isRefreshing()) {
                     progressDialog.show();
@@ -165,6 +174,9 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
 
             @Override
             protected void onPostExecute(ArrayList<DefaultBoardListItems> listItemses) {
+                if (listItemses == null) {
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                }
                 if (listItemses != null) {
                     addScrollViewData(listItemses);
                 }

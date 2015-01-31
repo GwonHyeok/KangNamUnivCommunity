@@ -28,7 +28,9 @@ import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.CustomView.NotifyFooterScrollView;
 import com.yscn.knucommunity.Items.DeliveryListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Ui.DeliverySpinnerAdapter;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -64,8 +66,14 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
 
             @Override
             protected void onPreExecute() {
-                clearProgressDialog = new ClearProgressDialog(DeliveryFoodActivity.this);
-                clearProgressDialog.show();
+                if (ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    clearProgressDialog = new ClearProgressDialog(DeliveryFoodActivity.this);
+                    clearProgressDialog.show();
+                } else {
+                    refreshLayout.setRefreshing(false);
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(true);
+                }
             }
 
             @Override
@@ -80,21 +88,25 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
 
             @Override
             protected void onPostExecute(ArrayList<DeliveryListItems> list) {
-                NotifyFooterScrollView scrollView = (NotifyFooterScrollView) findViewById(R.id.delivery_scrollview);
-                LinearLayout dataView = (LinearLayout) scrollView.getChildAt(0);
-                ImageLoaderUtil.getInstance().initImageLoader();
+                if (list != null) {
+                    NotifyFooterScrollView scrollView = (NotifyFooterScrollView) findViewById(R.id.delivery_scrollview);
+                    LinearLayout dataView = (LinearLayout) scrollView.getChildAt(0);
+                    ImageLoaderUtil.getInstance().initImageLoader();
 
-                for (DeliveryListItems item : list) {
-                    View view = LayoutInflater.from(DeliveryFoodActivity.this).inflate(R.layout.ui_deliveryfood_card, dataView, false);
-                    TextView nameView = (TextView) view.findViewById(R.id.title);
-                    TextView phoneView = (TextView) view.findViewById(R.id.phonen_textview);
-                    ImageView foodView = (ImageView) view.findViewById(R.id.delivery_food_iamgeview);
+                    for (DeliveryListItems item : list) {
+                        View view = LayoutInflater.from(DeliveryFoodActivity.this).inflate(R.layout.ui_deliveryfood_card, dataView, false);
+                        TextView nameView = (TextView) view.findViewById(R.id.title);
+                        TextView phoneView = (TextView) view.findViewById(R.id.phonen_textview);
+                        ImageView foodView = (ImageView) view.findViewById(R.id.delivery_food_iamgeview);
 
-                    nameView.setText(item.getName());
-                    phoneView.setText(item.getTelnum());
-                    ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getNoCacheImageOptions());
-                    view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
-                    dataView.addView(view);
+                        nameView.setText(item.getName());
+                        phoneView.setText(item.getTelnum());
+                        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getNoCacheImageOptions());
+                        view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
+                        dataView.addView(view);
+                    }
+                } else {
+                    AlertToast.error(getContext(), R.string.error_to_work);
                 }
                 refreshLayout.setRefreshing(false);
                 clearProgressDialog.cancel();

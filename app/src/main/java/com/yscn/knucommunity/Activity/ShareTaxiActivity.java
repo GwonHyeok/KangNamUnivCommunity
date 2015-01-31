@@ -133,8 +133,13 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
 
             @Override
             protected void onPreExecute() {
-                clearprogressdialog = new ClearProgressDialog(getContext());
-                clearprogressdialog.show();
+                if (ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    clearprogressdialog = new ClearProgressDialog(getContext());
+                    clearprogressdialog.show();
+                } else {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(false);
+                }
             }
 
             @Override
@@ -184,13 +189,18 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
 
             @Override
             protected void onPreExecute() {
-                clearProgressdialog = new ClearProgressDialog(getContext());
-                clearProgressdialog.show();
-                int position = viewPager.getCurrentItem();
-                String day = mDate[position][1];
-                String month = mDate[position][0];
-                String year = mYear[position];
-                time = year + "-" + month + "-" + day;
+                if (ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    clearProgressdialog = new ClearProgressDialog(getContext());
+                    clearProgressdialog.show();
+                    int position = viewPager.getCurrentItem();
+                    String day = mDate[position][1];
+                    String month = mDate[position][0];
+                    String year = mYear[position];
+                    time = year + "-" + month + "-" + day;
+                } else {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(false);
+                }
             }
 
             @Override
@@ -205,6 +215,13 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
 
             @Override
             protected void onPostExecute(ArrayList<ShareTaxiListItems> itemes) {
+                if (itemes == null) {
+                    clearProgressdialog.cancel();
+                    swipeRefreshLayout.setRefreshing(false);
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                    return;
+                }
+
                 LinearLayout linearLayout = (LinearLayout) findViewById(R.id.share_taxi_data_view);
                 ImageLoaderUtil.getInstance().initImageLoader();
 

@@ -17,6 +17,8 @@ import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.CustomView.NotifyFooterScrollView;
 import com.yscn.knucommunity.Items.MeetingListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -74,6 +76,12 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
 
             @Override
             protected void onPreExecute() {
+                if (!ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(true);
+                    swipeRefreshLayout.setRefreshing(false);
+                    return;
+                }
                 clearProgressDialog = new ClearProgressDialog(getContext());
                 if (!swipeRefreshLayout.isRefreshing()) {
                     clearProgressDialog.show();
@@ -93,7 +101,11 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
 
             @Override
             protected void onPostExecute(ArrayList<MeetingListItems> itemses) {
-                addScrollViewData(itemses);
+                if (itemses == null) {
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                } else {
+                    addScrollViewData(itemses);
+                }
                 swipeRefreshLayout.setRefreshing(false);
                 clearProgressDialog.cancel();
             }

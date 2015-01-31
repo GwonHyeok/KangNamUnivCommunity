@@ -16,7 +16,9 @@ import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Ui.StudentCouncilAdapter;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -81,17 +83,20 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
 
             @Override
             protected void onPreExecute() {
-                dialog = new ClearProgressDialog(StudentCouncilActivity.this);
-                dialog.show();
+                if (ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    dialog = new ClearProgressDialog(StudentCouncilActivity.this);
+                    dialog.show();
+                } else {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(false);
+                }
             }
 
             @Override
             protected HashMap<String, ArrayList<StudentCouncilListItems>> doInBackground(Void... voids) {
                 try {
                     return NetworkUtil.getInstance().getCouncilInfo();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
+                } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -105,6 +110,7 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
                     councilAdapter.setInfoMap(dataSet);
                 } else {
                     // Error Occure
+                    AlertToast.error(getContext(), R.string.error_to_work);
                 }
                 viewPager.setAdapter(councilAdapter);
                 tabStrip.setViewPager(viewPager);

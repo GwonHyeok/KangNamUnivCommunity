@@ -18,7 +18,6 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
@@ -179,6 +178,11 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
             @Override
             protected void onPreExecute() {
+                if (!ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(true);
+                    return;
+                }
                 dialog = new ClearProgressDialog(getContext());
                 dialog.show();
             }
@@ -203,9 +207,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
                     setResult(RESULT_OK);
                     finish();
                 } else {
-                    // 토스트 말고 다른 Widget 사용
-                    // 변경 요망
-                    Toast.makeText(getContext(), "글쓰기 실패", Toast.LENGTH_SHORT).show();
+                    AlertToast.error(getContext(), R.string.error_board_write);
                 }
                 dialog.cancel();
             }

@@ -17,6 +17,7 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -63,6 +64,12 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
 
             @Override
             protected void onPostExecute(JSONObject object) {
+
+                if (object == null) {
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    progressDialog.cancel();
+                    return;
+                }
                 /* 에러 처리 필요함 NULL 일 경우 */
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = object.get("content").toString();

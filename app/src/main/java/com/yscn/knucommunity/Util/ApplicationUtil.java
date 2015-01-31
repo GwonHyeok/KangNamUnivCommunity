@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
@@ -29,6 +31,24 @@ public class ApplicationUtil {
             instance = new ApplicationUtil();
         }
         return instance;
+    }
+
+    public boolean isOnlineNetwork() {
+        Context context = ApplicationContextProvider.getContext();
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo[] networkInfos = connectivityManager.getAllNetworkInfo();
+
+        if (networkInfos == null) {
+            return false;
+        }
+
+        for (NetworkInfo networkInfo : networkInfos) {
+            NetworkInfo.State state = networkInfo.getState();
+            if (state == NetworkInfo.State.CONNECTED || state == NetworkInfo.State.CONNECTING) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public Bitmap decodeSampledBitmap(Resources res, int resId, int reqWidth, int reqHeight) {

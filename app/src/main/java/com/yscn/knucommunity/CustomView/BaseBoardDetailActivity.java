@@ -88,7 +88,7 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
         if (item.getItemId() == R.id.action_trash) {
             showDeleteDialog();
         } else if (item.getItemId() == R.id.action_edit) {
-            editBoardContent();
+            showEditDialog();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -179,6 +179,20 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
                     }
                 })
                 .setNegativeButton(getString(R.string.NO), null)
+                .show();
+    }
+
+    protected void showEditDialog() {
+        new AlertDialog.Builder(getContext())
+                .setTitle(R.string.warning_title)
+                .setMessage(R.string.want_you_board_edit)
+                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        editBoardContent();
+                    }
+                })
+                .setNegativeButton(R.string.NO, null)
                 .show();
     }
 

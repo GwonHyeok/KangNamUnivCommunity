@@ -18,7 +18,9 @@ import android.widget.TextView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Ui.MajorSimpleListAdapter;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -44,17 +46,20 @@ public class MajorInfoActivity extends ActionBarActivity implements AdapterView.
 
             @Override
             protected void onPreExecute() {
-                dialog = new ClearProgressDialog(getContext());
-                dialog.show();
+                if (ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    dialog = new ClearProgressDialog(getContext());
+                    dialog.show();
+                } else {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(false);
+                }
             }
 
             @Override
             protected ArrayList<MajorSimpleListItems> doInBackground(Void... voids) {
                 try {
                     return NetworkUtil.getInstance().getMajorSimpleInfo();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ParseException e) {
+                } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
                 return null;
@@ -63,13 +68,17 @@ public class MajorInfoActivity extends ActionBarActivity implements AdapterView.
             @Override
             protected void onPostExecute(ArrayList<MajorSimpleListItems> itemses) {
                 dialog.cancel();
-                ListView listView = new ListView(getContext());
-                MajorSimpleListAdapter adapter = new MajorSimpleListAdapter(getContext(), android.R.layout.simple_list_item_1, itemses);
-                listView.setAdapter(adapter);
-                listView.setOnItemClickListener(getActivity());
-                listView.setDivider(new ColorDrawable(0xFFBDBDBD));
-                listView.setDividerHeight(1);
-                setContentView(listView);
+                if (itemses != null) {
+                    ListView listView = new ListView(getContext());
+                    MajorSimpleListAdapter adapter = new MajorSimpleListAdapter(getContext(), android.R.layout.simple_list_item_1, itemses);
+                    listView.setAdapter(adapter);
+                    listView.setOnItemClickListener(getActivity());
+                    listView.setDivider(new ColorDrawable(0xFFBDBDBD));
+                    listView.setDividerHeight(1);
+                    setContentView(listView);
+                } else {
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                }
             }
         }.execute();
     }

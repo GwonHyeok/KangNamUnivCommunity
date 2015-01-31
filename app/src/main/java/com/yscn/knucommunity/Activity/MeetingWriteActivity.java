@@ -11,10 +11,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -26,6 +26,8 @@ import java.io.IOException;
  */
 public class MeetingWriteActivity extends ActionBarActivity implements View.OnClickListener {
     private boolean isMale = true;
+    private TextView genderTextView;
+    private EditText contentView, schoolView, majorView, countView;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -36,6 +38,12 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
     }
 
     private void viewInit() {
+        genderTextView = (TextView) findViewById(R.id.meeting_write_gender_textview);
+        contentView = (EditText) findViewById(R.id.meeting_content_edittext);
+        schoolView = (EditText) findViewById(R.id.meeting_school_edittext);
+        majorView = (EditText) findViewById(R.id.meeting_major_edittext);
+        countView = (EditText) findViewById(R.id.meeting_studentcount_edittext);
+
         findViewById(R.id.meeting_write_gender).setOnClickListener(this);
         findViewById(R.id.button).setOnClickListener(this);
 
@@ -81,6 +89,27 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
         }).setTitle(R.string.community_gender_dialog_title).show();
     }
 
+    private boolean checkValidData() {
+        if (genderTextView.getText().toString().isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_meeting_set_gender));
+            return false;
+        } else if (contentView.getText().toString().isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_board_write_content));
+            return false;
+        } else if (schoolView.getText().toString().isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_meeting_set_schoolname));
+            return false;
+        } else if (majorView.getText().toString().isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_meeting_set_majorname));
+            return false;
+        } else if (countView.getText().toString().isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_meeting_set_peoplecount));
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     private void writeMeetingBoard() {
         new AsyncTask<Void, Void, Boolean>() {
             private ClearProgressDialog clearProgressDialog;
@@ -117,11 +146,11 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
             @Override
             protected void onPostExecute(Boolean bool) {
                 if (bool) {
+                    AlertToast.success(getContext(), getString(R.string.success_board_write));
                     setResult(RESULT_OK);
                     finish();
                 } else {
-                    /* 변경 요망 */
-                    Toast.makeText(getContext(), "글을 올리는 중에 문제", Toast.LENGTH_SHORT).show();
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
                 }
             }
         }.execute();
@@ -139,7 +168,9 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
                 showGenderSelectDialog();
                 break;
             case R.id.button:
-                writeMeetingBoard();
+                if (checkValidData()) {
+                    writeMeetingBoard();
+                }
                 break;
         }
     }
