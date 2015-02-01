@@ -211,8 +211,8 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
      * @return App Board Detail Time
      */
     protected String getSimpleDetailTime(String defaulttime) {
-        String dataTimeFormat = "yyyy-MM-dd HH:mm:ss";
-        String newDateTimeFormat = "yyyy.MM.dd HH:mm";
+        String dataTimeFormat = "yyyy-MM-dd KK:mm:ss";
+        String newDateTimeFormat = "yyyy.MM.dd KK:mm";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
         SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
 
