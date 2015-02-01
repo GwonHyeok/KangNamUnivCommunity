@@ -13,5 +13,5 @@
         android:gravity="center"
         android:paddingBottom="45dp"
         android:textColor="@android:color/white"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 </RelativeLayout>

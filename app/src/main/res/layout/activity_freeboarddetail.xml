@@ -23,20 +23,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:layout_marginLeft="66dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="16dp"
             android:textColor="#FF424242"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="18dp">
 
             <com.yscn.knucommunity.CustomView.CircleImageView
                 android:id="@+id/freeboard_detail_profile"
-                android:layout_width="47dp"
-                android:layout_height="47dp"
-                android:layout_marginLeft="19dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
+                android:layout_marginLeft="12dp"
                 android:src="@drawable/ic_profile" />
 
             <TextView
@@ -44,11 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="14dp"
+                android:layout_marginLeft="12dp"
                 android:layout_toEndOf="@id/freeboard_detail_profile"
                 android:layout_toRightOf="@id/freeboard_detail_profile"
                 android:textColor="#FF414141"
-                android:textSize="19sp" />
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -62,8 +63,9 @@
                     android:id="@+id/freeboard_detail_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
-                    android:textColor="#757575"/>
+                    android:layout_marginRight="12dp"
+                    android:textColor="#757575"
+                    android:textSize="13sp"/>
 
                 <!--<TextView-->
                 <!--android:id="@+id/textView"-->
@@ -94,13 +96,12 @@
                 android:id="@+id/freeboard_detail_content"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
                 android:lineSpacingExtra="5dp"
-                android:paddingBottom="14dp"
-                android:paddingLeft="22dp"
-                android:paddingRight="22dp"
+                android:paddingBottom="12dp"
+                android:paddingLeft="26dp"
+                android:paddingRight="26dp"
                 android:textColor="#424242"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
         </LinearLayout>
     </ScrollView>
     <View
@@ -120,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="18dp"
             android:background="@drawable/ic_post_reply" />
 
         <TextView
@@ -132,7 +133,7 @@
             android:layout_toRightOf="@+id/imageView"
             android:text="댓글"
             android:textColor="#FFBBBBBB"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
 </RelativeLayout>

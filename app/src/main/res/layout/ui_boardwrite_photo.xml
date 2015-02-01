@@ -32,7 +32,7 @@
             android:layout_marginRight="12dp"
             android:gravity="center"
             android:textColor="#737373"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/board_write_photo_diskusage"
@@ -40,7 +40,7 @@
             android:layout_height="match_parent"
             android:layout_marginLeft="25dp"
             android:textColor="#737373"
-            android:textSize="16sp"
+            android:textSize="15sp"
             android:gravity="center_vertical" />
     </LinearLayout>
 

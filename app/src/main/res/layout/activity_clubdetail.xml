@@ -25,7 +25,7 @@
             android:layout_alignStart="@+id/textView"
             android:text="동아리이름"
             android:textColor="#FFFFEA00"
-            android:textSize="14sp"/>
+            android:textSize="12sp"/>
 
         <TextView
             android:id="@+id/textView"
@@ -36,7 +36,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="40dp"
+            android:layout_marginLeft="32dp"
             android:layout_marginTop="3dp"
             android:text="올클리어"
             android:textColor="@android:color/white"
@@ -49,7 +49,7 @@
             android:layout_alignLeft="@+id/textView"
             android:layout_alignStart="@+id/textView"
             android:layout_below="@+id/textView"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="12dp"
             android:layout_marginTop="5dp"
             android:background="#FFFFEA00" />
 
@@ -60,7 +60,7 @@
             android:layout_alignLeft="@+id/textView2"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/textView2"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="14dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="2dp"
             android:background="#FFFFAB91" />
@@ -74,7 +74,7 @@
             android:layout_alignLeft="@+id/textView3"
             android:layout_alignRight="@+id/textView3"
             android:layout_alignStart="@+id/textView3"
-            android:layout_marginBottom="3dp"
+            android:layout_marginBottom="2dp"
             android:text="동아리소개"
             android:textColor="#FFffccbc"
             android:textSize="12sp"/>
@@ -90,7 +90,7 @@
             android:layout_alignStart="@+id/view"
             android:text="춤을 즐길 줄 아는 사람들의 모임 ALL CLEAR"
             android:textColor="#FFFFAB91"
-            android:textSize="13sp"/>
+            android:textSize="12sp"/>
 
     </RelativeLayout>
 

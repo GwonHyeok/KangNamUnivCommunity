@@ -15,7 +15,8 @@
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar">
+        android:layout_below="@id/toolbar"
+        android:layout_marginBottom="30dp">
 
         <TextView
             android:id="@+id/greenlight_detail_title"
@@ -23,12 +24,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="30dp"
-            android:layout_marginLeft="30dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
             android:layout_toLeftOf="@+id/greenlight_detail_time"
             android:textColor="#FF424242"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/greenlight_detail_time"
@@ -37,8 +37,9 @@
             android:layout_alignBottom="@id/greenlight_detail_title"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:textColor="#757575" />
+            android:layout_marginRight="12dp"
+            android:textColor="#757575"
+            android:textSize="13sp"/>
 
 
     </RelativeLayout>
@@ -58,10 +59,12 @@
                 android:id="@+id/greenlight_detail_content"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="30dp"
+                android:paddingBottom="12dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
                 android:lineSpacingExtra="5dp"
                 android:textColor="#424242"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
 
             <LinearLayout
@@ -72,13 +75,14 @@
 
             <View
                 android:layout_width="match_parent"
-                android:layout_height="40dp" />
+                android:layout_height="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginBottom="18dp">
 
                 <TextView
                     android:id="@+id/greenlight_light_on"
@@ -121,19 +125,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="18dp"
             android:background="@drawable/ic_post_reply" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="14dp"
             android:layout_toEndOf="@+id/imageView"
             android:layout_toRightOf="@+id/imageView"
             android:text="댓글"
             android:textColor="#FFBBBBBB"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
 </RelativeLayout>

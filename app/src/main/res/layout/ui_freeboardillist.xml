@@ -2,13 +2,13 @@
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="76dp"
     android:orientation="vertical">
 
     <com.yscn.knucommunity.CustomView.CircleImageView
         android:id="@+id/freeboard_list_profile"
-        android:layout_width="47dp"
-        android:layout_height="47dp"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="10dp"
         android:src="@drawable/ic_profile" />
@@ -40,7 +40,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="#FF616161" />
+            android:textColor="#FF616161"
+            android:textSize="14sp"/>
     </LinearLayout>
 
     <TextView
@@ -51,18 +52,19 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
-        android:textColor="#757575" />
+        android:textColor="#757575"
+        android:textSize="13sp"/>
 
     <TextView
         android:id="@+id/freeboard_list_commentsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/freeboard_list_time"
-        android:layout_marginRight="24dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="14dp"
         android:layout_toLeftOf="@+id/freeboard_list_time"
         android:layout_toStartOf="@+id/freeboard_list_time"
-        android:textColor="#FF7395a6"
-        android:textSize="17sp" />
+        android:textColor="#FF8f8f8f"
+        android:textSize="16sp"/>
 
     <include
         layout="@layout/ui_boardlist_divider"

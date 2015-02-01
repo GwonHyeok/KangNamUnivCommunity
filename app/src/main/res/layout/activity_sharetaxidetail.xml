@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="#FFFAFAFA">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -15,9 +16,9 @@
         android:layout_height="100dp"
         android:layout_below="@id/toolbar"
         android:paddingBottom="20dp"
-        android:paddingLeft="60dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp">
+        android:paddingLeft="50dp"
+        android:paddingRight="14dp"
+        android:paddingTop="10dp">
 
         <!-- 출발 지점 부분 레이아웃 -->
         <LinearLayout
@@ -36,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ff424242"
-                android:textSize="23sp" />
+                android:textSize="22sp" />
         </LinearLayout>
 
         <!-- 도착 지점 부분 레이아웃 -->
@@ -57,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ff424242"
-                android:textSize="23sp" />
+                android:textSize="22sp" />
         </LinearLayout>
 
         <TextView
@@ -74,13 +75,14 @@
         android:id="@+id/share_taxi_detail_writer_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/share_taxi_detail_locationview">
+        android:layout_below="@id/share_taxi_detail_locationview"
+        android:layout_marginBottom="18dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
             android:id="@+id/freeboard_detail_profile"
-            android:layout_width="47dp"
-            android:layout_height="47dp"
-            android:layout_marginLeft="19dp"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_marginLeft="12dp"
             android:src="@drawable/ic_profile" />
 
         <TextView
@@ -88,11 +90,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="14dp"
+            android:layout_marginLeft="12dp"
             android:layout_toEndOf="@id/freeboard_detail_profile"
             android:layout_toRightOf="@id/freeboard_detail_profile"
             android:textColor="#FF414141"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/freeboard_detail_time"
@@ -101,9 +103,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:layout_marginRight="12dp"
             android:textColor="#757575"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -113,9 +115,8 @@
         android:layout_above="@+id/share_taxi_detail_button2"
         android:layout_below="@+id/share_taxi_detail_writer_profile"
         android:paddingBottom="14dp"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
-        android:paddingTop="14dp">
+        android:paddingLeft="26dp"
+        android:paddingRight="26dp">
 
         <TextView
             android:layout_width="match_parent"
@@ -186,7 +187,7 @@
                 android:paddingLeft="18dp"
                 android:text="합승자 정보"
                 android:textColor="#FFa6a6a6"
-                android:textSize="18sp" />
+                android:textSize="15sp" />
 
             <ImageView
                 android:id="@+id/share_taxi_detail_folding_button"
@@ -194,7 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="24dp"
+                android:layout_marginRight="22dp"
                 android:src="@drawable/ic_unfold" />
         </RelativeLayout>
 
@@ -249,7 +250,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="18dp"
             android:background="@drawable/ic_post_reply" />
 
         <TextView
@@ -261,6 +262,6 @@
             android:layout_toRightOf="@+id/imageView"
             android:text="댓글"
             android:textColor="#FFBBBBBB"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 </RelativeLayout>

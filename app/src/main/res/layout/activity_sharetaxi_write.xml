@@ -15,7 +15,7 @@
             android:layout_gravity="center"
             android:text="@string/taxi_share_title"
             android:textColor="#7d7d7d"
-            android:textSize="23sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/board_write_send"
@@ -27,7 +27,7 @@
             android:paddingRight="14dp"
             android:text="@string/register_text"
             android:textColor="#5592ae"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -49,7 +49,7 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_departure_time"
             android:textColor="#5c5c5c"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/taxi_share_write_departuretime_textview"
@@ -58,7 +58,7 @@
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
             android:textColor="#5c5c5c"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
     </LinearLayout>
 
 
@@ -78,7 +78,7 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_departure_location"
             android:textColor="#5c5c5c"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/taxi_share_write_departure_textview"
@@ -110,7 +110,7 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_destination_location"
             android:textColor="#5c5c5c"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/taxi_share_write_destination_textview"
@@ -143,7 +143,7 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_share_people_count"
             android:textColor="#5c5c5c"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/taxi_share_write_peoplecount_textview"
@@ -180,7 +180,7 @@
             android:hint="내용을 입력해 주세요."
             android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingRight="14dp"
+            android:paddingRight="16dp"
             android:paddingTop="14dp"
             android:textColor="#5c5c5c"
             android:textColorHint="#808080"
@@ -200,7 +200,7 @@
             android:orientation="vertical"
             android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingRight="16dp"
             android:paddingTop="10dp">
 
             <TextView

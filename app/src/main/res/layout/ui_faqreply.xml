@@ -18,10 +18,10 @@
 
             <com.yscn.knucommunity.CustomView.CircleImageView
                 android:id="@+id/faq_reply_profile"
-                android:layout_width="47dp"
-                android:layout_height="47dp"
+                android:layout_width="46dp"
+                android:layout_height="46dp"
                 android:layout_centerVertical="true"
-                android:layout_marginLeft="19dp"
+                android:layout_marginLeft="12dp"
                 android:src="@drawable/ic_profile" />
 
 
@@ -36,7 +36,7 @@
                 android:layout_toRightOf="@id/faq_reply_profile"
                 android:text="이름"
                 android:textColor="#FF414141"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:id="@+id/faq_reply_time"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="30dp"
+                android:layout_marginRight="28dp"
                 android:text="2014-10-12 12:31"
                 android:textColor="#757575"
                 android:textSize="13sp"/>
@@ -68,9 +68,9 @@
         android:id="@+id/faq_reply_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:paddingLeft="22dp"
-        android:paddingRight="22dp"
+        android:layout_marginTop="14dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="12dp"
         android:textColor="#424242" />
 
     <View

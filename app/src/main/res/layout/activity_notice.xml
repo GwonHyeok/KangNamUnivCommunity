@@ -58,11 +58,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
-            android:layout_margin="18dp"
             android:layout_toEndOf="@+id/open_menu"
             android:layout_toRightOf="@+id/open_menu"
             android:text="공지사항"
             android:textColor="@android:color/white"
-            android:textSize="23sp" />
+            android:textSize="23sp"
+            android:layout_marginTop="14dp"
+            android:layout_marginLeft="12dp" />
     </RelativeLayout>
 </FrameLayout>

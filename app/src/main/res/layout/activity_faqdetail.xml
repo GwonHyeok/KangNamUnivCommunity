@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
-            android:layout_marginTop="30dp">
+            android:layout_marginTop="16dp">
 
 
             <TextView
@@ -33,9 +33,9 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginRight="4dp"
                 android:layout_toLeftOf="@+id/faq_detail_replycount"
-                android:paddingLeft="62dp"
+                android:paddingLeft="54dp"
                 android:textColor="#FF424242"
-                android:textSize="24sp" />
+                android:textSize="22sp" />
 
             <TextView
                 android:id="@+id/faq_detail_replycount"
@@ -46,10 +46,10 @@
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
-                android:paddingEnd="20dp"
-                android:paddingRight="20dp"
+                android:paddingEnd="14dp"
+                android:paddingRight="14dp"
                 android:textColor="#00c853"
-                android:textSize="19sp"
+                android:textSize="18sp"
                 android:visibility="visible" />
         </RelativeLayout>
     </LinearLayout>
@@ -79,10 +79,10 @@
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
                         android:id="@+id/faq_detail_profile"
-                        android:layout_width="47dp"
-                        android:layout_height="47dp"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="19dp"
+                        android:layout_marginLeft="12dp"
                         android:src="@drawable/ic_profile" />
 
                     <TextView
@@ -90,12 +90,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="14dp"
-                        android:layout_marginStart="14dp"
+                        android:layout_marginLeft="12dp"
+                        android:layout_marginStart="12dp"
                         android:layout_toEndOf="@+id/faq_detail_profile"
                         android:layout_toRightOf="@+id/faq_detail_profile"
                         android:textColor="#FF414141"
-                        android:textSize="19sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:id="@+id/faq_detail_time"
@@ -104,8 +104,9 @@
                         android:layout_alignParentEnd="true"
                         android:layout_alignParentRight="true"
                         android:layout_centerVertical="true"
-                        android:layout_marginRight="20dp"
-                        android:textColor="#757575" />
+                        android:layout_marginRight="12dp"
+                        android:textColor="#757575"
+                        android:textSize="13sp"/>
                 </RelativeLayout>
 
                 <TextView
@@ -114,12 +115,12 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/faq_detail_infoview"
                     android:lineSpacingExtra="5dp"
-                    android:paddingBottom="30dp"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp"
+                    android:paddingBottom="20dp"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
                     android:paddingTop="14dp"
                     android:textColor="#424242"
-                    android:textSize="15sp" />
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:id="@+id/faq_detail_photo_content_view"
@@ -127,8 +128,8 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/faq_detail_content"
                     android:orientation="vertical"
-                    android:paddingLeft="22dp"
-                    android:paddingRight="22dp" />
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp" />
 
             </RelativeLayout>
         </LinearLayout>
@@ -152,7 +153,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
+            android:layout_marginLeft="18dp"
             android:background="@drawable/ic_post_reply" />
 
         <EditText
@@ -170,7 +171,7 @@
             android:minHeight="40dp"
             android:textColor="#FF4d4d4d"
             android:textColorHint="#FFBBBBBB"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/reply_textview"

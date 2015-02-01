@@ -31,6 +31,7 @@
             android:drawableLeft="@drawable/ic_login_id"
             android:drawablePadding="5dp"
             android:hint="학번"
+            android:textColor="#5c5c5c"
             android:inputType="numberDecimal"
             android:paddingLeft="5dp"
             android:singleLine="true" />
@@ -45,6 +46,7 @@
             android:drawableLeft="@drawable/ic_login_pw"
             android:drawablePadding="5dp"
             android:hint="비밀번호"
+            android:textColor="#5c5c5c"
             android:inputType="textPassword"
             android:paddingLeft="5dp"
             android:singleLine="true" />
@@ -63,6 +65,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_toRightOf="@+id/login_textView"
+                android:gravity="center"
                 android:src="@drawable/ic_login_lock" />
 
             <TextView
@@ -73,6 +76,7 @@
                 android:layout_centerVertical="true"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
+                android:layout_marginLeft="25dp"
                 android:text="로그인"
                 android:textColor="@android:color/white"
                 android:textSize="18sp" />

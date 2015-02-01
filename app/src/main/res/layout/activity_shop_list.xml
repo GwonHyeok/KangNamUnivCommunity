@@ -13,14 +13,14 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="36dp"
+        android:layout_height="32dp"
         android:layout_below="@id/toolbar"
         android:background="#E9E9E9"
         android:gravity="center_vertical"
-        android:paddingLeft="14dp"
-        android:text="사기거래에 조심하세요. 개인의 부주의는 책임지지 않습니다."
+        android:paddingLeft="16dp"
+        android:text="항상 사기거래에 조심하세요."
         android:textColor="#FF757575"
-        android:textSize="13sp" />
+        android:textSize="12sp" />
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/board_list_swiperefresh"

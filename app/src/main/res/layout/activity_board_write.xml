@@ -15,7 +15,7 @@
             android:layout_gravity="center"
             android:text="글쓰기"
             android:textColor="#7d7d7d"
-            android:textSize="23sp" />
+            android:textSize="22sp" />
 
         <TextView
             android:id="@+id/board_write_send"
@@ -26,7 +26,7 @@
             android:paddingRight="14dp"
             android:text="등록"
             android:textColor="#5592ae"
-            android:textSize="20sp" />
+            android:textSize="19sp" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -43,7 +43,7 @@
         android:paddingLeft="20dp"
         android:text="자유게시판"
         android:textColor="#5c5c5c"
-        android:textSize="19sp" />
+        android:textSize="18sp" />
 
     <View
         android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             android:paddingLeft="20dp"
             android:text="이미지 첨부"
             android:textColor="#5c5c5c"
-            android:textSize="19sp" />
+            android:textSize="18sp" />
 
         <ScrollView
             android:id="@+id/board_write_photo_scrollview"
@@ -117,7 +117,7 @@
             android:hint="내용을 입력해 주세요."
             android:paddingBottom="10dp"
             android:paddingLeft="20dp"
-            android:paddingRight="14dp"
+            android:paddingRight="16dp"
             android:paddingTop="14dp"
             android:textColor="#5c5c5c"
             android:textColorHint="#808080"

@@ -22,7 +22,7 @@
             android:layout_alignStart="@+id/major_name"
             android:text="학과이름"
             android:textColor="#FFEF5350"
-            android:textSize="14sp"/>
+            android:textSize="13sp"/>
 
         <TextView
             android:id="@+id/major_name"
@@ -33,8 +33,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="40dp"
-            android:layout_marginRight="20dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginRight="12dp"
             android:layout_marginTop="4dp"
             android:text="컴퓨터미디어정보공학부"
             android:textColor="@android:color/white"
@@ -47,7 +47,7 @@
             android:layout_alignLeft="@+id/major_name"
             android:layout_alignStart="@+id/major_name"
             android:layout_below="@+id/major_name"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="12dp"
             android:layout_marginTop="4dp"
             android:background="#FFEF5350" />
 
@@ -58,8 +58,8 @@
             android:layout_alignLeft="@+id/line_view"
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/line_view"
-            android:layout_marginBottom="20dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginBottom="14dp"
+            android:layout_marginRight="12dp"
             android:layout_marginTop="2dp"
             android:background="#FFB39DDB" />
 
@@ -73,7 +73,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/line_view2"
             android:text="http://cme.kangnam.ac.kr"
-            android:textColor="#FFB39DDB" />
+            android:textColor="#FFB39DDB"
+            android:textSize="14sp" />
     </RelativeLayout>
 
     <ScrollView
