@@ -62,6 +62,12 @@ public class UserData {
         this.userToken = userToken;
     }
 
+    public void logoutUser() {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        userDataPreference.removeAll();
+        instance = null;
+    }
+
     public Bitmap getUserProfile() {
         return userProfile;
     }
@@ -80,6 +86,10 @@ public class UserData {
 
     public void setUserRating(String userRating) {
         this.userRating = userRating;
+    }
+
+    public boolean checkToken(String serverToken) {
+        return serverToken.equals(getUserToken());
     }
 
     private UserDataPreference getUserDataPreference() {

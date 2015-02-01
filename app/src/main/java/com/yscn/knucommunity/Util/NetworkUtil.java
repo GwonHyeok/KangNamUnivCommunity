@@ -1,5 +1,6 @@
 package com.yscn.knucommunity.Util;
 
+import android.content.Context;
 import android.net.Uri;
 import android.util.Base64;
 import android.util.Log;
@@ -19,11 +20,14 @@ import com.yscn.knucommunity.Items.StudentCouncilListItems;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.cookie.BasicClientCookie;
 import org.apache.http.params.CoreProtocolPNames;
 import org.json.JSONException;
 import org.json.simple.JSONArray;
@@ -45,6 +49,7 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -61,9 +66,9 @@ public class NetworkUtil {
     public static NetworkUtil getInstance() {
         if (instance == null) {
             instance = new NetworkUtil();
-            String userAgent = System.getProperty("http.agent");
-            instance.httpClient.getParams().setParameter(CoreProtocolPNames.USER_AGENT, userAgent);
         }
+        String userAgent = System.getProperty("http.agent");
+        instance.httpClient.getParams().setParameter(CoreProtocolPNames.USER_AGENT, userAgent);
         return instance;
     }
 
@@ -187,6 +192,9 @@ public class NetworkUtil {
                     preference.setToken(token);
                     preference.setStudentName(studentname);
                     preference.setStudentRating(rating);
+
+                    /* HttpClient 에서 쿠키를 가져와 Seesion 값 저장 */
+                    syncCookie();
                     return LoginStatus.SUCCESS;
                 } else if (result.equals("nomember")) {
                     return LoginStatus.NOMEMBER;
@@ -204,16 +212,50 @@ public class NetworkUtil {
         }
     }
 
+    private void syncCookie() {
+        Context context = ApplicationContextProvider.getContext();
+        CookieStore cookieStore = ((DefaultHttpClient) httpClient).getCookieStore();
+        List<Cookie> cookieList = cookieStore.getCookies();
+
+        SessionDataPreference sessionDataPreference = new SessionDataPreference(context);
+
+        String ci_session, path, domain;
+        ci_session = sessionDataPreference.getSession();
+        path = sessionDataPreference.getPath();
+        domain = sessionDataPreference.getDomain();
+
+        /* 만약 데이터에 저장되어있는 Seesion 값이 null 이면 현재 HttpClient 에 있는 Seesion값 가져와서 Prefernce 에 저장 */
+        if (ci_session == null) {
+            for (Cookie cookie : cookieList) {
+                if (cookie.getName().equals("ci_session")) {
+                    sessionDataPreference.putSession(ci_session = cookie.getValue());
+                    sessionDataPreference.putDomain(domain = cookie.getDomain());
+                    sessionDataPreference.putPath(path = cookie.getPath());
+                }
+            }
+        }
+
+        BasicClientCookie basicClientCookie = new BasicClientCookie("ci_session", ci_session);
+        basicClientCookie.setDomain(domain);
+        basicClientCookie.setPath(path);
+        cookieStore.addCookie(basicClientCookie);
+
+        for (Cookie cookie : cookieStore.getCookies()) {
+            Log.d(cookie.getName(), cookie.getDomain());
+            Log.d(cookie.getName(), cookie.getPath());
+            Log.d(cookie.getName(), cookie.getValue());
+        }
+    }
+
     /**
      * @return data[0] == REGISTERID, data[1] == APPVERSION
      * @throws IOException
      * @throws ParseException
      */
     public String[] getGCMRegisterData() throws IOException, ParseException {
+        syncCookie();
         JSONParser jsonParser = new JSONParser();
-        HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
-        HttpResponse httpResponse = postData(UrlList.APP_GET_GCM_REGISTERID, parameter);
+        HttpResponse httpResponse = postData(UrlList.APP_GET_GCM_REGISTERID, null);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
         );
@@ -230,7 +272,6 @@ public class NetworkUtil {
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("appversion", String.valueOf(appVersion));
         parameter.put("gcmregisterid", gcmID);
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
         HttpResponse httpResponse = postData(UrlList.APP_REGISTER_GCM_REGISTERID, parameter);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
