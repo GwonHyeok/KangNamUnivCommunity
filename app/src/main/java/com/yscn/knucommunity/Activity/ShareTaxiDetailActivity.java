@@ -59,6 +59,12 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
             }
         });
 
+        /* 만약 onNewIntent 가 아니라 onCreate 를 타게 될때 알림 처리 */
+        boolean isFromNotify = getIntent().getBooleanExtra("isFromNotify", false);
+        if (isFromNotify) {
+            setisLeave(contentID, "1");
+        }
+
         /* 글이 삭제되었을때 처리 가능 */
         setOnSuccessDeleteListener(new successDeleteListener() {
             @Override
