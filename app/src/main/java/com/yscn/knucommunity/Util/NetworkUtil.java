@@ -274,6 +274,20 @@ public class NetworkUtil {
         return checkResultData(jsonObject);
     }
 
+    public JSONObject changeNickName(String nickname) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("nickname", nickname);
+        HttpResponse httpResponse = postData(UrlList.CHANGE_NICKNAME_URL, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    public JSONObject getSimpleProfile() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.GET_SIMPLE_PROFILE_URL, null);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public ArrayList<MajorDetailItems> getMajorDetailInfo(int majorType) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         ArrayList<MajorDetailItems> itemses = new ArrayList<>();

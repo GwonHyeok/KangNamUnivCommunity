@@ -41,4 +41,6 @@ public class UrlList {
     public static final String SET_SHARETAXI_LEAVE_URL = MAIN_URL + "board/leaveShareTaxi/";
     public static final String SET_SHARETAXI_WITH_URL = MAIN_URL + "board/withShareTaxi/";
     public static final String DELETE_BOARD_COMMENT_URL = MAIN_URL + "board/deleteComment/m/";
+    public static final String GET_SIMPLE_PROFILE_URL = MAIN_URL + "appLogin/getSimpleProfile";
+    public static final String CHANGE_NICKNAME_URL = MAIN_URL + "appLogin/changeNickname";
 }

@@ -1,7 +1,10 @@
 package com.yscn.knucommunity.Util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+
+import com.yscn.knucommunity.Activity.Splash;
 
 /**
  * Created by GwonHyeok on 14. 11. 26..
@@ -64,8 +67,14 @@ public class UserData {
 
     public void logoutUser() {
         UserDataPreference userDataPreference = getUserDataPreference();
+        SessionDataPreference sessionDataPreference = getSessionDataPreference();
         userDataPreference.removeAll();
-        instance = null;
+        sessionDataPreference.removeAll();
+        Context context = ApplicationContextProvider.getContext();
+        Intent intent = new Intent(context, Splash.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 
     public Bitmap getUserProfile() {
@@ -95,6 +104,11 @@ public class UserData {
     private UserDataPreference getUserDataPreference() {
         Context mContext = ApplicationContextProvider.getContext();
         return new UserDataPreference(mContext);
+    }
+
+    private SessionDataPreference getSessionDataPreference() {
+        Context mContext = ApplicationContextProvider.getContext();
+        return new SessionDataPreference(mContext);
     }
 
     public String getPhoneNumber() {

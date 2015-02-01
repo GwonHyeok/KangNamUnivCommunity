@@ -16,7 +16,9 @@
     <string name="register_fail">회원가입에 실패하였습니다.</string>
     <string name="register_success">회원가입에 성공하였습니다.</string>
     <string name="register_already_exist">이미 존재하는 계정입니다.</string>
+    <string name="error_empty_studentnumber_info">로그인 정보가 존재하지 않습니다\n재 로그인 해주세요</string>
     <string name="base_text_register_nickname">닉네임 : %1$s</string>
+    <string name="text_nickname">닉네임</string>
     <string name="base_text_register_name">이름 : %1$s</string>
     <string name="base_text_register_studentnumber">학번 : %1$s</string>
     <string name="warning_input_studentnumber">학번을 입력해 주세요.</string>
@@ -104,4 +106,8 @@
     <string name="warning_meeting_set_schoolname">학교이름을 적어주세요</string>
     <string name="warning_meeting_set_majorname">학과를 적어주세요</string>
     <string name="error_check_network_state">인터넷 연결 상태를 확인해 주세요</string>
+
+    <string name="nickname_change_text">정말로 닉네임을 변경 하시겠습니까?</string>
+    <string name="profileimage_change_text">정말로 프로필사진을 변경 하시겠습니까?</string>
+    <string name="success_nickname_change">성공적으로 닉네임을 변경하였습니다</string>
 </resources>
