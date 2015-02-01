@@ -69,6 +69,7 @@ public class NetworkUtil {
         }
         String userAgent = System.getProperty("http.agent");
         instance.httpClient.getParams().setParameter(CoreProtocolPNames.USER_AGENT, userAgent);
+        instance.syncCookie();
         return instance;
     }
 
@@ -117,7 +118,6 @@ public class NetworkUtil {
 
         HttpPost httpPost = new HttpPost(UrlList.PROFILE_IMAGE_EDIT_URL);
         HttpEntity entity = MultipartEntityBuilder.create()
-                .addTextBody("studentnumber", UserData.getInstance().getStudentNumber())
                 .addBinaryBody("userfile", profileImageFile)
                 .build();
         httpPost.setEntity(entity);
@@ -235,16 +235,11 @@ public class NetworkUtil {
             }
         }
 
+        cookieStore.clear();
         BasicClientCookie basicClientCookie = new BasicClientCookie("ci_session", ci_session);
         basicClientCookie.setDomain(domain);
         basicClientCookie.setPath(path);
         cookieStore.addCookie(basicClientCookie);
-
-        for (Cookie cookie : cookieStore.getCookies()) {
-            Log.d(cookie.getName(), cookie.getDomain());
-            Log.d(cookie.getName(), cookie.getPath());
-            Log.d(cookie.getName(), cookie.getValue());
-        }
     }
 
     /**
@@ -391,7 +386,6 @@ public class NetworkUtil {
                                        String studentcount, String gender) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("writer", UserData.getInstance().getStudentNumber());
         parameter.put("content", content);
         parameter.put("schoolname", schoolname);
         parameter.put("majorname", majorname);
@@ -457,8 +451,8 @@ public class NetworkUtil {
 
         multipartEntityBuilder.addTextBody("title", title, getDefaultContentType());
         multipartEntityBuilder.addTextBody("content", content, getDefaultContentType());
-        multipartEntityBuilder.addTextBody("studentnumber", UserData.getInstance().getStudentNumber(), getDefaultContentType());
-        multipartEntityBuilder.addTextBody("token", UserData.getInstance().getUserToken());
+//        multipartEntityBuilder.addTextBody("studentnumber", UserData.getInstance().getStudentNumber(), getDefaultContentType());
+//        multipartEntityBuilder.addTextBody("token", UserData.getInstance().getUserToken());
         multipartEntityBuilder.addTextBody("isEditmode", String.valueOf(isEditMode));
 
         /* 수정 모드일 경우 콘텐트 아이디 post */
@@ -659,7 +653,6 @@ public class NetworkUtil {
     public HashMap<String, String> getGreenLightResult(String contentID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
         HttpResponse httpResponse = postData(UrlList.GET_GREENLIGHT_RESULT + contentID, parameter);
         JSONObject object = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
@@ -676,7 +669,6 @@ public class NetworkUtil {
     public HashMap<String, String> setGreenLightResult(String contentID, boolean isOn) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
         parameter.put("result", isOn ? "1" : "0");
         HttpResponse httpResponse = postData(UrlList.SET_GREENLIGHT_RESULT + contentID, parameter);
         JSONObject object = (JSONObject) jsonParser.parse(
@@ -716,8 +708,6 @@ public class NetworkUtil {
     public JSONObject deleteComment(String commentid) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
-        parameter.put("token", UserData.getInstance().getUserToken());
         parameter.put("commentid", commentid);
         HttpResponse httpResponse = postData(UrlList.DELETE_BOARD_COMMENT_URL, parameter);
         return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
@@ -726,7 +716,6 @@ public class NetworkUtil {
     public boolean writeComment(String contentID, String comment) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
         parameter.put("comment", comment);
         HttpResponse httpResponse = postData(UrlList.WRITE_COMMENT + contentID, parameter);
         JSONObject object = (JSONObject) jsonParser.parse(
@@ -738,7 +727,6 @@ public class NetworkUtil {
     public boolean deleteBoardList(String contentID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
         HttpResponse httpResponse = postData(UrlList.DELETE_BOARD_LIST + contentID, parameter);
         JSONObject object = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
@@ -788,8 +776,6 @@ public class NetworkUtil {
     public JSONObject getShareTaxiContent(String contentid) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
-        parameter.put("token", UserData.getInstance().getUserToken());
         HttpResponse httpResponse = postData(UrlList.GET_SHARETAXI_CONTENT_URL + contentid, parameter);
         return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
@@ -804,8 +790,6 @@ public class NetworkUtil {
     public JSONObject setShareTaxiLeave(String contentid, String isLeave) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
-        parameter.put("token", UserData.getInstance().getUserToken());
         parameter.put("leave", isLeave);
         parameter.put("contentid", contentid);
         HttpResponse httpResponse = postData(UrlList.SET_SHARETAXI_LEAVE_URL, parameter);
@@ -821,8 +805,6 @@ public class NetworkUtil {
     public JSONObject setShareTaxiWith(String contentid, String isWith) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
-        parameter.put("token", UserData.getInstance().getUserToken());
         parameter.put("with", isWith);
         parameter.put("contentid", contentid);
         HttpResponse httpResponse = postData(UrlList.SET_SHARETAXI_WITH_URL, parameter);
@@ -833,8 +815,6 @@ public class NetworkUtil {
                                           String peopleCount, String content) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("writer", UserData.getInstance().getStudentNumber());
-        parameter.put("token", UserData.getInstance().getUserToken());
         parameter.put("departuretime", departuretime);
         parameter.put("departure", departure);
         parameter.put("destination", destination);
@@ -849,9 +829,7 @@ public class NetworkUtil {
     public JSONObject registerPhoneNumber(String phonenumber) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("token", UserData.getInstance().getUserToken());
         parameter.put("phone", phonenumber);
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
         HttpResponse httpResponse = postData(UrlList.PHONE_REGISTER_URL, parameter);
         return (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
@@ -860,10 +838,7 @@ public class NetworkUtil {
 
     public JSONObject getPhoneNumber() throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HashMap<String, String> parameter = new HashMap<>();
-        parameter.put("token", UserData.getInstance().getUserToken());
-        parameter.put("studentnumber", UserData.getInstance().getStudentNumber());
-        HttpResponse httpResponse = postData(UrlList.GET_PHONE_NUMBER_URL, parameter);
+        HttpResponse httpResponse = postData(UrlList.GET_PHONE_NUMBER_URL, null);
         return (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
         );
