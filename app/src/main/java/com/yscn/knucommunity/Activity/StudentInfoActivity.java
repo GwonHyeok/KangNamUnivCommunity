@@ -240,7 +240,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
 
             @Override
             protected void onPreExecute() {
-                showNicknameChangeDialog();
+                showProgressDialog();
             }
 
             @Override
