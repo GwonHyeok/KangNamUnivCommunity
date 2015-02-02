@@ -49,19 +49,21 @@
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_seach"
-            android:layout_marginLeft="4dp" />
+            android:layout_marginLeft="4dp"
+            android:src="@drawable/ic_seach" />
 
         <EditText
+            android:id="@+id/library_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/imageView"
             android:layout_toRightOf="@+id/imageView"
             android:background="@null"
             android:hint="찾기"
+            android:imeOptions="actionSearch"
             android:paddingLeft="13dp"
-            android:textColorHint="#FF666666"
-            android:text=""
-            android:textColor="#ffffff"/>
+            android:singleLine="true"
+            android:textColor="#ffffff"
+            android:textColorHint="#FF666666" />
     </RelativeLayout>
 </RelativeLayout>

@@ -185,8 +185,8 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
     }
 
     private String getSimpleTime(String defaulttime) {
-        String dataTimeFormat = "yyyy-MM-dd KK:mm:ss";
-        String newDateTimeFormat = "yyyy.MM.dd KK:mm";
+        String dataTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        String newDateTimeFormat = "yyyy.MM.dd HH:mm";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
         SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
 

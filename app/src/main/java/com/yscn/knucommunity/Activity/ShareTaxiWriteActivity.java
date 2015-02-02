@@ -36,7 +36,7 @@ import java.util.Date;
 public class ShareTaxiWriteActivity extends ActionBarActivity implements View.OnClickListener {
     private TextView departureTime;
     private EditText departure, destination, peopleCount, content;
-    private String defaultDateFormat = "yyyy.MM.dd KK:mm";
+    private String defaultDateFormat = "yyyy.MM.dd HH:mm";
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -166,7 +166,7 @@ public class ShareTaxiWriteActivity extends ActionBarActivity implements View.On
 
     private String reFormatTime(CharSequence src_time) {
         SimpleDateFormat src_format = new SimpleDateFormat(defaultDateFormat);
-        SimpleDateFormat dst_format = new SimpleDateFormat("yyyy-MM-dd KK:mm:ss");
+        SimpleDateFormat dst_format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             Date src_date = src_format.parse(src_time.toString());
             return dst_format.format(src_date);

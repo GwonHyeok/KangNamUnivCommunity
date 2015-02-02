@@ -335,6 +335,31 @@ public class NetworkUtil {
         return itemses;
     }
 
+    public JSONObject getServerLibrary(String bookkeyword, String page) throws IOException, ParseException {
+        ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
+        HttpClient libraryHttpClient = new DefaultHttpClient();
+        HttpPost httpPost = new HttpPost(UrlList.SCHOOL_SERVER_LIBRARY_URL);
+        MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
+        entityBuilder.addTextBody("p", page, contentType);
+        entityBuilder.addTextBody("q", bookkeyword, contentType);
+
+        CookieStore cookieStore = ((DefaultHttpClient) libraryHttpClient).getCookieStore();
+        String[] cookieName = new String[]{"mast_idno", "mast_mjco", "mast_name", "mast_name_e",
+                "mast_pass", "user_auto", "user_gubn"};
+        String[] cookieValue = new String[]{"MjAxNDAxMjM5", "", "", "", "", "", "\"MQ==\""};
+
+        for (int i = 0; i < cookieName.length; i++) {
+            BasicClientCookie cookie = new BasicClientCookie(cookieName[i], cookieValue[i]);
+            cookie.setDomain("m.kangnam.ac.kr");
+            cookie.setPath("/");
+            cookieStore.addCookie(cookie);
+        }
+        httpPost.setEntity(entityBuilder.build());
+        HttpResponse httpResponse = libraryHttpClient.execute(httpPost);
+        JSONParser jsonParser = new JSONParser();
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public ArrayList<SchoolRestrauntItems> getRestrauntInfo(SchoolRestraunt restraunt) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         ArrayList<SchoolRestrauntItems> itemses = new ArrayList<>();

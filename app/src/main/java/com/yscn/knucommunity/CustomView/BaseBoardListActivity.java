@@ -348,7 +348,7 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
      * @return 기본 보드에서 사용하는 시간폼으로 변경하여 리턴
      */
     protected String getSimpleListTime(String deftime) {
-        String dataTimeFormat = "yyyy-MM-dd KK:mm:ss";
+        String dataTimeFormat = "yyyy-MM-dd HH:mm:ss";
         String newDateTimeFormat = "yyyy.MM.dd";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
         SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);

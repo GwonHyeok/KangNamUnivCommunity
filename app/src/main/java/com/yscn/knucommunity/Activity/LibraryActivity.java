@@ -5,17 +5,30 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.PieGraph;
 import com.yscn.knucommunity.CustomView.PieSlice;
+import com.yscn.knucommunity.Items.LibrarySearchListItems;
 import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.LibrarySearchItemAdapter;
 import com.yscn.knucommunity.Util.NetworkUtil;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,10 +67,130 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        Fragment searchFragment = getSupportFragmentManager().findFragmentByTag("search");
+        if (searchFragment == null) {
+            super.onBackPressed();
+        } else {
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_CLOSE);
+            transaction.remove(searchFragment);
+            transaction.commit();
+        }
+    }
+
     public static class FindFragment extends Fragment {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
-            return inflater.inflate(R.layout.activity_libraryfind, container, false);
+            View view = inflater.inflate(R.layout.activity_libraryfind, container, false);
+            EditText editText = (EditText) view.findViewById(R.id.library_edittext);
+            editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        searchBook(v.getText().toString());
+                        return true;
+                    }
+                    return false;
+                }
+            });
+            return view;
+        }
+
+        private void searchBook(String bookKeyword) {
+            SearchDataFragment fragment = new SearchDataFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("keyword", bookKeyword);
+            fragment.setArguments(bundle);
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+            transaction.add(R.id.library_root, fragment, "search");
+            transaction.commit();
+        }
+    }
+
+    public static class SearchDataFragment extends Fragment {
+
+        protected RecyclerView.LayoutManager mLayoutManager;
+        private RecyclerView recyclerView;
+        private LibrarySearchItemAdapter searchItemAdapter;
+        private ArrayList<LibrarySearchListItems> itemses = new ArrayList<>();
+        private int pastVisiblesItems, visibleItemCount, totalItemCount;
+        private boolean isRefresh = true;
+        private int page = 1;
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
+            View view = inflater.inflate(R.layout.activity_librarysearch, container, false);
+            final String bookKeyword = getArguments().getString("keyword");
+            recyclerView = (RecyclerView) view.findViewById(R.id.librarysearch_recycleview);
+            /* Page Finish Listener */
+            recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    visibleItemCount = mLayoutManager.getChildCount();
+                    totalItemCount = mLayoutManager.getItemCount();
+                    pastVisiblesItems = ((LinearLayoutManager) mLayoutManager).findFirstVisibleItemPosition();
+
+                    if (isRefresh) {
+                        if ((visibleItemCount + pastVisiblesItems) >= totalItemCount) {
+                            isRefresh = false;
+                            bookDataInit(bookKeyword, ++page);
+                        }
+                    }
+                    super.onScrolled(recyclerView, dx, dy);
+                }
+            });
+            mLayoutManager = new LinearLayoutManager(getActivity());
+            recyclerView.setLayoutManager(mLayoutManager);
+            searchItemAdapter = new LibrarySearchItemAdapter(itemses);
+            recyclerView.setAdapter(searchItemAdapter);
+            bookDataInit(bookKeyword, page);
+            return view;
+        }
+
+        private void bookDataInit(final String bookKeyword, final int page) {
+            new AsyncTask<Void, Void, JSONObject>() {
+                ClearProgressDialog clearProgressDialog;
+
+                @Override
+                protected void onPreExecute() {
+                    clearProgressDialog = new ClearProgressDialog(getActivity());
+                    clearProgressDialog.show();
+                }
+
+                @Override
+                protected JSONObject doInBackground(Void... params) {
+                    try {
+                        return NetworkUtil.getInstance().getServerLibrary(bookKeyword, String.valueOf(page));
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(JSONObject jsonObject) {
+                    clearProgressDialog.cancel();
+                    JSONArray rootArray = (JSONArray) jsonObject.get("data");
+                    for (Object object : rootArray) {
+                        JSONObject dataObject = (JSONObject) object;
+                        String thumbnail = dataObject.get("l_image_url").toString();
+                        String title = dataObject.get("l_title").toString();
+                        String author = dataObject.get("l_author").toString();
+                        String year = dataObject.get("l_year").toString();
+                        String callno = dataObject.get("l_callno").toString();
+                        String holding = dataObject.get("l_holding").toString();
+                        String lendtitle = dataObject.get("l_lendtitle").toString();
+                        itemses.add(new LibrarySearchListItems(thumbnail, title, callno, author, year, holding, lendtitle));
+                    }
+                    searchItemAdapter.notifyDataSetChanged();
+                    if (rootArray.size() != 0) {
+                        isRefresh = true;
+                    }
+                }
+            }.execute();
         }
     }
 
