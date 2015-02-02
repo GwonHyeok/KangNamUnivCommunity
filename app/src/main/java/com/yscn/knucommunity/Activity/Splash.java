@@ -114,7 +114,7 @@ public class Splash extends ActionBarActivity {
                         }
                         registerID = googleCloudMessaging.register(GCM_SENDER_ID);
                         int currentAppVersion = getAppVersion(getContext());
-                        NetworkUtil.getInstance().registerGCMID(currentAppVersion, registerID);
+                        NetworkUtil.getInstance().checkIsLoginUser().registerGCMID(currentAppVersion, registerID);
                     }
                     Log.d(getClass().getSimpleName(), "Register ID : " + registerID);
                 } catch (IOException | ParseException e) {

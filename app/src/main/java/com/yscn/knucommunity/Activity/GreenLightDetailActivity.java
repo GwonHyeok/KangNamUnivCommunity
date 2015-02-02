@@ -19,16 +19,18 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
+import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
-import java.util.HashMap;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
@@ -47,20 +49,25 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
     private void setContent() {
         new AsyncTask<Void, Void, Void>() {
             private ClearProgressDialog clearProgressDialog;
-            private HashMap<String, String> greenLightResult;
-            private JSONObject jsonObject;
+            private JSONObject contentObject;
+            private JSONObject greenLightObject;
 
             @Override
             protected void onPreExecute() {
-                clearProgressDialog = new ClearProgressDialog(getContext());
-                clearProgressDialog.show();
+                if (ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    clearProgressDialog = new ClearProgressDialog(getContext());
+                    clearProgressDialog.show();
+                } else {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(true);
+                }
             }
 
             @Override
             protected Void doInBackground(Void... params) {
                 try {
-                    jsonObject = NetworkUtil.getInstance().getDefaultboardContent(m_ContentID);
-                    greenLightResult = NetworkUtil.getInstance().getGreenLightResult(m_ContentID);
+                    contentObject = NetworkUtil.getInstance().getDefaultboardContent(m_ContentID);
+                    greenLightObject = NetworkUtil.getInstance().getGreenLightResult(m_ContentID);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -69,14 +76,25 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
 
             @Override
             protected void onPostExecute(Void value) {
-                if (jsonObject != null && greenLightResult != null) {
+                if (contentObject != null && greenLightObject != null) {
+
+                    String result = greenLightObject.get("result").toString();
+                    if (result.equals("fail")) {
+                        String reason = greenLightObject.get("reason").toString();
+                        if (reason.equals("emptyuserinfo")) {
+                            AlertToast.error(getContext(), R.string.error_empty_studentnumber_info);
+                            UserData.getInstance().logoutUser();
+                        }
+                        return;
+                    }
+
                     ImageLoaderUtil.getInstance().initImageLoader();
-                    JSONArray fileArray = (JSONArray) jsonObject.get("file");
+                    JSONArray fileArray = (JSONArray) contentObject.get("file");
 
-                    ((TextView) findViewById(R.id.greenlight_detail_content)).setText(jsonObject.get("content").toString());
-                    ((TextView) findViewById(R.id.greenlight_detail_title)).setText(jsonObject.get("title").toString());
+                    ((TextView) findViewById(R.id.greenlight_detail_content)).setText(contentObject.get("content").toString());
+                    ((TextView) findViewById(R.id.greenlight_detail_title)).setText(contentObject.get("title").toString());
 
-                    String isChecked = greenLightResult.get("isChecked");
+                    String isChecked = greenLightObject.get("isChecked").toString();
 
                     LinearLayout dataView =
                             (LinearLayout) findViewById(R.id.greenlight_detail_photo_content_view);
@@ -114,8 +132,8 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
 
                     if (isChecked.equals("checked")) {
                         Log.d(getClass().getSimpleName(), "Checked GreenLight");
-                        String positiveSize = greenLightResult.get("positivesize");
-                        String negativeSize = greenLightResult.get("negativesize");
+                        String positiveSize = greenLightObject.get("positivesize").toString();
+                        String negativeSize = greenLightObject.get("negativesize").toString();
                         setGreenLightOn(positiveSize, negativeSize);
                     }
 
@@ -192,19 +210,24 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
     }
 
     private void clickGreenRightButton(final boolean isOn) {
-        new AsyncTask<Void, Void, HashMap<String, String>>() {
+        new AsyncTask<Void, Void, JSONObject>() {
             private ClearProgressDialog clearProgressDialog;
 
             @Override
             protected void onPreExecute() {
+                if (!ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(true);
+                    return;
+                }
                 clearProgressDialog = new ClearProgressDialog(getContext());
                 clearProgressDialog.show();
             }
 
             @Override
-            protected HashMap<String, String> doInBackground(Void... params) {
+            protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().setGreenLightResult(m_ContentID, isOn);
+                    return NetworkUtil.getInstance().checkIsLoginUser().setGreenLightResult(m_ContentID, isOn);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -212,13 +235,30 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
             }
 
             @Override
-            protected void onPostExecute(HashMap<String, String> value) {
-                if (value != null) {
-                    String positiveSize = value.get("positivesize");
-                    String negativeSize = value.get("negativesize");
-                    setGreenLightOn(positiveSize, negativeSize);
-                }
+            protected void onPostExecute(JSONObject value) {
                 clearProgressDialog.cancel();
+
+                if (value == null) {
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                    return;
+                }
+
+                String result = value.get("result").toString();
+
+                if (result.equals("success")) {
+                    String positiveSize = value.get("positivesize").toString();
+                    String negativeSize = value.get("negativesize").toString();
+                    setGreenLightOn(positiveSize, negativeSize);
+                    return;
+                }
+
+                if (result.equals("fail")) {
+                    String reason = value.get("reason").toString();
+                    if (reason.equals("emptyuserinfo")) {
+                        AlertToast.error(getContext(), R.string.error_empty_studentnumber_info);
+                        UserData.getInstance().logoutUser();
+                    }
+                }
             }
         }.execute();
     }

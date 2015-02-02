@@ -27,6 +27,7 @@ import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
+import com.yscn.knucommunity.Util.UserData;
 
 import org.json.JSONException;
 import org.json.simple.JSONArray;
@@ -118,7 +119,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().getDefaultboardContent(contentID);
+                    return NetworkUtil.getInstance().checkIsLoginUser().getDefaultboardContent(contentID);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -173,7 +174,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
     }
 
     private void writeBoard() {
-        new AsyncTask<Void, Void, Boolean>() {
+        new AsyncTask<Void, Void, JSONObject>() {
             private ClearProgressDialog dialog;
 
             @Override
@@ -188,12 +189,12 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
             }
 
             @Override
-            protected Boolean doInBackground(Void... params) {
-                boolean result = false;
+            protected JSONObject doInBackground(Void... params) {
+                JSONObject result = null;
                 try {
                     String title = titleView.getText().toString();
                     String content = contentView.getText().toString();
-                    result = NetworkUtil.getInstance().writeBoardContent(boardType, title, content,
+                    result = NetworkUtil.getInstance().checkIsLoginUser().writeBoardContent(boardType, title, content,
                             fileListMap, isEditMode, contentID);
                 } catch (IOException | ParseException | JSONException e) {
                     e.printStackTrace();
@@ -202,14 +203,27 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
             }
 
             @Override
-            protected void onPostExecute(Boolean bool) {
-                if (bool) {
+            protected void onPostExecute(JSONObject jsonObject) {
+                dialog.cancel();
+
+                if (jsonObject == null) {
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                    return;
+                }
+                String result = jsonObject.get("result").toString();
+                if (result.equals("success")) {
                     setResult(RESULT_OK);
                     finish();
-                } else {
-                    AlertToast.error(getContext(), R.string.error_board_write);
                 }
-                dialog.cancel();
+                if (result.equals("fail")) {
+                    String reason = jsonObject.get("reason").toString();
+                    if (reason.equals("emptyuserinfo")) {
+                        AlertToast.error(getContext(), R.string.error_empty_studentnumber_info);
+                        UserData.getInstance().logoutUser();
+                    } else {
+                        AlertToast.error(getContext(), R.string.error_board_write);
+                    }
+                }
             }
         }.execute();
     }

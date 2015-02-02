@@ -102,7 +102,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().deleteComment(commentid);
+                    return NetworkUtil.getInstance().checkIsLoginUser().deleteComment(commentid);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -283,7 +283,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
             protected Boolean doInBackground(Void... params) {
                 boolean result = false;
                 try {
-                    result = NetworkUtil.getInstance().writeComment(
+                    result = NetworkUtil.getInstance().checkIsLoginUser().writeComment(
                             getIntent().getStringExtra("contentID"), comment);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();

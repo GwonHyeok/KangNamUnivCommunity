@@ -110,8 +110,10 @@ public class ShareTaxiWriteActivity extends ActionBarActivity implements View.On
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().writeShareTaxiBoard(str_time, str_departure,
-                            str_destination, str_peoplecount, str_content);
+                    return NetworkUtil.getInstance()
+                            .checkIsLoginUser()
+                            .writeShareTaxiBoard(str_time, str_departure,
+                                    str_destination, str_peoplecount, str_content);
                 } catch (IOException | org.json.simple.parser.ParseException e) {
                     e.printStackTrace();
                 }

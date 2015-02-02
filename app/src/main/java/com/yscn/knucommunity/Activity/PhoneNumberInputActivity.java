@@ -102,7 +102,7 @@ public class PhoneNumberInputActivity extends ActionBarActivity implements View.
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().registerPhoneNumber(phonenumber);
+                    return NetworkUtil.getInstance().checkIsLoginUser().registerPhoneNumber(phonenumber);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }

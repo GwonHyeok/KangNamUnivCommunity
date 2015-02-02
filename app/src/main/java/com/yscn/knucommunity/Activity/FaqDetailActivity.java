@@ -72,7 +72,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
             @Override
             protected ArrayList<CommentListItems> doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().getComment(getIntent().getStringExtra("contentID"));
+                    return NetworkUtil.getInstance().checkIsLoginUser().getComment(getIntent().getStringExtra("contentID"));
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -149,7 +149,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().deleteComment(commentid);
+                    return NetworkUtil.getInstance().checkIsLoginUser().deleteComment(commentid);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -362,7 +362,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
             protected Boolean doInBackground(Void... params) {
                 boolean result = false;
                 try {
-                    result = NetworkUtil.getInstance().writeComment(
+                    result = NetworkUtil.getInstance().checkIsLoginUser().writeComment(
                             getIntent().getStringExtra("contentID"), comment);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();

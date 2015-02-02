@@ -127,7 +127,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().getSimpleProfile();
+                    return NetworkUtil.getInstance().checkIsLoginUser().getSimpleProfile();
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -179,7 +179,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
             @Override
             protected JSONObject doInBackground(String... params) {
                 try {
-                    return NetworkUtil.getInstance().changeNickName(params[0]);
+                    return NetworkUtil.getInstance().checkIsLoginUser().changeNickName(params[0]);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -246,7 +246,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
             @Override
             protected Boolean doInBackground(Uri... params) {
                 try {
-                    return NetworkUtil.getInstance().editProfilePicture(params[0]);
+                    return NetworkUtil.getInstance().checkIsLoginUser().editProfilePicture(params[0]);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }

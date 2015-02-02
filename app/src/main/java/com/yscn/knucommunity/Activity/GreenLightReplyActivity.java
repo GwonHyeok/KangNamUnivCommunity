@@ -212,7 +212,7 @@ public class GreenLightReplyActivity extends ActionBarActivity implements View.O
             protected Boolean doInBackground(Void... params) {
                 boolean result = false;
                 try {
-                    result = NetworkUtil.getInstance().writeComment(
+                    result = NetworkUtil.getInstance().checkIsLoginUser().writeComment(
                             getIntent().getStringExtra("contentID"), comment);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();

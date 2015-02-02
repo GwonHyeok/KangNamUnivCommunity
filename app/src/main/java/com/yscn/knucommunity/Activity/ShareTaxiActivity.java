@@ -145,7 +145,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().getPhoneNumber();
+                    return NetworkUtil.getInstance().checkIsLoginUser().getPhoneNumber();
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }

@@ -18,11 +18,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.Activity.BoardWriteActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -114,18 +116,23 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
      * 글 삭제하는 작업
      */
     private void deleteBoardContent() {
-        new AsyncTask<Void, Void, Boolean>() {
+        new AsyncTask<Void, Void, JSONObject>() {
             private ClearProgressDialog progressDialog;
 
             @Override
             protected void onPreExecute() {
+                if (!ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    cancel(true);
+                    return;
+                }
                 progressDialog = new ClearProgressDialog(getContext());
                 progressDialog.show();
             }
 
             @Override
-            protected Boolean doInBackground(Void... params) {
-                boolean result = false;
+            protected JSONObject doInBackground(Void... params) {
+                JSONObject result = null;
                 try {
                     result = NetworkUtil.getInstance().deleteBoardList(board_contentID);
                 } catch (IOException | ParseException e) {
@@ -135,16 +142,29 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
             }
 
             @Override
-            protected void onPostExecute(Boolean result) {
-                if (result) {
+            protected void onPostExecute(JSONObject resultObject) {
+                progressDialog.dismiss();
+
+                if (resultObject == null) {
+                    AlertToast.error(getContext(), R.string.error_to_work);
+                    return;
+                }
+
+                String result = resultObject.get("result").toString();
+                if (result.equals("success")) {
                     AlertToast.success(getContext(), getString(R.string.success_delete_board));
                     finish();
 
                     if (mDeleteListener != null) {
                         mDeleteListener.successDelete();
                     }
+                } else if (result.equals("fail")) {
+                    String reason = resultObject.get("reason").toString();
+                    if (reason.equals("emptyuserinfo")) {
+                        AlertToast.error(getContext(), R.string.error_empty_studentnumber_info);
+                        UserData.getInstance().logoutUser();
+                    }
                 }
-                progressDialog.dismiss();
             }
         }.execute();
     }

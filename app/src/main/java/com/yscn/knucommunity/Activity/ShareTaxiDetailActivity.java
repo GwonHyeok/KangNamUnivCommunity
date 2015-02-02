@@ -107,6 +107,12 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 if (result.equals("fail")) {
                     String reason = itemes.get("reason").toString();
 
+                    /* 로그인 정보가 존재하지 않음 */
+                    if (reason.equals("emptyuserinfo")) {
+                        AlertToast.error(getContext(), R.string.error_empty_studentnumber_info);
+                        UserData.getInstance().logoutUser();
+                    }
+
                     /* 개시글이 존재 하지 않음 */
                     if (reason.equals("notexist")) {
                         /* 혹시 택시 알림이 계속 존재한다면 없앰 */
@@ -362,7 +368,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().setShareTaxiLeave(contentid, isLeave);
+                    return NetworkUtil.getInstance().checkIsLoginUser().setShareTaxiLeave(contentid, isLeave);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -404,7 +410,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().setShareTaxiWith(contentid, isWith);
+                    return NetworkUtil.getInstance().checkIsLoginUser().setShareTaxiWith(contentid, isWith);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }

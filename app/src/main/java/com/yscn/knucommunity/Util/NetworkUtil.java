@@ -2,6 +2,8 @@ package com.yscn.knucommunity.Util;
 
 import android.content.Context;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Base64;
 import android.util.Log;
 
@@ -16,6 +18,8 @@ import com.yscn.knucommunity.Items.NoticeItems;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.Items.ShareTaxiListItems;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
+import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
@@ -75,6 +79,27 @@ public class NetworkUtil {
 
     private static int parseInt(String str) {
         return Integer.parseInt(str.replace(" ", ""));
+    }
+
+    public NetworkUtil checkIsLoginUser() {
+        try {
+            JSONParser jsonParser = new JSONParser();
+            HttpResponse httpResponse = postData(UrlList.LOGIN_CHECK_URL, null);
+            JSONObject jsonObject = (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+            String result = jsonObject.get("result").toString();
+            if (result.equals("fail")) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        AlertToast.error(ApplicationContextProvider.getContext(), R.string.error_empty_studentnumber_info);
+                        UserData.getInstance().logoutUser();
+                    }
+                });
+            }
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+        }
+        return instance;
     }
 
     public LoginStatus RegisterAppServer(String studentnumber, String nickname, String name, Uri profileURI) throws IOException, ParseException {
@@ -457,8 +482,8 @@ public class NetworkUtil {
         return itemses;
     }
 
-    public boolean writeBoardContent(int boardType, String title, String content, HashMap<String, Uri> file,
-                                     boolean isEditMode, String contentid) throws IOException, ParseException, JSONException {
+    public JSONObject writeBoardContent(int boardType, String title, String content, HashMap<String, Uri> file,
+                                        boolean isEditMode, String contentid) throws IOException, ParseException, JSONException {
         JSONParser jsonParser = new JSONParser();
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         HttpResponse httpResponse;
@@ -502,18 +527,15 @@ public class NetworkUtil {
         }
 
         if (boardType == -1) {
-            return false;
+            return null;
         }
 
         HttpPost httpPost = new HttpPost(UrlList.BOARD_WRITE_CONTENT + boardType);
         httpPost.setEntity(multipartEntityBuilder.build());
         httpResponse = httpClient.execute(httpPost);
-//        httpResponse = postData(UrlList.BOARD_WRITE_CONTENT + boardType, parameter);
-
-        JSONObject object = (JSONObject) jsonParser.parse(
+        return (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
         );
-        return checkResultData(object);
     }
 
     private ArrayList<NoticeItems> noticeParser(NoticeType noticeType, int timeout) throws IOException {
@@ -656,45 +678,24 @@ public class NetworkUtil {
 
     /**
      * @param contentID greenLight Board Content ID
-     * @return HashMap <String String>
-     * 그린라이트 결과에 대해서 해쉬맵 형태로 넘겨준다.
-     * positivesize : 그린라이트 켬 사이즈.
-     * negativesize : 그린라이트 끔 사이즈.
-     * isChecked : 그 사람이 그린라이트를 체크 했었는지 확인.
      * @throws IOException
      * @throws ParseException
      */
-    public HashMap<String, String> getGreenLightResult(String contentID) throws IOException, ParseException {
+    public JSONObject getGreenLightResult(String contentID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
         HttpResponse httpResponse = postData(UrlList.GET_GREENLIGHT_RESULT + contentID, parameter);
-        JSONObject object = (JSONObject) jsonParser.parse(
+        return (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
-        if (!checkResultData(object)) {
-            return null;
-        }
-        HashMap<String, String> greenLightData = new HashMap<>();
-        greenLightData.put("positivesize", object.get("positivesize").toString());
-        greenLightData.put("negativesize", object.get("negativesize").toString());
-        greenLightData.put("isChecked", object.get("isChecked").toString());
-        return greenLightData;
     }
 
-    public HashMap<String, String> setGreenLightResult(String contentID, boolean isOn) throws IOException, ParseException {
+    public JSONObject setGreenLightResult(String contentID, boolean isOn) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
         parameter.put("result", isOn ? "1" : "0");
         HttpResponse httpResponse = postData(UrlList.SET_GREENLIGHT_RESULT + contentID, parameter);
-        JSONObject object = (JSONObject) jsonParser.parse(
+        return (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
-        if (!checkResultData(object)) {
-            return null;
-        }
-        HashMap<String, String> greenLightData = new HashMap<>();
-        greenLightData.put("positivesize", object.get("positivesize").toString());
-        greenLightData.put("negativesize", object.get("negativesize").toString());
-        greenLightData.put("isChecked", object.get("isChecked").toString());
-        return greenLightData;
     }
 
     public ArrayList<CommentListItems> getComment(String contentID) throws IOException, ParseException {
@@ -738,14 +739,13 @@ public class NetworkUtil {
         return checkResultData(object);
     }
 
-    public boolean deleteBoardList(String contentID) throws IOException, ParseException {
+    public JSONObject deleteBoardList(String contentID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
         HttpResponse httpResponse = postData(UrlList.DELETE_BOARD_LIST + contentID, parameter);
-        JSONObject object = (JSONObject) jsonParser.parse(
+        return (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent())
         );
-        return checkResultData(object);
     }
 
     public ArrayList<ShareTaxiListItems> getShareTaxiList(String date, int page) throws IOException, ParseException {

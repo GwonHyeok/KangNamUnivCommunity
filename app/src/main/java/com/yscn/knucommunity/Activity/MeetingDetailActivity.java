@@ -160,7 +160,7 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().deleteComment(commentid);
+                    return NetworkUtil.getInstance().checkIsLoginUser().deleteComment(commentid);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -347,7 +347,7 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
             protected Boolean doInBackground(Void... params) {
                 boolean result = false;
                 try {
-                    result = NetworkUtil.getInstance().writeComment(
+                    result = NetworkUtil.getInstance().checkIsLoginUser().writeComment(
                             getIntent().getStringExtra("contentID"), comment);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();

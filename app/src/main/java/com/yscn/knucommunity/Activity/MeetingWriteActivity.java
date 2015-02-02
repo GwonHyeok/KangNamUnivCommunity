@@ -135,7 +135,7 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
                 String studentcount = countView.getText().toString();
 
                 try {
-                    result = NetworkUtil.getInstance().writeMeetingContent(content, schoolname,
+                    result = NetworkUtil.getInstance().checkIsLoginUser().writeMeetingContent(content, schoolname,
                             majorname, studentcount, gender);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
