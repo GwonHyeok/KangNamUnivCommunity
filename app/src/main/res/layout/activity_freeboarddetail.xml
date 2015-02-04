@@ -26,7 +26,8 @@
             android:layout_marginLeft="54dp"
             android:layout_marginTop="16dp"
             android:textColor="#FF424242"
-            android:textSize="22sp" />
+            android:textSize="22sp"
+            android:paddingRight="12dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -35,8 +36,8 @@
 
             <com.yscn.knucommunity.CustomView.CircleImageView
                 android:id="@+id/freeboard_detail_profile"
-                android:layout_width="46dp"
-                android:layout_height="46dp"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
                 android:layout_marginLeft="12dp"
                 android:src="@drawable/ic_profile" />
 

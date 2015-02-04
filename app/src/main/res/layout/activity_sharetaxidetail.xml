@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_below="@id/toolbar"
-        android:paddingBottom="20dp"
+        android:paddingBottom="16dp"
         android:paddingLeft="50dp"
         android:paddingRight="14dp"
         android:paddingTop="10dp">
@@ -80,8 +80,8 @@
 
         <com.yscn.knucommunity.CustomView.CircleImageView
             android:id="@+id/freeboard_detail_profile"
-            android:layout_width="46dp"
-            android:layout_height="46dp"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
             android:layout_marginLeft="12dp"
             android:src="@drawable/ic_profile" />
 
@@ -105,7 +105,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="12dp"
             android:textColor="#757575"
-            android:textSize="17sp" />
+            android:textSize="16sp" />
     </RelativeLayout>
 
     <ScrollView

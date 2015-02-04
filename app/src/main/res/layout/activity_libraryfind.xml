@@ -43,14 +43,16 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:background="@drawable/bg_libraryfind_edittext"
-        android:padding="10dp">
+        android:padding="10dp"
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
-            android:src="@drawable/ic_seach" />
+            android:src="@drawable/ic_seach"
+            android:layout_centerVertical="true"/>
 
         <EditText
             android:id="@+id/library_edittext"

@@ -26,6 +26,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
+            android:paddingRight="12dp"
             android:layout_toLeftOf="@+id/greenlight_detail_time"
             android:textColor="#FF424242"
             android:textSize="22sp" />

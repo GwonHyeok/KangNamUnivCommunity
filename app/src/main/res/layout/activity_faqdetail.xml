@@ -79,8 +79,8 @@
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
                         android:id="@+id/faq_detail_profile"
-                        android:layout_width="46dp"
-                        android:layout_height="46dp"
+                        android:layout_width="42dp"
+                        android:layout_height="42dp"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="12dp"
                         android:src="@drawable/ic_profile" />
@@ -116,8 +116,8 @@
                     android:layout_below="@+id/faq_detail_infoview"
                     android:lineSpacingExtra="5dp"
                     android:paddingBottom="20dp"
-                    android:paddingLeft="16dp"
-                    android:paddingRight="16dp"
+                    android:paddingLeft="26dp"
+                    android:paddingRight="12dp"
                     android:paddingTop="14dp"
                     android:textColor="#424242"
                     android:textSize="14sp" />
