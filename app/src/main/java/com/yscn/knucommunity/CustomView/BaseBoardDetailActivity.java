@@ -178,6 +178,11 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
      */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (board_studenuNumber == null) {
+            menu.getItem(0).setVisible(false);
+            menu.getItem(1).setVisible(false);
+            return true;
+        }
         if (!board_studenuNumber.equals(UserData.getInstance().getStudentNumber())) {
             menu.getItem(0).setVisible(false);
             menu.getItem(1).setVisible(false);

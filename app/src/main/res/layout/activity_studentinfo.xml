@@ -135,10 +135,26 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <!-- 모바일 학생증 볼 수 있게 하는 버튼 -->
-        <View
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="40" />
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="40">
+
+            <TextView
+                android:id="@+id/studentinfo_mynotify"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button_studentinfo_notify"
+                android:gravity="center"
+                android:padding="5dp"
+                android:transitionName=""
+                android:text="@string/text_studentinfo_notify_title"
+                android:textColor="@android:color/white"
+                android:textSize="20sp" />
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

@@ -74,11 +74,22 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = object.get("content").toString();
                 String title = object.get("title").toString();
+                String writerName = object.get("writername").toString();
+                String writerStudentNumber = object.get("studentnumber").toString();
+                String time = object.get("time").toString();
 
                 JSONArray fileArray = (JSONArray) object.get("file");
 
                 ((TextView) findViewById(R.id.freeboard_detail_content)).setText(content);
                 ((TextView) findViewById(R.id.freeboard_detail_title)).setText(title);
+                ((TextView) findViewById(R.id.freeboard_detail_name)).setText(writerName);
+                ((TextView) findViewById(R.id.freeboard_detail_time)).setText(getSimpleDetailTime(time));
+                ImageView profileImageView = (ImageView) findViewById(R.id.freeboard_detail_profile);
+                setProfileImage(profileImageView, writerStudentNumber);
+
+                /* 자신이 쓴 글일 경우 메뉴 보여줌 */
+                board_studenuNumber = writerStudentNumber;
+                invalidateOptionsMenu();
 
                 /* Reset Already Added Photo View */
                 LinearLayout dataView =
@@ -129,17 +140,6 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
     }
 
     protected void setDefaultData() {
-        String writerName = getIntent().getStringExtra("writerName");
-        String writerStudentNumber = getIntent().getStringExtra("writerStudentNumber");
-        String title = getIntent().getStringExtra("title");
-        String time = getIntent().getStringExtra("time");
-
-        ((TextView) findViewById(R.id.freeboard_detail_title)).setText(title);
-        ((TextView) findViewById(R.id.freeboard_detail_name)).setText(writerName);
-        ((TextView) findViewById(R.id.freeboard_detail_time)).setText(getSimpleDetailTime(time));
-        ImageView profileImageView = (ImageView) findViewById(R.id.freeboard_detail_profile);
-
-        setProfileImage(profileImageView, writerStudentNumber);
     }
 
     @Override

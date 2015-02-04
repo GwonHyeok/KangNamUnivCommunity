@@ -67,7 +67,7 @@ public class NetworkUtil {
 
     }
 
-    public static NetworkUtil getInstance() {
+    public synchronized static NetworkUtil getInstance() {
         if (instance == null) {
             instance = new NetworkUtil();
         }
@@ -310,6 +310,28 @@ public class NetworkUtil {
     public JSONObject getSimpleProfile() throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HttpResponse httpResponse = postData(UrlList.GET_SIMPLE_PROFILE_URL, null);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    public JSONObject getMyNotify(int page) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> paramter = new HashMap<>();
+        paramter.put("page", String.valueOf(page));
+        HttpResponse httpResponse = postData(UrlList.MYINFO_MYNOTIFY_URL, paramter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    public JSONObject getMyBoardList(int page) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> paramter = new HashMap<>();
+        paramter.put("page", String.valueOf(page));
+        HttpResponse httpResponse = postData(UrlList.MYINFO_MYBOARD_URL, paramter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    public JSONObject getMeetingData(String contentid) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.GET_MEETING_CONTENT_URL + contentid, null);
         return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 

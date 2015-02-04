@@ -169,6 +169,10 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                         ImageLoaderUtil.getInstance().getThumbProfileImageOptions()
                 );
 
+                /* 메뉴 새로고침 */
+                board_studenuNumber = writer;
+                invalidateOptionsMenu();
+
                 /* 나는 이미 택시를 타서 합승자 명단에 있어요 !! */
                 if (Boolean.parseBoolean(isSharePerson)) {
                     taxiButton.setBackgroundColor(getResources().getColor(R.color.share_taxi_highlight_color));
@@ -450,6 +454,9 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        if (board_studenuNumber == null) {
+            return false;
+        }
         if (!board_studenuNumber.equals(UserData.getInstance().getStudentNumber())) {
             /* 지우기 */
             menu.getItem(0).setVisible(false);

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#00897b"
+        android:transitionName="" />
+
+    <com.yscn.knucommunity.CustomView.PagerSlidingTabStrip
+        android:id="@+id/studentnotify_pagertabstrip"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="#FF00897b"
+        app:pstsDividerColor="@android:color/transparent"
+        app:pstsIndicatorColor="#ffffee58"
+        app:pstsIndicatorHeight="2dp"
+        app:pstsTabTextSize="16sp"
+        app:pstsUnderlineHeight="0dp" />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/studentnotify_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+</LinearLayout>

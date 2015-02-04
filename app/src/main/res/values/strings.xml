@@ -42,6 +42,7 @@
     <string name="community_board_reply_count_form">%1$s</string>
     <string name="community_greenlight_title">그린라이트</string>
     <string name="community_board_nodata">정보를 가져오는 중에 문제가 발생하였습니다.</string>
+    <string name="community_meeting_title">미팅</string>
 
     <string name="community_reply_text">댓글달기</string>
     <string name="community_reply_need_text">입력해주세요</string>
@@ -110,4 +111,12 @@
     <string name="nickname_change_text">정말로 닉네임을 변경 하시겠습니까?</string>
     <string name="profileimage_change_text">정말로 프로필사진을 변경 하시겠습니까?</string>
     <string name="success_nickname_change">성공적으로 닉네임을 변경하였습니다</string>
+    <string name="text_studentinfo_notify_title">내 소식</string>
+    <string name="text_studentinfo_notify_mynotify">내 알림</string>
+    <string name="text_studentinfo_notify_myboard">내가 쓴 글</string>
+    <string name="text_studentinfo_notify_noti_reply_base">%1$s님이 회원님의 %2$s "'"%3$s"'" 글에 댓글을 다셨습니다.</string>
+    <string name="text_studentinfo_notify_noti_reply_empty_titlebase">%1$s님이 회원님의 %2$s 글에 댓글을 다셨습니다.</string>
+    <string name="text_studentinfo_notify_board_base">%1$s "'"%2$s"'"</string>
+
+
 </resources>

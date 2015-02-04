@@ -7,6 +7,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -48,6 +50,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
         circleImageView.setOnClickListener(this);
 
         findViewById(R.id.studentinfo_nickname_root).setOnClickListener(this);
+        findViewById(R.id.studentinfo_mynotify).setOnClickListener(this);
 
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(
@@ -63,6 +66,11 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
             showEditProfileChangeDialog();
         } else if (id == R.id.studentinfo_nickname_root) {
             showNicknameChangeDialog();
+        } else if (id == R.id.studentinfo_mynotify) {
+            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this, v, "");
+            ActivityCompat.startActivity(this, new Intent(this, StudentNotificationActivity.class),
+                    options.toBundle());
         }
     }
 

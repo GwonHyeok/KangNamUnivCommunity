@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/studentnotify_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:background="@drawable/bg_default_select_item_effect"
+    android:clickable="true"
+    android:orientation="vertical">
+
+    <com.yscn.knucommunity.CustomView.CircleImageView
+        android:id="@+id/studentnotify_item_imageview"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_profile"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@+id/studentnotify_item_imageview"
+        android:gravity="center|left"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/studentnotify_item_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/studentnotify_item_time"
+            android:maxLines="3"
+            android:text="권혁님이 자유게시판 '안녕하세요' 글에 댓글을 다셨습니다." />
+
+        <TextView
+            android:id="@+id/studentnotify_item_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:text="2015.02.21 13:12"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</RelativeLayout>

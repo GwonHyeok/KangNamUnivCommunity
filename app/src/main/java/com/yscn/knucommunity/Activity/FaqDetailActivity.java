@@ -94,6 +94,10 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
     private void addReplyData(ArrayList<CommentListItems> itemses) {
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fatdetail_main_scroll_activity);
 
+        if (itemses.size() > 0) {
+            ((TextView) findViewById(R.id.faq_detail_replycount)).setText(getReplyText(String.valueOf(itemses.size())));
+        }
+
         for (final CommentListItems dataObject : itemses) {
             View replyView = LayoutInflater.from(this).inflate(R.layout.ui_faqreply, linearLayout, false);
 
@@ -224,10 +228,22 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = value.get("content").toString();
                 String title = getDefaulttFaqTitle(value.get("title").toString());
+                String writerName = value.get("writername").toString();
+                String studentNumber = value.get("studentnumber").toString();
+                String time = getSimpleDetailTime(value.get("time").toString());
+
                 JSONArray fileArray = (JSONArray) value.get("file");
 
                 ((TextView) findViewById(R.id.faq_detail_content)).setText(content);
                 ((TextView) findViewById(R.id.faq_detail_title)).setText(title);
+                ((TextView) findViewById(R.id.faq_detail_name)).setText(writerName);
+                ((TextView) findViewById(R.id.faq_detail_time)).setText(getSimpleDetailTime(time));
+
+                board_studenuNumber = studentNumber;
+                invalidateOptionsMenu();
+
+                ImageView profileImageView = (ImageView) findViewById(R.id.faq_detail_profile);
+                setProfileImage(profileImageView, studentNumber);
 
                 LinearLayout dataView =
                         (LinearLayout) findViewById(R.id.faq_detail_photo_content_view);
@@ -268,20 +284,6 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
     }
 
     protected void setDefaultData() {
-        String contentID = getIntent().getStringExtra("contentID");
-        String writerName = getIntent().getStringExtra("writerName");
-        String studentNumber = getIntent().getStringExtra("writerStudentNumber");
-        String title = getIntent().getStringExtra("title");
-        String time = getIntent().getStringExtra("time");
-        String replyCount = String.valueOf(getIntent().getIntExtra("replyCount", -1));
-
-        ((TextView) findViewById(R.id.faq_detail_name)).setText(writerName);
-        ((TextView) findViewById(R.id.faq_detail_time)).setText(getSimpleDetailTime(time));
-        ((TextView) findViewById(R.id.faq_detail_title)).setText(getDefaulttFaqTitle(title));
-        ((TextView) findViewById(R.id.faq_detail_replycount)).setText(getReplyText(replyCount));
-
-        ImageView profileImageView = (ImageView) findViewById(R.id.faq_detail_profile);
-        setProfileImage(profileImageView, studentNumber);
     }
 
     @Override

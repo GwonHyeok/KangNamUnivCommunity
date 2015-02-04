@@ -4,7 +4,6 @@ import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
@@ -201,9 +200,10 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
     }
 
     private void setContent() {
-        new AsyncTask<Void, Void, JSONObject>() {
+        new AsyncTask<Void, Void, Void>() {
             private ClearProgressDialog clearProgressDialog;
-
+            JSONObject meetingDataObject;
+            JSONObject boardContentObject;
             @Override
             protected void onPreExecute() {
                 clearProgressDialog = new ClearProgressDialog(getContext());
@@ -211,10 +211,11 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
             }
 
             @Override
-            protected JSONObject doInBackground(Void... params) {
-                String conetntID = getIntent().getStringExtra("contentID");
+            protected Void doInBackground(Void... params) {
+                String contentID = getIntent().getStringExtra("contentID");
                 try {
-                    return NetworkUtil.getInstance().getDefaultboardContent(conetntID);
+                    meetingDataObject = NetworkUtil.getInstance().getMeetingData(contentID);
+                    boardContentObject = NetworkUtil.getInstance().getDefaultboardContent(contentID);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -223,9 +224,29 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
 
 
             @Override
-            protected void onPostExecute(JSONObject value) {
+            protected void onPostExecute(Void value) {
                 clearProgressDialog.cancel();
-                ((TextView) findViewById(R.id.faq_detail_content)).setText(value.get("content").toString());
+                if (boardContentObject != null && meetingDataObject != null) {
+
+                    String peopleCount = meetingDataObject.get("studentcount").toString();
+                    String school = meetingDataObject.get("schoolname").toString();
+                    String major = meetingDataObject.get("majorname").toString();
+                    String gender = meetingDataObject.get("gender").toString();
+                    String time = boardContentObject.get("time").toString();
+                    String studentname = boardContentObject.get("writername").toString();
+                    String studentNumber = boardContentObject.get("studentnumber").toString();
+                    board_studenuNumber = studentNumber;
+                    invalidateOptionsMenu();
+
+                    ((TextView) findViewById(R.id.faq_detail_name)).setText(studentname);
+                    ((TextView) findViewById(R.id.faq_detail_time)).setText(getSimpleDetailTime(time));
+                    ((TextView) findViewById(R.id.faq_detail_title)).setText(getDefaultMeetingTitle(gender, Integer.parseInt(peopleCount), school, major));
+
+                    ImageView profileImageView = (ImageView) findViewById(R.id.faq_detail_profile);
+                    setProfileImage(profileImageView, studentNumber);
+                    ((TextView) findViewById(R.id.faq_detail_content)).setText(boardContentObject.get("content").toString());
+                }
+
             }
         }.execute();
     }
@@ -240,21 +261,6 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
     }
 
     protected void setDefaultData() {
-        Intent intent = getIntent();
-        int peopleCount = intent.getIntExtra("people", -1);
-        String school = intent.getStringExtra("school");
-        String major = intent.getStringExtra("major");
-        String gender = intent.getStringExtra("gender");
-        String time = intent.getStringExtra("time");
-        String studentname = intent.getStringExtra("studentname");
-        String studentNumber = getIntent().getStringExtra("writerStudentNumber");
-
-        ((TextView) findViewById(R.id.faq_detail_name)).setText(studentname);
-        ((TextView) findViewById(R.id.faq_detail_time)).setText(getSimpleDetailTime(time));
-        ((TextView) findViewById(R.id.faq_detail_title)).setText(getDefaultMeetingTitle(gender, peopleCount, school, major));
-
-        ImageView profileImageView = (ImageView) findViewById(R.id.faq_detail_profile);
-        setProfileImage(profileImageView, studentNumber);
     }
 
     @Override

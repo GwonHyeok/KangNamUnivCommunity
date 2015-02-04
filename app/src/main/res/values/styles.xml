@@ -11,4 +11,5 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="StudentInfoNotificationTheme" parent="NoActionBarTheme"/>
 </resources>

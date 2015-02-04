@@ -155,6 +155,9 @@
         <activity
             android:name=".Activity.ShareTaxiWriteActivity"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".Activity.StudentNotificationActivity"
+            android:theme="@style/StudentInfoNotificationTheme" />
     </application>
 
 </manifest>

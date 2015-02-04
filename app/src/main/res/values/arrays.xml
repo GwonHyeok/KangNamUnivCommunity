@@ -44,4 +44,9 @@
         <item>@color/dull_studentground_detail_6</item>
     </integer-array>
 
+    <string-array name="studentinfo_tab_title">
+        <item>@string/text_studentinfo_notify_mynotify</item>
+        <item>@string/text_studentinfo_notify_myboard</item>
+    </string-array>
+
 </resources>

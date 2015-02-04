@@ -94,6 +94,9 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
                     ((TextView) findViewById(R.id.greenlight_detail_content)).setText(contentObject.get("content").toString());
                     ((TextView) findViewById(R.id.greenlight_detail_title)).setText(contentObject.get("title").toString());
 
+                    board_studenuNumber = contentObject.get("studentnumber").toString();
+                    invalidateOptionsMenu();
+
                     String isChecked = greenLightObject.get("isChecked").toString();
 
                     LinearLayout dataView =
@@ -174,14 +177,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
 
     @Override
     protected void setDefaultData() {
-//        intent.putExtra("contentID", listItems.getContentid());
-//        intent.putExtra("writerName", listItems.getName());
-//        intent.putExtra("writerStudentNumber", listItems.getStudentnumber());
-//        intent.putExtra("title", listItems.getTitle());
-//        intent.putExtra("time", listItems.getTime());
         m_ContentID = getIntent().getStringExtra("contentID");
-        ((TextView) findViewById(R.id.greenlight_detail_title)).setText(getIntent().getStringExtra("title"));
-        ((TextView) findViewById(R.id.greenlight_detail_time)).setText(getSimpleDetailTime(getIntent().getStringExtra("time")));
     }
 
     @Override

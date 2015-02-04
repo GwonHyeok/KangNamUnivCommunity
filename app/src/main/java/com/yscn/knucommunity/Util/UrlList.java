@@ -45,4 +45,7 @@ public class UrlList {
     public static final String GET_SIMPLE_PROFILE_URL = MAIN_URL + "appLogin/getSimpleProfile";
     public static final String CHANGE_NICKNAME_URL = MAIN_URL + "appLogin/changeNickname";
     public static final String LOGIN_CHECK_URL = MAIN_URL + "appLogin/isLoginUser";
+    public static final String MYINFO_MYNOTIFY_URL = MAIN_URL + "user/myNotification";
+    public static final String MYINFO_MYBOARD_URL = MAIN_URL + "user/myBoardlist";
+    public static final String GET_MEETING_CONTENT_URL = MAIN_URL + "board/getMeetingData/m/";
 }

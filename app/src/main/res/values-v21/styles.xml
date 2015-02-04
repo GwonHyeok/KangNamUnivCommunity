@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="StudentInfoNotificationTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimaryDark">#FF00897b</item>
+    </style>
+</resources>
