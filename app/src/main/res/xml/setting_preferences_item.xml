@@ -16,7 +16,7 @@
             android:title="인증된 기기" />
 
 
-        <EditTextPreference
+        <Preference
             android:key="setting_preference_myinfo_phonenumber"
             android:title="핸드폰 번호" />
 

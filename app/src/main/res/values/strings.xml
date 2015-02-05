@@ -60,6 +60,7 @@
     <string name="show_more">더보기</string>
 
     <string name="warning_title">경고</string>
+    <string name="notify_title">알림</string>
     <string name="want_you_delete">정말로 글을 삭제하시겠습니까?</string>
     <string name="want_you_board_edit">글을 수정하시겠습니까?</string>
     <string name="want_you_delete_comment">정말로 삭제하시겠습니까?</string>
@@ -120,7 +121,7 @@
     <string name="text_studentinfo_go_setting">설정으로 이동</string>
     <string name="text_setting_title">설정</string>
     <string name="text_setting_getting_data">정보를 가져오는 중입니다</string>
-    <string name="text_setting_phonenumber_dialog_message">택시기능을 사용하기 위한 핸드폰 번호를 수정혹은 입력하세요</string>
+    <string name="text_setting_phonenumber_dialog_message">핸드폰 번호를 수정혹은 입력하세요</string>
     <string name="text_are_you_want_logout_message">정말로 로그아웃 하시겠습니까?</string>
     <string name="text_setting_author_devices">인증된 기기</string>
     <string name="text_setting_author_device_logout">정말로 해당 기기를 로그아웃 시키겠습니까?</string>

@@ -3,18 +3,19 @@ package com.yscn.knucommunity.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.EditTextPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
@@ -56,8 +57,8 @@ public class SettingActivity extends ActionBarActivity {
     }
 
     public static class PreferenceItem extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
-        private Preference mMyInfoNamePreference, mMyInfoAccountPreference, mMyInfoAuthorDevices;
-        private EditTextPreference mMyInfoPhoneNumber;
+        private Preference mMyInfoNamePreference, mMyInfoAccountPreference,
+                mMyInfoAuthorDevices, mMyInfoPhoneNumber;
 
 
         @Override
@@ -67,7 +68,7 @@ public class SettingActivity extends ActionBarActivity {
 
             mMyInfoNamePreference = findPreference("setting_preference_myinfo_name");
             mMyInfoAccountPreference = findPreference("setting_preference_myinfo_myaccountinfo");
-            mMyInfoPhoneNumber = (EditTextPreference) findPreference("setting_preference_myinfo_phonenumber");
+            mMyInfoPhoneNumber = findPreference("setting_preference_myinfo_phonenumber");
             mMyInfoAuthorDevices = findPreference("setting_preference_myinfo_authordevices");
 
             mMyInfoNamePreference.setTitle(UserData.getInstance().getStudentName());
@@ -75,14 +76,9 @@ public class SettingActivity extends ActionBarActivity {
             PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().clear().commit();
             initNeedNetworkData();
 
-            EditText phoneNumberEditText = mMyInfoPhoneNumber.getEditText();
-            phoneNumberEditText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-            phoneNumberEditText.setInputType(InputType.TYPE_CLASS_PHONE);
-            phoneNumberEditText.setHint(R.string.warning_phone_input);
-
             mMyInfoNamePreference.setOnPreferenceClickListener(this);
             mMyInfoAccountPreference.setOnPreferenceClickListener(this);
-            mMyInfoPhoneNumber.setOnPreferenceChangeListener(this);
+            mMyInfoPhoneNumber.setOnPreferenceClickListener(this);
             mMyInfoAuthorDevices.setOnPreferenceClickListener(this);
         }
 
@@ -92,7 +88,6 @@ public class SettingActivity extends ActionBarActivity {
 
                 @Override
                 protected void onPreExecute() {
-                    mMyInfoPhoneNumber.setText("");
                     mMyInfoPhoneNumber.setSummary(getString(R.string.text_setting_getting_data));
                 }
 
@@ -113,7 +108,6 @@ public class SettingActivity extends ActionBarActivity {
                 protected void onPostExecute(Boolean value) {
                     if (value) {
                         mMyInfoPhoneNumber.setSummary(phoneNumber);
-                        mMyInfoPhoneNumber.setText(phoneNumber);
                     } else {
                         mMyInfoPhoneNumber.setSummary(getString(R.string.community_board_nodata));
                         AlertToast.error(getActivity(), R.string.error_to_work);
@@ -162,7 +156,6 @@ public class SettingActivity extends ActionBarActivity {
                     String result = jsonObject.get("result").toString();
                     if (result.equals("success")) {
                         mMyInfoPhoneNumber.setSummary(phonenumber);
-                        mMyInfoPhoneNumber.setText(phonenumber);
                         AlertToast.success(getActivity(), getString(R.string.success_phone_input));
                         return;
                     }
@@ -208,6 +201,41 @@ public class SettingActivity extends ActionBarActivity {
             }.execute();
         }
 
+        private void showPhoneNumberChangeDialog() {
+            LinearLayout linearLayout = new LinearLayout(getActivity());
+            final EditText editText = new EditText(getActivity());
+            editText.setHint(R.string.phone_input_hint);
+            editText.setBackgroundColor(Color.TRANSPARENT);
+            linearLayout.addView(editText);
+            int padding = (int) ApplicationUtil.getInstance().dpToPx(20);
+            linearLayout.setPadding(padding, 0, padding, 0);
+            ViewGroup.LayoutParams layoutParams = editText.getLayoutParams();
+            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+            editText.setInputType(InputType.TYPE_CLASS_PHONE);
+            editText.setLayoutParams(layoutParams);
+            if (numberCheck(mMyInfoPhoneNumber.getSummary().toString())) {
+                editText.setText(mMyInfoPhoneNumber.getSummary());
+            }
+
+            new AlertDialog.Builder(getActivity())
+                    .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String phonenumber = editText.getText().toString();
+                            if (!phonenumber.isEmpty()) {
+                                updatePhoneNumber(phonenumber);
+                            } else {
+                                AlertToast.warning(getActivity(), R.string.warning_phone_input);
+                            }
+                        }
+                    })
+                    .setTitle(R.string.notify_title)
+                    .setMessage(R.string.text_setting_phonenumber_dialog_message)
+                    .setNegativeButton(R.string.NO, null)
+                    .setView(linearLayout)
+                    .show();
+        }
+
         @Override
         public boolean onPreferenceClick(Preference preference) {
             String key = preference.getKey();
@@ -232,6 +260,8 @@ public class SettingActivity extends ActionBarActivity {
             } else if (key.equals(mMyInfoAuthorDevices.getKey())) {
                 startActivity(new Intent(getActivity(), AuthorDeviceActivity.class));
                 return true;
+            } else if (key.equals(mMyInfoPhoneNumber.getKey())) {
+                showPhoneNumberChangeDialog();
             }
             return false;
         }
