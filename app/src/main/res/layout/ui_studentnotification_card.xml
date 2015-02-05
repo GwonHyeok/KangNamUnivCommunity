@@ -9,20 +9,24 @@
 
     <com.yscn.knucommunity.CustomView.CircleImageView
         android:id="@+id/studentnotify_item_imageview"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
         android:layout_centerVertical="true"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="2dp"
         android:src="@drawable/ic_profile"
         android:visibility="gone" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_toRightOf="@+id/studentnotify_item_imageview"
-        android:gravity="center|left"
-        android:orientation="vertical"
-        android:padding="10dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/studentnotify_item_imageview"
+            android:gravity="center|left"
+            android:orientation="vertical"
+            android:paddingLeft="6dp"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:paddingRight="8dp">
 
         <TextView
             android:id="@+id/studentnotify_item_title"
@@ -30,7 +34,8 @@
             android:layout_height="match_parent"
             android:layout_above="@+id/studentnotify_item_time"
             android:maxLines="3"
-            android:text="권혁님이 자유게시판 '안녕하세요' 글에 댓글을 다셨습니다." />
+            android:text="권혁님이 자유게시판 '안녕하세요' 글에 댓글을 다셨습니다."
+            android:textColor="#424242"/>
 
         <TextView
             android:id="@+id/studentnotify_item_time"
@@ -38,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:text="2015.02.21 13:12"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textColor="#8c8c8c"/>
     </RelativeLayout>
 </RelativeLayout>
