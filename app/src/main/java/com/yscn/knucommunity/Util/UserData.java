@@ -2,7 +2,9 @@ package com.yscn.knucommunity.Util;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+import android.preference.PreferenceManager;
 
 import com.yscn.knucommunity.Activity.Splash;
 
@@ -68,8 +70,11 @@ public class UserData {
     public void logoutUser() {
         UserDataPreference userDataPreference = getUserDataPreference();
         SessionDataPreference sessionDataPreference = getSessionDataPreference();
+        SharedPreferences sharedPreferences = getSharedPreference();
+
         userDataPreference.removeAll();
         sessionDataPreference.removeAll();
+        sharedPreferences.edit().clear().apply();
         Context context = ApplicationContextProvider.getContext();
         Intent intent = new Intent(context, Splash.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -109,6 +114,11 @@ public class UserData {
     private SessionDataPreference getSessionDataPreference() {
         Context mContext = ApplicationContextProvider.getContext();
         return new SessionDataPreference(mContext);
+    }
+
+    private SharedPreferences getSharedPreference() {
+        Context mContext = ApplicationContextProvider.getContext();
+        return PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
     public String getPhoneNumber() {

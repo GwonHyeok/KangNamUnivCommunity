@@ -158,6 +158,12 @@
         <activity
             android:name=".Activity.StudentNotificationActivity"
             android:theme="@style/StudentInfoNotificationTheme" />
+        <activity
+            android:name=".Activity.SettingActivity"
+            android:theme="@style/SettingTheme" />
+        <activity
+            android:name=".Activity.AuthorDeviceActivity"
+            android:theme="@style/SettingTheme" />
     </application>
 
 </manifest>

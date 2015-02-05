@@ -57,7 +57,7 @@
             android:id="@+id/studentinfo_nickname_root"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="30"
+            android:layout_weight="25"
             android:background="@drawable/bg_default_select_item_effect"
             android:gravity="center_vertical">
 
@@ -95,7 +95,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="30"
+            android:layout_weight="25"
             android:gravity="center_vertical">
 
             <ImageView
@@ -138,11 +138,11 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:layout_marginRight="40dp"
             android:layout_marginLeft="40dp"
-            android:layout_weight="40">
+            android:layout_marginRight="40dp"
+            android:layout_weight="50"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp">
 
             <TextView
                 android:id="@+id/studentinfo_mynotify"
@@ -151,10 +151,35 @@
                 android:background="@drawable/bg_button_studentinfo_notify"
                 android:gravity="center"
                 android:padding="5dp"
-                android:transitionName=""
                 android:text="@string/text_studentinfo_notify_title"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                android:transitionName="" />
+
+            <LinearLayout
+                android:id="@+id/studentinfo_settingbutton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_default_select_item_effect"
+                android:clickable="true"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="4dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_studentinfo_go_setting"
+                    android:textColor="#ff7f7f7f" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/ic_gotosetting" />
+            </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

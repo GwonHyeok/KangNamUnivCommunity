@@ -51,6 +51,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
 
         findViewById(R.id.studentinfo_nickname_root).setOnClickListener(this);
         findViewById(R.id.studentinfo_mynotify).setOnClickListener(this);
+        findViewById(R.id.studentinfo_settingbutton).setOnClickListener(this);
 
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(
@@ -71,6 +72,10 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                     this, v, "");
             ActivityCompat.startActivity(this, new Intent(this, StudentNotificationActivity.class),
                     options.toBundle());
+        } else if (id == R.id.studentinfo_settingbutton) {
+            ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeCustomAnimation(this, R.anim.slideup, R.anim.slidedown);
+            ActivityCompat.startActivity(this, new Intent(this, SettingActivity.class), optionsCompat.toBundle());
+            finish();
         }
     }
 

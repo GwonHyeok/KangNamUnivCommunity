@@ -12,4 +12,7 @@
     </style>
 
     <style name="StudentInfoNotificationTheme" parent="NoActionBarTheme"/>
+
+    <style name="SettingTheme" parent="NoActionBarTheme" />
+
 </resources>

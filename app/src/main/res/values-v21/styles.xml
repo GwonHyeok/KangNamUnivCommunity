@@ -4,4 +4,8 @@
     <style name="StudentInfoNotificationTheme" parent="NoActionBarTheme">
         <item name="android:colorPrimaryDark">#FF00897b</item>
     </style>
+
+    <style name="SettingTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimaryDark">#5321A8</item>
+    </style>
 </resources>

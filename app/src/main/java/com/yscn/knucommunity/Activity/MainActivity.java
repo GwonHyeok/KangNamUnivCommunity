@@ -24,8 +24,6 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
         findViewById(R.id.main_community).setOnClickListener(this);
         findViewById(R.id.main_link).setOnClickListener(this);
         findViewById(R.id.main_setting).setOnClickListener(this);
-//        setContent(ACTIVITY.Communitty);
-
     }
 
     private void viewInit() {
@@ -33,25 +31,6 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
             getWindow().setStatusBarColor(getResources().getColor(R.color.board_white_pirmary_dark_color));
         }
         getSupportActionBar().hide();
-    }
-
-    public void setContent(ACTIVITY activity) {
-        if (activity == ACTIVITY.STUDENTINFO) {
-            setContentView(R.layout.activity_studentinfo);
-            getSupportActionBar().hide();
-        } else if (activity == ACTIVITY.LINK) {
-            setContentView(R.layout.activity_link);
-            getSupportActionBar().hide();
-        } else if (activity == ACTIVITY.RESTRAUNT) {
-            setContentView(R.layout.activity_restraunt);
-            getSupportActionBar().hide();
-        } else if (activity == ACTIVITY.STUDENTGROUND) {
-            startActivity(new Intent(this, StudentGroundActivity.class));
-        } else if (activity == ACTIVITY.MARKET) {
-            startActivity(new Intent(this, MarketMainActivity.class));
-        } else if (activity == ACTIVITY.Communitty) {
-            startActivity(new Intent(this, CommunittyActivity.class));
-        }
     }
 
     @Override
@@ -68,9 +47,7 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
         } else if (id == R.id.main_link) {
             startActivity(new Intent(this, LinkActivity.class));
         } else if (id == R.id.main_setting) {
-
+            startActivity(new Intent(this, SettingActivity.class));
         }
     }
-
-    public enum ACTIVITY {STUDENTINFO, LINK, RESTRAUNT, STUDENTGROUND, MARKET, Communitty}
 }

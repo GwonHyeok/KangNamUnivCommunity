@@ -287,6 +287,26 @@ public class NetworkUtil {
         return data;
     }
 
+    public JSONObject getAuthorDevicesList() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.GET_AUTHOR_DEVICES_URL, null);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    public JSONObject doLogout() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.LOGOUT_URL, null);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    public JSONObject doLogoutWithSession(String session_id) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("session", session_id);
+        HttpResponse httpResponse = postData(UrlList.LOGOUT_WITH_SESSION, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public boolean registerGCMID(int appVersion, String gcmID) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameter = new HashMap<>();
@@ -897,6 +917,15 @@ public class NetworkUtil {
         );
     }
 
+    /**
+     * @return getPhoneNumber Data as JSONObject
+     * if success to get phone number
+     * {result="success", "data"="phonenumber"}
+     * if fail to get phone number
+     * {result="fail", "reason"="cause"}
+     * @throws IOException
+     * @throws ParseException
+     */
     public JSONObject getPhoneNumber() throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HttpResponse httpResponse = postData(UrlList.GET_PHONE_NUMBER_URL, null);
