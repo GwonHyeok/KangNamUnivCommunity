@@ -66,7 +66,7 @@
     <string name="want_you_delete_comment">정말로 삭제하시겠습니까?</string>
     <string name="success_delete_board">성공적으로 글을 삭제하였습니다</string>
     <string name="community_market_title">장터</string>
-    <string name="taxi_share_phone_input"># 더욱 강력한 택시 합승 기능을 위해 필요한 휴대폰 번호를 등록해주세요.</string>
+    <string name="taxi_share_phone_input"># 더욱 강력한 택시 합승 기능을 위해 필요한 핸대폰 번호를 등록해주세요.</string>
     <string name="phone_input_title">번호등록</string>
     <string name="phone_input_hint">번호 입력 (예: 01012345678)</string>
     <string name="warning_phone_input">핸드폰 번호를 입력해주세요</string>
@@ -74,7 +74,7 @@
     <string name="success_phone_input">핸드폰 번호 등록에 성공하였습니다</string>
     <string name="success_board_write">글 작성이 완료되었습니다.</string>
     <string name="error_board_write">글 작성이 실패하였습니다</string>
-    <string name="success_board_comment_delete">성공적으로 삭제하였습니다</string>
+    <string name="success_board_comment_delete">성공적으로 삭제되었습니다</string>
     <string name="taxi_share_title">택시합승</string>
     <string name="taxi_share_isLeave">택시가 출발했습니다.</string>
     <string name="taxi_share_want_leave">택시 출발</string>
@@ -111,7 +111,7 @@
 
     <string name="nickname_change_text">정말로 닉네임을 변경 하시겠습니까?</string>
     <string name="profileimage_change_text">정말로 프로필사진을 변경 하시겠습니까?</string>
-    <string name="success_nickname_change">성공적으로 닉네임을 변경하였습니다</string>
+    <string name="success_nickname_change">닉네임이 변경되었습니다</string>
     <string name="text_studentinfo_notify_title">내 소식</string>
     <string name="text_studentinfo_notify_mynotify">내 알림</string>
     <string name="text_studentinfo_notify_myboard">내가 쓴 글</string>
@@ -121,7 +121,7 @@
     <string name="text_studentinfo_go_setting">설정으로 이동</string>
     <string name="text_setting_title">설정</string>
     <string name="text_setting_getting_data">정보를 가져오는 중입니다</string>
-    <string name="text_setting_phonenumber_dialog_message">핸드폰 번호를 수정혹은 입력하세요</string>
+    <string name="text_setting_phonenumber_dialog_message">핸드폰 번호를 입력하세요.</string>
     <string name="text_are_you_want_logout_message">정말로 로그아웃 하시겠습니까?</string>
     <string name="text_setting_author_devices">인증된 기기</string>
     <string name="text_setting_author_device_logout">정말로 해당 기기를 로그아웃 시키겠습니까?</string>

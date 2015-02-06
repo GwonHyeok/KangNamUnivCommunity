@@ -8,11 +8,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#5321A8" />
+        android:background="#673ab7" />
 
 
     <FrameLayout
         android:id="@+id/setting_framelayout"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:background="#f2f2f2" />
 </LinearLayout>
