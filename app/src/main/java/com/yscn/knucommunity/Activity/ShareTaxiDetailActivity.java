@@ -1,5 +1,6 @@
 package com.yscn.knucommunity.Activity;
 
+import android.animation.Animator;
 import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.net.Uri;
@@ -486,59 +487,109 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
         if (id == R.id.share_taxi_detail_with_info_root_view) {
             View locationView = findViewById(R.id.share_taxi_detail_locationview);
             final View rootView = v;
-            final int screenHeight = ApplicationUtil.getInstance().getScreenHeight();
 
+            ValueAnimator transitionAnimation, fadeAnimation;
             if (isFolded) {
-                Log.d(getClass().getSimpleName(), "Screen Height : " + screenHeight);
-                Log.d(getClass().getSimpleName(), "LocationView Height : " + locationView.getHeight());
-                Log.d(getClass().getSimpleName(), "LocationView Y : " + locationView.getY());
-
-                ValueAnimator upWithInfoView = ValueAnimator.ofInt((int) rootView.getY(), locationView.getHeight() + (int) locationView.getY());
-
-                upWithInfoView.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        int y = (int) animation.getAnimatedValue();
-                        rootView.setY((float) y);
-                    }
-                });
-
-                upWithInfoView.setDuration(400);
-                upWithInfoView.start();
-
-                findViewById(R.id.share_taxi_detail_scroll_info_view).setVisibility(View.GONE);
-                findViewById(R.id.share_taxi_detail_writer_profile).setVisibility(View.GONE);
-                findViewById(R.id.share_taxi_detail_button).setVisibility(View.GONE);
-                findViewById(R.id.share_taxi_detail_button2).setVisibility(View.GONE);
-                findViewById(R.id.share_taxi_detail_content).setVisibility(View.GONE);
-                findViewById(R.id.share_taxi_detail_with_folding_view).setVisibility(View.VISIBLE);
+                transitionAnimation = ValueAnimator.ofInt((int) rootView.getY(), locationView.getHeight() + (int) locationView.getY());
+                fadeAnimation = ValueAnimator.ofFloat(1f, 0f);
 
                 ImageView foldingButton = (ImageView) findViewById(R.id.share_taxi_detail_folding_button);
                 foldingButton.setImageResource(R.drawable.ic_unfold);
             } else {
-                ValueAnimator upWithInfoView = ValueAnimator.ofInt(
-                        ((int) locationView.getY() + locationView.getHeight() + (int) rootView.getY()), 0);
+                transitionAnimation = ValueAnimator.ofInt(((int) locationView.getY() + locationView.getHeight() + (int) rootView.getY()), 0);
+                fadeAnimation = ValueAnimator.ofFloat(0f, 1f);
 
-                upWithInfoView.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                    @Override
-                    public void onAnimationUpdate(ValueAnimator animation) {
-                        int y = (int) animation.getAnimatedValue();
-                        rootView.setTranslationY((float) -y);
-                    }
-                });
-                upWithInfoView.setDuration(400);
-                upWithInfoView.start();
-
-                findViewById(R.id.share_taxi_detail_scroll_info_view).setVisibility(View.VISIBLE);
-                findViewById(R.id.share_taxi_detail_writer_profile).setVisibility(View.VISIBLE);
-                findViewById(R.id.share_taxi_detail_button).setVisibility(View.VISIBLE);
-                findViewById(R.id.share_taxi_detail_button2).setVisibility(isButton2 ? View.VISIBLE : View.GONE);
-                findViewById(R.id.share_taxi_detail_content).setVisibility(View.VISIBLE);
-                findViewById(R.id.share_taxi_detail_with_folding_view).setVisibility(View.GONE);
                 ImageView foldingButton = (ImageView) findViewById(R.id.share_taxi_detail_folding_button);
                 foldingButton.setImageResource(R.drawable.ic_fold);
             }
 
+            transitionAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    int y = (int) animation.getAnimatedValue();
+                    if (!isFolded) {
+                        rootView.setY((float) y);
+                    } else {
+                        rootView.setTranslationY((float) -y);
+                    }
+                }
+            });
+
+            fadeAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                @Override
+                public void onAnimationUpdate(ValueAnimator animation) {
+                    float value = (float) animation.getAnimatedValue();
+                    findViewById(R.id.share_taxi_detail_scroll_info_view).setAlpha(value);
+                    findViewById(R.id.share_taxi_detail_writer_profile).setAlpha(value);
+                    findViewById(R.id.share_taxi_detail_button).setAlpha(value);
+                    findViewById(R.id.share_taxi_detail_button2).setAlpha(value);
+                    findViewById(R.id.share_taxi_detail_content).setAlpha(value);
+                }
+            });
+
+            /*
+             * isFolded == TRUE : 점점 투명해진다. 애니메이션이 끝났을때 전부 GONE 해야함
+             * isFolded == FALSE : 점점 불투명해진다. 애니메이션이 시작될때 전부 VISIBLE
+            * */
+            if (isFolded) {
+                fadeAnimation.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        findViewById(R.id.share_taxi_detail_button).setVisibility(View.GONE);
+                        findViewById(R.id.share_taxi_detail_button2).setVisibility(View.GONE);
+                        findViewById(R.id.share_taxi_detail_with_folding_view).setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        findViewById(R.id.share_taxi_detail_scroll_info_view).setVisibility(View.GONE);
+                        findViewById(R.id.share_taxi_detail_writer_profile).setVisibility(View.GONE);
+                        findViewById(R.id.share_taxi_detail_content).setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+            } else {
+                fadeAnimation.addListener(new Animator.AnimatorListener() {
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        findViewById(R.id.share_taxi_detail_scroll_info_view).setVisibility(View.VISIBLE);
+                        findViewById(R.id.share_taxi_detail_writer_profile).setVisibility(View.VISIBLE);
+                        findViewById(R.id.share_taxi_detail_button).setVisibility(View.VISIBLE);
+                        findViewById(R.id.share_taxi_detail_button2).setVisibility(isButton2 ? View.VISIBLE : View.GONE);
+                        findViewById(R.id.share_taxi_detail_content).setVisibility(View.VISIBLE);
+                        findViewById(R.id.share_taxi_detail_with_folding_view).setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {
+
+                    }
+                });
+            }
+
+            transitionAnimation.setDuration(400);
+            fadeAnimation.setDuration(400);
+            transitionAnimation.start();
+            fadeAnimation.start();
             isFolded = !isFolded;
         }
     }
