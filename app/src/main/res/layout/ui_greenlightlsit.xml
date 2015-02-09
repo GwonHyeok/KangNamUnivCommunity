@@ -16,10 +16,10 @@
         android:layout_alignParentTop="true"
         android:layout_toLeftOf="@+id/greenlight_list_reply"
         android:gravity="center|left"
-        android:paddingLeft="16dp"
+        android:paddingLeft="14dp"
         android:paddingRight="10dp"
         android:textColor="#FF343434"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <TextView
         android:id="@+id/greenlight_list_time"
@@ -28,20 +28,20 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
-        android:paddingRight="16dp"
+        android:paddingRight="10dp"
         android:textColor="#757575"
-        android:textSize="13sp"/>
+        android:textSize="12sp"/>
 
     <TextView
         android:id="@+id/greenlight_list_reply"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="16dp"
+        android:layout_marginRight="13dp"
         android:layout_toLeftOf="@id/greenlight_list_time"
         android:layout_toStartOf="@id/greenlight_list_time"
-        android:textSize="16sp"
-        android:textColor="#8f8f8f"/>
+        android:textSize="15sp"
+        android:textColor="#636363"/>
 
     <include
         layout="@layout/ui_boardlist_divider"

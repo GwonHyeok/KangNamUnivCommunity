@@ -32,14 +32,15 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:textColor="#FF343434"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/faq_list_writer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="#FF616161" />
+            android:textColor="#FF616161"
+            android:textSize="13sp"/>
     </LinearLayout>
 
     <TextView
@@ -51,7 +52,7 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:textColor="#757575"
-        android:textSize="13sp"/>
+        android:textSize="12sp"/>
 
     <TextView
         android:id="@+id/faq_reply_size"

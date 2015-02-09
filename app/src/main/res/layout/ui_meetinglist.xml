@@ -46,7 +46,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#616161"
-                android:textSize="19sp" />
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/meeting_school"
@@ -65,7 +65,7 @@
             android:layout_toLeftOf="@+id/meeting_time"
             android:layout_toStartOf="@+id/meeting_time"
             android:textColor="#78908c"
-            android:textSize="17sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/meeting_time"
@@ -73,6 +73,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerVertical="true"
+            android:textSize="12sp"/>
     </RelativeLayout>
 </RelativeLayout>

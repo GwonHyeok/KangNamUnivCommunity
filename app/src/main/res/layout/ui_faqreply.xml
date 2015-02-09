@@ -47,7 +47,7 @@
                 android:layout_marginRight="28dp"
                 android:text="2014-10-12 12:31"
                 android:textColor="#757575"
-                android:textSize="13sp"/>
+                android:textSize="12sp"/>
 
             <ImageButton
                 android:id="@+id/faq_reply_delete_comment"

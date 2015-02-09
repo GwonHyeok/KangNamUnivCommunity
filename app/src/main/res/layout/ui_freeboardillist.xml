@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:textColor="#FF343434"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/freeboard_list_writer"
@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:textColor="#FF616161"
-            android:textSize="14sp"/>
+            android:textSize="13sp"/>
     </LinearLayout>
 
     <TextView
@@ -53,18 +53,18 @@
         android:layout_centerVertical="true"
         android:layout_marginRight="10dp"
         android:textColor="#757575"
-        android:textSize="13sp"/>
+        android:textSize="12sp"/>
 
     <TextView
         android:id="@+id/freeboard_list_commentsize"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginRight="14dp"
+        android:layout_marginRight="13dp"
         android:layout_toLeftOf="@+id/freeboard_list_time"
         android:layout_toStartOf="@+id/freeboard_list_time"
-        android:textColor="#FF8f8f8f"
-        android:textSize="16sp"/>
+        android:textColor="#FF636363"
+        android:textSize="15sp"/>
 
     <include
         layout="@layout/ui_boardlist_divider"

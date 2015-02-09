@@ -51,7 +51,7 @@
                 android:layout_alignTop="@id/freeboard_reply_name"
                 android:layout_marginRight="28dp"
                 android:textColor="#7d7d7d"
-                android:textSize="13sp"/>
+                android:textSize="12sp"/>
 
             <ImageButton
                 android:id="@+id/freeboard_reply_delete"

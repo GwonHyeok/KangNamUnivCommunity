@@ -2,8 +2,8 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
-    android:layout_gravity="center"
+    android:layout_height="64dp"
+    android:layout_gravity="center_vertical"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -11,20 +11,21 @@
         android:id="@+id/ui_studentcouncil_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
         android:singleLine="true"
         android:textColor="#FF424242"
-        android:textSize="20sp" />
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/ui_studentcouncil_summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginLeft="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginTop="2dp"
         android:singleLine="true"
-        android:textColor="#FF757575" />
+        android:textColor="#FF757575"
+        android:textSize="13sp" />
 
 </LinearLayout>
