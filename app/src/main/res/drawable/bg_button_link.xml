@@ -6,7 +6,7 @@
                 android:width="1.5dp"
                 android:color="@android:color/white" />
             <solid android:color="@android:color/transparent" />
-            <corners android:radius="300dp" />
+            <corners android:radius="600dp" />
         </shape>
     </item>
 </layer-list>

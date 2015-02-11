@@ -39,7 +39,6 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
-            android:text="권혁"
             android:textColor="#FF232323"
             android:textSize="22sp"/>
             <!-- android:textStyle="bold" -->
@@ -57,7 +56,7 @@
             android:id="@+id/studentinfo_nickname_root"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="25"
+            android:layout_weight="24"
             android:background="@drawable/bg_default_select_item_effect"
             android:gravity="center_vertical">
 
@@ -80,9 +79,8 @@
                 android:layout_toRightOf="@+id/ic_nickname_imageview"
                 android:layout_toLeftOf="@+id/ic_change_nickname_view"
                 android:gravity="center_vertical"
-                android:text="GwonHyeok"
                 android:textColor="#FF4D4D4D"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <ImageView
                 android:id="@+id/ic_change_nickname_view"
@@ -132,7 +130,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="컴퓨터미디어정보공학부"
                     android:textColor="#FF4D4D4D"
                     android:textSize="16sp"/>
 
@@ -140,7 +137,6 @@
                     android:id="@+id/studentinfo_studentnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="201401239"
                     android:textColor="#FF4D4D4D"
                     android:textSize="16sp"/>
             </LinearLayout>

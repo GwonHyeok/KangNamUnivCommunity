@@ -22,17 +22,17 @@
             android:id="@+id/freeboard_detail_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
+            android:layout_marginBottom="24dp"
             android:layout_marginLeft="54dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="14dp"
             android:textColor="#FF424242"
-            android:textSize="22sp"
+            android:textSize="21sp"
             android:paddingRight="12dp" />
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="18dp">
+            android:layout_marginBottom="16dp">
 
             <com.yscn.knucommunity.CustomView.CircleImageView
                 android:id="@+id/freeboard_detail_profile"

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="126dp"
+    android:layout_height="128dp"
     android:orientation="vertical">
 
     <include
@@ -58,7 +58,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:textColor="#4d4d4d"
-                android:textSize="21sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -84,7 +84,7 @@
                 android:marqueeRepeatLimit="marquee_forever"
                 android:singleLine="true"
                 android:textColor="#4d4d4d"
-                android:textSize="21sp" />
+                android:textSize="19sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -116,8 +116,8 @@
 
                     <com.yscn.knucommunity.CustomView.CircleImageView
                         android:id="@+id/ui_sharetaxtlist_rootperson_thumbnail"
-                        android:layout_width="31dp"
-                        android:layout_height="31dp"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
                         android:layout_marginLeft="4dp"
                         android:layout_marginRight="4dp" />
                 </LinearLayout>

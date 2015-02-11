@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"
-        android:layout_marginBottom="30dp">
+        android:layout_marginBottom="24dp">
 
         <TextView
             android:id="@+id/greenlight_detail_title"
@@ -24,12 +24,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="14dp"
             android:paddingRight="12dp"
             android:layout_toLeftOf="@+id/greenlight_detail_time"
             android:textColor="#FF424242"
-            android:textSize="22sp" />
+            android:textSize="21sp" />
 
         <TextView
             android:id="@+id/greenlight_detail_time"

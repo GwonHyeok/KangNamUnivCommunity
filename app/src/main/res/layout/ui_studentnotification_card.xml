@@ -2,15 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/studentnotify_item_root"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="88dp"
     android:background="@drawable/bg_default_select_item_effect"
     android:clickable="true"
     android:orientation="vertical">
 
     <com.yscn.knucommunity.CustomView.CircleImageView
         android:id="@+id/studentnotify_item_imageview"
-        android:layout_width="44dp"
-        android:layout_height="44dp"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="2dp"

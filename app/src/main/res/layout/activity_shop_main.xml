@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="10">
+    android:weightSum="12">
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="9">
+        android:layout_weight="11">
 
         <android.support.v4.view.ViewPager
             android:id="@+id/shop_viewpager"
@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center|bottom"
-            android:layout_marginBottom="25dp"
+            android:layout_marginBottom="22dp"
             android:src="@drawable/ic_shop_help_all_1" />
     </FrameLayout>
 
@@ -41,6 +41,6 @@
         android:gravity="center"
         android:text="장터로 이동"
         android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        android:textSize="21sp" />
 
 </LinearLayout>

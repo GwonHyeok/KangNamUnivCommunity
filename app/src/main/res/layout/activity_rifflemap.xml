@@ -30,7 +30,8 @@
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:text="강남대학교 이공관"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textColor="#616161"/>
 
         <LinearLayout
             android:id="@+id/campusmap_show_maplist"

@@ -13,12 +13,12 @@
     <RelativeLayout
         android:id="@+id/share_taxi_detail_locationview"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="84dp"
         android:layout_below="@id/toolbar"
-        android:paddingBottom="16dp"
+        android:paddingBottom="10dp"
         android:paddingLeft="50dp"
         android:paddingRight="14dp"
-        android:paddingTop="10dp">
+        android:paddingTop="8dp">
 
         <!-- 출발 지점 부분 레이아웃 -->
         <LinearLayout
@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ff424242"
-                android:textSize="22sp" />
+                android:textSize="21sp" />
         </LinearLayout>
 
         <!-- 도착 지점 부분 레이아웃 -->
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#ff424242"
-                android:textSize="22sp" />
+                android:textSize="21sp" />
         </LinearLayout>
 
         <TextView
@@ -68,7 +68,7 @@
             android:layout_alignParentRight="true"
             android:layout_marginTop="16dp"
             android:textColor="#ffd600"
-            android:textSize="22sp" />
+            android:textSize="19sp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -76,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/share_taxi_detail_locationview"
-        android:layout_marginBottom="18dp">
+        android:layout_marginBottom="16dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
             android:id="@+id/freeboard_detail_profile"
@@ -94,7 +94,7 @@
             android:layout_toEndOf="@id/freeboard_detail_profile"
             android:layout_toRightOf="@id/freeboard_detail_profile"
             android:textColor="#FF414141"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/freeboard_detail_time"
@@ -105,7 +105,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="12dp"
             android:textColor="#757575"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -156,7 +156,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/share_taxi_detail_replyview"
-        android:background="#F0F0F0"
+        android:background="#f7f7f7"
         android:visibility="gone">
 
         <View
@@ -217,10 +217,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/share_taxi_detail_with_info_view"
-            android:layout_marginBottom="10dp"
-            android:paddingLeft="58dp"
+            android:paddingLeft="56dp"
             android:paddingRight="20dp"
             android:paddingTop="6dp"
+            android:paddingBottom="8dp"
             android:scrollbars="none"
             android:visibility="visible">
 

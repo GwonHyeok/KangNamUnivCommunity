@@ -176,7 +176,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
                 /* 나는 이미 택시를 타서 합승자 명단에 있어요 !! */
                 if (Boolean.parseBoolean(isSharePerson)) {
-                    taxiButton.setBackgroundColor(getResources().getColor(R.color.share_taxi_highlight_color));
+                    taxiButton.setBackgroundResource(R.drawable.bg_button_share_taxi_success);
                     taxiButton.setText(getString(R.string.taxi_share_want_leave));
                     taxiButton.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -213,7 +213,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 /* 글 작성자가 자신의 글에 들어왔는데 아직 출발을 안한 상태 */
                 if (writer.equals(UserData.getInstance().getStudentNumber())) {
                     if (isLeave.equals("0")) {
-                        taxiButton.setBackgroundColor(getResources().getColor(R.color.share_taxi_highlight_color));
+                        taxiButton.setBackgroundResource(R.drawable.bg_button_share_taxi_success);
                         taxiButton.setText(getString(R.string.taxi_share_want_leave));
                         taxiButton.setOnClickListener(new View.OnClickListener() {
                             @Override

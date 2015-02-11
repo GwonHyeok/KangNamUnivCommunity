@@ -15,7 +15,7 @@
         android:gravity="center"
         android:text="샬롬관"
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="34sp" />
 
 
     <TextView
@@ -27,7 +27,7 @@
         android:gravity="center"
         android:text="인사관"
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="34sp" />
 
     <TextView
         android:id="@+id/schoolrestraunt_gyung"
@@ -38,7 +38,7 @@
         android:gravity="center"
         android:text="경천관"
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="34sp" />
 
     <TextView
         android:id="@+id/schoolrestraunt_gisuk"
@@ -49,5 +49,5 @@
         android:gravity="center"
         android:text="기숙사"
         android:textColor="@android:color/white"
-        android:textSize="36sp" />
+        android:textSize="34sp" />
 </LinearLayout>
