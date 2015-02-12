@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -24,6 +25,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yscn.knucommunity.CustomView.BaseBoardDetailActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
+import com.yscn.knucommunity.CustomView.NotifiableScrollView;
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
@@ -52,6 +54,48 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
         viewInit();
         setContent();
         getReplyData();
+        setParallaxScroll();
+    }
+
+    private void setParallaxScroll() {
+        ((NotifiableScrollView) findViewById(R.id.faq_detail_scrollview)).setonScrollToBottomListener(new NotifiableScrollView.onScrollListener() {
+            @Override
+            public void scrollToBottom() {
+
+            }
+
+            @Override
+            public void onScroll(ScrollView view, int l, int t, int oldl, int oldt) {
+                NotifiableScrollView scrollView = (NotifiableScrollView) findViewById(R.id.faq_detail_scrollview);
+                LinearLayout profileRootView = (LinearLayout) findViewById(R.id.linearLayout);
+                View titleView = findViewById(R.id.faq_detail_title_group);
+                View profileImageMainView = findViewById(R.id.faq_detail_infoview);
+
+                int profileMainHeight = findViewById(R.id.linearLayout).getHeight();
+                int scrollviewContentsHeight = scrollView.getChildAt(0).getHeight();
+                int scrollviewHeight = scrollView.getHeight();
+
+
+                /* 만약 컨텐츠 크기가 스크롤뷰 크기 보다 작으면 스크롤 X */
+                if (scrollviewContentsHeight < scrollviewHeight) {
+                    return;
+                }
+
+                // toolbarHeight : t  = 100 : x
+                // 100t = toolbarHeightx
+                // 1.0 * t / toolbarHeight = 투명도
+
+                float profileImageMainViewY = profileImageMainView.getY();
+                boolean isAnimate = profileImageMainViewY > t;
+                float alpha = isAnimate ? 1.0f - ((1.0f * t / profileImageMainViewY) * 1.5f) : 0f;
+                float translationY = isAnimate ? -t : -profileImageMainViewY;
+                int padding = isAnimate ? profileMainHeight - t : (int) (profileMainHeight - profileImageMainViewY);
+
+                titleView.setAlpha(alpha);
+                profileRootView.setTranslationY(translationY);
+                scrollView.setPadding(0, padding, 0, 0);
+            }
+        });
     }
 
     private void viewInit() {
@@ -278,6 +322,14 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
                                 }
                             });
                 }
+                findViewById(R.id.linearLayout).addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                    @Override
+                    public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                        int profileHeight = findViewById(R.id.linearLayout).getHeight();
+                        findViewById(R.id.faq_detail_scrollview).setPadding(0, profileHeight, 0, 0);
+                        findViewById(R.id.linearLayout).removeOnLayoutChangeListener(this);
+                    }
+                });
                 clearProgressDialog.cancel();
             }
         }.execute();
