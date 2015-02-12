@@ -10,19 +10,19 @@ import android.widget.ScrollView;
 /**
  * Created by GwonHyeok on 15. 1. 10..
  */
-public class NotifyFooterScrollView extends ScrollView {
+public class NotifiableScrollView extends ScrollView {
     private Rect m_Rect;
-    private onScrollToBottomListener m_onScrollToBottomListener;
+    private onScrollListener m_onScrollListener;
 
-    public NotifyFooterScrollView(Context context) {
+    public NotifiableScrollView(Context context) {
         super(context);
     }
 
-    public NotifyFooterScrollView(Context context, AttributeSet attrs) {
+    public NotifiableScrollView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public NotifyFooterScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public NotifiableScrollView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -46,19 +46,28 @@ public class NotifyFooterScrollView extends ScrollView {
         if (oldBottom > 0 && height > 0) {
             if (oldBottom != m_Rect.bottom && m_Rect.bottom == (v.getMeasuredHeight() +
                     getPaddingTop() + getPaddingBottom())) {
-                if (m_onScrollToBottomListener != null) {
-                    this.m_onScrollToBottomListener.scrollToBottom();
+                if (m_onScrollListener != null) {
+                    this.m_onScrollListener.scrollToBottom();
                 }
             }
         }
     }
 
-    public void setonScrollToBottomListener(onScrollToBottomListener m_onScrollToBottomListener) {
-        this.m_onScrollToBottomListener = m_onScrollToBottomListener;
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        if (this.m_onScrollListener != null) {
+            this.m_onScrollListener.onScroll(this, l, t, oldl, oldt);
+        }
     }
 
-    public interface onScrollToBottomListener {
+    public void setonScrollToBottomListener(onScrollListener onscrollListener) {
+        this.m_onScrollListener = onscrollListener;
+    }
+
+    public interface onScrollListener {
         public void scrollToBottom();
-    }
 
+        public void onScroll(ScrollView view, int l, int t, int oldl, int oldt);
+    }
 }

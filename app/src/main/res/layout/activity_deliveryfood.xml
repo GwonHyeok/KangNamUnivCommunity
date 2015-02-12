@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="fill_parent">
 
-        <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
+        <com.yscn.knucommunity.CustomView.NotifiableScrollView
             android:id="@+id/delivery_scrollview"
             android:layout_width="match_parent"
             android:layout_height="fill_parent">
@@ -32,6 +32,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
-        </com.yscn.knucommunity.CustomView.NotifyFooterScrollView>
+        </com.yscn.knucommunity.CustomView.NotifiableScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

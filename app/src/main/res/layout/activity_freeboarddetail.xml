@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/freeboard_detail_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFAFAFA">
@@ -11,81 +12,13 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/board_white_main_color" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/toolbar"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/freeboard_detail_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:layout_marginLeft="54dp"
-            android:layout_marginTop="14dp"
-            android:textColor="#FF424242"
-            android:textSize="21sp"
-            android:paddingRight="12dp" />
-
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp">
-
-            <com.yscn.knucommunity.CustomView.CircleImageView
-                android:id="@+id/freeboard_detail_profile"
-                android:layout_width="42dp"
-                android:layout_height="42dp"
-                android:layout_marginLeft="12dp"
-                android:src="@drawable/ic_profile" />
-
-            <TextView
-                android:id="@+id/freeboard_detail_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="12dp"
-                android:layout_toEndOf="@id/freeboard_detail_profile"
-                android:layout_toRightOf="@id/freeboard_detail_profile"
-                android:textColor="#FF414141"
-                android:textSize="18sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/freeboard_detail_time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="12dp"
-                    android:textColor="#757575"
-                    android:textSize="13sp"/>
-
-                <!--<TextView-->
-                <!--android:id="@+id/textView"-->
-                <!--android:layout_width="wrap_content"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_marginRight="25dp"-->
-                <!--android:layout_toEndOf="@+id/textView3"-->
-                <!--android:layout_toRightOf="@+id/textView3"-->
-                <!--android:text="17:24"-->
-                <!--android:textColor="#757575" />-->
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-
-    <ScrollView
+    <com.yscn.knucommunity.CustomView.NotifiableScrollView
+        android:id="@+id/freeboard_detail_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/freeboard_replayview"
-        android:layout_below="@+id/linearLayout">
+        android:layout_below="@+id/toolbar"
+        android:overScrollMode="never">
 
         <LinearLayout
             android:id="@+id/freeboard_detail_content_dataview"
@@ -104,7 +37,78 @@
                 android:textColor="#424242"
                 android:textSize="14sp" />
         </LinearLayout>
-    </ScrollView>
+    </com.yscn.knucommunity.CustomView.NotifiableScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/freeboard_detail_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginLeft="54dp"
+            android:layout_marginTop="14dp"
+            android:background="@android:color/transparent"
+            android:paddingRight="12dp"
+            android:textColor="#FF424242"
+            android:textSize="21sp" />
+
+        <RelativeLayout
+            android:id="@+id/freeboard_detail_profile_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+
+            <com.yscn.knucommunity.CustomView.CircleImageView
+                android:id="@+id/freeboard_detail_profile"
+                android:layout_width="42dp"
+                android:layout_height="42dp"
+                android:layout_marginLeft="12dp"
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_profile" />
+
+            <TextView
+                android:id="@+id/freeboard_detail_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="12dp"
+                android:layout_toEndOf="@id/freeboard_detail_profile"
+                android:layout_toRightOf="@id/freeboard_detail_profile"
+                android:background="@android:color/transparent"
+                android:textColor="#FF414141"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+
+                android:layout_alignParentRight="true"
+
+                android:layout_centerVertical="true"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/freeboard_detail_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="12dp"
+                    android:background="@android:color/transparent"
+                    android:textColor="#757575"
+                    android:textSize="13sp" />
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

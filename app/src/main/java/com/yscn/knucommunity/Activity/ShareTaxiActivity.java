@@ -19,12 +19,13 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
-import com.yscn.knucommunity.CustomView.NotifyFooterScrollView;
+import com.yscn.knucommunity.CustomView.NotifiableScrollView;
 import com.yscn.knucommunity.Items.ShareTaxiListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
@@ -111,8 +112,8 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                 reloadTaxiData();
             }
         });
-        final NotifyFooterScrollView scrollView = (NotifyFooterScrollView) findViewById(R.id.share_taxi_scrollview);
-        scrollView.setonScrollToBottomListener(new NotifyFooterScrollView.onScrollToBottomListener() {
+        final NotifiableScrollView scrollView = (NotifiableScrollView) findViewById(R.id.share_taxi_scrollview);
+        scrollView.setonScrollToBottomListener(new NotifiableScrollView.onScrollListener() {
             @Override
             public void scrollToBottom() {
                 View view = scrollView.getChildAt(0);
@@ -123,6 +124,11 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                         setTaxiData();
                     }
                 }
+            }
+
+            @Override
+            public void onScroll(ScrollView view, int l, int t, int oldl, int oldt) {
+
             }
         });
     }

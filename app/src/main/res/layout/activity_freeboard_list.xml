@@ -29,7 +29,7 @@
         android:layout_alignParentBottom="true"
         android:layout_below="@+id/textView">
 
-        <com.yscn.knucommunity.CustomView.NotifyFooterScrollView
+        <com.yscn.knucommunity.CustomView.NotifiableScrollView
             android:id="@+id/freeboard_list"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
@@ -39,6 +39,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" />
-        </com.yscn.knucommunity.CustomView.NotifyFooterScrollView>
+        </com.yscn.knucommunity.CustomView.NotifiableScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

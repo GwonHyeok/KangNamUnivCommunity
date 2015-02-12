@@ -25,7 +25,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
-import com.yscn.knucommunity.CustomView.NotifyFooterScrollView;
+import com.yscn.knucommunity.CustomView.NotifiableScrollView;
 import com.yscn.knucommunity.Items.DeliveryListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
@@ -89,7 +89,7 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
             @Override
             protected void onPostExecute(ArrayList<DeliveryListItems> list) {
                 if (list != null) {
-                    NotifyFooterScrollView scrollView = (NotifyFooterScrollView) findViewById(R.id.delivery_scrollview);
+                    NotifiableScrollView scrollView = (NotifiableScrollView) findViewById(R.id.delivery_scrollview);
                     LinearLayout dataView = (LinearLayout) scrollView.getChildAt(0);
                     ImageLoaderUtil.getInstance().initImageLoader();
 
@@ -115,7 +115,7 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
     }
 
     private void reloadData() {
-        NotifyFooterScrollView scrollView = (NotifyFooterScrollView) findViewById(R.id.delivery_scrollview);
+        NotifiableScrollView scrollView = (NotifiableScrollView) findViewById(R.id.delivery_scrollview);
         LinearLayout dataView = (LinearLayout) scrollView.getChildAt(0);
         dataView.removeAllViews();
         setContent();

@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.Activity.BoardWriteActivity;
@@ -70,10 +71,10 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
                 reloadViewData();
             }
         });
-        if (view instanceof NotifyFooterScrollView) {
-            final NotifyFooterScrollView scrollView = (NotifyFooterScrollView) view;
+        if (view instanceof NotifiableScrollView) {
+            final NotifiableScrollView scrollView = (NotifiableScrollView) view;
 
-            scrollView.setonScrollToBottomListener(new NotifyFooterScrollView.onScrollToBottomListener() {
+            scrollView.setonScrollToBottomListener(new NotifiableScrollView.onScrollListener() {
                 @Override
                 public void scrollToBottom() {
                     // 자료가 15 * pageindex 보다 적으면 호출 하지 않음.
@@ -87,6 +88,11 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
                             getBoardListData();
                         }
                     }
+                }
+
+                @Override
+                public void onScroll(ScrollView view, int l, int t, int oldl, int oldt) {
+
                 }
             });
         } else {
@@ -117,8 +123,8 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     private void removeAllListContent() {
         setPageIndex(1);
         View view = findViewById(getBoardListScrollViewID());
-        if (view instanceof NotifyFooterScrollView) {
-            NotifyFooterScrollView scrollView = (NotifyFooterScrollView) view;
+        if (view instanceof NotifiableScrollView) {
+            NotifiableScrollView scrollView = (NotifiableScrollView) view;
             LinearLayout linearLayout = (LinearLayout) scrollView.getChildAt(0);
             linearLayout.removeAllViews();
         }

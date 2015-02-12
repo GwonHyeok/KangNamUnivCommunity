@@ -10,11 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
-import com.yscn.knucommunity.CustomView.NotifyFooterScrollView;
+import com.yscn.knucommunity.CustomView.NotifiableScrollView;
 import com.yscn.knucommunity.Items.MeetingListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
@@ -34,7 +35,7 @@ import java.util.Date;
 public class MeetingActivity extends MenuBaseActivity implements View.OnClickListener {
     private final int BOARD_WRITE_RESPONSE = 0X01;
     private int pageIndex = 1;
-    private NotifyFooterScrollView scrollView;
+    private NotifiableScrollView scrollView;
     private SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -54,8 +55,8 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
                 reloadViewData();
             }
         });
-        scrollView = (NotifyFooterScrollView) findViewById(R.id.meeting_list);
-        scrollView.setonScrollToBottomListener(new NotifyFooterScrollView.onScrollToBottomListener() {
+        scrollView = (NotifiableScrollView) findViewById(R.id.meeting_list);
+        scrollView.setonScrollToBottomListener(new NotifiableScrollView.onScrollListener() {
             @Override
             public void scrollToBottom() {
                 View view = scrollView.getChildAt(0);
@@ -66,6 +67,11 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
                         getMeetingList();
                     }
                 }
+            }
+
+            @Override
+            public void onScroll(ScrollView view, int l, int t, int oldl, int oldt) {
+
             }
         });
     }
