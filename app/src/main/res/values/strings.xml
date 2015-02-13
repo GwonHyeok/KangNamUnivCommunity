@@ -11,7 +11,7 @@
     <string name="base_text_professor_email">이메일 : %1$s</string>
 
     <string name="register_text">등록</string>
-    <string name="warning_input_login_form">아이디나 비밀번호를 입력해 주세요.</string>
+    <string name="warning_input_login_form">아이디 또는 비밀번호를 입력해주세요.</string>
     <string name="error_login">로그인에 실패하였습니다.</string>
     <string name="register_fail">회원가입에 실패하였습니다.</string>
     <string name="register_success">회원가입에 성공하였습니다.</string>
@@ -66,17 +66,17 @@
     <string name="want_you_delete_comment">정말로 삭제하시겠습니까?</string>
     <string name="success_delete_board">성공적으로 글을 삭제하였습니다</string>
     <string name="community_market_title">장터</string>
-    <string name="taxi_share_phone_input"># 더욱 강력한 택시 합승 기능을 위해 필요한 핸대폰 번호를 등록해주세요.</string>
-    <string name="phone_input_title">번호등록</string>
+    <string name="taxi_share_phone_input"># 택시합승 기능을 위해 필요한 핸드폰 번호를 등록해주세요.</string>
+    <string name="phone_input_title">번호 등록</string>
     <string name="phone_input_hint">번호 입력 (예: 01012345678)</string>
     <string name="warning_phone_input">핸드폰 번호를 입력해주세요</string>
     <string name="error_to_work">문제가 발생하였습니다</string>
     <string name="success_phone_input">핸드폰 번호 등록에 성공하였습니다</string>
-    <string name="success_board_write">글 작성이 완료되었습니다.</string>
+    <string name="success_board_write">글 작성이 완료되었습니다</string>
     <string name="error_board_write">글 작성이 실패하였습니다</string>
     <string name="success_board_comment_delete">성공적으로 삭제되었습니다</string>
     <string name="taxi_share_title">택시합승</string>
-    <string name="taxi_share_isLeave">택시가 출발했습니다.</string>
+    <string name="taxi_share_isLeave">택시가 출발했습니다</string>
     <string name="taxi_share_want_leave">택시 출발</string>
     <string name="taxi_share_leave">출발</string>
     <string name="success_taxi_share_set_leave">택시가 출발합니다</string>
@@ -91,7 +91,7 @@
     <string name="taxi_share_write_departure_location_ex">(ex : 강남대 입구)</string>
     <string name="taxi_share_write_destination_location_ex">(ex : 이공관)</string>
     <string name="taxi_share_write_info_text">출발 예정시간, 출발장소, 도착장소, 현재 인원 수가 모두 맞는지 다시 한번 확인해주세요.</string>
-    <string name="taxi_share_write_info_text1">택시를 타고 출발하실 때 꼭 출발 아이콘을 눌러주세요.</string>
+    <string name="taxi_share_write_info_text1">택시를 타고 출발하실 때 꼭 출발 버튼을 눌러주세요.</string>
     <string name="warning_taxi_share_write_time">출발시간을 입력해 주세요</string>
     <string name="warning_taxi_share_write_departure">출발장소를 입력해 주세요</string>
     <string name="warning_taxi_share_write_destination">도착장소를 입력해 주세요</string>
@@ -109,7 +109,8 @@
     <string name="warning_meeting_set_majorname">학과를 적어주세요</string>
     <string name="error_check_network_state">인터넷 연결 상태를 확인해 주세요</string>
 
-    <string name="nickname_change_text">정말로 닉네임을 변경 하시겠습니까?</string>
+    <string name="nickname_change_text">새로운 닉네임을 입력해주세요</string>
+    <string name="nickname_change_title">닉네임 변경</string>
     <string name="profileimage_change_text">정말로 프로필사진을 변경 하시겠습니까?</string>
     <string name="success_nickname_change">닉네임이 변경되었습니다</string>
     <string name="text_studentinfo_notify_title">내 소식</string>
@@ -125,5 +126,5 @@
     <string name="text_are_you_want_logout_message">정말로 로그아웃 하시겠습니까?</string>
     <string name="text_setting_author_devices">인증된 기기</string>
     <string name="text_setting_author_device_logout">정말로 해당 기기를 로그아웃 시키겠습니까?</string>
-    <string name="text_setting_author_devices_message">자신이 로그인 하지 않은 기기가 있다면 바로 로그아웃 시켜주세요.</string>
+    <string name="text_setting_author_devices_message">자신의 기기가 아니면 꼭 로그아웃 시켜주세요.</string>
 </resources>

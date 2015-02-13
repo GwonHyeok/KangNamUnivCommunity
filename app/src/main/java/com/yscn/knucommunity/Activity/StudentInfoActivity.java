@@ -96,7 +96,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
     private void showNicknameChangeDialog() {
         LinearLayout linearLayout = new LinearLayout(getContext());
         final EditText editText = new EditText(getContext());
-        editText.setHint(R.string.text_nickname);
+        editText.setHint(R.string.nickname_change_text);
         editText.setBackgroundColor(Color.TRANSPARENT);
         linearLayout.addView(editText);
         int padding = (int) ApplicationUtil.getInstance().dpToPx(20);
@@ -117,8 +117,8 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                         }
                     }
                 })
-                .setTitle(R.string.warning_title)
-                .setMessage(R.string.nickname_change_text)
+                .setTitle(R.string.nickname_change_title)
+                //.setMessage(R.string.nickname_change_text)
                 .setNegativeButton(R.string.NO, null)
                 .setView(linearLayout)
                 .show();
