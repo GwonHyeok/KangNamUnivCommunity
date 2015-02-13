@@ -118,7 +118,6 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                     }
                 })
                 .setTitle(R.string.nickname_change_title)
-                //.setMessage(R.string.nickname_change_text)
                 .setNegativeButton(R.string.NO, null)
                 .setView(linearLayout)
                 .show();
