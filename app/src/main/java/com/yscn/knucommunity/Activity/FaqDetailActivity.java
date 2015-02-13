@@ -140,6 +140,14 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fatdetail_main_scroll_activity);
 
         if (itemses.size() > 0) {
+            findViewById(R.id.linearLayout).addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                @Override
+                public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                    int profileHeight = findViewById(R.id.linearLayout).getHeight();
+                    findViewById(R.id.faq_detail_scrollview).setPadding(0, profileHeight, 0, 0);
+                    findViewById(R.id.linearLayout).removeOnLayoutChangeListener(this);
+                }
+            });
             ((TextView) findViewById(R.id.faq_detail_replycount)).setText(getReplyText(String.valueOf(itemses.size())));
         }
 
