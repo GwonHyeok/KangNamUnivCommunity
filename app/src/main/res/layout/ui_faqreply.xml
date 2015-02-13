@@ -34,7 +34,6 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@id/faq_reply_profile"
                 android:layout_toRightOf="@id/faq_reply_profile"
-                android:text="이름"
                 android:textColor="#FF414141"
                 android:textSize="17sp" />
 
@@ -44,10 +43,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="26dp"
-                android:text="2014-10-12 12:31"
+                android:clickable="false"
+                android:paddingRight="24dp"
                 android:textColor="#757575"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <ImageButton
                 android:id="@+id/faq_reply_delete_comment"
@@ -79,6 +78,5 @@
     <include
         layout="@layout/ui_list_divider"
         android:layout_width="match_parent"
-        android:layout_height="3dp"
-        android:layout_alignParentBottom="true" />
+        android:layout_height="3dp" />
 </LinearLayout>

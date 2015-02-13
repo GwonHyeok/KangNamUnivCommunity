@@ -29,6 +29,7 @@ import com.yscn.knucommunity.CustomView.NotifiableScrollView;
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -166,6 +167,8 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
                         showDeleteCommentDialog(dataObject.getCommentid());
                     }
                 });
+            } else {
+                timeView.setPadding(0, 0, (int) ApplicationUtil.getInstance().dpToPx(8), 0);
             }
         }
     }
