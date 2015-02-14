@@ -77,6 +77,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         } else {
             new AsyncTask<String, Void, NetworkUtil.LoginStatus>() {
                 private ClearProgressDialog progressdialog;
+                private String studentPassword;
 
                 @Override
                 protected void onPreExecute() {
@@ -87,6 +88,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                 @Override
                 protected NetworkUtil.LoginStatus doInBackground(String... strings) {
                     try {
+                        studentPassword = strings[1];
                         return NetworkUtil.getInstance().LoginAppServer(strings[0], strings[1]);
                     } catch (IOException | ParseException e) {
                         e.printStackTrace();
@@ -99,7 +101,9 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
                     if (loginStatus == NetworkUtil.LoginStatus.NOMEMBER) {
                         /* 어플 디비에 계정이 존재하지 않으면 계정 생성 액티비티 실행 */
                         finish();
-                        startActivity(new Intent(getContext(), AccountRegisterActivity.class));
+                        Intent intent = new Intent(getContext(), AccountRegisterActivity.class);
+                        intent.putExtra("password", studentPassword);
+                        startActivity(intent);
                     } else if (loginStatus == NetworkUtil.LoginStatus.SUCCESS) {
                         /* 로그인 액티비티 종료 후 메인 액티비티 실행*/
                         finish();

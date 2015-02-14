@@ -102,13 +102,14 @@ public class NetworkUtil {
         return instance;
     }
 
-    public LoginStatus RegisterAppServer(String studentnumber, String nickname, String name, Uri profileURI) throws IOException, ParseException {
+    public LoginStatus RegisterAppServer(String studentnumber, String password, String nickname, String name, Uri profileURI) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
 
         HttpPost httpPost = new HttpPost(UrlList.APP_REGISTER_URL);
         HttpEntity entity = MultipartEntityBuilder.create()
                 .addTextBody("studentnumber", studentnumber, contentType)
+                .addTextBody("password", password, contentType)
                 .addTextBody("nickname", nickname, contentType)
                 .addTextBody("name", name, contentType)
                 .addBinaryBody("userfile", new File(ApplicationUtil.getInstance().UriToPath(profileURI)))
@@ -187,7 +188,7 @@ public class NetworkUtil {
 
             /* 앱서버 post 파라미터 생성 */
             HashMap<String, String> appLoginParameters = getTextParameters(
-                    new String[]{"studentnumber"}, new String[]{studentnumber});
+                    new String[]{"studentnumber", "password"}, new String[]{studentnumber, password});
             httpResponse = postData(UrlList.APP_LOGIN_URL, appLoginParameters);
             JSONObject apploginjsonObject = (JSONObject) jsonParser.parse(
                     new InputStreamReader(httpResponse.getEntity().getContent()));

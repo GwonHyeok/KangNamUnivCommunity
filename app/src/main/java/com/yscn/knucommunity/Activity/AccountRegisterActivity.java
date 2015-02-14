@@ -99,10 +99,11 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
             String studentNumber = UserData.getInstance().getStudentNumber();
             String studentName = UserData.getInstance().getStudentName();
             String nickname = ((EditText) findViewById(R.id.register_nickname)).getText().toString();
+            String password = getIntent().getStringExtra("password");
 
             /* Check Register Account Value */
-            if (isValidatingValue(studentNumber, nickname, studentName)) {
-                registerWork(studentNumber, nickname, studentName);
+            if (isValidatingValue(studentNumber, password, nickname, studentName)) {
+                registerWork(studentNumber, password, nickname, studentName);
             }
         } else if (id == R.id.register_profile) {
             getProfilePicture();
@@ -117,7 +118,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
      * @param studentName   StudentName
      * @return if Validate Value return true
      */
-    private boolean isValidatingValue(String studentNumber, String nickname, String studentName) {
+    private boolean isValidatingValue(String studentNumber, String password, String nickname, String studentName) {
         if (studentNumber.isEmpty()) {
             AlertToast.warning(getContext(), getString(R.string.warning_input_studentnumber));
             return false;
@@ -129,6 +130,9 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
             return false;
         } else if (profileUri == null) {
             AlertToast.warning(getContext(), getString(R.string.warning_input_profileimage));
+            return false;
+        } else if (password.isEmpty()) {
+            AlertToast.warning(getContext(), getString(R.string.warning_input_password));
             return false;
         } else {
             return true;
@@ -161,7 +165,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
     }
 
 
-    private void registerWork(String studentnumber, String nickname, String name) {
+    private void registerWork(String studentnumber, String password, String nickname, String name) {
         new AsyncTask<String, Void, NetworkUtil.LoginStatus>() {
             private ClearProgressDialog progressDialog;
 
@@ -175,7 +179,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
             protected NetworkUtil.LoginStatus doInBackground(String... strings) {
                 NetworkUtil.LoginStatus loginStatus = NetworkUtil.LoginStatus.FAIL;
                 try {
-                    loginStatus = NetworkUtil.getInstance().RegisterAppServer(strings[0], strings[1], strings[2], profileUri);
+                    loginStatus = NetworkUtil.getInstance().RegisterAppServer(strings[0], strings[1], strings[2], strings[3], profileUri);
                 } catch (ParseException | IOException e) {
                     e.printStackTrace();
                 }
@@ -200,7 +204,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
                 }
                 progressDialog.cancel();
             }
-        }.execute(studentnumber, nickname, name);
+        }.execute(studentnumber, password, nickname, name);
     }
 
     private void showToastMessage(String message) {
