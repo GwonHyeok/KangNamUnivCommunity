@@ -12,7 +12,9 @@
 
     <string name="register_text">등록</string>
     <string name="warning_input_login_form">아이디 또는 비밀번호를 입력해주세요.</string>
+    <string name="input_password_hint">비밀번호를 입력해 주세요</string>
     <string name="error_login">로그인에 실패하였습니다.</string>
+    <string name="error_password">비밀번호가 다릅니다.</string>
     <string name="register_fail">회원가입에 실패하였습니다.</string>
     <string name="register_success">회원가입에 성공하였습니다.</string>
     <string name="register_already_exist">이미 존재하는 계정입니다.</string>
@@ -102,6 +104,8 @@
     <string name="warning_taxi_share_write_content">내용을 입력해 주세요</string>
     <string name="warning_board_write_title">제목을 입력해 주세요</string>
     <string name="warning_board_write_content">내용을 입력해 주세요</string>
+    <string name="warning_account_delete_message">정말로 계정을 삭제하시겠습니까?\n계정을 삭제하시면 모든 정보가 삭제됩니다</string>
+    <string name="success_delete_account">성공적으로 계정을 삭제하였습니다</string>
     <string name="taxi_share_set_with_cancel">합승 취소</string>
 
     <string name="warning_meeting_set_gender">성별을 선택해주세요</string>

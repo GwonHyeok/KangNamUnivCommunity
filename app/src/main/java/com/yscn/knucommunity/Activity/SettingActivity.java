@@ -58,7 +58,7 @@ public class SettingActivity extends ActionBarActivity {
 
     public static class PreferenceItem extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
         private Preference mMyInfoNamePreference, mMyInfoAccountPreference,
-                mMyInfoAuthorDevices, mMyInfoPhoneNumber;
+                mMyInfoAuthorDevices, mMyInfoPhoneNumber, mDeleteAccountPreference;
 
 
         @Override
@@ -70,6 +70,7 @@ public class SettingActivity extends ActionBarActivity {
             mMyInfoAccountPreference = findPreference("setting_preference_myinfo_myaccountinfo");
             mMyInfoPhoneNumber = findPreference("setting_preference_myinfo_phonenumber");
             mMyInfoAuthorDevices = findPreference("setting_preference_myinfo_authordevices");
+            mDeleteAccountPreference = findPreference("setting_preference_myinfo_deleteaccount");
 
             mMyInfoNamePreference.setTitle(UserData.getInstance().getStudentName());
             mMyInfoNamePreference.setSummary(UserData.getInstance().getStudentNumber());
@@ -80,6 +81,7 @@ public class SettingActivity extends ActionBarActivity {
             mMyInfoAccountPreference.setOnPreferenceClickListener(this);
             mMyInfoPhoneNumber.setOnPreferenceClickListener(this);
             mMyInfoAuthorDevices.setOnPreferenceClickListener(this);
+            mDeleteAccountPreference.setOnPreferenceClickListener(this);
         }
 
         private void initNeedNetworkData() {
@@ -163,6 +165,51 @@ public class SettingActivity extends ActionBarActivity {
                     AlertToast.error(getActivity(), reason);
                 }
             }.execute();
+        }
+
+        private void deleteUser(String password) {
+            new AsyncTask<String, Void, JSONObject>() {
+                private ClearProgressDialog clearProgressDialog;
+
+                @Override
+                protected void onPreExecute() {
+                    clearProgressDialog = new ClearProgressDialog(getActivity());
+                    clearProgressDialog.show();
+                }
+
+                @Override
+                protected JSONObject doInBackground(String... params) {
+                    try {
+                        return NetworkUtil.getInstance().checkIsLoginUser().deleteAccount(params[0]);
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(JSONObject jsonObject) {
+                    clearProgressDialog.cancel();
+                    if (jsonObject != null) {
+                        String result = jsonObject.get("result").toString();
+
+                        if (result.equals("success")) {
+                            AlertToast.success(getActivity(), R.string.success_delete_account);
+                            UserData.getInstance().logoutUser();
+                            return;
+                        }
+
+                        if (result.equals("fail")) {
+                            String reason = jsonObject.get("reason").toString();
+                            if (reason.equals("loginfail")) {
+                                AlertToast.error(getActivity(), R.string.error_password);
+                            }
+                        }
+                    } else {
+                        AlertToast.error(getActivity(), R.string.error_to_work);
+                    }
+                }
+            }.execute(password);
         }
 
         private void logoutUser() {
@@ -262,8 +309,49 @@ public class SettingActivity extends ActionBarActivity {
                 return true;
             } else if (key.equals(mMyInfoPhoneNumber.getKey())) {
                 showPhoneNumberChangeDialog();
+            } else if (key.equals(mDeleteAccountPreference.getKey())) {
+                showAccountDeleteDialog();
+                return true;
             }
             return false;
+        }
+
+        private void showAccountDeleteDialog() {
+            new AlertDialog.Builder(getActivity())
+                    .setTitle(R.string.warning_title)
+                    .setMessage(R.string.warning_account_delete_message)
+                    .setNegativeButton(R.string.NO, null)
+                    .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            LinearLayout linearLayout = new LinearLayout(getActivity());
+                            final EditText editText = new EditText(getActivity());
+                            editText.setBackgroundColor(Color.TRANSPARENT);
+                            linearLayout.addView(editText);
+                            int padding = (int) ApplicationUtil.getInstance().dpToPx(20);
+                            linearLayout.setPadding(padding, 0, padding, 0);
+                            ViewGroup.LayoutParams layoutParams = editText.getLayoutParams();
+                            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
+                            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            editText.setLayoutParams(layoutParams);
+
+                            new AlertDialog.Builder(getActivity())
+                                    .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            String password = editText.getText().toString();
+                                            deleteUser(password);
+                                        }
+                                    })
+                                    .setTitle(R.string.notify_title)
+                                    .setCancelable(false)
+                                    .setMessage(R.string.input_password_hint)
+                                    .setNegativeButton(R.string.NO, null)
+                                    .setView(linearLayout)
+                                    .show();
+                        }
+                    })
+                    .show();
         }
 
         @Override

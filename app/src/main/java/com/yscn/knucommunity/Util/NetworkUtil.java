@@ -458,6 +458,14 @@ public class NetworkUtil {
         return itemses;
     }
 
+    public JSONObject deleteAccount(String password) throws IOException, ParseException {
+        HashMap<String, String> paramter = new HashMap<>();
+        paramter.put("password", password);
+        HttpResponse httpResponse = postData(UrlList.DELETE_ACCOUNT_URL, paramter);
+        JSONParser jsonParser = new JSONParser();
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public HashMap<String, ArrayList<StudentCouncilListItems>> getCouncilInfo() throws IOException, ParseException {
         HashMap<String, ArrayList<StudentCouncilListItems>> dataMap = new HashMap<>();
         ArrayList<StudentCouncilListItems> riffleItem = new ArrayList<>();
