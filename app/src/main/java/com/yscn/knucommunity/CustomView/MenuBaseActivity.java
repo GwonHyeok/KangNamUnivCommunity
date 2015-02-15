@@ -5,8 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.DisplayMetrics;
-import android.util.TypedValue;
 import android.view.View;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -17,6 +15,7 @@ import com.yscn.knucommunity.Activity.NoticeActivity;
 import com.yscn.knucommunity.Activity.StudentGroundActivity;
 import com.yscn.knucommunity.Activity.StudentInfoActivity;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 4..
@@ -36,16 +35,8 @@ public class MenuBaseActivity extends ActionBarActivity {
     }
 
     protected void slidingMenuInit() {
-        /* Measure Screen Size, Define Sliding Menu Width */
-        int actionBarHeight = 0;
-        TypedValue tv = new TypedValue();
-        if (getTheme().resolveAttribute(android.R.attr.actionBarSize, tv, true)) {
-            actionBarHeight = TypedValue.complexToDimensionPixelSize(tv.data, getResources().getDisplayMetrics());
-        }
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int width = displayMetrics.widthPixels;
-        int height = displayMetrics.heightPixels;
+        int width = ApplicationUtil.getInstance().getScreenWidth();
+        int height = ApplicationUtil.getInstance().getScreenHeight();
         int squareSize;
         squareSize = width - (height / 6);
          /* Add Sliding Menu */
