@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.yscn.knucommunity.CustomView.BaseBoardListActivity;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
@@ -26,6 +27,7 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
     public void onCreate(Bundle bundle) {
         setContentView(R.layout.activity_greenlight_list);
         super.onCreate(bundle);
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     protected void addScrollViewData(ArrayList<DefaultBoardListItems> listItemses) {
@@ -50,6 +52,7 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
                 listView.setOnClickListener(this);
                 listView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                 ((LinearLayout) childView).addView(listView);
+                ApplicationUtil.getInstance().setTypeFace(listView);
             }
         }
 

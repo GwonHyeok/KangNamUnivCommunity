@@ -42,6 +42,7 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
         setContentView(R.layout.activity_studentcouncil);
         viewInit();
         getCouncilData();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

@@ -34,6 +34,7 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_restrauntdetail);
         viewInit();
         setRestrauntFoodInfo(getIntent().getStringExtra("location"));
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private Context getContext() {

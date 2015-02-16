@@ -7,6 +7,7 @@ import android.view.View;
 
 import com.yscn.knucommunity.CustomView.BaseDoubleKillActivity;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 10. 22..
@@ -24,6 +25,7 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
         findViewById(R.id.main_community).setOnClickListener(this);
         findViewById(R.id.main_link).setOnClickListener(this);
         findViewById(R.id.main_setting).setOnClickListener(this);
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

@@ -102,6 +102,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
         checkHasPhoneNumber();
         setTaxiData();
         scrollViewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void scrollViewInit() {
@@ -300,6 +301,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                     });
                     view.setTag(item);
                     linearLayout.addView(view);
+                    ApplicationUtil.getInstance().setTypeFace(view);
                 }
                 clearProgressdialog.cancel();
                 swipeRefreshLayout.setRefreshing(false);

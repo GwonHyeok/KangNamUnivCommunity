@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.parser.ParseException;
@@ -35,6 +36,7 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
         setContentView(R.layout.activity_meeting_write);
         actionBarInit();
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {
@@ -76,7 +78,7 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
         final TextView genderTextView = (TextView) findViewById(R.id.meeting_write_gender_textview);
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setSingleChoiceItems(genderArray, isMale ? 0 : 1, new DialogInterface.OnClickListener() {
+        AlertDialog alertDialog = builder.setSingleChoiceItems(genderArray, isMale ? 0 : 1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 isMale = (which == 0);
@@ -87,6 +89,7 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
                 genderTextView.setText(isMale ? genderArray[0] : genderArray[1]);
             }
         }).setTitle(R.string.community_gender_dialog_title).show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
     }
 
     private boolean checkValidData() {

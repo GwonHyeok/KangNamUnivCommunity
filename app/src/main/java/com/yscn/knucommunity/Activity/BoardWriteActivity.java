@@ -59,6 +59,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         if (this.isEditMode) {
             setPreContent();
         }
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

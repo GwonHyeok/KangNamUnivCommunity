@@ -68,6 +68,7 @@ public class AlertToast {
             linearLayout.setBackgroundDrawable(getBackgroundDrawable(color));
         }
         linearLayout.addView(textView);
+        ApplicationUtil.getInstance().setTypeFace(linearLayout);
         return linearLayout;
     }
 

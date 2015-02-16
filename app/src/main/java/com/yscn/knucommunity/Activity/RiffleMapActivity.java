@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 7..
@@ -27,6 +28,7 @@ public class RiffleMapActivity extends ActionBarActivity implements AdapterView.
         super.onCreate(bundle);
         setContentView(R.layout.activity_rifflemap);
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

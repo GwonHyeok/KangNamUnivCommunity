@@ -18,6 +18,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 6..
@@ -54,6 +55,7 @@ public class CampusMapActivity extends ActionBarActivity implements GoogleMap.On
         ArrayAdapter<String> mapListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, string);
         listView.setAdapter(mapListAdapter);
         listView.setOnItemClickListener(this);
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void setUpMapIfNeeded() {

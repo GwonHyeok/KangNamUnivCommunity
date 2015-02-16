@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.util.Random;
 
@@ -21,6 +22,7 @@ public class ClubDetailActivity extends ActionBarActivity {
         setContentView(R.layout.activity_clubdetail);
         viewInit();
         setRandomColor();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

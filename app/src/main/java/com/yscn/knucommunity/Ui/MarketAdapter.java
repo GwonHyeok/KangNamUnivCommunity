@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
@@ -31,6 +32,7 @@ public class MarketAdapter extends PagerAdapter {
         TextView textView = (TextView) view.findViewById(R.id.shop_help_info_text);
         textView.setText("장터를 이용하시기 전에, 몇가지 주의사항을\n 반드시 숙지해 주세요.");
         viewGroup.addView(view);
+        ApplicationUtil.getInstance().setTypeFace(view);
         return view;
     }
 

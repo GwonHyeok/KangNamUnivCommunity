@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.yscn.knucommunity.Items.NoticeItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -119,6 +120,7 @@ public class NoticeListFragment extends ScrollTabHolderFragment implements OnScr
                 holder.title.setTextColor(0xff474747);
 
                 view.setTag(holder);
+                ApplicationUtil.getInstance().setTypeFace(view);
             } else {
                 holder = (AdapterHolder) view.getTag();
             }

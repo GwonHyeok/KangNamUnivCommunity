@@ -19,6 +19,7 @@ import com.yscn.knucommunity.Activity.ShareTaxiDetailActivity;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.Items.StudentNotificationItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.UrlList;
 
@@ -52,6 +53,7 @@ public class StudentNotificationItemAdapter extends RecyclerView.Adapter<Student
                     ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
         }
         setItemClickLietener(notificationItem.getBoardid(), notificationItem.getContentid(), viewHolder.getRootView());
+        ApplicationUtil.getInstance().setTypeFace(viewHolder.getRootView());
     }
 
     private void setItemClickLietener(final String boardid, final String contentid, View rootView) {

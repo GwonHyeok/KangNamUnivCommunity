@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.Util.ApplicationUtil;
+
 /**
  * Created by GwonHyeok on 15. 1. 20..
  */
@@ -33,6 +35,7 @@ public class ShareTaxiPagerAdapter extends PagerAdapter {
         textView.setGravity(Gravity.CENTER);
         textView.setTextSize(64);
         viewGroup.addView(textView);
+        ApplicationUtil.getInstance().setTypeFace(textView);
         return textView;
     }
 

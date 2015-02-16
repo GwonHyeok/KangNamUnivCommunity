@@ -17,6 +17,7 @@ import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.MajorDetailItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import java.util.ArrayList;
@@ -50,6 +51,8 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
 
         /* set Click Listener */
         findViewById(R.id.major_go_page).setOnClickListener(this);
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void setRandomColor() {
@@ -132,6 +135,7 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
                         majorTextView.setText(String.format(getString(R.string.base_text_professor_major), majorInfo.getMajor()));
                         phoneTextView.setText(String.format(getString(R.string.base_text_professor_phone), majorInfo.getPhone()));
                         emailTextView.setText(String.format(getString(R.string.base_text_professor_email), majorInfo.getEmail()));
+                        ApplicationUtil.getInstance().setTypeFace(view);
                     }
                 } else {
                     /* Exception */

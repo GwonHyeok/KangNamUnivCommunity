@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.util.ArrayList;
 
@@ -51,10 +52,12 @@ public class ClubInfoActivity extends ActionBarActivity implements AdapterView.O
         linearLayout.addView(toolbar);
         linearLayout.addView(listView);
         setContentView(linearLayout);
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     public ArrayList<String> getMajorList() {
-        ArrayList<String> majorList = new ArrayList<String>();
+        ArrayList<String> majorList = new ArrayList<>();
         majorList.add("날개");
         majorList.add("아르니아");
         majorList.add("올클리어");

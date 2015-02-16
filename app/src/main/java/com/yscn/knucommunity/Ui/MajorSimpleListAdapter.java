@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.Items.MajorSimpleListItems;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.util.ArrayList;
 
@@ -32,6 +33,7 @@ public class MajorSimpleListAdapter extends ArrayAdapter<MajorSimpleListItems> {
             holder = new AdapterHolder();
             holder.title = (TextView) view.findViewById(android.R.id.text1);
             view.setTag(holder);
+            ApplicationUtil.getInstance().setTypeFace(view);
         } else {
             holder = (AdapterHolder) view.getTag();
         }

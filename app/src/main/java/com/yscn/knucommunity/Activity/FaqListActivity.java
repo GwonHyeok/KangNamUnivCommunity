@@ -14,6 +14,7 @@ import com.yscn.knucommunity.CustomView.BaseBoardListActivity;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class FaqListActivity extends BaseBoardListActivity implements View.OnCli
     public void onCreate(Bundle bundle) {
         setContentView(R.layout.activity_faq_list);
         super.onCreate(bundle);
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     protected void addScrollViewData(ArrayList<DefaultBoardListItems> listItemses) {
@@ -50,6 +52,7 @@ public class FaqListActivity extends BaseBoardListActivity implements View.OnCli
                 listView.setOnClickListener(this);
                 listView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                 ((LinearLayout) childView).addView(listView);
+                ApplicationUtil.getInstance().setTypeFace(listView);
             }
         }
     }

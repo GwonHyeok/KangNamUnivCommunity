@@ -55,6 +55,7 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
         setContent();
         getReplyData();
         setParallaxScroll();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void setParallaxScroll() {
@@ -176,11 +177,12 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
             } else {
                 timeView.setPadding(0, 0, (int) ApplicationUtil.getInstance().dpToPx(8), 0);
             }
+            ApplicationUtil.getInstance().setTypeFace(replyView);
         }
     }
 
     private void showDeleteCommentDialog(final String commentid) {
-        new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.warning_title)
                 .setMessage(R.string.want_you_delete_comment)
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
@@ -191,6 +193,7 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
                 })
                 .setNegativeButton(R.string.NO, null)
                 .show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
     }
 
     private void deleteComment(final String commentid) {

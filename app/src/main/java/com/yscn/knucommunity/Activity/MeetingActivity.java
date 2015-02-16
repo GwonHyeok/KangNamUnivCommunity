@@ -45,6 +45,7 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
         toolbarInit();
         viewInit();
         getMeetingList();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {
@@ -173,6 +174,7 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
             });
             view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
             linearLayout.addView(view);
+            ApplicationUtil.getInstance().setTypeFace(view);
         }
     }
 

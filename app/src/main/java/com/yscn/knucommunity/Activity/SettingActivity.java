@@ -40,6 +40,7 @@ public class SettingActivity extends ActionBarActivity {
         toolbarInit();
         getFragmentManager().beginTransaction()
                 .replace(R.id.setting_framelayout, new PreferenceItem()).commit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void toolbarInit() {
@@ -264,7 +265,7 @@ public class SettingActivity extends ActionBarActivity {
                 editText.setText(mMyInfoPhoneNumber.getSummary());
             }
 
-            new AlertDialog.Builder(getActivity())
+            AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                     .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -281,6 +282,7 @@ public class SettingActivity extends ActionBarActivity {
                     .setNegativeButton(R.string.NO, null)
                     .setView(linearLayout)
                     .show();
+            ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
         }
 
         @Override
@@ -288,7 +290,7 @@ public class SettingActivity extends ActionBarActivity {
             String key = preference.getKey();
 
             if (key.equals(mMyInfoNamePreference.getKey())) {
-                new AlertDialog.Builder(getActivity())
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                         .setTitle(R.string.warning_title)
                         .setMessage(R.string.text_are_you_want_logout_message)
                         .setNegativeButton(R.string.NO, null)
@@ -299,6 +301,7 @@ public class SettingActivity extends ActionBarActivity {
                             }
                         })
                         .show();
+                ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
                 return true;
             } else if (key.equals(mMyInfoAccountPreference.getKey())) {
                 startActivity(new Intent(getActivity(), StudentInfoActivity.class));
@@ -317,7 +320,7 @@ public class SettingActivity extends ActionBarActivity {
         }
 
         private void showAccountDeleteDialog() {
-            new AlertDialog.Builder(getActivity())
+            AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
                     .setTitle(R.string.warning_title)
                     .setMessage(R.string.warning_account_delete_message)
                     .setNegativeButton(R.string.NO, null)
@@ -335,7 +338,7 @@ public class SettingActivity extends ActionBarActivity {
                             editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                             editText.setLayoutParams(layoutParams);
 
-                            new AlertDialog.Builder(getActivity())
+                            AlertDialog innerAlertDialog = new AlertDialog.Builder(getActivity())
                                     .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                                         @Override
                                         public void onClick(DialogInterface dialog, int which) {
@@ -349,9 +352,11 @@ public class SettingActivity extends ActionBarActivity {
                                     .setNegativeButton(R.string.NO, null)
                                     .setView(linearLayout)
                                     .show();
+                            ApplicationUtil.getInstance().setTypeFace(innerAlertDialog.getWindow().getDecorView());
                         }
                     })
                     .show();
+            ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
         }
 
         @Override

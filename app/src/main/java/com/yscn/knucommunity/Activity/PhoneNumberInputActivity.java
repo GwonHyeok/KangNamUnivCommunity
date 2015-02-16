@@ -42,7 +42,7 @@ public class PhoneNumberInputActivity extends ActionBarActivity implements View.
         }
 
         findViewById(R.id.phoneinput_cornfirm).setOnClickListener(this);
-
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void setToolbar() {

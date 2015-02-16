@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
@@ -31,6 +32,7 @@ public class ShuttleBusActivity extends ActionBarActivity {
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.shuttlebus_viewpager);
         viewPager.setAdapter(new ShuttleBusAdpater());
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

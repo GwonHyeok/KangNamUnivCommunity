@@ -24,6 +24,7 @@ import com.yscn.knucommunity.Items.LibrarySearchListItems;
 import com.yscn.knucommunity.Items.LibrarySeatItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.LibrarySearchItemAdapter;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.JSONArray;
@@ -42,8 +43,8 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_library_main);
-
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {
@@ -84,6 +85,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
             View view = inflater.inflate(R.layout.activity_libraryfind, container, false);
+            ApplicationUtil.getInstance().setTypeFace(view);
             EditText editText = (EditText) view.findViewById(R.id.library_edittext);
             editText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
                 @Override
@@ -123,6 +125,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle saveInstanceState) {
             View view = inflater.inflate(R.layout.activity_librarysearch, container, false);
+            ApplicationUtil.getInstance().setTypeFace(view);
             final String bookKeyword = getArguments().getString("keyword");
             recyclerView = (RecyclerView) view.findViewById(R.id.librarysearch_recycleview);
             /* Page Finish Listener */
@@ -198,6 +201,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
             final View view = inflater.inflate(R.layout.activity_libraryusage, container, false);
+            ApplicationUtil.getInstance().setTypeFace(view);
 
             new AsyncTask<Void, Void, ArrayList<LibrarySeatItems>>() {
                 private ClearProgressDialog dialog;

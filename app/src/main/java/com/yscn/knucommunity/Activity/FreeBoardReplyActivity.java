@@ -56,6 +56,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
 
         findViewById(R.id.reply_textview).setOnClickListener(this);
         getCommentData();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void getCommentData() {
@@ -165,11 +166,13 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
             } else {
                 timeTextView.setPadding(0, 0, (int) ApplicationUtil.getInstance().dpToPx(8), 0);
             }
+
+            ApplicationUtil.getInstance().setTypeFace(view);
         }
     }
 
     private void showDeleteCommentDialog(final String commentid) {
-        new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.warning_title)
                 .setMessage(R.string.want_you_delete_comment)
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
@@ -180,6 +183,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
                 })
                 .setNegativeButton(R.string.NO, null)
                 .show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
     }
 
     private void removeScrollViewData() {

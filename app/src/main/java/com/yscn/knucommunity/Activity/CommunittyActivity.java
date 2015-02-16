@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
@@ -23,6 +24,7 @@ public class CommunittyActivity extends ActionBarActivity implements View.OnClic
         findViewById(R.id.communitty_greenright_board).setOnClickListener(this);
         findViewById(R.id.communitty_metting_board).setOnClickListener(this);
         findViewById(R.id.communitty_delivery_food).setOnClickListener(this);
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     @Override

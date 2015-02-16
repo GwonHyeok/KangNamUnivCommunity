@@ -14,6 +14,7 @@ import com.yscn.knucommunity.CustomView.BaseBoardListActivity;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
     public void onCreate(Bundle bundle) {
         setContentView(R.layout.activity_freeboard_list);
         super.onCreate(bundle);
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     @Override
@@ -51,6 +53,7 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
                 listView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                 listView.setOnClickListener(this);
                 ((LinearLayout) childView).addView(listView);
+                ApplicationUtil.getInstance().setTypeFace(listView);
             }
         }
     }

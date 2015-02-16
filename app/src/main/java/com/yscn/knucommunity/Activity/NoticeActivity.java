@@ -75,6 +75,8 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
         mPagerSlidingTabStrip.setTypeface(null, Typeface.NORMAL);
         actionBarHeaderTitleView = (TextView) findViewById(R.id.notice_header_title);
         findViewById(R.id.open_menu).setOnClickListener(this);
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void getNoticeData() {

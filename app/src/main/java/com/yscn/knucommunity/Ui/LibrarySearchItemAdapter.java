@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.Items.LibrarySearchListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class LibrarySearchItemAdapter extends RecyclerView.Adapter<LibrarySearch
         viewHolder.getAuthorYearTextView().setText(authorYear);
         viewHolder.getHoldingLendTextView().setText(holdingLendTitle);
         ImageLoader.getInstance().displayImage(thumbnail, viewHolder.getImageView(), ImageLoaderUtil.getInstance().getDefaultOptions());
+        ApplicationUtil.getInstance().setTypeFace(viewHolder.getRootview());
     }
 
     @Override
@@ -54,8 +56,9 @@ public class LibrarySearchItemAdapter extends RecyclerView.Adapter<LibrarySearch
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView textView, callnoTextView, authorYearTextView, holdingLendTextView;
-        private final ImageView imageView;
+        private TextView textView, callnoTextView, authorYearTextView, holdingLendTextView;
+        private ImageView imageView;
+        private View rootview;
 
         public ViewHolder(View v) {
             super(v);
@@ -64,6 +67,7 @@ public class LibrarySearchItemAdapter extends RecyclerView.Adapter<LibrarySearch
                 public void onClick(View v) {
                 }
             });
+            rootview = v;
             textView = (TextView) v.findViewById(R.id.library_search_book_title);
             imageView = (ImageView) v.findViewById(R.id.library_search_book_thumbnail);
             callnoTextView = (TextView) v.findViewById(R.id.library_search_book_callno);
@@ -89,6 +93,10 @@ public class LibrarySearchItemAdapter extends RecyclerView.Adapter<LibrarySearch
 
         public TextView getHoldingLendTextView() {
             return holdingLendTextView;
+        }
+
+        public View getRootview() {
+            return rootview;
         }
     }
 }

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
@@ -35,6 +36,7 @@ public class StudentCouncilListAdapter extends ArrayAdapter<StudentCouncilListIt
             holder.title = (TextView) view.findViewById(R.id.ui_studentcouncil_title);
             holder.sumary = (TextView) view.findViewById(R.id.ui_studentcouncil_summary);
             view.setTag(holder);
+            ApplicationUtil.getInstance().setTypeFace(view);
         } else {
             holder = (AdapterHolder) view.getTag();
         }

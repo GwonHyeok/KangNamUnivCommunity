@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 
 /**
@@ -26,6 +27,7 @@ public class SchoolRestrauntActivity extends ActionBarActivity implements View.O
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(getResources().getColor(R.color.school_restraunt_list_primary_dark_color));
         }
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     @Override

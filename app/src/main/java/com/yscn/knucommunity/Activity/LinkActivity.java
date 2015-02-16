@@ -22,6 +22,7 @@ public class LinkActivity extends MenuBaseActivity implements View.OnClickListen
         super.onCreate(bundle);
         setContentView(R.layout.activity_link);
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

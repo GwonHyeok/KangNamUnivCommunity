@@ -55,6 +55,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         if (Build.VERSION.SDK_INT >= 19) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     @Override

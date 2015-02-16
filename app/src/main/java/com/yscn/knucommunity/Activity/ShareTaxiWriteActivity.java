@@ -19,6 +19,7 @@ import com.sleepbot.datetimepicker.time.TimePickerDialog;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UserData;
 
@@ -44,6 +45,7 @@ public class ShareTaxiWriteActivity extends ActionBarActivity implements View.On
         setContentView(R.layout.activity_sharetaxi_write);
         toolbarInit();
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

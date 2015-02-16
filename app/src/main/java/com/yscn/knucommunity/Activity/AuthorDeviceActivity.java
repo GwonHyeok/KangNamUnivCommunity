@@ -74,7 +74,7 @@ public class AuthorDeviceActivity extends ActionBarActivity {
                 viewHolder.getRootView().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        new AlertDialog.Builder(getContext())
+                        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                                 .setTitle(R.string.warning_title)
                                 .setMessage(R.string.text_setting_author_device_logout)
                                 .setNegativeButton(R.string.NO, null)
@@ -83,10 +83,12 @@ public class AuthorDeviceActivity extends ActionBarActivity {
                                     public void onClick(DialogInterface dialog, int which) {
                                         doLogoutWithSession(itemses.get(itemindex).getLogin_session());
                                     }
-                                })
-                                .show();
+                                }).create();
+                        alertDialog.show();
+                        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
                     }
                 });
+                ApplicationUtil.getInstance().setTypeFace(viewHolder.getRootView());
             }
 
             @Override
@@ -119,6 +121,8 @@ public class AuthorDeviceActivity extends ActionBarActivity {
 
         setContentView(rootLayout);
         showAuthorDevices();
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void doLogoutWithSession(String login_session) {

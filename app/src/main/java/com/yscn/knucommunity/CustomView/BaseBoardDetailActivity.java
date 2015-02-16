@@ -194,7 +194,7 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
      * 정말로 삭제할건지 다이얼로그를 띄운다.
      */
     protected void showDeleteDialog() {
-        new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(getString(R.string.warning_title))
                 .setMessage(getString(R.string.want_you_delete))
                 .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
@@ -205,10 +205,11 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
                 })
                 .setNegativeButton(getString(R.string.NO), null)
                 .show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
     }
 
     protected void showEditDialog() {
-        new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.warning_title)
                 .setMessage(R.string.want_you_board_edit)
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
@@ -219,6 +220,7 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
                 })
                 .setNegativeButton(R.string.NO, null)
                 .show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
     }
 
     /**

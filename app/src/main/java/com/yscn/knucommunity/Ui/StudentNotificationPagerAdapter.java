@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import com.yscn.knucommunity.CustomView.DividerItemDecoration;
 import com.yscn.knucommunity.Items.StudentNotificationItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 
 import org.json.simple.JSONArray;
@@ -52,6 +53,7 @@ public class StudentNotificationPagerAdapter extends PagerAdapter {
         } else {
             view = getMyBoardView();
         }
+        ApplicationUtil.getInstance().setTypeFace(view);
         viewGroup.addView(view);
         return view;
     }

@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 15. 1. 6..
@@ -35,6 +36,7 @@ public class DeliverySpinnerAdapter extends ArrayAdapter<String> {
         View view;
         if (convertView == null) {
             view = LayoutInflater.from(getContext()).inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
+            ApplicationUtil.getInstance().setTypeFace(view);
         } else {
             view = convertView;
         }

@@ -37,6 +37,7 @@ public class MajorInfoActivity extends ActionBarActivity implements AdapterView.
         super.onCreate(bundle);
         viewInit();
         listViewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void listViewInit() {

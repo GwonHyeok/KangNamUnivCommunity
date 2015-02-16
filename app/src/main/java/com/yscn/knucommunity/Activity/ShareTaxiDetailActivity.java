@@ -74,6 +74,8 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 cancelTaxiNotify();
             }
         });
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void setTaxiData() {
@@ -273,6 +275,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                         TextView foldedPhoneView = (TextView) view.findViewById(R.id.share_taxi_detail_with_phone_view);
                         CircleImageView foldedProfileView = (CircleImageView) view.findViewById(R.id.share_taxi_detail_with_circle_view);
                         setProfileImage(foldedProfileView, studentnumber);
+                        ApplicationUtil.getInstance().setTypeFace(view);
 
                         foldedNameView.setText(name);
                         foldedPhoneView.setText(phonenumber);

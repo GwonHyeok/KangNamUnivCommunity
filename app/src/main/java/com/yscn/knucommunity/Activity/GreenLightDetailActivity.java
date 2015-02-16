@@ -44,6 +44,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
         super.onCreate(bundle);
         greenLightButtonInit();
         setContent();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void setContent() {

@@ -9,6 +9,7 @@ import android.view.View;
 import com.astuetz.PagerSlidingTabStrip;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.StudentNotificationPagerAdapter;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 15. 2. 3..
@@ -24,6 +25,7 @@ public class StudentNotificationActivity extends ActionBarActivity {
         setContentView(R.layout.activity_studentinfonotification);
         toolbarInit();
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Point;
+import android.graphics.Typeface;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -14,15 +15,18 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.TypedValue;
 import android.view.Display;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 /**
  * Created by GwonHyeok on 2015. 1. 23..
  */
 public class ApplicationUtil {
 
-    public static ApplicationUtil instance;
-
+    private static ApplicationUtil instance;
+    private static Typeface normalTypeface, boldTypeface;
     private ApplicationUtil() {
     }
 
@@ -30,7 +34,40 @@ public class ApplicationUtil {
         if (instance == null) {
             instance = new ApplicationUtil();
         }
+        checkFontInited();
         return instance;
+    }
+
+    private static void checkFontInited() {
+        if (normalTypeface == null) {
+            normalTypeface = Typeface.createFromAsset(ApplicationContextProvider.getContext().getAssets(), "fonts/NanumBarunGothic.otf");
+        }
+
+        if (boldTypeface == null) {
+            boldTypeface = Typeface.createFromAsset(ApplicationContextProvider.getContext().getAssets(), "fonts/NanumBarunGothicBold.otf");
+        }
+    }
+
+    public void setTypeFace(View rootView) {
+        try {
+            if (rootView instanceof ViewGroup) {
+                ViewGroup viewGroup = (ViewGroup) rootView;
+                for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                    setTypeFace(viewGroup.getChildAt(i));
+                }
+            } else if (rootView instanceof TextView) {
+                TextView textView = (TextView) rootView;
+                if (textView.getTypeface() == null) {
+                    textView.setTypeface(normalTypeface);
+                } else if (textView.getTypeface().isBold()) {
+                    textView.setTypeface(boldTypeface);
+                } else {
+                    textView.setTypeface(normalTypeface);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public boolean isOnlineNetwork() {

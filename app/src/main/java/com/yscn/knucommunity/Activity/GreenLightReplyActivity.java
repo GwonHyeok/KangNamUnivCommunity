@@ -21,6 +21,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
@@ -50,6 +51,7 @@ public class GreenLightReplyActivity extends ActionBarActivity implements View.O
 
         findViewById(R.id.reply_textview).setOnClickListener(this);
         getCommentData();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void getCommentData() {
@@ -105,6 +107,7 @@ public class GreenLightReplyActivity extends ActionBarActivity implements View.O
             commentTextView.setText(dataObject.getComment());
             timeTextView.setText(getSimpleTime(dataObject.getTime()));
             mainView.addView(view);
+            ApplicationUtil.getInstance().setTypeFace(view);
         }
     }
 

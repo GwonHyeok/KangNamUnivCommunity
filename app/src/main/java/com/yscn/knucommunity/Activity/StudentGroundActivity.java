@@ -30,6 +30,7 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
         super.onCreate(bundle);
         setContentView(R.layout.activity_studentground);
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {

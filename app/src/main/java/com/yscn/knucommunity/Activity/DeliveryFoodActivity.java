@@ -57,6 +57,7 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
         actionBarInit();
         viewInit();
         setContent();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void setContent() {
@@ -104,6 +105,7 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
                         ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getNoCacheImageOptions());
                         view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                         dataView.addView(view);
+                        ApplicationUtil.getInstance().setTypeFace(view);
                     }
                 } else {
                     AlertToast.error(getContext(), R.string.error_to_work);

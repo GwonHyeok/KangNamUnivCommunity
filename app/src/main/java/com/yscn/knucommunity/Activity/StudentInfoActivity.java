@@ -58,6 +58,8 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                 UrlList.PROFILE_THUMB_IMAGE_URL + UserData.getInstance().getStudentNumber(),
                 circleImageView,
                 ImageLoaderUtil.getInstance().getDefaultOptions());
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     @Override
@@ -80,7 +82,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
     }
 
     private void showEditProfileChangeDialog() {
-        new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setTitle(R.string.warning_title)
                 .setMessage(R.string.profileimage_change_text)
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
@@ -91,6 +93,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                 })
                 .setNegativeButton(R.string.NO, null)
                 .show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
     }
 
     private void showNicknameChangeDialog() {
@@ -105,7 +108,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
         layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT;
         editText.setLayoutParams(layoutParams);
 
-        new AlertDialog.Builder(getContext())
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -121,6 +124,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                 .setNegativeButton(R.string.NO, null)
                 .setView(linearLayout)
                 .show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
     }
 
     private void getSimpleProfile() {

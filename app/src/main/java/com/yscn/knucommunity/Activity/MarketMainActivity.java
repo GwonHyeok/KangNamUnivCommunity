@@ -27,6 +27,7 @@ public class MarketMainActivity extends ActionBarActivity implements View.OnClic
         super.onCreate(bundle);
         setContentView(R.layout.activity_shop_main);
         viewInit();
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     private void viewInit() {
