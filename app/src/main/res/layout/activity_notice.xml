@@ -33,12 +33,12 @@
             android:layout_height="48dip"
             android:layout_gravity="bottom"
             android:textColor="#ffffff"
+            android:textSize="18sp"
             apps:pstsDividerColor="@android:color/transparent"
             apps:pstsIndicatorColor="#ffbc00"
             apps:pstsIndicatorHeight="2dp"
             apps:pstsShouldExpand="true"
             apps:pstsTabBackground="@android:color/transparent"
-            apps:pstsTabTextSize="18sp"
             apps:pstsTextSelectedStyle="bold"
             apps:pstsTextStyle="normal"
             apps:pstsUnderlineColor="#7fbfbfbf" />

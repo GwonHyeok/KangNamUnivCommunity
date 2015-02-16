@@ -19,11 +19,11 @@
         android:layout_below="@id/toolbar"
         android:background="@color/studentcountil_main_primary_color"
         android:textColor="#ffffff"
+        android:textSize="16sp"
         app:pstsDividerColor="@android:color/transparent"
         app:pstsIndicatorColor="#ffffee58"
         app:pstsIndicatorHeight="2dp"
         app:pstsShouldExpand="true"
-        app:pstsTabTextSize="16sp"
         app:pstsTextSelectedStyle="bold"
         app:pstsTextStyle="normal"
         app:pstsUnderlineHeight="0dp" />
