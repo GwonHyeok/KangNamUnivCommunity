@@ -22,6 +22,8 @@
         app:pstsIndicatorColor="#ffffee58"
         app:pstsIndicatorHeight="2dp"
         app:pstsTabTextSize="16sp"
+        app:pstsTextSelectedStyle="bold"
+        app:pstsTextStyle="normal"
         app:pstsUnderlineHeight="0dp" />
 
     <android.support.v4.view.ViewPager

@@ -39,6 +39,8 @@
             apps:pstsShouldExpand="true"
             apps:pstsTabBackground="@android:color/transparent"
             apps:pstsTabTextSize="18sp"
+            apps:pstsTextSelectedStyle="bold"
+            apps:pstsTextStyle="normal"
             apps:pstsUnderlineColor="#7fbfbfbf" />
     </FrameLayout>
 
