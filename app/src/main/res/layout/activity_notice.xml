@@ -27,11 +27,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <com.yscn.knucommunity.CustomView.PagerSlidingTabStrip
+        <com.astuetz.PagerSlidingTabStrip
             android:id="@+id/notice_tabs"
             android:layout_width="match_parent"
             android:layout_height="48dip"
             android:layout_gravity="bottom"
+            android:textColor="#ffffff"
             apps:pstsDividerColor="@android:color/transparent"
             apps:pstsIndicatorColor="#ffbc00"
             apps:pstsIndicatorHeight="2dp"
@@ -58,12 +59,12 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerInParent="true"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="14dp"
             android:layout_toEndOf="@+id/open_menu"
             android:layout_toRightOf="@+id/open_menu"
             android:text="공지사항"
             android:textColor="@android:color/white"
-            android:textSize="23sp"
-            android:layout_marginTop="14dp"
-            android:layout_marginLeft="12dp" />
+            android:textSize="23sp" />
     </RelativeLayout>
 </FrameLayout>

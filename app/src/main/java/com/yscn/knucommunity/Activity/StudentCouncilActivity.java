@@ -12,8 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
-import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;

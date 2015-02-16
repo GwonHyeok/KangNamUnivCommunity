@@ -6,7 +6,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
+import com.astuetz.PagerSlidingTabStrip;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.StudentNotificationPagerAdapter;
 

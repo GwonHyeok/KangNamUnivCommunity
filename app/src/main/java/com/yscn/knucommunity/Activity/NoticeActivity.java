@@ -15,12 +15,12 @@ import android.view.View;
 import android.widget.AbsListView;
 import android.widget.TextView;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.nineoldandroids.view.ViewHelper;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.KenBurnsSupportView;
 import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.CustomView.NoticeListFragment;
-import com.yscn.knucommunity.CustomView.PagerSlidingTabStrip;
 import com.yscn.knucommunity.CustomView.ScrollTabHolder;
 import com.yscn.knucommunity.CustomView.ScrollTabHolderFragment;
 import com.yscn.knucommunity.Items.NoticeItems;

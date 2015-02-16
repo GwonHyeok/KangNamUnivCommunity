@@ -12,12 +12,13 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/studentcountil_main_primary_color" />
 
-    <com.yscn.knucommunity.CustomView.PagerSlidingTabStrip
+    <com.astuetz.PagerSlidingTabStrip
         android:id="@+id/student_council_tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/toolbar"
         android:background="@color/studentcountil_main_primary_color"
+        android:textColor="#ffffff"
         app:pstsDividerColor="@android:color/transparent"
         app:pstsIndicatorColor="#ffffee58"
         app:pstsIndicatorHeight="2dp"
