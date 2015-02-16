@@ -25,7 +25,9 @@ public class MenuBaseActivity extends ActionBarActivity {
     @Override
     public void onStart() {
         super.onStart();
-        slidingMenuInit();
+        if (menu == null) {
+            slidingMenuInit();
+        }
     }
 
     protected void slidingMenuInit() {
