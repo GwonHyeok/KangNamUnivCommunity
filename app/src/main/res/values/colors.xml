@@ -4,10 +4,52 @@
     <color name="background_register_app">#FF1B9CE3</color>
 
     <color name="delivery_main_color">#EF6C00</color>
+    <color name="delivery_main_dark_color">#FFD96200</color>
+
     <color name="freeboard_main_color">#ffffbc00</color>
+    <color name="freeboard_main_dark_color">#FFE8AA00</color>
+
     <color name="board_white_main_color">#FFFAFAFA</color>
+
     <color name="faq_main_color">#FFe64a19</color>
+    <color name="faq_main_dark_color">#FFCF4217</color>
+
     <color name="greenlight_main_color">#ffAD1457</color>
+    <color name="greenlight_main_dark_color">#FF99124D</color>
+
+    <color name="setting_main_color">#FF5b33a1</color>
+    <color name="setting_main_dark_color">#FF5321A8</color>
+
+    <color name="studentcountil_main_primary_color">#FF0277BD</color>
+    <color name="studentcountil_main_primary_dark_color">#FF0167A3</color>
+
+    <color name="major_main_primary_color">#FF0097A7</color>
+    <color name="major_main_primary_dark_color">#FF008694</color>
+
+    <color name="studentnotification_primary_color">#FF00897b</color>
+    <color name="studentnotification_primary_dark_color">#FF00756a</color>
+
+    <color name="market_primary_color">#FF43a047</color>
+    <color name="market_primary_dark_color">#FF3c8f40</color>
+
+    <color name="clubinfo_list_primary_color">#FFD81B60</color>
+    <color name="clubinfo_list_primary_dark_color">#FFc41857</color>
+
+    <color name="library_search_primary_dark_color">#FF333333</color>
+
+    <color name="school_restraunt_list_primary_dark_color">#FF3a90d6</color>
+
+    <color name="school_restraunt_shal_primary_color">#FF42A5F5</color>
+    <color name="school_restraunt_shal_primary_dark_color">#FF3a90d6</color>
+
+    <color name="school_restraunt_insa_primary_color">#FF1E88E5</color>
+    <color name="school_restraunt_insa_primary_dark_color">#FF1c7ed4</color>
+
+    <color name="school_restraunt_gyung_primary_color">#FF1565C0</color>
+    <color name="school_restraunt_gyung_primary_dark_color">#FF135aab</color>
+
+    <color name="school_restraunt_gisuk_primary_color">#FF0D47A1</color>
+    <color name="school_restraunt_gisuk_primary_dark_color">#FF0b408f</color>
 
     <color name="background_default_preesed_color">#0D000000</color>
 
@@ -18,6 +60,14 @@
     <color name="background_studentground_detail_4">#ff9800</color>
     <color name="background_studentground_detail_5">#afb42b</color>
     <color name="background_studentground_detail_6">#d84315</color>
+
+    <color name="background_dark_studentground_detail_0">#FF532ba3</color>
+    <color name="background_dark_studentground_detail_1">#FF028ACC</color>
+    <color name="background_dark_studentground_detail_2">#FF00695D</color>
+    <color name="background_dark_studentground_detail_3">#FF77b035</color>
+    <color name="background_dark_studentground_detail_4">#FFe78a02</color>
+    <color name="background_dark_studentground_detail_5">#FF9da127</color>
+    <color name="background_dark_studentground_detail_6">#FFc23c13</color>
 
     <color name="highlight_studentground_detail_0">#ff5252</color>
     <color name="highlight_studentground_detail_1">#3949ab</color>

@@ -53,7 +53,7 @@ public class SettingActivity extends ActionBarActivity {
         });
         toolbar.setTitle(getString(R.string.text_setting_title));
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-        toolbar.setBackgroundColor(0xFF5321A8);
+        toolbar.setBackgroundColor(getResources().getColor(R.color.setting_main_color));
     }
 
     public static class PreferenceItem extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {

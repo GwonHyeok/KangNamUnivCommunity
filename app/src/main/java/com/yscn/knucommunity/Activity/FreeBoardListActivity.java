@@ -62,7 +62,7 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
 
     @Override
     protected int getStatusBarColor() {
-        return getResources().getColor(R.color.freeboard_main_color);
+        return getResources().getColor(R.color.freeboard_main_dark_color);
     }
 
     @Override

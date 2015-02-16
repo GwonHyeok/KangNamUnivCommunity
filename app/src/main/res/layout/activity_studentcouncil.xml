@@ -10,14 +10,14 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#FF0277bd" />
+        android:background="@color/studentcountil_main_primary_color" />
 
     <com.yscn.knucommunity.CustomView.PagerSlidingTabStrip
         android:id="@+id/student_council_tabs"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_below="@id/toolbar"
-        android:background="#FF0277bd"
+        android:background="@color/studentcountil_main_primary_color"
         app:pstsDividerColor="@android:color/transparent"
         app:pstsIndicatorColor="#ffffee58"
         app:pstsIndicatorHeight="2dp"

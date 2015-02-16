@@ -9,14 +9,14 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#00897b"
+        android:background="@color/studentnotification_primary_color"
         android:transitionName="" />
 
     <com.yscn.knucommunity.CustomView.PagerSlidingTabStrip
         android:id="@+id/studentnotify_pagertabstrip"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="#FF00897b"
+        android:background="@color/studentnotification_primary_color"
         app:pstsDividerColor="@android:color/transparent"
         app:pstsIndicatorColor="#ffffee58"
         app:pstsIndicatorHeight="2dp"

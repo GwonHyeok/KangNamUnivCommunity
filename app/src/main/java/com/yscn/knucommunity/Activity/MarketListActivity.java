@@ -35,7 +35,7 @@ public class MarketListActivity extends BaseBoardListActivity {
 
     @Override
     protected int getStatusBarColor() {
-        return 0xFF43a047;
+        return getResources().getColor(R.color.market_primary_dark_color);
     }
 
     @Override

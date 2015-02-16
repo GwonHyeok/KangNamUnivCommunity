@@ -2,10 +2,12 @@
 <resources>
 
     <style name="StudentInfoNotificationTheme" parent="NoActionBarTheme">
-        <item name="android:colorPrimaryDark">#FF00897b</item>
+        <item name="android:colorPrimary">@color/studentnotification_primary_color</item>
+        <item name="android:colorPrimaryDark">@color/studentnotification_primary_dark_color</item>
     </style>
 
     <style name="SettingTheme" parent="NoActionBarTheme">
-        <item name="android:colorPrimaryDark">#5321A8</item>
+        <item name="android:colorPrimary">@color/setting_main_color</item>
+        <item name="android:colorPrimaryDark">@color/setting_main_dark_color</item>
     </style>
 </resources>

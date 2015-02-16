@@ -66,13 +66,15 @@
             android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.MajorInfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.MajorDetailActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.ClubInfoActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.SchoolRestrauntActivity"
             android:screenOrientation="portrait"

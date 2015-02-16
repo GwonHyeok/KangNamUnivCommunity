@@ -47,8 +47,8 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
     private void viewInit() {
 
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xff0277bd);
-            getWindow().setNavigationBarColor(0xff0277bd);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.studentcountil_main_primary_dark_color));
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.studentcountil_main_primary_dark_color));
         }
 
         /* ActionBar Init */

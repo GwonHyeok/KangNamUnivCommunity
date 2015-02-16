@@ -62,7 +62,7 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
 
     @Override
     protected int getStatusBarColor() {
-        return getResources().getColor(R.color.greenlight_main_color);
+        return getResources().getColor(R.color.greenlight_main_dark_color);
     }
 
     @Override

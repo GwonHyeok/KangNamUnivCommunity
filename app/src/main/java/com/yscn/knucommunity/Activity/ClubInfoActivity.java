@@ -1,18 +1,16 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.yscn.knucommunity.R;
 
@@ -27,13 +25,32 @@ public class ClubInfoActivity extends ActionBarActivity implements AdapterView.O
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         viewInit();
+        LinearLayout linearLayout = new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        Toolbar toolbar = new Toolbar(this);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("중앙 동아리");
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+        toolbar.setBackgroundColor(getResources().getColor(R.color.clubinfo_list_primary_color));
+        toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         ListView listView = new ListView(this);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, getMajorList());
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
         listView.setDivider(new ColorDrawable(0xFFBDBDBD));
         listView.setDividerHeight(1);
-        setContentView(listView);
+        linearLayout.addView(toolbar);
+        linearLayout.addView(listView);
+        setContentView(linearLayout);
     }
 
     public ArrayList<String> getMajorList() {
@@ -67,24 +84,9 @@ public class ClubInfoActivity extends ActionBarActivity implements AdapterView.O
 
     private void viewInit() {
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xFFD81B60);
-            getWindow().setNavigationBarColor(0xFFD81B60);
+            getWindow().setStatusBarColor(getResources().getColor(R.color.clubinfo_list_primary_dark_color));
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.clubinfo_list_primary_dark_color));
         }
-
-        ActionBar actionBar = getSupportActionBar();
-        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_base, null);
-        ((TextView) view.findViewById(R.id.actionbar_base_title)).setText("중앙 동아리");
-        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(view, layout);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFD81B60")));
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setElevation(0);
-        view.findViewById(R.id.actionbar_base_image).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ClubInfoActivity.this.finish();
-            }
-        });
     }
 
     @Override

@@ -57,6 +57,7 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
         int index = random.nextInt(7);
 
         int[] background = getResources().getIntArray(R.array.background_studentground_detail_list);
+        int[] primarydark = getResources().getIntArray(R.array.background_dark_studentground_detail_list);
         int[] highlight = getResources().getIntArray(R.array.highlight_studentground_detail_list);
         int[] dull = getResources().getIntArray(R.array.dull_studentground_detail_list);
 
@@ -83,8 +84,8 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
 
         /* set Status Bar Color */
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(background[index]);
-            getWindow().setNavigationBarColor(background[index]);
+            getWindow().setStatusBarColor(primarydark[index]);
+            getWindow().setNavigationBarColor(primarydark[index]);
         }
     }
 

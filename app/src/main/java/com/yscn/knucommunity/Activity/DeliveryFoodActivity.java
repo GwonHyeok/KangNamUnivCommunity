@@ -176,8 +176,8 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
 
     private void actionBarInit() {
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.delivery_main_color));
-            getWindow().setNavigationBarColor(getResources().getColor(R.color.delivery_main_color));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.delivery_main_dark_color));
+            getWindow().setNavigationBarColor(getResources().getColor(R.color.delivery_main_dark_color));
         }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

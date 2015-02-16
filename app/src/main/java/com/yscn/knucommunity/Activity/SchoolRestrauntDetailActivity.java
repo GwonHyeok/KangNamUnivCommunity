@@ -3,7 +3,6 @@ package com.yscn.knucommunity.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -98,15 +97,13 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
 
     private void viewInit() {
         /* set Toolbar */
-        Intent intent = getIntent();
-        int color = intent.getIntExtra("color", 0xFF0097A7);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle(getActionBarTitle());
         toolbar.setTitleTextColor(Color.WHITE);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(color));
+        toolbar.setBackgroundColor(getToolbarColor());
         toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,24 +113,59 @@ public class SchoolRestrauntDetailActivity extends ActionBarActivity {
         });
 
         if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(color);
-            getWindow().setNavigationBarColor(color);
+            getWindow().setStatusBarColor(getStatusBarColor());
+            getWindow().setNavigationBarColor(getStatusBarColor());
+        }
+    }
+
+    private int getToolbarColor() {
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
+        switch (location) {
+            case "shal":
+                return getResources().getColor(R.color.school_restraunt_shal_primary_color);
+            case "gisuk":
+                return getResources().getColor(R.color.school_restraunt_gisuk_primary_color);
+            case "gyung":
+                return getResources().getColor(R.color.school_restraunt_gyung_primary_color);
+            case "insa":
+                return getResources().getColor(R.color.school_restraunt_insa_primary_color);
+            default:
+                return getResources().getColor(R.color.school_restraunt_shal_primary_color);
+        }
+    }
+
+    private int getStatusBarColor() {
+        Intent intent = getIntent();
+        String location = intent.getStringExtra("location");
+        switch (location) {
+            case "shal":
+                return getResources().getColor(R.color.school_restraunt_shal_primary_dark_color);
+            case "gisuk":
+                return getResources().getColor(R.color.school_restraunt_gisuk_primary_dark_color);
+            case "gyung":
+                return getResources().getColor(R.color.school_restraunt_gyung_primary_dark_color);
+            case "insa":
+                return getResources().getColor(R.color.school_restraunt_insa_primary_dark_color);
+            default:
+                return getResources().getColor(R.color.school_restraunt_shal_primary_dark_color);
         }
     }
 
     private String getActionBarTitle() {
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
-        if (location.equals("shal")) {
-            return "샬롬관";
-        } else if (location.equals("gisuk")) {
-            return "기숙사";
-        } else if (location.equals("gyung")) {
-            return "경천관";
-        } else if (location.equals("insa")) {
-            return "인사관";
-        } else {
-            return "";
+        switch (location) {
+            case "shal":
+                return "샬롬관";
+            case "gisuk":
+                return "기숙사";
+            case "gyung":
+                return "경천관";
+            case "insa":
+                return "인사관";
+            default:
+                return "";
         }
     }
 }
