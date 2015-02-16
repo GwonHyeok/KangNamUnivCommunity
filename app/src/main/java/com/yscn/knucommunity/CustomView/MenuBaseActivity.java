@@ -3,7 +3,6 @@ package com.yscn.knucommunity.CustomView;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 
@@ -24,13 +23,8 @@ public class MenuBaseActivity extends ActionBarActivity {
     public SlidingMenu menu;
 
     @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
+    public void onStart() {
+        super.onStart();
         slidingMenuInit();
     }
 
