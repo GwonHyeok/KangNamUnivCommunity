@@ -103,14 +103,14 @@
         <activity
             android:name=".Activity.MarketListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/MarketListTheme" />
         <activity
             android:name=".Activity.CommunittyActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.GreenLightListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/GreenLightListTheme" />
         <activity
             android:name=".Activity.GreenLightDetailActivity"
             android:screenOrientation="portrait"
@@ -118,7 +118,7 @@
         <activity
             android:name=".Activity.FreeBoardListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/FreeboardListTheme" />
         <activity
             android:name=".Activity.FreeBoardDetailActivity"
             android:screenOrientation="portrait"
@@ -126,11 +126,11 @@
         <activity
             android:name=".Activity.DeliveryFoodActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/DeliveryFoodListTheme" />
         <activity
             android:name=".Activity.FaqListActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/FaqboardListTheme" />
         <activity
             android:name=".Activity.LinkActivity"
             android:screenOrientation="portrait" />

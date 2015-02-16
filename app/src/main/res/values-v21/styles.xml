@@ -10,4 +10,29 @@
         <item name="android:colorPrimary">@color/setting_main_color</item>
         <item name="android:colorPrimaryDark">@color/setting_main_dark_color</item>
     </style>
+
+    <style name="FreeboardListTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimary">@color/freeboard_main_color</item>
+        <item name="android:colorPrimaryDark">@color/freeboard_main_dark_color</item>
+    </style>
+
+    <style name="FaqboardListTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimary">@color/faq_main_color</item>
+        <item name="android:colorPrimaryDark">@color/faq_main_dark_color</item>
+    </style>
+
+    <style name="GreenLightListTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimary">@color/greenlight_main_color</item>
+        <item name="android:colorPrimaryDark">@color/greenlight_main_dark_color</item>
+    </style>
+
+    <style name="DeliveryFoodListTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimary">@color/delivery_main_color</item>
+        <item name="android:colorPrimaryDark">@color/delivery_main_dark_color</item>
+    </style>
+
+    <style name="MarketListTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimary">@color/market_primary_color</item>
+        <item name="android:colorPrimaryDark">@color/market_primary_dark_color</item>
+    </style>
 </resources>

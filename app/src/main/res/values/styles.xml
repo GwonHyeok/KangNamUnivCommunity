@@ -11,6 +11,16 @@
         <item name="windowActionBar">false</item>
     </style>
 
+    <style name="FreeboardListTheme" parent="NoActionBarTheme" />
+
+    <style name="FaqboardListTheme" parent="NoActionBarTheme" />
+
+    <style name="GreenLightListTheme" parent="NoActionBarTheme" />
+
+    <style name="DeliveryFoodListTheme" parent="NoActionBarTheme" />
+
+    <style name="MarketListTheme" parent="NoActionBarTheme" />
+
     <style name="StudentInfoNotificationTheme" parent="NoActionBarTheme"/>
 
     <style name="SettingTheme" parent="NoActionBarTheme" />

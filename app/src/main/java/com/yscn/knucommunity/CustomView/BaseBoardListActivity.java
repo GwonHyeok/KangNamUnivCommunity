@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -56,7 +55,6 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setStatusBarColor();
         actionBarInit();
         scrollViewInit();
         getBoardListData();
@@ -317,12 +315,6 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     protected abstract String getActionBarTitle();
 
     /**
-     * @return StatusBar Color
-     */
-    protected abstract int getStatusBarColor();
-
-
-    /**
      * @return get BoardType
      */
     protected abstract NetworkUtil.BoardType getBoardType();
@@ -341,13 +333,6 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
      * @param listItemses is getBoardListData List Data
      */
     protected abstract void addScrollViewData(ArrayList<DefaultBoardListItems> listItemses);
-
-    private void setStatusBarColor() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(getStatusBarColor());
-            getWindow().setNavigationBarColor(getStatusBarColor());
-        }
-    }
 
     /**
      * @param deftime db상의 기본 DateTime 폼

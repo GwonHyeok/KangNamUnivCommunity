@@ -68,11 +68,6 @@ public class FaqListActivity extends BaseBoardListActivity implements View.OnCli
     }
 
     @Override
-    protected int getStatusBarColor() {
-        return getResources().getColor(R.color.faq_main_dark_color);
-    }
-
-    @Override
     protected NetworkUtil.BoardType getBoardType() {
         return NetworkUtil.BoardType.FAQ;
     }

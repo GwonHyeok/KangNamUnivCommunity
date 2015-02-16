@@ -34,11 +34,6 @@ public class MarketListActivity extends BaseBoardListActivity {
     }
 
     @Override
-    protected int getStatusBarColor() {
-        return getResources().getColor(R.color.market_primary_dark_color);
-    }
-
-    @Override
     protected NetworkUtil.BoardType getBoardType() {
         return NetworkUtil.BoardType.MARKET;
     }
