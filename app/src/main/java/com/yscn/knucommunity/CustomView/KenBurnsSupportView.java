@@ -59,7 +59,7 @@ public class KenBurnsSupportView extends FrameLayout {
     private void swapImage() {
         Log.d(TAG, "swapImage active=" + mActiveImageIndex);
         if (mActiveImageIndex == -1) {
-            mActiveImageIndex = 1;
+            mActiveImageIndex = 0;
             animate(mImageViews[mActiveImageIndex]);
             return;
         }
@@ -139,9 +139,12 @@ public class KenBurnsSupportView extends FrameLayout {
         super.onFinishInflate();
         View view = inflate(getContext(), R.layout.view_kenburns, this);
 
-        mImageViews = new ImageView[2];
+        mImageViews = new ImageView[4];
         mImageViews[0] = (ImageView) view.findViewById(R.id.image0);
         mImageViews[1] = (ImageView) view.findViewById(R.id.image1);
+        mImageViews[2] = (ImageView) view.findViewById(R.id.image2);
+        mImageViews[3] = (ImageView) view.findViewById(R.id.image3);
+
     }
 
     private void fillImageViews() {
