@@ -3,45 +3,50 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="20dp"
-    android:paddingTop="10dp">
+    android:paddingBottom="10dp"
+    android:paddingTop="12dp"
+    android:background="#fffafafa">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp">
+        android:layout_height="40dp"
+        android:layout_marginBottom="4dp">
 
         <TextView
             android:id="@+id/looknlook_card_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:paddingLeft="10dp"
+            android:paddingLeft="18dp"
             android:text="2015년 2월"
-            android:textColor="@android:color/black"
-            android:textSize="26sp" />
+            android:textColor="#ff333333"
+            android:textSize="25sp" />
 
         <View
             android:layout_width="fill_parent"
-            android:layout_height="4dp"
+            android:layout_height="2dp"
             android:layout_centerInParent="true"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_toRightOf="@+id/looknlook_card_time"
-            android:background="@color/material_blue_grey_800" />
+            android:background="#ffc7c7c7" />
     </RelativeLayout>
 
     <TextView
         android:id="@+id/looknlook_card_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:text="이 달의 룩엔룩 최고의 좋아요를 기록한 학생은 컴미공의 14학번 이우란 학생이 차지했습니다. 그럼 그 학생의 아름다운 패션을 볼까요?!" />
+        android:paddingBottom="16dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="18dp"
+        android:text="이 달의 룩엔룩 최고의 좋아요를 기록한 학생은 컴미공의 14학번 이우란 학생이 차지했습니다. 그럼 그 학생의 아름다운 패션을 볼까요?!"
+        android:lineSpacingExtra="4dp"
+        android:textSize="13sp"
+        android:textColor="#ff616161"/>
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="140dp">
+        android:layout_height="160dp">
 
         <LinearLayout
             android:id="@+id/looknlook_card_photo_group"
