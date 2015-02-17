@@ -51,6 +51,9 @@
     <color name="school_restraunt_gisuk_primary_color">#FF0D47A1</color>
     <color name="school_restraunt_gisuk_primary_dark_color">#FF0b408f</color>
 
+    <color name="beat_primary_color">#FF0E61AF</color>
+    <color name="beat_primary_dark_color">#FF0E61AF</color>
+
     <color name="background_default_preesed_color">#0D000000</color>
 
     <color name="background_studentground_detail_0">#5e35b1</color>

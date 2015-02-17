@@ -35,4 +35,9 @@
         <item name="android:colorPrimary">@color/market_primary_color</item>
         <item name="android:colorPrimaryDark">@color/market_primary_dark_color</item>
     </style>
+
+    <style name="BeatTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimary">@color/beat_primary_color</item>
+        <item name="android:colorPrimaryDark">@color/beat_primary_dark_color</item>
+    </style>
 </resources>

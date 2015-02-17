@@ -26,6 +26,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.CookieStore;
 import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.ContentType;
@@ -943,12 +944,25 @@ public class NetworkUtil {
         );
     }
 
+    public JSONObject getLooknLook() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_LOOKNLOOK_URL);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     private String URLDecode(String str) throws UnsupportedEncodingException {
         return URLDecoder.decode(str, "UTF-8");
     }
 
     private boolean checkResultData(JSONObject jsonObject) {
         return jsonObject.get("result").equals("success");
+    }
+
+    private HttpResponse getData(String URL) throws IOException {
+        HttpGet httpGet = new HttpGet(URL);
+        return httpClient.execute(httpGet);
     }
 
     private HttpResponse postData(String URL, HashMap<String, String> parameter) throws IOException {

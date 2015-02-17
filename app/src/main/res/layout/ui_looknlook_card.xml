@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="20dp"
+    android:paddingTop="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:id="@+id/looknlook_card_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:text="2015년 2월"
+            android:textColor="@android:color/black"
+            android:textSize="26sp" />
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="4dp"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/looknlook_card_time"
+            android:background="@color/material_blue_grey_800" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/looknlook_card_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:text="이 달의 룩엔룩 최고의 좋아요를 기록한 학생은 컴미공의 14학번 이우란 학생이 차지했습니다. 그럼 그 학생의 아름다운 패션을 볼까요?!" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="140dp">
+
+        <LinearLayout
+            android:id="@+id/looknlook_card_photo_group"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal" />
+
+    </HorizontalScrollView>
+</LinearLayout>

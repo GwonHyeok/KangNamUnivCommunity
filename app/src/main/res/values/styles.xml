@@ -25,4 +25,6 @@
 
     <style name="SettingTheme" parent="NoActionBarTheme" />
 
+    <style name="BeatTheme" parent="NoActionBarTheme" />
+
 </resources>

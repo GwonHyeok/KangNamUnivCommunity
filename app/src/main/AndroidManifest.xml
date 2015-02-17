@@ -219,6 +219,10 @@
             android:name=".Activity.AuthorDeviceActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SettingTheme" />
+        <activity
+            android:name=".Activity.BeatActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/BeatTheme" />
     </application>
 
 </manifest>
