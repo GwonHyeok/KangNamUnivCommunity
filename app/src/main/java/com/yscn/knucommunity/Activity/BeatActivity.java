@@ -30,8 +30,8 @@ public class BeatActivity extends ActionBarActivity implements ViewPager.OnPageC
         mSlidingTab = (PagerSlidingTabStrip) findViewById(R.id.beat_slidingtab);
         mViewPagerAdapter = new BeatViewPagetAdapter(getSupportFragmentManager(), this);
 
-
         mViewPager.setAdapter(mViewPagerAdapter);
+        mViewPager.setOffscreenPageLimit(mViewPagerAdapter.getCount());
         mSlidingTab.setViewPager(mViewPager);
         mSlidingTab.setOnPageChangeListener(this);
         ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.beat_root));
