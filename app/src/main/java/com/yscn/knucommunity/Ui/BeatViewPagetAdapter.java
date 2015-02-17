@@ -1,10 +1,14 @@
 package com.yscn.knucommunity.Ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,6 +24,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.yscn.knucommunity.Activity.ImageCollectionActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
@@ -134,7 +139,7 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
             View view = inflater.inflate(R.layout.activity_looknlook, container, false);
             RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.looknlook_recyclerview);
             mProgressBar = (ProgressBar) view.findViewById(R.id.beat_progressbar);
-            mLooknLookAdapter = new LooknLookAdapter();
+            mLooknLookAdapter = new LooknLookAdapter(getActivity());
             recyclerView.setAdapter(mLooknLookAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
             return view;
@@ -197,7 +202,12 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
 
     public static class LooknLookAdapter extends RecyclerView.Adapter<LooknLookViewHolder> {
         private ArrayList<LooknLookItems> list = new ArrayList<>();
+        private FragmentActivity mActivity;
         private Context mContext;
+
+        public LooknLookAdapter(FragmentActivity activity) {
+            this.mActivity = activity;
+        }
 
         public void addListItem(LooknLookItems iteme) {
             list.add(iteme);
@@ -217,20 +227,32 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
             holder.getTimeView().setText(looknLookSimpleTime(list.get(position).getTime()));
 
             LinearLayout linearLayout = holder.getPhotoGroup();
-            String[] Imageurls = list.get(position).getImageContent();
+            final String[] Imageurls = list.get(position).getImageContent();
 
-            for (String imageurl : Imageurls) {
+            for (int i = 0; i < Imageurls.length; i++) {
                 ImageLoaderUtil.getInstance().initImageLoader();
                 View imageCardView = LayoutInflater.from(mContext).inflate(R.layout.ui_looknlook_image_card, linearLayout, false);
 
                 final ImageView imageView = (ImageView) imageCardView.findViewById(R.id.imageView);
                 final ProgressBar progressBar = (ProgressBar) imageCardView.findViewById(R.id.progressbar);
-                imageView.setTag(UrlList.MAIN_URL + imageurl);
+                final int imagePosition = i;
 
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(mContext, ImageCollectionActivity.class);
+                        intent.putExtra("Imageurls", Imageurls);
+                        intent.putExtra("Position", imagePosition);
+
+                        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                mActivity, v, "imagecollection_transition");
+                        ActivityCompat.startActivity(mActivity, intent, options.toBundle());
+                    }
+                });
                 linearLayout.addView(imageCardView);
 
-                ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + imageurl,
-                        imageView, ImageLoaderUtil.getInstance().getNoCacheImageOptions(), new ImageLoadingListener() {
+                ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + Imageurls[i],
+                        imageView, ImageLoaderUtil.getInstance().getThumbProfileImageOptions(), new ImageLoadingListener() {
                             @Override
                             public void onLoadingStarted(String imageUri, View view) {
 
