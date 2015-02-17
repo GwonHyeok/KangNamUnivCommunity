@@ -31,7 +31,9 @@
             android:layout_below="@+id/imageView"
             android:gravity="center"
             android:text="사용자 정보"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:layout_marginTop="1dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -59,7 +61,9 @@
             android:layout_below="@+id/imageView1"
             android:gravity="center"
             android:text="공지사항"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:layout_marginTop="1dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -87,7 +91,9 @@
             android:layout_below="@+id/imageView2"
             android:gravity="center"
             android:text="학생마당"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:layout_marginTop="1dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -115,7 +121,9 @@
             android:layout_below="@+id/imageView3"
             android:gravity="center"
             android:text="장터"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:layout_marginTop="1dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -143,7 +151,9 @@
             android:layout_below="@+id/imageView4"
             android:gravity="center"
             android:text="커뮤니티"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:layout_marginTop="1dp" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -171,6 +181,8 @@
             android:layout_below="@+id/imageView5"
             android:gravity="center"
             android:text="링크"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="13sp"
+            android:layout_marginTop="1dp" />
     </RelativeLayout>
 </LinearLayout>
