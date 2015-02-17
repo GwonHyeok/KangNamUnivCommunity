@@ -1,7 +1,6 @@
 package com.yscn.knucommunity.Activity;
 
 import android.annotation.TargetApi;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -72,11 +71,10 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
         getNoticeData();
         mPagerSlidingTabStrip.setOnPageChangeListener(this);
-        mPagerSlidingTabStrip.setTypeface(null, Typeface.NORMAL);
         actionBarHeaderTitleView = (TextView) findViewById(R.id.notice_header_title);
         findViewById(R.id.open_menu).setOnClickListener(this);
 
-        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
+        ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.notice_root));
     }
 
     private void getNoticeData() {

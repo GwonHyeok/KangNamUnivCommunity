@@ -167,6 +167,8 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
         /* Spinner DropDown Button Color Change */
         spinner.getBackground().setColorFilter(getResources().getColor(android.R.color.white), PorterDuff.Mode.MULTIPLY);
 
+        ApplicationUtil.getInstance().setTypeFace(spinner);
+
         refreshLayout = (SwipeRefreshLayout) findViewById(R.id.board_list_swiperefresh);
         refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -242,6 +244,7 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
             }
         });
         setSearchIconColor(searchView);
+        ApplicationUtil.getInstance().setTypeFace(searchView);
         return true;
     }
 

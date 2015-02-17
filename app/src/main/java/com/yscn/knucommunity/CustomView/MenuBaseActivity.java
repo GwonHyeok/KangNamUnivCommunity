@@ -87,6 +87,7 @@ public class MenuBaseActivity extends ActionBarActivity {
                 startNewActivity(new Intent(getContext(), NoticeActivity.class));
             }
         });
+        ApplicationUtil.getInstance().setTypeFace(menu);
     }
 
     protected Activity getActivity() {

@@ -28,7 +28,7 @@ public class FreeBoardListActivity extends BaseBoardListActivity implements View
     public void onCreate(Bundle bundle) {
         setContentView(R.layout.activity_freeboard_list);
         super.onCreate(bundle);
-        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
+        ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.freeboard_list_root));
     }
 
     @Override

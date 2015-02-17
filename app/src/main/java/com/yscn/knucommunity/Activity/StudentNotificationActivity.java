@@ -25,7 +25,7 @@ public class StudentNotificationActivity extends ActionBarActivity {
         setContentView(R.layout.activity_studentinfonotification);
         toolbarInit();
         viewInit();
-        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
+        ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.studentnotify_root));
     }
 
     private void viewInit() {

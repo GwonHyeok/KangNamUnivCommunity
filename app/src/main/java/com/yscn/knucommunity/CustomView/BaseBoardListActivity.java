@@ -240,6 +240,7 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
             }
         });
         setSearchIconColor(searchView);
+        ApplicationUtil.getInstance().setTypeFace(searchView);
         return true;
     }
 
