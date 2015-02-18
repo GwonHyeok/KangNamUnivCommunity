@@ -95,7 +95,7 @@
             android:minHeight="40dp"
             android:textColor="#FF4d4d4d"
             android:textColorHint="#FFBBBBBB"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
         <TextView
             android:id="@+id/reply_textview"
