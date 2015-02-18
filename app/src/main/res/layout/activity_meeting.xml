@@ -28,7 +28,7 @@
                 android:layout_gravity="center"
                 android:text="미팅"
                 android:textColor="@android:color/white"
-                android:textSize="22sp" />
+                android:textSize="23sp" />
         </android.support.v7.widget.Toolbar>
 
 
