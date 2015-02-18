@@ -55,4 +55,9 @@ public class UrlList {
 
     /* Beat */
     public static final String BEAT_LOOKNLOOK_URL = MAIN_URL + "beat/getLooknLook/";
+    public static final String BEAT_CULTURE_URL = MAIN_URL + "beat/getCulture/";
+    public static final String BEAT_WELFARE_URL = MAIN_URL + "beat/getWelfare/";
+    public static final String BEAT_REVIEW_URL = MAIN_URL + "beat/getReview/";
+    public static final String BEAT_ETC_URL = MAIN_URL + "beat/getEtc/";
+    public static final String BEAT_QNA_URL = MAIN_URL + "beat/getQna/";
 }

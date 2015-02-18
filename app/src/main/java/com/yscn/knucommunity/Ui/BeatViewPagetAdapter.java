@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,6 +26,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yscn.knucommunity.Activity.ImageCollectionActivity;
+import com.yscn.knucommunity.CustomView.DividerItemDecoration;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
@@ -55,14 +57,24 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 4) {
+
+        if (position == BEAT.CULTURE.getIndex()) {
+            return CultureFragment.newInstance(BEAT.CULTURE);
+        } else if (position == BEAT.WELFARE.getIndex()) {
+            return CultureFragment.newInstance(BEAT.WELFARE);
+        } else if (position == BEAT.REVIEW.getIndex()) {
+            return CultureFragment.newInstance(BEAT.REVIEW);
+        } else if (position == BEAT.QNA.getIndex()) {
+            return CultureFragment.newInstance(BEAT.QNA);
+        } else if (position == BEAT.LOOKNLOOK.getIndex()) {
             return LooknlookFragment.newInstance();
-        } else if (position == 3) {
-            return QnAFragment.newInstance();
+        } else if (position == BEAT.ETC.getIndex()) {
+            return CultureFragment.newInstance(BEAT.ETC);
         } else {
-            return CultureFragment.newInstance();
+            return null;
         }
     }
+
 
     @Override
     public int getCount() {
@@ -74,47 +86,181 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
         return mTabTitle[position];
     }
 
-    /* 문화 프래그먼트 */
-    public static class CultureFragment extends Fragment {
+    private enum BEAT {
+        CULTURE(0), WELFARE(1), REVIEW(2), QNA(3), LOOKNLOOK(4), ETC(5);
+        private int mIndex;
 
-        static CultureFragment newInstance() {
+        BEAT(int index) {
+            this.mIndex = index;
+        }
+
+        public int getIndex() {
+            return this.mIndex;
+        }
+    }
+
+    /* 문화, 복지, 기타 프래그먼트 */
+    public static class CultureFragment extends Fragment {
+        private RecyclerView mRecyclerView;
+        private ProgressBar mProgressBar;
+        private CultureAdapter mCultureAdapter;
+        private int mBeatIndex;
+
+        static CultureFragment newInstance(BEAT beat) {
             CultureFragment f = new CultureFragment();
+            Bundle bundle = new Bundle();
+            bundle.putInt("position", beat.getIndex());
+            f.setArguments(bundle);
             return f;
         }
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
+            mBeatIndex = getArguments().getInt("position", -1);
         }
 
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.activity_main, container, false);
+            View view = inflater.inflate(R.layout.activity_beat_list, container, false);
+            mProgressBar = (ProgressBar) view.findViewById(R.id.beat_progressbar);
+            mRecyclerView = (RecyclerView) view.findViewById(R.id.beat_list_recyclerview);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+            mCultureAdapter = new CultureAdapter(mBeatIndex);
+            mRecyclerView.setAdapter(mCultureAdapter);
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL_LIST));
+            return view;
         }
 
         @Override
         public void onActivityCreated(Bundle savedInstanceState) {
             super.onActivityCreated(savedInstanceState);
+            updateCulture();
+        }
+
+        public void updateCulture() {
+            new AsyncTask<Void, Void, JSONObject>() {
+
+                @Override
+                protected void onPreExecute() {
+                    mProgressBar.setVisibility(View.VISIBLE);
+                }
+
+                @Override
+                protected JSONObject doInBackground(Void... params) {
+                    try {
+                        if (mBeatIndex == BEAT.CULTURE.getIndex()) {
+                            return NetworkUtil.getInstance().getBeatCulture();
+                        } else if (mBeatIndex == BEAT.WELFARE.getIndex()) {
+                            return NetworkUtil.getInstance().getBeatWelfare();
+                        } else if (mBeatIndex == BEAT.REVIEW.getIndex()) {
+                            return NetworkUtil.getInstance().getBeatReview();
+                        } else if (mBeatIndex == BEAT.ETC.getIndex()) {
+                            return NetworkUtil.getInstance().getBeatEtc();
+                        } else if (mBeatIndex == BEAT.QNA.getIndex()) {
+                            return NetworkUtil.getInstance().getBeatQna();
+                        }
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(JSONObject jsonObject) {
+                    mProgressBar.setVisibility(View.GONE);
+                    if (jsonObject == null) {
+                        AlertToast.error(getActivity(), R.string.error_to_work);
+                        return;
+                    }
+                    String result = jsonObject.get("result").toString();
+                    if (result.equals("success")) {
+                        JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+                        for (Object object : jsonArray) {
+                            JSONObject dataObject = (JSONObject) object;
+                            String id = dataObject.get("id").toString();
+                            String title = dataObject.get("title").toString();
+                            String time = dataObject.get("time").toString();
+                            mCultureAdapter.addItem(new DefaultBeatItem(id, title, time));
+                        }
+                        mCultureAdapter.notifyDataSetChanged();
+                    }
+                }
+            }.execute();
         }
     }
 
-    /* Q&A 프래그먼트 */
-    public static class QnAFragment extends Fragment {
-        static QnAFragment newInstance() {
-            QnAFragment f = new QnAFragment();
-            return f;
+    public static class CultureAdapter extends RecyclerView.Adapter<CultureViewHolder> {
+        private ArrayList<DefaultBeatItem> list = new ArrayList<>();
+        private int mBeatIndex;
+
+        public CultureAdapter(int beatindex) {
+            this.mBeatIndex = beatindex;
+        }
+
+        public void addItem(DefaultBeatItem item) {
+            list.add(item);
         }
 
         @Override
-        public void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
+        public CultureViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ui_beat_list_card, parent, false);
+            ApplicationUtil.getInstance().setTypeFace(view);
+            return new CultureViewHolder(view);
         }
 
         @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                                 Bundle savedInstanceState) {
-            return inflater.inflate(R.layout.activity_freeboard_list, container, false);
+        public void onBindViewHolder(CultureViewHolder holder, final int position) {
+            DefaultBeatItem beatItem = list.get(position);
+            holder.titleView.setText(beatItem.getTitle());
+            holder.timeView.setText(beatItem.getTime());
+            holder.rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Log.d(getClass().getSimpleName(), "Clicked ID : " + list.get(position).getId());
+                    Log.d(getClass().getSimpleName(), "Clicked BEAT : " + mBeatIndex);
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return list.size();
+        }
+    }
+
+    public static class CultureViewHolder extends RecyclerView.ViewHolder {
+        private TextView titleView, timeView;
+        private View rootView;
+
+        public CultureViewHolder(View itemView) {
+            super(itemView);
+            this.rootView = itemView;
+            this.titleView = (TextView) itemView.findViewById(R.id.beat_list_title);
+            this.timeView = (TextView) itemView.findViewById(R.id.beat_list_time);
+        }
+    }
+
+    public static class DefaultBeatItem {
+        private String id, title, time;
+
+        public DefaultBeatItem(String id, String title, String time) {
+            this.id = id;
+            this.title = title;
+            this.time = time;
+        }
+
+        public String getId() {
+            return this.id;
+        }
+
+        public String getTitle() {
+            return this.title;
+        }
+
+        public String getTime() {
+            return this.time;
         }
     }
 

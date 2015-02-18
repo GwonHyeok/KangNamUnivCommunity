@@ -952,6 +952,46 @@ public class NetworkUtil {
         );
     }
 
+    public JSONObject getBeatCulture() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_CULTURE_URL);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
+    public JSONObject getBeatWelfare() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_WELFARE_URL);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
+    public JSONObject getBeatReview() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_REVIEW_URL);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
+    public JSONObject getBeatEtc() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_ETC_URL);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
+    public JSONObject getBeatQna() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_QNA_URL);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     private String URLDecode(String str) throws UnsupportedEncodingException {
         return URLDecoder.decode(str, "UTF-8");
     }
