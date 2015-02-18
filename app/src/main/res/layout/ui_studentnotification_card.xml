@@ -1,49 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/studentnotify_item_root"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="88dp"
+    android:layout_height="wrap_content"
     android:background="@drawable/bg_default_select_item_effect"
     android:clickable="true"
     android:orientation="vertical">
 
-    <com.yscn.knucommunity.CustomView.CircleImageView
-        android:id="@+id/studentnotify_item_imageview"
-        android:layout_width="46dp"
-        android:layout_height="46dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="2dp"
-        android:src="@drawable/ic_profile"
-        android:visibility="gone" />
+    <RelativeLayout
+    android:id="@+id/studentnotify_item_root"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="4dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="4dp"
+    android:paddingTop="6dp">
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/studentnotify_item_imageview"
-            android:gravity="center|left"
-            android:orientation="vertical"
-            android:paddingLeft="6dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:paddingRight="8dp">
+        <com.yscn.knucommunity.CustomView.CircleImageView
+            android:id="@+id/studentnotify_item_imageview"
+            android:layout_width="46dp"
+            android:layout_height="46dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/ic_profile"
+            android:layout_marginRight="8dp"
+            android:visibility="gone"/>
 
-        <TextView
-            android:id="@+id/studentnotify_item_title"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/studentnotify_item_time"
-            android:maxLines="3"
-            android:text="권혁님이 자유게시판 '안녕하세요' 글에 댓글을 다셨습니다."
-            android:textColor="#424242"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/studentnotify_item_imageview"
+                android:orientation="vertical"
+                android:paddingRight="8dp"
+                android:paddingBottom="4dp">
 
-        <TextView
-            android:id="@+id/studentnotify_item_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text="2015.02.21 13:12"
-            android:textSize="12sp"
-            android:textColor="#8c8c8c"/>
+            <TextView
+                android:id="@+id/studentnotify_item_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:text="권혁님이 자유게시판 '안녕하세요' 글에 댓글을 다셨습니다."
+                android:textColor="#424242"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:paddingTop="2dp"
+                android:paddingBottom="4dp" />
+
+            <TextView
+                android:id="@+id/studentnotify_item_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="2015.02.21 13:12"
+                android:textSize="12sp"
+                android:textColor="#8c8c8c"
+                android:layout_below="@+id/studentnotify_item_title"
+                android:layout_alignLeft="@+id/studentnotify_item_title"/>
+        </RelativeLayout>
     </RelativeLayout>
-</RelativeLayout>
+</LinearLayout>
