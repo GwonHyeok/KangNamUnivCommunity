@@ -25,6 +25,7 @@ import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.yscn.knucommunity.Activity.BeatDetailActivity;
 import com.yscn.knucommunity.Activity.ImageCollectionActivity;
 import com.yscn.knucommunity.CustomView.DividerItemDecoration;
 import com.yscn.knucommunity.R;
@@ -86,7 +87,7 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
         return mTabTitle[position];
     }
 
-    private enum BEAT {
+    public static enum BEAT {
         CULTURE(0), WELFARE(1), REVIEW(2), QNA(3), LOOKNLOOK(4), ETC(5);
         private int mIndex;
 
@@ -218,6 +219,10 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
             holder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), BeatDetailActivity.class);
+                    intent.putExtra("beatindex", mBeatIndex);
+                    intent.putExtra("contentid", list.get(position).getId());
+                    v.getContext().startActivity(intent);
                     Log.d(getClass().getSimpleName(), "Clicked ID : " + list.get(position).getId());
                     Log.d(getClass().getSimpleName(), "Clicked BEAT : " + mBeatIndex);
                 }

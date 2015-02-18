@@ -50,6 +50,7 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -992,6 +993,23 @@ public class NetworkUtil {
         );
     }
 
+    public JSONObject getBeatDetail(HashMap<String, String> parameter) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_DETAIL_URL, parameter);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
+    private String URLEncode(String str) {
+        try {
+            return URLEncoder.encode(str, "UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return str;
+        }
+    }
+
     private String URLDecode(String str) throws UnsupportedEncodingException {
         return URLDecoder.decode(str, "UTF-8");
     }
@@ -1001,7 +1019,22 @@ public class NetworkUtil {
     }
 
     private HttpResponse getData(String URL) throws IOException {
+        return getData(URL, new HashMap<String, String>());
+    }
+
+    private HttpResponse getData(String URL, HashMap<String, String> parameter) throws IOException {
+        Set<String> strings = parameter.keySet();
+        String[] keyArray = strings.toArray(new String[strings.size()]);
+
+        for (int i = 0; i < keyArray.length; i++) {
+            if (i == 0) {
+                URL = URL + "?" + keyArray[i] + "=" + URLEncode(parameter.get(keyArray[i]));
+            } else {
+                URL = URL + "&" + keyArray[i] + "=" + URLEncode(parameter.get(keyArray[i]));
+            }
+        }
         HttpGet httpGet = new HttpGet(URL);
+        Log.d(getClass().getSimpleName(), "Get Url : " + URL);
         return httpClient.execute(httpGet);
     }
 
@@ -1010,11 +1043,12 @@ public class NetworkUtil {
         ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
         if (parameter != null) {
             MultipartEntityBuilder entityBuilder = MultipartEntityBuilder.create();
-            Object[] key = parameter.keySet().toArray();
-            for (Object aKey : key) {
-                entityBuilder.addTextBody(aKey.toString(), parameter.get(aKey), contentType);
-                log("Entity Key : " + aKey.toString());
-                log("Entity Value : " + parameter.get(aKey));
+            Set<String> strings = parameter.keySet();
+            String[] keyArray = strings.toArray(new String[strings.size()]);
+            for (String key : keyArray) {
+                entityBuilder.addTextBody(key, parameter.get(key), contentType);
+                log("Entity Key : " + key);
+                log("Entity Value : " + parameter.get(key));
             }
             httpPost.setEntity(entityBuilder.build());
         }
