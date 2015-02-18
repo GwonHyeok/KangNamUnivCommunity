@@ -140,4 +140,6 @@
     <string name="text_beat_looknlook">Look<![CDATA[&]]>look</string>
     <string name="text_beat_etc">기타</string>
     <string name="text_beat_looknlook_time_format">yyyy년 M월</string>
+    <string name="text_developer_info">개발자 정보</string>
+    <string name="developer_special_thanks">Special Thank\'s to..\n김성민, 김용범, 서홍일, 임소담이</string>
 </resources>

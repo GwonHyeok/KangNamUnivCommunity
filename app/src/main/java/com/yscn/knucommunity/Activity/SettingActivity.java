@@ -59,7 +59,8 @@ public class SettingActivity extends ActionBarActivity {
 
     public static class PreferenceItem extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
         private Preference mMyInfoNamePreference, mMyInfoAccountPreference,
-                mMyInfoAuthorDevices, mMyInfoPhoneNumber, mDeleteAccountPreference;
+                mMyInfoAuthorDevices, mMyInfoPhoneNumber, mDeleteAccountPreference,
+                mDeveloperInfo;
 
 
         @Override
@@ -72,6 +73,7 @@ public class SettingActivity extends ActionBarActivity {
             mMyInfoPhoneNumber = findPreference("setting_preference_myinfo_phonenumber");
             mMyInfoAuthorDevices = findPreference("setting_preference_myinfo_authordevices");
             mDeleteAccountPreference = findPreference("setting_preference_myinfo_deleteaccount");
+            mDeveloperInfo = findPreference("setting_preference_developerinfo");
 
             mMyInfoNamePreference.setTitle(UserData.getInstance().getStudentName());
             mMyInfoNamePreference.setSummary(UserData.getInstance().getStudentNumber());
@@ -83,6 +85,7 @@ public class SettingActivity extends ActionBarActivity {
             mMyInfoPhoneNumber.setOnPreferenceClickListener(this);
             mMyInfoAuthorDevices.setOnPreferenceClickListener(this);
             mDeleteAccountPreference.setOnPreferenceClickListener(this);
+            mDeveloperInfo.setOnPreferenceClickListener(this);
         }
 
         private void initNeedNetworkData() {
@@ -314,6 +317,9 @@ public class SettingActivity extends ActionBarActivity {
                 showPhoneNumberChangeDialog();
             } else if (key.equals(mDeleteAccountPreference.getKey())) {
                 showAccountDeleteDialog();
+                return true;
+            } else if (key.equals(mDeveloperInfo.getKey())) {
+                startActivity(new Intent(getActivity(), DeveloperInfoActivity.class));
                 return true;
             }
             return false;
