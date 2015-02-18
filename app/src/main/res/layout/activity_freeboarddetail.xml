@@ -100,7 +100,7 @@
                     android:id="@+id/freeboard_detail_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="12dp"
+                    android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
                     android:textColor="#757575"
                     android:textSize="13sp" />

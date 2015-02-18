@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:paddingBottom="6dp"
         android:paddingLeft="10dp"
-        android:paddingRight="4dp"
         android:paddingTop="6dp">
 
         <RelativeLayout
@@ -27,7 +26,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="8dp"
                 android:src="@drawable/ic_profile" />
 
 
@@ -79,6 +78,7 @@
                 android:layout_alignStart="@id/freeboard_reply_name"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="38dp"
+                android:paddingRight="4dp"
                 android:textColor="#FF616161"
                 android:textSize="13sp"/>
         </RelativeLayout>

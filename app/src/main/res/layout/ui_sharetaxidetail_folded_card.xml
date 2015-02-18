@@ -25,6 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:gravity="center_vertical"
+            android:paddingTop="1dp"
             android:paddingLeft="18dp"
             android:textColor="#474747"
             android:textSize="15sp"/>
