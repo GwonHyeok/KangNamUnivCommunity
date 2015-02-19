@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/beat_detail_root"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/beat_detail_progressbar"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="30dp">
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/beat_detail_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp" />
-    </RelativeLayout>
-
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="30dp">
+
+            <TextView
+                android:id="@+id/beat_detail_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:layout_marginLeft="54dp"
+                android:layout_marginTop="14dp"
+                android:paddingRight="12dp"
+                android:textSize="21sp" />
+        </RelativeLayout>
+
 
         <com.yscn.knucommunity.CustomView.NotifiableScrollView
             android:id="@+id/beat_detail_scrollview"
@@ -36,7 +55,11 @@
                     android:id="@+id/beat_detail_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="18sp" />
+                    android:lineSpacingExtra="5dp"
+                    android:paddingBottom="12dp"
+                    android:paddingLeft="26dp"
+                    android:paddingRight="26dp"
+                    android:textSize="14sp" />
 
                 <LinearLayout
                     android:id="@+id/beat_detail_scrollview_imagegroup"
@@ -45,13 +68,5 @@
                     android:orientation="vertical" />
             </LinearLayout>
         </com.yscn.knucommunity.CustomView.NotifiableScrollView>
-
-        <ProgressBar
-            android:id="@+id/beat_detail_progressbar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:indeterminate="true"
-            android:visibility="gone" />
-    </FrameLayout>
-</LinearLayout>
+    </LinearLayout>
+</FrameLayout>
