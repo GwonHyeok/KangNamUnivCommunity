@@ -68,7 +68,7 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
         /* Set Decoded Sample Bitmap Background */
         Bitmap bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
                 getResources(),
-                R.drawable.bg_login,
+                R.drawable.bg_register,
                 ApplicationUtil.getInstance().getScreenWidth(),
                 ApplicationUtil.getInstance().getScreenHeight()
         );
