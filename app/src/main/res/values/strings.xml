@@ -144,6 +144,6 @@
     <string name="developer_special_thanks">Special Thanks to..\n김성민, 김용범, 서홍일, 임소담이</string>
     <string name="text_meeting_success_notyet">미팅, 성공적</string>
     <string name="text_meeting_success">만남이 이루어졌습니다.</string>
-    <string name="text_are_you_sure_meeting_success">정말로 미팅이 이루어 지셨습니까?</string>
-    <string name="success_update_meeting">미팅정보를 성공적으로 업데이트 하였습니다</string>
+    <string name="text_are_you_sure_meeting_success">정말로 미팅 약속이 잡히셨습니까?</string>
+    <string name="success_update_meeting">미팅 정보를 성공적으로 업데이트 하였습니다</string>
 </resources>
