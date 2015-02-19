@@ -1001,6 +1001,14 @@ public class NetworkUtil {
         );
     }
 
+    public JSONObject deleteBeatDetail(HashMap<String, String> parameter) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.BEAT_DETAIL_DELETE_URL, parameter);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     private String URLEncode(String str) {
         try {
             return URLEncoder.encode(str, "UTF-8");

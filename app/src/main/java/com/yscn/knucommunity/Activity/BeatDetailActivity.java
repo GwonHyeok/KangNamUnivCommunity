@@ -1,5 +1,7 @@
 package com.yscn.knucommunity.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -20,6 +22,7 @@ import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
+import com.yscn.knucommunity.Ui.BeatViewPagetAdapter;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
@@ -62,12 +65,77 @@ public class BeatDetailActivity extends ActionBarActivity {
         });
     }
 
+    private void deleteDetailContent() {
+        new AsyncTask<Void, Void, JSONObject>() {
+            private ProgressBar mProgressbar;
+
+            @Override
+            protected void onPreExecute() {
+                if (!ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    AlertToast.error(getApplicationContext(), R.string.error_check_network_state);
+                    cancel(true);
+                    return;
+                }
+                mProgressbar = (ProgressBar) findViewById(R.id.beat_detail_progressbar);
+                mProgressbar.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            protected JSONObject doInBackground(Void... params) {
+                HashMap<String, String> parameter = new HashMap<>();
+                parameter.put("beatid", String.valueOf(mBeatIndex + 1));
+                parameter.put("contentid", mContentId);
+                try {
+                    return NetworkUtil.getInstance().deleteBeatDetail(parameter);
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject jsonObject) {
+                mProgressbar.setVisibility(View.GONE);
+                if (jsonObject == null) {
+                    AlertToast.error(getApplicationContext(), R.string.error_to_work);
+                    return;
+                }
+                String result = jsonObject.get("result").toString();
+                if (result.equals("success")) {
+                    AlertToast.success(getApplicationContext(), R.string.success_delete_board);
+                    finish();
+                }
+
+            }
+        }.execute();
+    }
+
+    protected void showDeleteDialog() {
+        AlertDialog alertDialog = new AlertDialog.Builder(this)
+                .setTitle(getString(R.string.warning_title))
+                .setMessage(getString(R.string.want_you_delete))
+                .setPositiveButton(getString(R.string.OK), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        deleteDetailContent();
+                    }
+                })
+                .setNegativeButton(getString(R.string.NO), null)
+                .show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
+    }
+
     private void setBeatContentData() {
         new AsyncTask<Void, Void, JSONObject>() {
             private ProgressBar mProgressbar;
 
             @Override
             protected void onPreExecute() {
+                if (!ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    AlertToast.error(getApplicationContext(), R.string.error_check_network_state);
+                    cancel(true);
+                    return;
+                }
                 mProgressbar = (ProgressBar) findViewById(R.id.beat_detail_progressbar);
                 mProgressbar.setVisibility(View.VISIBLE);
             }
@@ -96,7 +164,12 @@ public class BeatDetailActivity extends ActionBarActivity {
                 String result = jsonObject.get("result").toString();
 
                 if (result.equals("fail")) {
-                    AlertToast.error(getApplicationContext(), R.string.error_to_work);
+                    String reason = jsonObject.get("reason").toString();
+                    if (reason.equals("nodata")) {
+                        AlertToast.error(getApplicationContext(), R.string.error_notexist_board_content);
+                    } else {
+                        AlertToast.error(getApplicationContext(), R.string.error_to_work);
+                    }
                     return;
                 }
 
@@ -178,7 +251,9 @@ public class BeatDetailActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_trash) {
-
+            if (mBeatIndex == BeatViewPagetAdapter.BEAT.QNA.getIndex()) {
+                showDeleteDialog();
+            }
         }
         return super.onOptionsItemSelected(item);
     }
