@@ -90,4 +90,5 @@
 
     <color name="share_taxi_highlight_color">#ffe96565</color>
     <color name="board_white_pirmary_dark_color">#FFBDBDBD</color>
+    <color name="meeting_success">#FF49B649</color>
 </resources>

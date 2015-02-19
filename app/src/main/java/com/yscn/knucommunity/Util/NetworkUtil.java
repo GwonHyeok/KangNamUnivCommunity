@@ -358,6 +358,14 @@ public class NetworkUtil {
         return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 
+    public JSONObject updateMeetingResult(String meetingContentid, int result) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("matchingresult", String.valueOf(result));
+        HttpResponse httpResponse = postData(UrlList.UPDATE_MEETING_RESULT + meetingContentid, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public ArrayList<MajorDetailItems> getMajorDetailInfo(int majorType) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         ArrayList<MajorDetailItems> itemses = new ArrayList<>();

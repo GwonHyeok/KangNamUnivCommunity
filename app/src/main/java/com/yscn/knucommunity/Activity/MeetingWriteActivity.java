@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -52,19 +51,10 @@ public class MeetingWriteActivity extends ActionBarActivity implements View.OnCl
     }
 
     private void actionBarInit() {
-        /*
-         * 상단바 색 설정
-         * 나중에 스타일 정의로 변경
-         */
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xffd7335b);
-        }
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
+        toolbar.setNavigationIcon(R.drawable.ic_cancel);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
