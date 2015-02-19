@@ -3,6 +3,7 @@
     xmlns:apps="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/developer_info_root"
     android:background="@drawable/bg_developer_info"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
@@ -41,26 +42,26 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/bg_developer_box"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:text="권혁"
                 android:textColor="@color/white"
-                android:textSize="19sp"
-                android:layout_marginTop="2dp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:text="Programmer"
-                android:textSize="16sp"
                 android:textColor="#3da6da"
-                android:padding="3dp" />
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -73,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/bg_default_select_item_effect"
+                    android:onClick="onClickHyeokFB"
                     android:src="@drawable/ic_gotofacebook" />
 
                 <ImageButton
@@ -107,25 +109,25 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/bg_developer_box"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:text="배명환"
                 android:textColor="@color/white"
-                android:textSize="19sp"
-                android:layout_marginTop="2dp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:padding="3dp"
                 android:text="UI/UX Designer"
                 android:textColor="#6fc133"
-                android:padding="3dp"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -139,6 +141,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/bg_default_select_item_effect"
+                    android:onClick="onClickMhwanFB"
                     android:src="@drawable/ic_gotofacebook" />
 
                 <ImageButton
@@ -173,18 +176,18 @@
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
             android:background="@drawable/bg_developer_box"
             android:gravity="center"
-            android:orientation="vertical"
-            android:layout_gravity="center_vertical">
+            android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:text="이우란"
                 android:textColor="@color/white"
-                android:textSize="19sp"
-                android:layout_marginTop="2dp" />
+                android:textSize="19sp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -205,6 +208,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginRight="10dp"
                     android:background="@drawable/bg_default_select_item_effect"
+                    android:onClick="onClickLeeFB"
                     android:src="@drawable/ic_gotofacebook" />
 
                 <ImageButton
