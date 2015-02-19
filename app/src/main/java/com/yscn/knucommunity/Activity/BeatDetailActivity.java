@@ -27,6 +27,7 @@ import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UrlList;
+import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -41,6 +42,7 @@ import java.util.HashMap;
 public class BeatDetailActivity extends ActionBarActivity {
     private int mBeatIndex;
     private String mContentId;
+    private String studentnumber;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -156,7 +158,6 @@ public class BeatDetailActivity extends ActionBarActivity {
             @Override
             protected void onPostExecute(JSONObject jsonObject) {
                 mProgressbar.setVisibility(View.GONE);
-                invalidateOptionsMenu();
                 if (jsonObject == null) {
                     AlertToast.error(getApplicationContext(), R.string.error_to_work);
                     return;
@@ -183,13 +184,14 @@ public class BeatDetailActivity extends ActionBarActivity {
                 }
                 addPhotoView(attatchmenturls);
 
+                studentnumber = jsonObject.get("studentnumber") == null ? "-1" : jsonObject.get("studentnumber").toString();
                 try {
                     ((TextView) findViewById(R.id.beat_detail_title)).setText(jsonObject.get("title").toString());
                     ((TextView) findViewById(R.id.beat_detail_content)).setText(jsonObject.get("content").toString());
                 } catch (Exception e) {
 
                 }
-
+                invalidateOptionsMenu();
             }
         }.execute();
     }
@@ -241,7 +243,7 @@ public class BeatDetailActivity extends ActionBarActivity {
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        if (mBeatIndex == 3) {
+        if (UserData.getInstance().getStudentNumber().equals(studentnumber)) {
             getMenuInflater().inflate(R.menu.board_detail_menu, menu);
             menu.getItem(1).setVisible(false);
         }
@@ -251,7 +253,8 @@ public class BeatDetailActivity extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_trash) {
-            if (mBeatIndex == BeatViewPagetAdapter.BEAT.QNA.getIndex()) {
+            if (mBeatIndex == BeatViewPagetAdapter.BEAT.QNA.getIndex() ||
+                    mBeatIndex == BeatViewPagetAdapter.BEAT.REVIEW.getIndex()) {
                 showDeleteDialog();
             }
         }
