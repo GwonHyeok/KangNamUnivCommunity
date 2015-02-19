@@ -228,6 +228,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/BeatTheme" />
         <activity
+            android:name=".Activity.BeatWriteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity
             android:name=".Activity.ImageCollectionActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />

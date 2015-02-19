@@ -175,7 +175,7 @@ public class BeatDetailActivity extends ActionBarActivity {
                 }
 
                 Log.d(getClass().getSimpleName(), jsonObject.toJSONString());
-                JSONArray attatchmentArray = (JSONArray) jsonObject.get("attachment");
+                JSONArray attatchmentArray = (JSONArray) jsonObject.get("file");
 
                 String[] attatchmenturls = new String[attatchmentArray.size()];
                 for (int i = 0; i < attatchmentArray.size(); i++) {

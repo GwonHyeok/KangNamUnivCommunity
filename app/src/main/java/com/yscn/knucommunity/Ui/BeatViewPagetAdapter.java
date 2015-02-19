@@ -75,7 +75,6 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
         }
     }
 
-
     @Override
     public int getCount() {
         return mTabTitle.length;

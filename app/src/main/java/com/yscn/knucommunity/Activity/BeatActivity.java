@@ -1,10 +1,12 @@
 package com.yscn.knucommunity.Activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
@@ -53,6 +55,13 @@ public class BeatActivity extends ActionBarActivity implements ViewPager.OnPageC
     }
 
     @Override
+    public void onActivityResult(int requestcode, int resultcode, Intent data) {
+        if (requestcode == 0X10 && resultcode == RESULT_OK) {
+            /* WRITE SUCCESS */
+        }
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
@@ -62,10 +71,22 @@ public class BeatActivity extends ActionBarActivity implements ViewPager.OnPageC
         // 만약 뷰페이저 페이지가 3(후기)또는 4(Q&A)일때 메뉴 생성
         if (mPagePosition == 3 || mPagePosition == 2) {
             getMenuInflater().inflate(R.menu.board_menu, menu);
+            menu.getItem(0).setVisible(false);
         } else {
             menu.clear();
         }
         return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+        int menuId = menuItem.getItemId();
+        if (menuId == R.id.action_write) {
+            Intent intent = new Intent(this, BeatWriteActivity.class);
+            intent.putExtra("boardType", mPagePosition);
+            startActivityForResult(intent, 0x10);
+        }
+        return super.onOptionsItemSelected(menuItem);
     }
 
     @Override

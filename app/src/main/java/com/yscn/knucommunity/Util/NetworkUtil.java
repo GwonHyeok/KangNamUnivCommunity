@@ -1009,6 +1009,60 @@ public class NetworkUtil {
         );
     }
 
+    public JSONObject writeBeatContent(int boardType, String title, String content, HashMap<String, Uri> file,
+                                       boolean isEditMode, String contentid) throws IOException, ParseException, JSONException {
+        JSONParser jsonParser = new JSONParser();
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        HttpResponse httpResponse;
+
+        multipartEntityBuilder.addTextBody("title", title, getDefaultContentType());
+        multipartEntityBuilder.addTextBody("content", content, getDefaultContentType());
+        multipartEntityBuilder.addTextBody("isEditmode", String.valueOf(isEditMode));
+
+        /* 수정 모드일 경우 콘텐트 아이디 post */
+        if (isEditMode) {
+            multipartEntityBuilder.addTextBody("contentID", contentid);
+        }
+
+        if (file.size() > 0) {
+            Set<String> keySet = file.keySet();
+            Iterator<String> key = keySet.iterator();
+            org.json.JSONObject fileObject = new org.json.JSONObject();
+            org.json.JSONArray fileArray = new org.json.JSONArray();
+
+            for (int i = 0; key.hasNext(); i++) {
+                String realPath;
+                String strKey = key.next();
+                Uri value;
+                File realPathFile;
+
+                if ((value = file.get(strKey)) != null) {
+                    realPath = ApplicationUtil.getInstance().UriToPath(value);
+                    realPathFile = new File(realPath);
+                    multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
+                    Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
+                } else {
+                    i--;
+                    fileArray.put(strKey);
+                }
+                fileObject.put("existfile", fileArray);
+            }
+            multipartEntityBuilder.addTextBody("existfile", fileObject.toString());
+            Log.d(getClass().getSimpleName(), "already Exist : " + fileObject.toString());
+        }
+
+        if (boardType == -1) {
+            return null;
+        }
+
+        HttpPost httpPost = new HttpPost(UrlList.BEAT_WRITE_CONTENT_URL + boardType);
+        httpPost.setEntity(multipartEntityBuilder.build());
+        httpResponse = httpClient.execute(httpPost);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     private String URLEncode(String str) {
         try {
             return URLEncoder.encode(str, "UTF-8");

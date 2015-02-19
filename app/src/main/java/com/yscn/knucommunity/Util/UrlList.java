@@ -62,4 +62,5 @@ public class UrlList {
     public static final String BEAT_QNA_URL = MAIN_URL + "beat/getQna/";
     public static final String BEAT_DETAIL_URL = MAIN_URL + "beat/getBeatDetail/";
     public static final String BEAT_DETAIL_DELETE_URL = MAIN_URL + "beat/deleteBeatDetail/";
+    public static final String BEAT_WRITE_CONTENT_URL = MAIN_URL + "beat/writeBeatContent/";
 }
