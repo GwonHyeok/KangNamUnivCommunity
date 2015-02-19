@@ -146,4 +146,5 @@
     <string name="text_meeting_success">만남이 이루어졌습니다.</string>
     <string name="text_are_you_sure_meeting_success">정말로 미팅 약속이 잡히셨습니까?</string>
     <string name="success_update_meeting">미팅 정보를 성공적으로 업데이트 하였습니다</string>
+    <string name="profile_name_beat">학생회(BEAT)</string>
 </resources>

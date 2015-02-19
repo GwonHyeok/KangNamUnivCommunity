@@ -185,6 +185,22 @@ public class BeatDetailActivity extends ActionBarActivity {
                 addPhotoView(attatchmenturls);
 
                 studentnumber = jsonObject.get("studentnumber") == null ? "-1" : jsonObject.get("studentnumber").toString();
+
+                ImageLoaderUtil.getInstance().initImageLoader();
+                ImageView profileView = (ImageView) findViewById(R.id.beat_detail_profile);
+                TextView nameView = (TextView) findViewById(R.id.beat_detail_name);
+
+                if (studentnumber.equals("-1")) {
+                    profileView.setImageResource(R.drawable.ic_beat_profile);
+                    nameView.setText(R.string.profile_name_beat);
+                } else {
+                    /* 학번 데이터가 있는경우에 데이터 삼입 */
+                    String name = jsonObject.get("name").toString();
+                    ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentnumber,
+                            profileView, ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
+                    nameView.setText(name);
+                }
+
                 try {
                     ((TextView) findViewById(R.id.beat_detail_title)).setText(jsonObject.get("title").toString());
                     ((TextView) findViewById(R.id.beat_detail_content)).setText(jsonObject.get("content").toString());
