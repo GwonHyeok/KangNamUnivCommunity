@@ -19,6 +19,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
@@ -88,6 +89,17 @@ public class BeatDetailActivity extends ActionBarActivity {
             protected void onPostExecute(JSONObject jsonObject) {
                 mProgressbar.setVisibility(View.GONE);
                 invalidateOptionsMenu();
+                if (jsonObject == null) {
+                    AlertToast.error(getApplicationContext(), R.string.error_to_work);
+                    return;
+                }
+                String result = jsonObject.get("result").toString();
+
+                if (result.equals("fail")) {
+                    AlertToast.error(getApplicationContext(), R.string.error_to_work);
+                    return;
+                }
+
                 Log.d(getClass().getSimpleName(), jsonObject.toJSONString());
                 JSONArray attatchmentArray = (JSONArray) jsonObject.get("attachment");
 
