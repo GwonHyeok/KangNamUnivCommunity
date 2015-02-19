@@ -11,6 +11,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -47,13 +48,11 @@ import java.util.Date;
  * Created by GwonHyeok on 15. 2. 17..
  */
 public class BeatViewPagetAdapter extends FragmentPagerAdapter {
-    private Context mContext;
     private String[] mTabTitle;
 
     public BeatViewPagetAdapter(FragmentManager fm, Context context) {
         super(fm);
-        this.mContext = context;
-        mTabTitle = mContext.getResources().getStringArray(R.array.beat_tab_title);
+        mTabTitle = context.getResources().getStringArray(R.array.beat_tab_title);
     }
 
     @Override
@@ -105,6 +104,7 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
         private RecyclerView mRecyclerView;
         private ProgressBar mProgressBar;
         private CultureAdapter mCultureAdapter;
+        private SwipeRefreshLayout mSwipeRefreshLayout;
         private int mBeatIndex;
 
         static CultureFragment newInstance(BEAT beat) {
@@ -127,10 +127,17 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
             View view = inflater.inflate(R.layout.activity_beat_list, container, false);
             mProgressBar = (ProgressBar) view.findViewById(R.id.beat_progressbar);
             mRecyclerView = (RecyclerView) view.findViewById(R.id.beat_list_recyclerview);
+            mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.beat_list_swiperefreshlayout);
             mRecyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
             mCultureAdapter = new CultureAdapter(mBeatIndex);
             mRecyclerView.setAdapter(mCultureAdapter);
             mRecyclerView.addItemDecoration(new DividerItemDecoration(view.getContext(), DividerItemDecoration.VERTICAL_LIST));
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    updateCulture();
+                }
+            });
             return view;
         }
 
@@ -145,7 +152,9 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
 
                 @Override
                 protected void onPreExecute() {
-                    mProgressBar.setVisibility(View.VISIBLE);
+                    if (!mSwipeRefreshLayout.isRefreshing()) {
+                        mProgressBar.setVisibility(View.VISIBLE);
+                    }
                 }
 
                 @Override
@@ -170,13 +179,18 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
 
                 @Override
                 protected void onPostExecute(JSONObject jsonObject) {
-                    mProgressBar.setVisibility(View.GONE);
+                    if (!mSwipeRefreshLayout.isRefreshing()) {
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+                    mSwipeRefreshLayout.setRefreshing(false);
+
                     if (jsonObject == null) {
                         AlertToast.error(getActivity(), R.string.error_to_work);
                         return;
                     }
                     String result = jsonObject.get("result").toString();
                     if (result.equals("success")) {
+                        mCultureAdapter.clearItems();
                         JSONArray jsonArray = (JSONArray) jsonObject.get("data");
                         for (Object object : jsonArray) {
                             JSONObject dataObject = (JSONObject) object;
@@ -202,6 +216,10 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
 
         public void addItem(DefaultBeatItem item) {
             list.add(item);
+        }
+
+        public void clearItems() {
+            list.clear();
         }
 
         @Override
