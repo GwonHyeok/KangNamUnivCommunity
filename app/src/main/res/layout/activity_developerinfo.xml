@@ -26,39 +26,41 @@
         android:orientation="horizontal"
         android:paddingBottom="5dp"
         android:paddingLeft="30dp"
-        android:paddingRight="35dp"
+        android:paddingRight="36dp"
         android:paddingTop="5dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_profile"
             apps:border_color="#33ffffff"
-            apps:border_width="2dp" />
+            apps:border_width="3dp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_developer_box"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
                 android:text="권혁"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="19sp"
+                android:layout_marginTop="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
                 android:text="Programmer"
-                android:textColor="#3da6da" />
+                android:textSize="16sp"
+                android:textColor="#3da6da"
+                android:padding="3dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -88,41 +90,43 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:paddingBottom="5dp"
+        android:paddingBottom="4dp"
         android:paddingLeft="30dp"
-        android:paddingRight="35dp"
-        android:paddingTop="5dp">
+        android:paddingRight="36dp"
+        android:paddingTop="4dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_profile"
             apps:border_color="#33ffffff"
-            apps:border_width="2dp" />
+            apps:border_width="3dp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_developer_box"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
                 android:text="배명환"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="19sp"
+                android:layout_marginTop="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
                 android:text="UI/UX Designer"
-                android:textColor="#6fc133" />
+                android:textColor="#6fc133"
+                android:padding="3dp"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -154,39 +158,41 @@
         android:orientation="horizontal"
         android:paddingBottom="5dp"
         android:paddingLeft="30dp"
-        android:paddingRight="35dp"
+        android:paddingRight="36dp"
         android:paddingTop="5dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
-            android:layout_width="54dp"
-            android:layout_height="54dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:layout_gravity="center"
             android:layout_marginRight="10dp"
             android:src="@drawable/ic_profile"
             apps:border_color="#33ffffff"
-            apps:border_width="2dp" />
+            apps:border_width="3dp" />
 
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_developer_box"
             android:gravity="center"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_gravity="center_vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
                 android:text="이우란"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="19sp"
+                android:layout_marginTop="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="2dp"
+                android:padding="3dp"
                 android:text="Web Designer"
-                android:textColor="#e861b7" />
+                android:textColor="#e861b7"
+                android:textSize="16sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -216,7 +222,7 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:gravity="bottom|center_horizontal"
-        android:paddingBottom="10dp"
+        android:paddingBottom="8dp"
         android:text="@string/developer_special_thanks"
         android:textColor="@color/white" />
 </LinearLayout>
