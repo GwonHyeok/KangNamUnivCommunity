@@ -1,6 +1,8 @@
 package com.yscn.knucommunity.Activity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -15,6 +17,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
@@ -25,6 +28,7 @@ import com.yscn.knucommunity.Util.NetworkUtil;
 import com.yscn.knucommunity.Util.UserData;
 import com.yscn.knucommunity.Util.UserDataPreference;
 
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
@@ -66,29 +70,77 @@ public class Splash extends ActionBarActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
 
-        int SPLASH_DELAY_TIME = 1300;
+        final int SPLASH_DELAY_TIME = 1300;
 
-        new Handler().postDelayed(new Runnable() {
+        new AsyncTask<Void, Void, JSONObject>() {
+            ProgressBar progressBar;
+
             @Override
-            public void run() {
-                finish();
-                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
-                if (loginCheck()) {
-                    /* 로그인이 되어있음 메인 액티비티 호출 */
-                    startActivity(new Intent(getContext(), MainActivity.class));
-                    /* GCM ID 등록 */
-                    if (checkPlayServices()) {
-                        checkGCMRegisterID();
-                    }
-                } else {
-                    /* 로그인이 되어있지 않음 로그인 액티비티 호출 */
-                    startActivity(new Intent(getContext(), LoginActivity.class));
-                }
+            protected void onPreExecute() {
+                progressBar = (ProgressBar) findViewById(R.id.splash_progressbar);
+                progressBar.setVisibility(View.VISIBLE);
             }
 
-        }, SPLASH_DELAY_TIME);
+            @Override
+            protected JSONObject doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().serverStatusCheck();
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject jsonObject) {
+                progressBar.setVisibility(View.GONE);
+                if (jsonObject == null) {
+                    appCloseDialog(getString(R.string.error_to_work));
+                    return;
+                }
+
+                String result = jsonObject.get("result").toString();
+
+                if (result.equals("success")) {
+                    new Handler().postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            finish();
+                            overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
+                            if (loginCheck()) {
+                    /* 로그인이 되어있음 메인 액티비티 호출 */
+                                startActivity(new Intent(getContext(), MainActivity.class));
+                    /* GCM ID 등록 */
+                                if (checkPlayServices()) {
+                                    checkGCMRegisterID();
+                                }
+                            } else {
+                    /* 로그인이 되어있지 않음 로그인 액티비티 호출 */
+                                startActivity(new Intent(getContext(), LoginActivity.class));
+                            }
+                        }
+
+                    }, SPLASH_DELAY_TIME);
+                } else if (result.equals("fail")) {
+                    appCloseDialog(jsonObject.get("message").toString());
+                }
+            }
+        }.execute();
     }
 
+    private void appCloseDialog(String message) {
+        AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                .setTitle(R.string.warning_title)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).show();
+        ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
+    }
     private void checkGCMRegisterID() {
         new AsyncTask<Void, Void, Void>() {
 

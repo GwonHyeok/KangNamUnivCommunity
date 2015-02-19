@@ -296,6 +296,12 @@ public class NetworkUtil {
         return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 
+    public JSONObject serverStatusCheck() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.SERVER_STATUS_CHECK_URL, null);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public JSONObject doLogout() throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HttpResponse httpResponse = postData(UrlList.LOGOUT_URL, null);
