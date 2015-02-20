@@ -17,6 +17,7 @@ public class UrlList {
     public static final String APP_REGISTER_GCM_REGISTERID = MAIN_URL + "appLogin/registerGCMID";
     public static final String APP_REGISTER_URL = MAIN_URL + "appRegister/doRegister/m";
     public static final String BOARD_WRITE_CONTENT = MAIN_URL + "board/writeBoard/m/";
+    public static final String DELIVERY_BOARD_WRITE = MAIN_URL + "board/writeDeliveryList/";
     public static final String FREEBOARD_GET_LIST = MAIN_URL + "board/getFreeboardList/m/";
     public static final String FAQBOARD_GET_LIST = MAIN_URL + "board/getFaqboardList/m/";
     public static final String MARKET_GET_LIST = MAIN_URL + "board/getMarketList/m/";

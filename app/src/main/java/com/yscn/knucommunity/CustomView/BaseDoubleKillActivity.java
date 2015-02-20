@@ -5,6 +5,8 @@ import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.widget.Toast;
 
+import com.yscn.knucommunity.R;
+
 /**
  * Created by GwonHyeok on 14. 10. 22..
  */
@@ -25,7 +27,7 @@ public class BaseDoubleKillActivity extends ActionBarActivity {
         if (--backKeyCount == 0) {
             super.onBackPressed();
         } else {
-            toast.setText("2번");
+            toast.setText(getString(R.string.double_back_kill_app));
             toast.show();
         }
         backKeyHandler.postDelayed(new backPreesedRunnable(), resetBackKeyCountTimemills);

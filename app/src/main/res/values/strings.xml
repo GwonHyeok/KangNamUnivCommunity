@@ -151,4 +151,6 @@
     <string name="text_greenlight_change">정말로 그린라이트 결과를 수정하시겠습니까?</string>
     <string name="error_notexist_map_app">지도를 열수있는 사용자 어플리케이션이 존재하지 않습니다.</string>
     <string name="setting_feedback_subject">강남대학교 커뮤니티 피드백</string>
+    <string name="text_select_delivery_category">음식 카테고리를 선택해주세요</string>
+    <string name="double_back_kill_app">뒤로가기키를 한번 더 눌러 종료해주세요.</string>
 </resources>

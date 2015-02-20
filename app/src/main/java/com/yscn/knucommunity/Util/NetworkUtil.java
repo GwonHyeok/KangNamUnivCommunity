@@ -630,6 +630,51 @@ public class NetworkUtil {
         );
     }
 
+    public JSONObject writeDelivery(int deliveryFoodCategory, String shopname, String phonenum,
+                                    HashMap<String, Uri> file) throws IOException, ParseException, JSONException {
+        JSONParser jsonParser = new JSONParser();
+        MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
+        HttpResponse httpResponse;
+
+        multipartEntityBuilder.addTextBody("category", String.valueOf(deliveryFoodCategory), getDefaultContentType());
+        multipartEntityBuilder.addTextBody("shopname", shopname, getDefaultContentType());
+        multipartEntityBuilder.addTextBody("phone", phonenum);
+
+        if (file.size() > 0) {
+            Set<String> keySet = file.keySet();
+            Iterator<String> key = keySet.iterator();
+            org.json.JSONObject fileObject = new org.json.JSONObject();
+            org.json.JSONArray fileArray = new org.json.JSONArray();
+
+            for (int i = 0; key.hasNext(); i++) {
+                String realPath;
+                String strKey = key.next();
+                Uri value;
+                File realPathFile;
+
+                if ((value = file.get(strKey)) != null) {
+                    realPath = ApplicationUtil.getInstance().UriToPath(value);
+                    realPathFile = new File(realPath);
+                    multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
+                    Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
+                } else {
+                    i--;
+                    fileArray.put(strKey);
+                }
+                fileObject.put("existfile", fileArray);
+            }
+            multipartEntityBuilder.addTextBody("existfile", fileObject.toString());
+            Log.d(getClass().getSimpleName(), "already Exist : " + fileObject.toString());
+        }
+
+        HttpPost httpPost = new HttpPost(UrlList.DELIVERY_BOARD_WRITE);
+        httpPost.setEntity(multipartEntityBuilder.build());
+        httpResponse = httpClient.execute(httpPost);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     private ArrayList<NoticeItems> noticeParser(NoticeType noticeType, int timeout) throws IOException {
         ArrayList<NoticeItems> itemses = new ArrayList<>();
         String id = "", title = "", time = "", readcount = "", url = "";

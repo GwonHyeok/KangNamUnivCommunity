@@ -57,7 +57,6 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
 
         actionBarInit();
         viewInit();
-        setContent();
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
