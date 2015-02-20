@@ -30,8 +30,8 @@
             android:gravity="center_vertical"
             android:paddingLeft="10dp"
             android:text="강남대학교 이공관"
-            android:textSize="18sp"
-            android:textColor="#616161"/>
+            android:textColor="#616161"
+            android:textSize="18sp" />
 
         <LinearLayout
             android:id="@+id/campusmap_show_maplist"
@@ -48,12 +48,14 @@
                 android:src="@drawable/ic_map_up" />
         </LinearLayout>
 
-        <ImageView
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginRight="5dp"
             android:layout_marginTop="10dp"
+            android:background="@drawable/bg_default_select_item_effect"
+            android:onClick="startMapApp"
             android:src="@drawable/ic_map" />
     </FrameLayout>
 
@@ -90,11 +92,13 @@
 
         </LinearLayout>
 
-        <ImageView
+        <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginRight="5dp"
+            android:background="@drawable/bg_default_select_item_effect"
+            android:onClick="startMapApp"
             android:src="@drawable/ic_map" />
     </FrameLayout>
 </FrameLayout>

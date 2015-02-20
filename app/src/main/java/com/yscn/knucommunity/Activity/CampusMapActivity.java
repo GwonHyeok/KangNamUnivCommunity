@@ -1,5 +1,8 @@
 package com.yscn.knucommunity.Activity;
 
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
@@ -25,6 +29,7 @@ import com.yscn.knucommunity.Util.ApplicationUtil;
  */
 public class CampusMapActivity extends ActionBarActivity implements GoogleMap.OnMapClickListener, GoogleMap.OnMyLocationButtonClickListener, View.OnClickListener, AdapterView.OnItemClickListener {
     private final String GEO_EGONG = "geo:37.2770829,127.1341592";
+    private String CURRENT_GEO = GEO_EGONG;
     private final String GEO_GYEONCHEON = "geo:37.2765152,127.1339019";
     private final String GEO_HUSENG = "geo:37.2769126,127.1335131";
     private final String GEO_CHEONN = "geo:37.2757035,127.1341903";
@@ -52,7 +57,7 @@ public class CampusMapActivity extends ActionBarActivity implements GoogleMap.On
         findViewById(R.id.campusmap_simple_list).setOnClickListener(this);
 
         String[] string = new String[]{"이공관", "천은관", "후생관", "샬롬관", "경천관", "교욱관", "승리관", "목양관", "우원관", "인사관", "예술관", "운동장"};
-        ArrayAdapter<String> mapListAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, string);
+        ArrayAdapter<String> mapListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, string);
         listView.setAdapter(mapListAdapter);
         listView.setOnItemClickListener(this);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
@@ -76,6 +81,7 @@ public class CampusMapActivity extends ActionBarActivity implements GoogleMap.On
          * 다이얼로그에서 지도 좌표를 받아서 넘기고 그 좌표값으로 마커 설정. (String geo)
          * geo = geo:0.000000,0.000000
          */
+        CURRENT_GEO = location;
         mMap.clear();
         BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_marker);
         String M_geo = location.split(":")[1];
@@ -196,5 +202,14 @@ public class CampusMapActivity extends ActionBarActivity implements GoogleMap.On
                 break;
         }
         findViewById(R.id.campusmap_hide_maplist).performClick();
+    }
+
+    public void startMapApp(View view) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(CURRENT_GEO));
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            AlertToast.error(this, R.string.error_notexist_map_app);
+        }
     }
 }

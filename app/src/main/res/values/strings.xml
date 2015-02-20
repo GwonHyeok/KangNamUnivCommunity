@@ -149,4 +149,5 @@
     <string name="success_update_meeting">미팅 정보를 성공적으로 업데이트 하였습니다</string>
     <string name="profile_name_beat">학생회(BEAT)</string>
     <string name="text_greenlight_change">정말로 그린라이트 결과를 수정하시겠습니까?</string>
+    <string name="error_notexist_map_app">지도를 열수있는 사용자 어플리케이션이 존재하지 않습니다.</string>
 </resources>
