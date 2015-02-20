@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
@@ -64,6 +65,13 @@ public class GcmIntentService extends IntentService {
     }
 
     private void sendNotification(Bundle extra) {
+        boolean isNotificationOn = PreferenceManager.getDefaultSharedPreferences(getApplicationContext())
+                .getBoolean("setting_preference_notification", true);
+        /* 만약 설정에서 알림을 꺼놓으면 리턴 */
+        if (!isNotificationOn) {
+            return;
+        }
+
         long vib_pattern[] = {100, 500};
 
         mNotificationManager = (NotificationManager)

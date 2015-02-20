@@ -7,9 +7,9 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
@@ -62,6 +62,7 @@ public class SettingActivity extends ActionBarActivity {
         private Preference mMyInfoNamePreference, mMyInfoAccountPreference,
                 mMyInfoAuthorDevices, mMyInfoPhoneNumber, mDeleteAccountPreference,
                 mDeveloperInfo, mFeedBack;
+        private CheckBoxPreference mNotificationPreference;
 
 
         @Override
@@ -76,10 +77,10 @@ public class SettingActivity extends ActionBarActivity {
             mDeleteAccountPreference = findPreference("setting_preference_myinfo_deleteaccount");
             mDeveloperInfo = findPreference("setting_preference_developerinfo");
             mFeedBack = findPreference("setting_preference_feedback");
+            mNotificationPreference = (CheckBoxPreference) findPreference("setting_preference_notification");
 
             mMyInfoNamePreference.setTitle(UserData.getInstance().getStudentName());
             mMyInfoNamePreference.setSummary(UserData.getInstance().getStudentNumber());
-            PreferenceManager.getDefaultSharedPreferences(getActivity()).edit().clear().commit();
             initNeedNetworkData();
 
             mMyInfoNamePreference.setOnPreferenceClickListener(this);
@@ -89,6 +90,7 @@ public class SettingActivity extends ActionBarActivity {
             mDeleteAccountPreference.setOnPreferenceClickListener(this);
             mDeveloperInfo.setOnPreferenceClickListener(this);
             mFeedBack.setOnPreferenceClickListener(this);
+            mNotificationPreference.setOnPreferenceChangeListener(this);
         }
 
         private void initNeedNetworkData() {
@@ -379,6 +381,8 @@ public class SettingActivity extends ActionBarActivity {
             if (key.equals(mMyInfoPhoneNumber.getKey())) {
                 String phoneNumber = newValue.toString();
                 updatePhoneNumber(phoneNumber);
+                return true;
+            } else if (key.equals(mNotificationPreference.getKey())) {
                 return true;
             }
             return false;

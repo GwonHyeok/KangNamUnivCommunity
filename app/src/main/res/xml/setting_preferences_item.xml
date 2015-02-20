@@ -26,7 +26,10 @@
     </com.yscn.knucommunity.CustomView.TypefacePreferenceCategory>
 
     <com.yscn.knucommunity.CustomView.TypefacePreferenceCategory android:title="알림 설정">
-        <com.yscn.knucommunity.CustomView.TypefaceCheckBoxPreference android:title="알림 수신" />
+        <com.yscn.knucommunity.CustomView.TypefaceCheckBoxPreference
+            android:defaultValue="true"
+            android:key="setting_preference_notification"
+            android:title="알림 수신" />
     </com.yscn.knucommunity.CustomView.TypefacePreferenceCategory>
 
     <com.yscn.knucommunity.CustomView.TypefacePreferenceCategory android:title="친구 초대">
