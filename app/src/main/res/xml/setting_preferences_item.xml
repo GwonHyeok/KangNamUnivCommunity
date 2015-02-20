@@ -37,6 +37,8 @@
         <com.yscn.knucommunity.CustomView.TypefacePreference
             android:key="setting_preference_developerinfo"
             android:title="개발자 정보" />
-        <com.yscn.knucommunity.CustomView.TypefacePreference android:title="어플리케이션 피드백" />
+        <com.yscn.knucommunity.CustomView.TypefacePreference
+            android:key="setting_preference_feedback"
+            android:title="어플리케이션 피드백" />
     </com.yscn.knucommunity.CustomView.TypefacePreferenceCategory>
 </PreferenceScreen>

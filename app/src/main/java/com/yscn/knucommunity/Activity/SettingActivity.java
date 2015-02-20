@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.Preference;
@@ -60,7 +61,7 @@ public class SettingActivity extends ActionBarActivity {
     public static class PreferenceItem extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
         private Preference mMyInfoNamePreference, mMyInfoAccountPreference,
                 mMyInfoAuthorDevices, mMyInfoPhoneNumber, mDeleteAccountPreference,
-                mDeveloperInfo;
+                mDeveloperInfo, mFeedBack;
 
 
         @Override
@@ -74,6 +75,7 @@ public class SettingActivity extends ActionBarActivity {
             mMyInfoAuthorDevices = findPreference("setting_preference_myinfo_authordevices");
             mDeleteAccountPreference = findPreference("setting_preference_myinfo_deleteaccount");
             mDeveloperInfo = findPreference("setting_preference_developerinfo");
+            mFeedBack = findPreference("setting_preference_feedback");
 
             mMyInfoNamePreference.setTitle(UserData.getInstance().getStudentName());
             mMyInfoNamePreference.setSummary(UserData.getInstance().getStudentNumber());
@@ -86,6 +88,7 @@ public class SettingActivity extends ActionBarActivity {
             mMyInfoAuthorDevices.setOnPreferenceClickListener(this);
             mDeleteAccountPreference.setOnPreferenceClickListener(this);
             mDeveloperInfo.setOnPreferenceClickListener(this);
+            mFeedBack.setOnPreferenceClickListener(this);
         }
 
         private void initNeedNetworkData() {
@@ -320,6 +323,11 @@ public class SettingActivity extends ActionBarActivity {
                 return true;
             } else if (key.equals(mDeveloperInfo.getKey())) {
                 startActivity(new Intent(getActivity(), DeveloperInfoActivity.class));
+                return true;
+            } else if (key.equals(mFeedBack.getKey())) {
+                Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:kh4975@gmail.com"));
+                intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.setting_feedback_subject));
+                startActivity(Intent.createChooser(intent, null));
                 return true;
             }
             return false;
