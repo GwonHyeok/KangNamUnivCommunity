@@ -1,6 +1,7 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -37,6 +38,7 @@ public class BeatActivity extends ActionBarActivity implements ViewPager.OnPageC
         mSlidingTab.setViewPager(mViewPager);
         mSlidingTab.setOnPageChangeListener(this);
         ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.beat_root));
+        mSlidingTab.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.BOLD), Typeface.BOLD);
     }
 
     private void setToolbar() {

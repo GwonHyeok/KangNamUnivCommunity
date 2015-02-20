@@ -1,5 +1,6 @@
 package com.yscn.knucommunity.Activity;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
@@ -35,6 +36,7 @@ public class StudentNotificationActivity extends ActionBarActivity {
         mNotificationPagerAdapter.setPageTitle(getResources().getStringArray(R.array.studentinfo_tab_title));
         mViewPager.setAdapter(mNotificationPagerAdapter);
         mSlidingTabStrip.setViewPager(mViewPager);
+        mSlidingTabStrip.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.BOLD), Typeface.BOLD);
         mSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

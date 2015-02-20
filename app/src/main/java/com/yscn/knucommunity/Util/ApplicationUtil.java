@@ -48,6 +48,16 @@ public class ApplicationUtil {
         }
     }
 
+    public Typeface getTypeFace(int style) {
+        if (style == Typeface.BOLD) {
+            return boldTypeface;
+        } else if (style == Typeface.NORMAL) {
+            return normalTypeface;
+        } else {
+            return normalTypeface;
+        }
+    }
+
     public void setTypeFace(View rootView) {
         try {
             if (rootView instanceof ViewGroup) {
