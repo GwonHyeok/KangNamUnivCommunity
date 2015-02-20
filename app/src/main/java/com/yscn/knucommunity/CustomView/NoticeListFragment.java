@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -115,6 +116,12 @@ public class NoticeListFragment extends ScrollTabHolderFragment implements OnScr
             if (view == null) {
                 LayoutInflater inflater = ((Activity) getContext()).getLayoutInflater();
                 view = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
+                int paddingLR = (int) ApplicationUtil.getInstance().dpToPx(10);
+                int paddingTB = (int) ApplicationUtil.getInstance().dpToPx(4);
+                TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                textView.setPadding(paddingLR, paddingTB, paddingLR, paddingTB);
+                textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+
                 holder = new AdapterHolder();
                 holder.title = (TextView) view.findViewById(android.R.id.text1);
                 holder.title.setTextColor(0xff474747);
