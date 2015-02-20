@@ -13,6 +13,7 @@ import android.util.Log;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.Activity.Splash;
+import com.yscn.knucommunity.Activity.StudentNotificationActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 
@@ -35,6 +36,8 @@ public class GcmIntentService extends IntentService {
         // The getMessageType() intent parameter must be the intent you received
         // in your BroadcastReceiver.
         String messageType = gcm.getMessageType(intent);
+
+        Log.i(getClass().getSimpleName(), "Received: GCM ");
 
         if (!extras.isEmpty()) {  // has effect of unparcelling Bundle
             /*
@@ -70,27 +73,41 @@ public class GcmIntentService extends IntentService {
         String title = extra.getString("title");
         String message = extra.getString("msg");
         String photo_url = extra.getString("photo");
+        String type = extra.getString("type") != null ? extra.getString("type") : "";
         int NOTIFICATION_ID = Integer.parseInt(extra.getString("notification_id"));
 
-        NotificationCompat.Builder mBuilder =
+        if (type.equals("BOARD_NOTIFY")) {
+            NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle(title != null ? title : getString(R.string.app_name))
+                        .setContentTitle(getString(R.string.app_name))
                         .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText(message))
+                                .bigText(getString(R.string.receive_new_board_comment)))
                         .setAutoCancel(true)
-                        .setContentText(message);
+                        .setContentIntent(PendingIntent.getActivity(this, 0,
+                                new Intent(this, StudentNotificationActivity.class), 0))
+                        .setContentText(getString(R.string.receive_new_board_comment));
+            mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+        } else {
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle(title != null ? title : getString(R.string.app_name))
+                            .setStyle(new NotificationCompat.BigTextStyle()
+                                    .bigText(message))
+                            .setAutoCancel(true)
+                            .setContentText(message);
 
-        if (!photo_url.isEmpty()) {
-            ImageLoaderUtil.getInstance().initImageLoader();
-            Bitmap bitmap = ImageLoader.getInstance().loadImageSync(photo_url);
-            mBuilder.setStyle(new NotificationCompat.BigPictureStyle()
-                    .bigPicture(bitmap)
-                    .setSummaryText(message)
-                    .setBigContentTitle(title));
+            if (!photo_url.isEmpty()) {
+                ImageLoaderUtil.getInstance().initImageLoader();
+                Bitmap bitmap = ImageLoader.getInstance().loadImageSync(photo_url);
+                mBuilder.setStyle(new NotificationCompat.BigPictureStyle()
+                        .bigPicture(bitmap)
+                        .setSummaryText(message)
+                        .setBigContentTitle(title));
+            }
+            mBuilder.setContentIntent(contentIntent);
+            mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
         }
-
-        mBuilder.setContentIntent(contentIntent);
-        mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
     }
 }
