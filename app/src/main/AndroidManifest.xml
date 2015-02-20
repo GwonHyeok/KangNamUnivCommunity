@@ -241,6 +241,10 @@
             android:name=".Activity.DeveloperInfoActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".Activity.DeliveryFoodWriteActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

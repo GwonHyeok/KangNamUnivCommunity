@@ -2,6 +2,7 @@ package com.yscn.knucommunity.Activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
@@ -246,6 +247,14 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
         setSearchIconColor(searchView);
         ApplicationUtil.getInstance().setTypeFace(searchView);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_write) {
+            Intent intent = new Intent(getContext(), DeliveryFoodWriteActivity.class);
+            startActivity(intent);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     /**
