@@ -288,6 +288,14 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         }
         new AsyncTask<Void, Void, Boolean>() {
 
+            private ClearProgressDialog clearProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog.show();
+            }
+
             @Override
             protected Boolean doInBackground(Void... params) {
                 boolean result = false;
@@ -302,6 +310,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
 
             @Override
             protected void onPostExecute(Boolean result) {
+                clearProgressDialog.cancel();
                 if (result) {
                     ((EditText) findViewById(R.id.freeboard_reply_edittext)).setText("");
                     removeScrollViewData();
