@@ -1,5 +1,7 @@
 package com.yscn.knucommunity.Activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -167,6 +169,42 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
         lightOff.setText(String.valueOf(negativeSize));
         lightOff.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
         lightOn.startAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fade_in));
+
+        lightOn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.warning_title)
+                        .setMessage(R.string.text_greenlight_change)
+                        .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clickGreenRightButton(true);
+                            }
+                        })
+                        .setNegativeButton(R.string.NO, null)
+                        .show();
+                ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
+            }
+        });
+
+        lightOff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                        .setTitle(R.string.warning_title)
+                        .setMessage(R.string.text_greenlight_change)
+                        .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                clickGreenRightButton(false);
+                            }
+                        })
+                        .setNegativeButton(R.string.NO, null)
+                        .show();
+                ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
+            }
+        });
     }
 
     private void greenLightButtonInit() {
