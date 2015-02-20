@@ -4,11 +4,12 @@ import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.ScaleImageView;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
@@ -41,11 +42,13 @@ public class ImageCollectionActivity extends ActionBarActivity {
 
             @Override
             public Object instantiateItem(ViewGroup viewGroup, int position) {
-                ImageView imageView = new ImageView(ImageCollectionActivity.this);
+                View view = LayoutInflater.from(ImageCollectionActivity.this)
+                        .inflate(R.layout.ui_collection_image_view, viewGroup, false);
+                ScaleImageView imageView = (ScaleImageView) view.findViewById(R.id.imageview);
                 ImageLoaderUtil.getInstance().initImageLoader();
                 ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + imageUrls[position], imageView);
-                viewGroup.addView(imageView);
-                return imageView;
+                viewGroup.addView(view);
+                return view;
             }
 
             @Override
