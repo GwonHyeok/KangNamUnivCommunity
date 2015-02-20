@@ -64,6 +64,8 @@ public class GcmIntentService extends IntentService {
     }
 
     private void sendNotification(Bundle extra) {
+        long vib_pattern[] = {100, 500};
+
         mNotificationManager = (NotificationManager)
                 this.getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -78,15 +80,16 @@ public class GcmIntentService extends IntentService {
 
         if (type.equals("BOARD_NOTIFY")) {
             NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this)
-                        .setSmallIcon(R.drawable.ic_launcher)
-                        .setContentTitle(getString(R.string.app_name))
-                        .setStyle(new NotificationCompat.BigTextStyle()
-                                .bigText(getString(R.string.receive_new_board_comment)))
-                        .setAutoCancel(true)
-                        .setContentIntent(PendingIntent.getActivity(this, 0,
-                                new Intent(this, StudentNotificationActivity.class), 0))
-                        .setContentText(getString(R.string.receive_new_board_comment));
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setContentTitle(getString(R.string.app_name))
+                            .setStyle(new NotificationCompat.BigTextStyle()
+                                    .bigText(getString(R.string.receive_new_board_comment)))
+                            .setAutoCancel(true)
+                            .setVibrate(vib_pattern)
+                            .setContentIntent(PendingIntent.getActivity(this, 0,
+                                    new Intent(this, StudentNotificationActivity.class), 0))
+                            .setContentText(getString(R.string.receive_new_board_comment));
             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
         } else {
             NotificationCompat.Builder mBuilder =
@@ -95,6 +98,7 @@ public class GcmIntentService extends IntentService {
                             .setContentTitle(title != null ? title : getString(R.string.app_name))
                             .setStyle(new NotificationCompat.BigTextStyle()
                                     .bigText(message))
+                            .setVibrate(vib_pattern)
                             .setAutoCancel(true)
                             .setContentText(message);
 
