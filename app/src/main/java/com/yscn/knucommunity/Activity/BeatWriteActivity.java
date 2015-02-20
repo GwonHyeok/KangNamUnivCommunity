@@ -263,6 +263,7 @@ public class BeatWriteActivity extends ActionBarActivity implements View.OnClick
                 invalidateScrollView();
             }
         });
+        ApplicationUtil.getInstance().setTypeFace(photoChildView);
         invalidateScrollView();
     }
 
@@ -318,6 +319,7 @@ public class BeatWriteActivity extends ActionBarActivity implements View.OnClick
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(uri.toString(), photoThumbnailView,
                 ImageLoaderUtil.getInstance().getNoCacheImageOptions());
+        ApplicationUtil.getInstance().setTypeFace(photoChildView);
         invalidateScrollView();
     }
 

@@ -327,6 +327,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(uri.toString(), photoThumbnailView,
                 ImageLoaderUtil.getInstance().getNoCacheImageOptions());
+        ApplicationUtil.getInstance().setTypeFace(photoChildView);
         invalidateScrollView();
     }
 
