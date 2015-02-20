@@ -23,8 +23,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="right"
             android:gravity="center_vertical|right"
-            android:paddingRight="14dp"
-            android:text="등록"
+            android:padding="14dp"
+            android:text="@string/register_text"
             android:textColor="#5592ae"
             android:textSize="19sp" />
 
@@ -32,18 +32,18 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1.4dp"
+        android:layout_height="1.2dp"
         android:background="#bdbdbd" />
 
     <TextView
         android:id="@+id/board_write_boardtype"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
+        android:paddingLeft="18dp"
         android:text="자유게시판"
         android:textColor="#5c5c5c"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
@@ -53,14 +53,14 @@
     <EditText
         android:id="@+id/board_write_title"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:hint="제목을 입력해주세요."
-        android:paddingLeft="20dp"
+        android:paddingLeft="18dp"
         android:textColor="#5c5c5c"
         android:textColorHint="#808080"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
@@ -79,12 +79,12 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="36dp"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="이미지 첨부"
                 android:textColor="#5c5c5c"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -133,7 +133,7 @@
             android:gravity="top"
             android:hint="내용을 입력해 주세요."
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
+            android:paddingLeft="18dp"
             android:paddingRight="16dp"
             android:paddingTop="14dp"
             android:textColor="#5c5c5c"
@@ -153,8 +153,8 @@
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
+            android:paddingLeft="18dp"
+            android:paddingRight="18dp"
             android:paddingTop="10dp">
 
             <!--<TextView-->

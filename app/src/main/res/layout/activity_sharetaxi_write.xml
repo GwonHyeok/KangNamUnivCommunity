@@ -24,7 +24,7 @@
             android:layout_gravity="right"
             android:background="@drawable/bg_default_select_item_effect"
             android:gravity="center_vertical|right"
-            android:paddingRight="14dp"
+            android:padding="14dp"
             android:text="@string/register_text"
             android:textColor="#5592ae"
             android:textSize="19sp" />
@@ -33,15 +33,15 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1.4dp"
+        android:layout_height="1.2dp"
         android:background="#bdbdbd" />
 
     <LinearLayout
         android:id="@+id/taxi_share_write_departure_time"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:orientation="horizontal"
-        android:paddingLeft="20dp">
+        android:paddingLeft="18dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,16 +49,19 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_departure_time"
             android:textColor="#5c5c5c"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <TextView
             android:id="@+id/taxi_share_write_departuretime_textview"
             android:layout_width="fill_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
+            android:hint="시간을 선택해주세요."
             android:paddingLeft="5dp"
             android:textColor="#5c5c5c"
-            android:textSize="18sp" />
+            android:textColorHint="#808080"
+            android:textSize="17sp" />
+
     </LinearLayout>
 
 
@@ -69,8 +72,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="20dp">
+        android:layout_height="36dp"
+        android:paddingLeft="18dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,12 +81,12 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_departure_location"
             android:textColor="#5c5c5c"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/taxi_share_write_departure_textview"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:hint="@string/taxi_share_write_departure_location_ex"
@@ -91,7 +94,7 @@
             android:singleLine="true"
             android:textColor="#5c5c5c"
             android:textColorHint="#808080"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
     <View
@@ -101,8 +104,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="20dp">
+        android:layout_height="36dp"
+        android:paddingLeft="18dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -110,12 +113,12 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_destination_location"
             android:textColor="#5c5c5c"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/taxi_share_write_destination_textview"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:hint="@string/taxi_share_write_destination_location_ex"
@@ -123,7 +126,7 @@
             android:singleLine="true"
             android:textColor="#5c5c5c"
             android:textColorHint="#808080"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
     <View
@@ -134,8 +137,8 @@
     <LinearLayout
         android:id="@+id/taxi_share_write_peoplecount"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:paddingLeft="20dp">
+        android:layout_height="36dp"
+        android:paddingLeft="18dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -143,12 +146,12 @@
             android:gravity="center_vertical"
             android:text="@string/taxi_share_write_share_people_count"
             android:textColor="#5c5c5c"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
 
         <EditText
             android:id="@+id/taxi_share_write_peoplecount_textview"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:inputType="numberSigned"
@@ -156,7 +159,7 @@
             android:hint="(본인 포함)"
             android:textColor="#5c5c5c"
             android:textColorHint="#808080"
-            android:textSize="18sp" />
+            android:textSize="17sp" />
     </LinearLayout>
 
     <View
@@ -179,7 +182,7 @@
             android:gravity="top"
             android:hint="내용을 입력해 주세요."
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
+            android:paddingLeft="18dp"
             android:paddingRight="16dp"
             android:paddingTop="14dp"
             android:textColor="#5c5c5c"
@@ -199,7 +202,7 @@
             android:layout_alignParentBottom="true"
             android:orientation="vertical"
             android:paddingBottom="10dp"
-            android:paddingLeft="20dp"
+            android:paddingLeft="18dp"
             android:paddingRight="16dp"
             android:paddingTop="10dp">
 

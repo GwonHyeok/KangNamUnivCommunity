@@ -10,25 +10,26 @@
     <string name="base_text_professor_major">전공 : %1$s</string>
     <string name="base_text_professor_email">이메일 : %1$s</string>
 
-    <string name="register_text">계정 등록</string>
+    <string name="register_text">등록</string>
+    <string name="account_register_text">계정 등록</string>
     <string name="register_description">※ 프로필 이미지, 닉네임을 등록해주세요.\n   (나중에 사용자 정보 창에서 변경 가능)</string>
-    <string name="warning_input_login_form">아이디 또는 비밀번호를 입력해주세요.</string>
+    <string name="warning_input_login_form">아이디 또는 비밀번호를 입력해주세요</string>
     <string name="input_password_hint">비밀번호를 입력해 주세요</string>
-    <string name="error_login">로그인에 실패하였습니다.</string>
-    <string name="error_password">비밀번호가 다릅니다.</string>
-    <string name="register_fail">회원가입에 실패하였습니다.</string>
-    <string name="register_success">회원가입에 성공하였습니다.</string>
+    <string name="error_login">로그인에 실패하였습니다</string>
+    <string name="error_password">비밀번호가 다릅니다</string>
+    <string name="register_fail">회원가입에 실패하였습니다</string>
+    <string name="register_success">회원가입에 성공하였습니다</string>
     <string name="register_already_exist">이미 존재하는 계정입니다.</string>
     <string name="error_empty_studentnumber_info">로그인 정보가 존재하지 않습니다\n다시 로그인 해주세요</string>
     <string name="base_text_register_nickname">닉네임 : %1$s</string>
     <string name="text_nickname">닉네임</string>
     <string name="base_text_register_name">이름 : %1$s</string>
     <string name="base_text_register_studentnumber">학번 : %1$s</string>
-    <string name="warning_input_studentnumber">학번을 입력해 주세요.</string>
-    <string name="warning_input_password">비밀번호 정보가 없습니다.</string>
-    <string name="warning_input_nickname">닉네임을 입력해 주세요.</string>
-    <string name="warning_input_name">이름을 입력해 주세요.</string>
-    <string name="warning_input_profileimage">프로필 이미지를 선택해주세요.</string>
+    <string name="warning_input_studentnumber">학번을 입력해 주세요</string>
+    <string name="warning_input_password">비밀번호 정보가 없습니다</string>
+    <string name="warning_input_nickname">닉네임을 입력해 주세요</string>
+    <string name="warning_input_name">이름을 입력해 주세요</string>
+    <string name="warning_input_profileimage">프로필 이미지를 선택해주세요</string>
     <string name="warning_no_homepage">홈페이지 정보가 없습니다</string>
 
     <string name="delivery_koreanfood">한식</string>
@@ -101,11 +102,11 @@
     <string name="warning_taxi_share_write_destination">도착장소를 입력해 주세요</string>
     <string name="warning_taxi_share_write_peoplecount">현재 인원 수를 입력해 주세요</string>
     <string name="warning_taxi_share_write_invalidpeoplecount">현재 인원 수는 1명 이상, 3명 이하이어야 합니다</string>
-    <string name="error_notexist_board_content">존재하지 않는 글입니다</string>
-    <string name="warning_taxi_share_write_content">내용을 입력해 주세요</string>
+    <string name="error_notexist_board_content">존재하지 않는 글 입니다</string>
+    <string name="warning_taxi_share_write_content">내용을 입력해주세요</string>
     <string name="warning_board_write_title">제목을 입력해 주세요</string>
     <string name="warning_board_write_content">내용을 입력해 주세요</string>
-    <string name="warning_account_delete_message">정말로 계정을 삭제하시겠습니까?\n계정을 삭제하시면 모든 정보가 삭제됩니다</string>
+    <string name="warning_account_delete_message">정말로 계정을 삭제하시겠습니까?\n계정을 삭제하시면 모든 정보와 글이 사라집니다.</string>
     <string name="success_delete_account">성공적으로 계정을 삭제하였습니다</string>
     <string name="taxi_share_set_with_cancel">합승 취소</string>
 
@@ -128,7 +129,7 @@
     <string name="text_studentinfo_go_setting">설정으로 이동</string>
     <string name="text_setting_title">설정</string>
     <string name="text_setting_getting_data">정보를 가져오는 중입니다</string>
-    <string name="text_setting_phonenumber_dialog_message">핸드폰 번호를 입력하세요.</string>
+    <string name="text_setting_phonenumber_dialog_message">핸드폰 번호를 입력하세요</string>
     <string name="text_are_you_want_logout_message">정말로 로그아웃 하시겠습니까?</string>
     <string name="text_setting_author_devices">인증된 기기</string>
     <string name="text_setting_author_device_logout">정말로 해당 기기를 로그아웃 시키겠습니까?</string>
@@ -148,10 +149,10 @@
     <string name="text_are_you_sure_meeting_success">정말로 미팅 약속이 잡히셨습니까?</string>
     <string name="success_update_meeting">미팅 정보를 성공적으로 업데이트 하였습니다</string>
     <string name="profile_name_beat">학생회(BEAT)</string>
-    <string name="text_greenlight_change">정말로 그린라이트 결과를 수정하시겠습니까?</string>
-    <string name="error_notexist_map_app">지도를 열수있는 사용자 어플리케이션이 존재하지 않습니다.</string>
+    <string name="text_greenlight_change">정말로 그린라이트를 수정하시겠습니까?</string>
+    <string name="error_notexist_map_app">지도를 열 수 있는 사용자 어플리케이션이 존재하지 않습니다</string>
     <string name="setting_feedback_subject">강남대학교 커뮤니티 피드백</string>
     <string name="text_select_delivery_category">음식 카테고리를 선택해주세요</string>
-    <string name="double_back_kill_app">뒤로가기키를 한번 더 눌러 종료해주세요.</string>
+    <string name="double_back_kill_app">뒤로가기를 한번 더 눌러 종료해주세요</string>
     <string name="receive_new_board_comment">회원님의 글에 새로운 댓글이 달렸습니다.</string>
 </resources>
