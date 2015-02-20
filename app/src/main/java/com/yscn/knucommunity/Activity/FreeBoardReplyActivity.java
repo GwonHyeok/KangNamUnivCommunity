@@ -55,6 +55,7 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
         ((TextView) findViewById(R.id.freeboard_reply_title)).setText(getIntent().getStringExtra("title"));
 
         findViewById(R.id.reply_textview).setOnClickListener(this);
+        findViewById(R.id.freeboard_reply_edittext).setOnClickListener(this);
         getCommentData();
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
@@ -243,7 +244,6 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
             int moveX = (int) (replyImageView.getX() + replyImageView.getWidth());
 
             replyEditText.setCursorVisible(!isReplyMode);
-            replyEditText.setEnabled(!isReplyMode);
             replyEditText.setSelection(replyEditText.length());
             replyButtonView.setVisibility(isReplyMode ? View.GONE : View.VISIBLE);
             replyEditText.setHint(isReplyMode ?
@@ -275,6 +275,8 @@ public class FreeBoardReplyActivity extends ActionBarActivity implements View.On
 
         } else if (id == R.id.reply_textview) {
             addComment();
+            onClick(findViewById(R.id.freeboard_reply_mainview));
+        } else if (id == R.id.freeboard_reply_edittext) {
             onClick(findViewById(R.id.freeboard_reply_mainview));
         }
     }

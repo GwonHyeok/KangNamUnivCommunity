@@ -103,6 +103,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
     private void viewInit() {
         findViewById(R.id.view).setOnClickListener(this);
         findViewById(R.id.reply_textview).setOnClickListener(this);
+        findViewById(R.id.reply_edittext).setOnClickListener(this);
     }
 
     private void getReplyData() {
@@ -382,7 +383,6 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
             int moveX = (int) (replyImageView.getX() + replyImageView.getWidth());
 
             replyEditText.setCursorVisible(!isReplyMode);
-            replyEditText.setEnabled(!isReplyMode);
             replyEditText.setSelection(replyEditText.length());
             replyButtonView.setVisibility(isReplyMode ? View.GONE : View.VISIBLE);
             replyEditText.setHint(isReplyMode ?
@@ -414,6 +414,8 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
         } else if (id == R.id.reply_textview) {
             addComment();
+            onClick(findViewById(R.id.view));
+        } else if (id == R.id.reply_edittext) {
             onClick(findViewById(R.id.view));
         }
     }

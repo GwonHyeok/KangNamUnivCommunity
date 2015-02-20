@@ -89,7 +89,6 @@
             android:layout_toRightOf="@+id/imageView"
             android:background="@android:color/transparent"
             android:cursorVisible="false"
-            android:enabled="false"
             android:hint="@string/community_reply_text"
             android:maxHeight="80dp"
             android:minHeight="40dp"
