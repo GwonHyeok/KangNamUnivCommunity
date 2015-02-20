@@ -66,4 +66,7 @@ public class UrlList {
     public static final String BEAT_DETAIL_URL = MAIN_URL + "beat/getBeatDetail/";
     public static final String BEAT_DETAIL_DELETE_URL = MAIN_URL + "beat/deleteBeatDetail/";
     public static final String BEAT_WRITE_CONTENT_URL = MAIN_URL + "beat/writeBeatContent/";
+    public static final String BEAT_WRITE_COMMENT_URL = MAIN_URL + "beat/writeBeatComment/";
+    public static final String BEAT_DELETE_COMMENT_URL = MAIN_URL + "beat/deleteComment/";
+    public static final String BEAT_GET_COMMENT_URL = MAIN_URL + "beat/getComments/";
 }

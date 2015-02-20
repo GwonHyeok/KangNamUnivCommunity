@@ -1122,6 +1122,47 @@ public class NetworkUtil {
         );
     }
 
+    public ArrayList<CommentListItems> getBeatComment(String contentID) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = postData(UrlList.BEAT_GET_COMMENT_URL + contentID, null);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+        if (!checkResultData(object)) {
+            return null;
+        }
+        ArrayList<CommentListItems> list = new ArrayList<>();
+        JSONArray jsonArray = (JSONArray) object.get("data");
+        for (Object obj : jsonArray) {
+            JSONObject jsonObject = (JSONObject) obj;
+            String commentid = jsonObject.get("commentid").toString();
+            String studentnumber = jsonObject.get("studentnumber").toString();
+            String writername = jsonObject.get("name").toString();
+            String time = jsonObject.get("time").toString();
+            String comment = jsonObject.get("content").toString();
+            list.add(new CommentListItems(commentid, writername, comment, studentnumber, time));
+        }
+        return list;
+    }
+
+    public JSONObject deleteBeatComment(String commentid) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("commentid", commentid);
+        HttpResponse httpResponse = postData(UrlList.BEAT_DELETE_COMMENT_URL, parameter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
+    public boolean writeBeatComment(String contentID, String comment) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("comment", comment);
+        HttpResponse httpResponse = postData(UrlList.BEAT_WRITE_COMMENT_URL + contentID, parameter);
+        JSONObject object = (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+        return checkResultData(object);
+    }
+
     private String URLEncode(String str) {
         try {
             return URLEncoder.encode(str, "UTF-8");
@@ -1160,6 +1201,7 @@ public class NetworkUtil {
     }
 
     private HttpResponse postData(String URL, HashMap<String, String> parameter) throws IOException {
+        Log.d(getClass().getSimpleName(), "POST URL : " + URL);
         HttpPost httpPost = new HttpPost(URL);
         ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
         if (parameter != null) {

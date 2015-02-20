@@ -51,7 +51,22 @@ public class BeatDetailActivity extends ActionBarActivity {
         toolbarInit();
         setBeatIntentData();
         setBeatContentData();
+        setReplyView();
         ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.beat_detail_root));
+    }
+
+    private void setReplyView() {
+        if (mBeatIndex == BeatViewPagetAdapter.BEAT.QNA.getIndex()) {
+            findViewById(R.id.beat_replayview).setVisibility(View.VISIBLE);
+            findViewById(R.id.beat_replayview).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(BeatDetailActivity.this, BeatReplyActivity.class);
+                    intent.putExtra("contentID", mContentId);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     private void toolbarInit() {
