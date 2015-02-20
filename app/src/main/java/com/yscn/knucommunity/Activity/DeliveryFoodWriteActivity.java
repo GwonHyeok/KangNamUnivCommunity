@@ -174,7 +174,7 @@ public class DeliveryFoodWriteActivity extends ActionBarActivity {
         /* 사진 썸네일 적용 */
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(uri.toString(), photoThumbnailView,
-                ImageLoaderUtil.getInstance().getNoCacheImageOptions());
+                ImageLoaderUtil.getInstance().getDefaultOptions());
         invalidateScrollView();
     }
 

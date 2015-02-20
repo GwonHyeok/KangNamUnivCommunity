@@ -355,7 +355,7 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
 
                             for (int i = 0; i < photoData.length; i++) {
                                 JSONObject photoJsonObject = (JSONObject) photoArray.get(i);
-                                photoData[i] = photoJsonObject.get("filename").toString();
+                                photoData[i] = UrlList.MAIN_URL + photoJsonObject.get("filename").toString();
                             }
                             LooknLookItems lookItems = new LooknLookItems(time, content, photoData);
                             mLooknLookAdapter.addListItem(lookItems);
@@ -419,7 +419,7 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
                 });
                 linearLayout.addView(imageCardView);
 
-                ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + Imageurls[i],
+                ImageLoader.getInstance().displayImage(Imageurls[i],
                         imageView, ImageLoaderUtil.getInstance().getThumbProfileImageOptions(), new ImageLoadingListener() {
                             @Override
                             public void onLoadingStarted(String imageUri, View view) {

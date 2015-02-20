@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -110,14 +112,35 @@ public class FreeBoardDetailActivity extends BaseBoardDetailActivity implements 
                         (LinearLayout) findViewById(R.id.freeboard_detail_content_dataview);
                 dataView.removeViews(1, dataView.getChildCount() - 1);
 
-                for (Object obj : fileArray) {
+
+                String[] tmpurls = new String[fileArray.size()];
+                for (int i = 0; i < fileArray.size(); i++) {
+                    Object obj = fileArray.get(i);
+                    tmpurls[i] = UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString();
+                }
+
+                final String[] urls = tmpurls;
+                for (int i = 0; i < urls.length; i++) {
+                    final int imagePosition = i;
                     View fileImageView = LayoutInflater.from(getContext()).inflate(R.layout.ui_board_image_card, dataView, false);
                     final ImageView imageView = (ImageView) fileImageView.findViewById(R.id.imageView);
                     final ProgressBar progressBar = (ProgressBar) fileImageView.findViewById(R.id.progressbar);
                     dataView.addView(fileImageView);
+                    fileImageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getContext(), ImageCollectionActivity.class);
+                            intent.putExtra("Imageurls", urls);
+                            intent.putExtra("Position", imagePosition);
 
-                    ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
-                            imageView, ImageLoaderUtil.getInstance().getNoCacheImageOptions(), new ImageLoadingListener() {
+                            ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                    FreeBoardDetailActivity.this, v, "imagecollection_transition");
+                            ActivityCompat.startActivity(FreeBoardDetailActivity.this, intent, options.toBundle());
+                        }
+                    });
+
+                    ImageLoader.getInstance().displayImage(urls[i],
+                            imageView, ImageLoaderUtil.getInstance().getDiskCacheImageOptions(), new ImageLoadingListener() {
                                 @Override
                                 public void onLoadingStarted(String imageUri, View view) {
 

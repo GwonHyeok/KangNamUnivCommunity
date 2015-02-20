@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.yscn.knucommunity.CustomView.ScaleImageView;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
-import com.yscn.knucommunity.Util.UrlList;
+
+import uk.co.senab.photoview.PhotoView;
 
 /**
  * Created by GwonHyeok on 15. 2. 18..
@@ -44,9 +44,9 @@ public class ImageCollectionActivity extends ActionBarActivity {
             public Object instantiateItem(ViewGroup viewGroup, int position) {
                 View view = LayoutInflater.from(ImageCollectionActivity.this)
                         .inflate(R.layout.ui_collection_image_view, viewGroup, false);
-                ScaleImageView imageView = (ScaleImageView) view.findViewById(R.id.imageview);
+                PhotoView imageView = (PhotoView) view.findViewById(R.id.imageview);
                 ImageLoaderUtil.getInstance().initImageLoader();
-                ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + imageUrls[position], imageView);
+                ImageLoader.getInstance().displayImage(imageUrls[position], imageView);
                 viewGroup.addView(view);
                 return view;
             }
@@ -54,6 +54,11 @@ public class ImageCollectionActivity extends ActionBarActivity {
             @Override
             public boolean isViewFromObject(View view, Object object) {
                 return view == object;
+            }
+
+            @Override
+            public void destroyItem(ViewGroup container, int position, Object object) {
+                container.removeView((View) object);
             }
         };
 

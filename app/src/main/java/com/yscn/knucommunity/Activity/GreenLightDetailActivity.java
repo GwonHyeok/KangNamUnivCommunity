@@ -113,7 +113,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
                         dataView.addView(fileImageView);
 
                         ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
-                                imageView, ImageLoaderUtil.getInstance().getNoCacheImageOptions(), new ImageLoadingListener() {
+                                imageView, ImageLoaderUtil.getInstance().getDiskCacheImageOptions(), new ImageLoadingListener() {
                                     @Override
                                     public void onLoadingStarted(String imageUri, View view) {
 

@@ -46,9 +46,10 @@ public class ImageLoaderUtil {
                 .build();
     }
 
-    public DisplayImageOptions getNoCacheImageOptions() {
+    public DisplayImageOptions getDiskCacheImageOptions() {
         return new DisplayImageOptions.Builder()
                 .imageScaleType(ImageScaleType.EXACTLY)
+                .cacheOnDisk(true)
                 .displayer(new FadeInBitmapDisplayer(400))
                 .showImageForEmptyUri(R.drawable.bg_load_image_error)
                 .showImageOnFail(R.drawable.bg_load_image_error)

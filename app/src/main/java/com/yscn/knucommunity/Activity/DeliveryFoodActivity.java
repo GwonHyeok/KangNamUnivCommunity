@@ -102,7 +102,7 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
 
                         nameView.setText(item.getName());
                         phoneView.setText(item.getTelnum());
-                        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getNoCacheImageOptions());
+                        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getDiskCacheImageOptions());
                         view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                         dataView.addView(view);
                         ApplicationUtil.getInstance().setTypeFace(view);
