@@ -33,6 +33,7 @@
             android:textSize="30sp" />
 
         <ScrollView
+            android:fadeScrollbars="false"
             android:id="@+id/studentgroup_scrollview"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -273,9 +274,10 @@
                         android:layout_weight="1"
                         android:background="@drawable/bg_default_select_item_effect"
                         android:gravity="center"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:visibility="gone">
 
-                        <ImageView
+                    <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="15dp"
