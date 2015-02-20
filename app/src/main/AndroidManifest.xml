@@ -95,7 +95,8 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Activity.LibraryActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.MarketMainActivity"
             android:screenOrientation="portrait"

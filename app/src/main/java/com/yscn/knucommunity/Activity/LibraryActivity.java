@@ -1,20 +1,32 @@
 package com.yscn.knucommunity.Activity;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
@@ -52,7 +64,6 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
             getWindow().setStatusBarColor(getResources().getColor(R.color.library_search_primary_dark_color));
             getWindow().setNavigationBarColor(getResources().getColor(R.color.library_search_primary_dark_color));
         }
-        getSupportActionBar().hide();
         findViewById(R.id.library_find).setOnClickListener(this);
         findViewById(R.id.library_usage).setOnClickListener(this);
         getSupportFragmentManager().beginTransaction().replace(R.id.library_container, new FindFragment()).commit();
@@ -149,8 +160,46 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
             recyclerView.setLayoutManager(mLayoutManager);
             searchItemAdapter = new LibrarySearchItemAdapter(itemses);
             recyclerView.setAdapter(searchItemAdapter);
+
+            Toolbar toolbar = (Toolbar) view.findViewById(R.id.toolbar);
+            ((ActionBarActivity) getActivity()).setSupportActionBar(toolbar);
+            ((ActionBarActivity) getActivity()).getSupportActionBar().setDisplayShowTitleEnabled(false);
+            setHasOptionsMenu(true);
+
             bookDataInit(bookKeyword, page);
             return view;
+        }
+
+        @Override
+        public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
+            Log.d(getClass().getSimpleName(), "onCreateOptionsMenu");
+            super.onCreateOptionsMenu(menu, menuInflater);
+            menuInflater.inflate(R.menu.board_menu, menu);
+
+            /* Hide Write Button */
+            menu.getItem(1).setVisible(false);
+
+            MenuItem searchmenuItem = menu.findItem(R.id.action_search);
+            SearchManager searchManager = (SearchManager) getActivity().getSystemService(Context.SEARCH_SERVICE);
+            SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchmenuItem);
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(getActivity().getComponentName()));
+            searchView.setIconifiedByDefault(false);
+            searchView.requestFocus();
+            setSearchIconColor(searchView);
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String s) {
+                    page = 1;
+                    bookDataInit(s, page);
+                    return true;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String s) {
+                    return true;
+                }
+            });
+            ApplicationUtil.getInstance().setTypeFace(searchView);
         }
 
         private void bookDataInit(final String bookKeyword, final int page) {
@@ -176,6 +225,9 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                 @Override
                 protected void onPostExecute(JSONObject jsonObject) {
                     clearProgressDialog.cancel();
+                    if (page == 1) {
+                        itemses.clear();
+                    }
                     JSONArray rootArray = (JSONArray) jsonObject.get("data");
                     for (Object object : rootArray) {
                         JSONObject dataObject = (JSONObject) object;
@@ -194,6 +246,24 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     }
                 }
             }.execute();
+        }
+
+        /**
+         * SearchView 이미지 색 변경
+         *
+         * @param searchView SearchView MenuItem
+         */
+        private void setSearchIconColor(SearchView searchView) {
+            LinearLayout ll = (LinearLayout) searchView.getChildAt(0);
+            LinearLayout ll2 = (LinearLayout) ll.getChildAt(2);
+            LinearLayout ll3 = (LinearLayout) ll2.getChildAt(1);
+            SearchView.SearchAutoComplete autoComplete = ((SearchView.SearchAutoComplete) ll3.getChildAt(0));
+            ImageView searchCloseButton = (ImageView) ll3.getChildAt(1);
+            ImageView labelView = (ImageView) ll.getChildAt(1);
+
+            autoComplete.setTextColor(Color.WHITE);
+            searchCloseButton.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
+            labelView.getDrawable().setColorFilter(Color.WHITE, PorterDuff.Mode.MULTIPLY);
         }
     }
 
