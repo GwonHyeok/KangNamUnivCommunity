@@ -3,13 +3,15 @@
     android:id="@+id/share_taxi_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="100">
 
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="205dp"
-        android:fitsSystemWindows="true">
+        android:layout_height="0dp"
+        android:fitsSystemWindows="true"
+        android:layout_weight="35">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -80,7 +82,8 @@
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/board_list_swiperefresh"
         android:layout_width="match_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="0dp"
+        android:layout_weight="65">
 
     <com.yscn.knucommunity.CustomView.NotifiableScrollView
         android:id="@+id/share_taxi_scrollview"

@@ -28,10 +28,11 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="18dp"
+        android:paddingLeft="18dp"
+        android:paddingRight="18dp"
         android:layout_marginTop="58dp"
         android:gravity="center_vertical"
-        android:text="※ 프로필 이미지, 닉네임을 등록해주세요.\n   (나중에 사용자 정보 창에서 변경 가능)"
+        android:text="@string/register_description"
         android:textColor="@android:color/white"
         android:textSize="16sp" />
 

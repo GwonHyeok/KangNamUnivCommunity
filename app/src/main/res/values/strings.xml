@@ -10,7 +10,8 @@
     <string name="base_text_professor_major">전공 : %1$s</string>
     <string name="base_text_professor_email">이메일 : %1$s</string>
 
-    <string name="register_text">등록</string>
+    <string name="register_text">계정 등록</string>
+    <string name="register_description">※ 프로필 이미지, 닉네임을 등록해주세요.\n   (나중에 사용자 정보 창에서 변경 가능)</string>
     <string name="warning_input_login_form">아이디 또는 비밀번호를 입력해주세요.</string>
     <string name="input_password_hint">비밀번호를 입력해 주세요</string>
     <string name="error_login">로그인에 실패하였습니다.</string>
