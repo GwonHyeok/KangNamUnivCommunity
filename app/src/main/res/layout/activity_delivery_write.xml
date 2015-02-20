@@ -20,17 +20,17 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="1.4dp"
+        android:layout_height="1.2dp"
         android:background="#bdbdbd" />
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:gravity="center_vertical"
-        android:paddingLeft="20dp"
+        android:paddingLeft="18dp"
         android:text="배달음식"
         android:textColor="#5c5c5c"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
@@ -40,14 +40,14 @@
     <TextView
         android:id="@+id/delivery_write_category"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:hint="카테고리를 선택해주세요"
-        android:paddingLeft="20dp"
+        android:paddingLeft="18dp"
         android:textColor="#5c5c5c"
         android:textColorHint="#808080"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
@@ -57,14 +57,14 @@
     <EditText
         android:id="@+id/delivery_write_shop_name"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="36dp"
         android:background="@android:color/transparent"
         android:gravity="center_vertical"
         android:hint="가게 이름을 입력해주세요"
-        android:paddingLeft="20dp"
+        android:paddingLeft="18dp"
         android:textColor="#5c5c5c"
         android:textColorHint="#808080"
-        android:textSize="18sp" />
+        android:textSize="17sp" />
 
     <View
         android:layout_width="match_parent"
@@ -95,7 +95,7 @@
             android:layout_toRightOf="@+id/textView2"
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
-            android:hint="번호 입력(- 제외, 03112345678)"
+            android:hint="(- 포함, 031-123-5678)"
             android:inputType="numberSigned"
             android:paddingLeft="8dp"
             android:singleLine="true"
@@ -121,12 +121,12 @@
 
             <TextView
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="36dp"
                 android:gravity="center_vertical"
-                android:paddingLeft="20dp"
+                android:paddingLeft="18dp"
                 android:text="음식점 이미지 첨부"
                 android:textColor="#5c5c5c"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -175,7 +175,8 @@
             android:layout_height="wrap_content"
             android:background="@color/delivery_main_color"
             android:gravity="center"
-            android:onClick="onClickWrite">
+            android:onClick="onClickWrite"
+            android:id="@+id/linearLayout4">
 
             <ImageView
                 android:layout_width="wrap_content"
@@ -193,5 +194,16 @@
                 android:textColor="@android:color/white"
                 android:textSize="17sp" />
         </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="* 추후 메뉴판도 입력가능하도록 업데이트 하겠습니다."
+            android:textColor="#5c5c5c"
+            android:textSize="10sp"
+            android:layout_above="@+id/linearLayout4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="14dp"/>
     </RelativeLayout>
 </LinearLayout>
