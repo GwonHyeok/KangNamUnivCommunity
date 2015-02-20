@@ -256,7 +256,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
         photoCancelView.setTag(url);
 
-                /* 사진 썸네일 적용 */
+        /* 사진 썸네일 적용 */
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + url, photoThumbnailView,
                 ImageLoaderUtil.getInstance().getNoCacheImageOptions());
@@ -270,6 +270,8 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
                 invalidateScrollView();
             }
         });
+
+        ApplicationUtil.getInstance().setTypeFace(photoChildView);
         invalidateScrollView();
     }
 
