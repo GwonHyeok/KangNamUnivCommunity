@@ -27,25 +27,28 @@
                 android:layout_marginTop="10dp"
                 android:text="제 1열람실"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -62,8 +65,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="63%"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textColor="#4c8dfb"
+                android:textSize="28sp" />
 
             <com.yscn.knucommunity.CustomView.PieGraph
                 android:id="@+id/library_usage_piegraph"
@@ -100,25 +103,28 @@
                 android:layout_marginTop="10dp"
                 android:text="제 2열람실"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -135,8 +141,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="63%"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textColor="#ec4d83"
+                android:textSize="28sp" />
 
             <com.yscn.knucommunity.CustomView.PieGraph
                 android:id="@+id/library_usage_piegraph1"
@@ -172,25 +178,28 @@
                 android:layout_marginTop="10dp"
                 android:text="제 3열람실"
                 android:textColor="@android:color/white"
-                android:textSize="18sp" />
+                android:textSize="17sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="전체 좌석수 : 246"
-                android:textColor="@android:color/white" />
+                android:textColor="#f0f0f0"
+                android:textSize="16sp"/>
         </LinearLayout>
 
         <LinearLayout
@@ -207,8 +216,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:text="63%"
-                android:textColor="@android:color/white"
-                android:textSize="16sp" />
+                android:textColor="#88c14b"
+                android:textSize="28sp" />
 
             <com.yscn.knucommunity.CustomView.PieGraph
                 android:id="@+id/library_usage_piegraph2"
