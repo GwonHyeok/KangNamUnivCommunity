@@ -3,162 +3,234 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="5">
+    android:background="#fafafa"
+    android:orientation="vertical">
 
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#FF556e79" />
 
     <RelativeLayout
-        android:id="@+id/communitty_free_board"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FFEB962C">
+        android:layout_height="72dp"
+        android:background="#FF556e79"
+        android:gravity="center_vertical">
+
+        <com.yscn.knucommunity.CustomView.CircleImageView
+            android:id="@+id/imageview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:src="@drawable/ic_profile" />
+
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:text="자유게시판"
+            android:layout_toRightOf="@+id/imageview"
+            android:text="커뮤니티"
             android:textColor="@android:color/white"
-            android:textSize="26sp" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/ic_move" />
+            android:textSize="20sp" />
     </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/communitty_faq_board"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FFEE543A">
+        android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:text="질문과 답변"
-            android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/ic_move" />
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/communitty_free_board"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="@drawable/bg_default_select_item_effect">
 
-    <RelativeLayout
-        android:id="@+id/communitty_metting_board"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FFD7325A">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="자유게시판"
+                    android:textColor="#575757"
+                    android:textSize="26sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:text="미팅"
-            android:textColor="@android:color/white"
-            android:textSize="26sp" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_move" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/ic_move" />
-    </RelativeLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d6d6d6" />
+            </RelativeLayout>
 
-    <RelativeLayout
-        android:id="@+id/communitty_greenright_board"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FF94315F">
+            <RelativeLayout
+                android:id="@+id/communitty_faq_board"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="@drawable/bg_default_select_item_effect">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:text="그린라이트"
-            android:textColor="@android:color/white"
-            android:textSize="26sp" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="질문과 답변"
+                    android:textColor="#575757"
+                    android:textSize="26sp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/ic_move" />
-    </RelativeLayout>
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_move" />
 
-    <RelativeLayout
-        android:id="@+id/communitty_delivery_food"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FF412D38">
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d6d6d6" />
+            </RelativeLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:text="배달음식"
-            android:textColor="@android:color/white"
-            android:textSize="26sp" />
+            <RelativeLayout
+                android:id="@+id/communitty_metting_board"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="@drawable/bg_default_select_item_effect">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/ic_move" />
-    </RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="미팅"
+                    android:textColor="#575757"
+                    android:textSize="26sp" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="#FFEB962C">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_move" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="30dp"
-            android:text="자유게시판"
-            android:textColor="@android:color/white"
-            android:textSize="26sp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d6d6d6" />
+            </RelativeLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="30dp"
-            android:src="@drawable/ic_move" />
-    </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/communitty_greenright_board"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="@drawable/bg_default_select_item_effect">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="그린라이트"
+                    android:textColor="#575757"
+                    android:textSize="26sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_move" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d6d6d6" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/communitty_share_taxi"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="@drawable/bg_default_select_item_effect">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="택시합승"
+                    android:textColor="#575757"
+                    android:textSize="26sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_move" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d6d6d6" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/communitty_delivery_food"
+                android:layout_width="match_parent"
+                android:layout_height="76dp"
+                android:background="@drawable/bg_default_select_item_effect">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="30dp"
+                    android:text="배달음식"
+                    android:textColor="#575757"
+                    android:textSize="26sp" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="30dp"
+                    android:src="@drawable/ic_move" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1.4dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="#d6d6d6" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
