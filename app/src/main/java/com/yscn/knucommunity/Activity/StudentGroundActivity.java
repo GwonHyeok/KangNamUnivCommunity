@@ -117,6 +117,7 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
         findViewById(R.id.studentground_library).setOnClickListener(this);
         findViewById(R.id.studentground_map).setOnClickListener(this);
         findViewById(R.id.studentground_beat).setOnClickListener(this);
+        findViewById(R.id.studentground_external_activity).setOnClickListener(this);
     }
 
     private void log(String message) {
@@ -142,6 +143,8 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
             startActivity(new Intent(this, CampusMapActivity.class));
         } else if (id == R.id.studentground_beat) {
             startActivity(new Intent(this, BeatActivity.class));
+        } else if (id == R.id.studentground_external_activity) {
+            startActivity(new Intent(this, ExternalLinkActivity.class));
         }
     }
 

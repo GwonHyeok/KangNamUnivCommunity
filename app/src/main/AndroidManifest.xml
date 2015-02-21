@@ -251,6 +251,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme"
             android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name=".Activity.ExternalLinkActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>
