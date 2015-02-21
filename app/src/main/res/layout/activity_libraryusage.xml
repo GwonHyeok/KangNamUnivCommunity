@@ -33,26 +33,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="3dp">
 
                 <TextView
+                    android:id="@+id/library_usage_total_textview_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/library_usage_used_textview_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/library_usage_empty_textview_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -71,7 +72,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="63%"
                 android:textColor="#4c8dfb"
                 android:textSize="28sp" />
 
@@ -108,7 +108,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="제 1열람실"
+                android:text="제 2열람실"
                 android:textColor="@android:color/white"
                 android:textSize="17sp" />
 
@@ -116,26 +116,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="3dp">
 
                 <TextView
+                    android:id="@+id/library_usage_total_textview_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/library_usage_used_textview_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/library_usage_empty_textview_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -154,7 +155,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="63%"
                 android:textColor="#ec4d83"
                 android:textSize="28sp" />
 
@@ -190,7 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="제 1열람실"
+                android:text="제 3열람실"
                 android:textColor="@android:color/white"
                 android:textSize="17sp" />
 
@@ -198,26 +198,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="3dp">
 
                 <TextView
+                    android:id="@+id/library_usage_total_textview_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/library_usage_used_textview_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/library_usage_empty_textview_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="전체 좌석수 : 246"
                     android:textColor="#f0f0f0"
                     android:textSize="16sp" />
             </LinearLayout>
@@ -236,7 +237,6 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
-                android:text="63%"
                 android:textColor="#88c14b"
                 android:textSize="28sp" />
 

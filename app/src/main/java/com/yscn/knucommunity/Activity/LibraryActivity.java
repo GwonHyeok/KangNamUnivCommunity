@@ -298,6 +298,18 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     TextView percentView_2 = (TextView) view.findViewById(R.id.textView1);
                     TextView percentView_3 = (TextView) view.findViewById(R.id.textView2);
 
+                    TextView totalView_1 = (TextView) view.findViewById(R.id.library_usage_total_textview_1);
+                    TextView totalView_2 = (TextView) view.findViewById(R.id.library_usage_total_textview_2);
+                    TextView totalView_3 = (TextView) view.findViewById(R.id.library_usage_total_textview_3);
+
+                    TextView usedView_1 = (TextView) view.findViewById(R.id.library_usage_used_textview_1);
+                    TextView usedView_2 = (TextView) view.findViewById(R.id.library_usage_used_textview_2);
+                    TextView usedView_3 = (TextView) view.findViewById(R.id.library_usage_used_textview_3);
+
+                    TextView emptyView_1 = (TextView) view.findViewById(R.id.library_usage_empty_textview_1);
+                    TextView emptyView_2 = (TextView) view.findViewById(R.id.library_usage_empty_textview_2);
+                    TextView emptyView_3 = (TextView) view.findViewById(R.id.library_usage_empty_textview_3);
+
                     int usePercent;
                     PieGraph pieGraph = (PieGraph) view.findViewById(R.id.library_usage_piegraph);
                     PieSlice slice = new PieSlice();
@@ -310,7 +322,10 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     pieGraph.addSlice(slice);
                     pieGraph.setThickness(100);
                     usePercent = (int) Math.round((itemses.get(0).getUseSeat() * 100d) / itemses.get(0).getTotalSeat());
-                    percentView_1.setText(String.valueOf(usePercent));
+                    percentView_1.setText(usePercent + "%");
+                    totalView_1.setText(String.format(getString(R.string.text_library_total_seat_format), itemses.get(0).getTotalSeat()));
+                    usedView_1.setText(String.format(getString(R.string.text_library_used_seat_format), itemses.get(0).getUseSeat()));
+                    emptyView_1.setText(String.format(getString(R.string.text_library_empty_seat_format), itemses.get(0).getEmptySeat()));
 
                     PieGraph pieGraph1 = (PieGraph) view.findViewById(R.id.library_usage_piegraph1);
                     PieSlice slice1 = new PieSlice();
@@ -323,8 +338,10 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     pieGraph1.addSlice(slice1);
                     pieGraph1.setThickness(100);
                     usePercent = (int) Math.round((itemses.get(1).getUseSeat() * 100d) / itemses.get(1).getTotalSeat());
-                    percentView_2.setText(String.valueOf(usePercent));
-
+                    percentView_2.setText(usePercent + "%");
+                    totalView_2.setText(String.format(getString(R.string.text_library_total_seat_format), itemses.get(1).getTotalSeat()));
+                    usedView_2.setText(String.format(getString(R.string.text_library_used_seat_format), itemses.get(1).getUseSeat()));
+                    emptyView_2.setText(String.format(getString(R.string.text_library_empty_seat_format), itemses.get(1).getEmptySeat()));
 
                     PieGraph pieGraph2 = (PieGraph) view.findViewById(R.id.library_usage_piegraph2);
                     PieSlice slice2 = new PieSlice();
@@ -337,7 +354,10 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     pieGraph2.addSlice(slice2);
                     pieGraph2.setThickness(100);
                     usePercent = (int) Math.round((itemses.get(2).getUseSeat() * 100d) / itemses.get(2).getTotalSeat());
-                    percentView_3.setText(String.valueOf(usePercent));
+                    percentView_3.setText(usePercent + "%");
+                    totalView_3.setText(String.format(getString(R.string.text_library_total_seat_format), itemses.get(2).getTotalSeat()));
+                    usedView_3.setText(String.format(getString(R.string.text_library_used_seat_format), itemses.get(2).getUseSeat()));
+                    emptyView_3.setText(String.format(getString(R.string.text_library_empty_seat_format), itemses.get(2).getEmptySeat()));
 
                     dialog.cancel();
                 }

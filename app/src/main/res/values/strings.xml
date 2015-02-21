@@ -156,4 +156,7 @@
     <string name="double_back_kill_app">뒤로가기를 한번 더 눌러 종료해주세요</string>
     <string name="receive_new_board_comment">회원님의 글에 새로운 댓글이 달렸습니다.</string>
     <string name="error_to_get_majorname">학과 정보를 가저오는중에 문제가 발생하였습니다.</string>
+    <string name="text_library_total_seat_format">전체 좌석수 : %1$s</string>
+    <string name="text_library_used_seat_format">사용 좌석수 : %1$s</string>
+    <string name="text_library_empty_seat_format">잔여 좌석수 : %1$s</string>
 </resources>
