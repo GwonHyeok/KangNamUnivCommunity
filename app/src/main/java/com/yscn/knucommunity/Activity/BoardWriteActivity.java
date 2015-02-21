@@ -261,7 +261,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
         /* 사진 썸네일 적용 */
         ImageLoaderUtil.getInstance().initImageLoader();
-        ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + url, photoThumbnailView,
+        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + url, photoThumbnailView,
                 ImageLoaderUtil.getInstance().getDefaultOptions());
 
         photoCancelView.setOnClickListener(new View.OnClickListener() {

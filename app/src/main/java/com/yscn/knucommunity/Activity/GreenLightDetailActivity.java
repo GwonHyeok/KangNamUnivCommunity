@@ -110,7 +110,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
 
                     String[] tmpurls = new String[fileArray.size()];
                     for (int i = 0; i < tmpurls.length; i++) {
-                        tmpurls[i] = UrlList.BOARD_PHOTO_IMAGE_URL + fileArray.get(i).toString();
+                        tmpurls[i] = UrlList.MAIN_URL + fileArray.get(i).toString();
                     }
 
                     final String[] urls = tmpurls;
