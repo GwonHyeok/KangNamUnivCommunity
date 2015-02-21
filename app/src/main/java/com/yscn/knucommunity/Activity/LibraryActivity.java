@@ -311,6 +311,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     TextView emptyView_3 = (TextView) view.findViewById(R.id.library_usage_empty_textview_3);
 
                     int usePercent;
+                    int thick = (int) ApplicationUtil.getInstance().dpToPx(36);
                     PieGraph pieGraph = (PieGraph) view.findViewById(R.id.library_usage_piegraph);
                     PieSlice slice = new PieSlice();
                     slice.setColor(Color.parseColor("#2979FF"));
@@ -320,7 +321,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     slice.setColor(Color.parseColor("#525252"));
                     slice.setValue(itemses.get(0).getEmptySeat());
                     pieGraph.addSlice(slice);
-                    pieGraph.setThickness(100);
+                    pieGraph.setThickness(thick);
                     usePercent = (int) Math.round((itemses.get(0).getUseSeat() * 100d) / itemses.get(0).getTotalSeat());
                     percentView_1.setText(usePercent + "%");
                     totalView_1.setText(String.format(getString(R.string.text_library_total_seat_format), itemses.get(0).getTotalSeat()));
@@ -336,7 +337,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     slice1.setColor(Color.parseColor("#525252"));
                     slice1.setValue(itemses.get(1).getEmptySeat());
                     pieGraph1.addSlice(slice1);
-                    pieGraph1.setThickness(100);
+                    pieGraph1.setThickness(thick);
                     usePercent = (int) Math.round((itemses.get(1).getUseSeat() * 100d) / itemses.get(1).getTotalSeat());
                     percentView_2.setText(usePercent + "%");
                     totalView_2.setText(String.format(getString(R.string.text_library_total_seat_format), itemses.get(1).getTotalSeat()));
@@ -352,7 +353,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     slice2.setColor(Color.parseColor("#525252"));
                     slice2.setValue(itemses.get(1).getEmptySeat());
                     pieGraph2.addSlice(slice2);
-                    pieGraph2.setThickness(100);
+                    pieGraph2.setThickness(thick);
                     usePercent = (int) Math.round((itemses.get(2).getUseSeat() * 100d) / itemses.get(2).getTotalSeat());
                     percentView_3.setText(usePercent + "%");
                     totalView_3.setText(String.format(getString(R.string.text_library_total_seat_format), itemses.get(2).getTotalSeat()));
