@@ -16,25 +16,27 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:background="#FF556e79"
-        android:gravity="center_vertical">
+        android:background="#FF556e79">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
             android:id="@+id/imageview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:src="@drawable/ic_profile" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="28dp"
+            android:src="@drawable/ic_community_logo" />
 
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="24dp"
+            android:layout_marginStart="24dp"
             android:layout_toRightOf="@+id/imageview"
             android:text="커뮤니티"
             android:textColor="@android:color/white"
-            android:textSize="20sp" />
+            android:textSize="25sp" />
     </RelativeLayout>
 
     <ScrollView
@@ -56,10 +58,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="28dp"
                     android:text="자유게시판"
                     android:textColor="#575757"
-                    android:textSize="26sp" />
+                    android:textSize="21sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -67,12 +69,12 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="28dp"
                     android:src="@drawable/ic_move" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1.4dp"
+                    android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
                     android:background="#d6d6d6" />
             </RelativeLayout>
@@ -87,10 +89,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="28dp"
                     android:text="질문과 답변"
                     android:textColor="#575757"
-                    android:textSize="26sp" />
+                    android:textSize="21sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -98,12 +100,12 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="28dp"
                     android:src="@drawable/ic_move" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1.4dp"
+                    android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
                     android:background="#d6d6d6" />
             </RelativeLayout>
@@ -118,10 +120,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="28dp"
                     android:text="미팅"
                     android:textColor="#575757"
-                    android:textSize="26sp" />
+                    android:textSize="21sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -129,12 +131,12 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="28dp"
                     android:src="@drawable/ic_move" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1.4dp"
+                    android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
                     android:background="#d6d6d6" />
             </RelativeLayout>
@@ -149,10 +151,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="28dp"
                     android:text="그린라이트"
                     android:textColor="#575757"
-                    android:textSize="26sp" />
+                    android:textSize="21sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -160,12 +162,12 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="28dp"
                     android:src="@drawable/ic_move" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1.4dp"
+                    android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
                     android:background="#d6d6d6" />
             </RelativeLayout>
@@ -180,10 +182,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="28dp"
                     android:text="택시합승"
                     android:textColor="#575757"
-                    android:textSize="26sp" />
+                    android:textSize="21sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -191,12 +193,12 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="28dp"
                     android:src="@drawable/ic_move" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1.4dp"
+                    android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
                     android:background="#d6d6d6" />
             </RelativeLayout>
@@ -211,10 +213,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:layout_marginLeft="30dp"
+                    android:layout_marginLeft="28dp"
                     android:text="배달음식"
                     android:textColor="#575757"
-                    android:textSize="26sp" />
+                    android:textSize="21sp" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -222,14 +224,14 @@
                     android:layout_alignParentEnd="true"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:layout_marginRight="30dp"
+                    android:layout_marginRight="28dp"
                     android:src="@drawable/ic_move" />
-
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1.4dp"
+                    android:layout_height="1dp"
                     android:layout_alignParentBottom="true"
                     android:background="#d6d6d6" />
+
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
