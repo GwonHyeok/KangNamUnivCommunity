@@ -77,6 +77,11 @@ public class Splash extends ActionBarActivity {
 
             @Override
             protected void onPreExecute() {
+                if (!ApplicationUtil.getInstance().isOnlineNetwork()) {
+                    cancel(true);
+                    appCloseDialog(getString(R.string.error_check_network_state));
+                    return;
+                }
                 progressBar = (ProgressBar) findViewById(R.id.splash_progressbar);
                 progressBar.setVisibility(View.VISIBLE);
             }
