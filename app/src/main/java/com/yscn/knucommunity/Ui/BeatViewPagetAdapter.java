@@ -232,7 +232,7 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
         public void onBindViewHolder(CultureViewHolder holder, final int position) {
             DefaultBeatItem beatItem = list.get(position);
             holder.titleView.setText(beatItem.getTitle());
-            holder.timeView.setText(beatItem.getTime());
+            holder.timeView.setText(getSimpleDetailTime(beatItem.getTime()));
             holder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -244,6 +244,22 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
                     Log.d(getClass().getSimpleName(), "Clicked BEAT : " + mBeatIndex);
                 }
             });
+        }
+
+        public String getSimpleDetailTime(String defaulttime) {
+            String dataTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            String newDateTimeFormat = "yyyy.MM.dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
+            SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
+
+            String time;
+            try {
+                Date date = simpleDateFormat.parse(defaulttime);
+                time = newDateFormat.format(date);
+            } catch (java.text.ParseException ignore) {
+                time = defaulttime;
+            }
+            return time;
         }
 
         @Override
