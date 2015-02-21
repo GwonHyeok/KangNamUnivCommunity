@@ -234,7 +234,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
                 if (result.equals("success")) {
                     AlertToast.success(getContext(), getString(R.string.success_board_comment_delete));
                     removeAllReplyData();
-                    addComment();
+                    getReplyData();
                 } else if (result.equals("fail")) {
                     /* 토큰이나 데이터, 혹은 자기글이 아님 */
                     AlertToast.error(getContext(), getString(R.string.error_to_work));
@@ -309,7 +309,9 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
                 LinearLayout dataView =
                         (LinearLayout) findViewById(R.id.faq_detail_photo_content_view);
-                dataView.removeAllViews();
+                if (dataView != null) {
+                    dataView.removeAllViews();
+                }
 
                 String[] tmpurls = new String[fileArray.size()];
                 for (int i = 0; i < tmpurls.length; i++) {
@@ -450,6 +452,14 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
         new AsyncTask<Void, Void, Boolean>() {
 
+            ClearProgressDialog clearProgressDialog;
+
+            @Override
+            protected void onPreExecute() {
+                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog.show();
+            }
+
             @Override
             protected Boolean doInBackground(Void... params) {
                 boolean result = false;
@@ -464,6 +474,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
             @Override
             protected void onPostExecute(Boolean result) {
+                clearProgressDialog.cancel();
                 if (result) {
                     ((EditText) findViewById(R.id.reply_edittext)).setText("");
                     removeAllReplyData();
