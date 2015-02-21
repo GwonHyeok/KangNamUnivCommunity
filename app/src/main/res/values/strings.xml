@@ -159,4 +159,6 @@
     <string name="text_library_total_seat_format">전체 좌석수 : %1$s</string>
     <string name="text_library_used_seat_format">사용 좌석수 : %1$s</string>
     <string name="text_library_empty_seat_format">잔여 좌석수 : %1$s</string>
+    <string name="warning_board_write_title_lenght">제목은 25자를 넘을 수 없습니다</string>
+    <string name="warning_input_nickname_lenght">닉네임은 10자를 넘을 수 없습니다</string>
 </resources>

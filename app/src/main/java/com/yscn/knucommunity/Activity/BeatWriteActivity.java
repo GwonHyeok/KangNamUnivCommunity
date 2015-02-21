@@ -91,6 +91,9 @@ public class BeatWriteActivity extends ActionBarActivity implements View.OnClick
         } else if (contentView.getText().toString().isEmpty()) {
             AlertToast.warning(getContext(), getString(R.string.warning_board_write_content));
             return false;
+        } else if (titleView.getText().length() > 25) {
+            AlertToast.warning(getContext(), getString(R.string.warning_board_write_title_lenght));
+            return false;
         } else {
             return true;
         }

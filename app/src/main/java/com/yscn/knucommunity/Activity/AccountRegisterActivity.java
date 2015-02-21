@@ -136,6 +136,9 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
         } else if (password.isEmpty()) {
             AlertToast.warning(getContext(), getString(R.string.warning_input_password));
             return false;
+        } else if (nickname.length() > 10) {
+            AlertToast.warning(getContext(), getString(R.string.warning_input_nickname_lenght));
+            return false;
         } else {
             return true;
         }

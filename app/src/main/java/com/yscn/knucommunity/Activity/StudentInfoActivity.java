@@ -117,10 +117,12 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String nickname = editText.getText().toString();
-                        if (!nickname.isEmpty()) {
-                            nicknameChange(nickname);
-                        } else {
+                        if (nickname.isEmpty()) {
                             AlertToast.warning(getContext(), R.string.warning_input_nickname);
+                        } else if (nickname.length() > 10) {
+                            AlertToast.warning(getContext(), getString(R.string.warning_input_nickname_lenght));
+                        } else {
+                            nicknameChange(nickname);
                         }
                     }
                 })
