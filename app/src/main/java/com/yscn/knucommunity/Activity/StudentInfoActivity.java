@@ -29,6 +29,9 @@ import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -38,6 +41,7 @@ import java.io.IOException;
 public class StudentInfoActivity extends MenuBaseActivity implements View.OnClickListener {
     private int GET_PICTURE_RESULT_CODE = 0x10;
     private ClearProgressDialog clearProgressDialog;
+    private String majorName;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -143,6 +147,14 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
             @Override
             protected JSONObject doInBackground(Void... params) {
                 try {
+                    Document document = Jsoup.connect("http://app.kangnam.ac.kr/knumis/ca/cam5000.jsp?user_idnt=" +
+                            UserData.getInstance().getStudentNumber()).get();
+                    Elements em = document.getElementsByClass("free_table");
+                    Elements em1 = em.get(0).getElementsByTag("td");
+
+                    if (!em1.get(0).toString().split(">")[1].split("<")[0].equals("")) {
+                        majorName = em1.get(0).toString().split(">")[1].split("<")[0];
+                    }
                     return NetworkUtil.getInstance().checkIsLoginUser().getSimpleProfile();
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
@@ -164,6 +176,13 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                     ((TextView) findViewById(R.id.studentinfo_name)).setText(jsonObject.get("name").toString());
                     ((TextView) findViewById(R.id.studentinfo_nickname)).setText(jsonObject.get("nickname").toString());
                     ((TextView) findViewById(R.id.studentinfo_studentnumber)).setText(UserData.getInstance().getStudentNumber());
+                    TextView majorNameView = (TextView) findViewById(R.id.studentinfo_majorinfo);
+
+                    if (majorName.isEmpty()) {
+                        majorNameView.setText(R.string.error_to_get_majorname);
+                    } else {
+                        majorNameView.setText(majorName);
+                    }
                     return;
                 }
 

@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,13 +108,32 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
                             (LinearLayout) findViewById(R.id.greenlight_detail_photo_content_view);
                     dataView.removeAllViews();
 
-                    for (Object obj : fileArray) {
+                    String[] tmpurls = new String[fileArray.size()];
+                    for (int i = 0; i < tmpurls.length; i++) {
+                        tmpurls[i] = UrlList.BOARD_PHOTO_IMAGE_URL + fileArray.get(i).toString();
+                    }
+
+                    final String[] urls = tmpurls;
+                    for (int i = 0; i < urls.length; i++) {
+                        final int imagePosition = i;
                         View fileImageView = LayoutInflater.from(getContext()).inflate(R.layout.ui_board_image_card, dataView, false);
                         final ImageView imageView = (ImageView) fileImageView.findViewById(R.id.imageView);
                         final ProgressBar progressBar = (ProgressBar) fileImageView.findViewById(R.id.progressbar);
                         dataView.addView(fileImageView);
+                        fileImageView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(getContext(), ImageCollectionActivity.class);
+                                intent.putExtra("Imageurls", urls);
+                                intent.putExtra("Position", imagePosition);
 
-                        ImageLoader.getInstance().displayImage(UrlList.BOARD_PHOTO_IMAGE_URL + obj.toString(),
+                                ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                                        GreenLightDetailActivity.this, v, "imagecollection_transition");
+                                ActivityCompat.startActivity(GreenLightDetailActivity.this, intent, options.toBundle());
+                            }
+                        });
+
+                        ImageLoader.getInstance().displayImage(urls[i],
                                 imageView, ImageLoaderUtil.getInstance().getDiskCacheImageOptions(), new ImageLoadingListener() {
                                     @Override
                                     public void onLoadingStarted(String imageUri, View view) {

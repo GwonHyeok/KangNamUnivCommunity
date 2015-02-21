@@ -14,11 +14,11 @@
         android:orientation="horizontal">
 
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="4">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -29,27 +29,34 @@
                 android:textColor="@android:color/white"
                 android:textSize="17sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -90,42 +97,49 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="4">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="제 2열람실"
+                android:text="제 1열람실"
                 android:textColor="@android:color/white"
                 android:textSize="17sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"
@@ -165,42 +179,49 @@
         android:layout_weight="1"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="4">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
-                android:text="제 3열람실"
+                android:text="제 1열람실"
                 android:textColor="@android:color/white"
                 android:textSize="17sp" />
 
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="전체 좌석수 : 246"
-                android:textColor="#f0f0f0"
-                android:textSize="16sp"/>
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="전체 좌석수 : 246"
+                    android:textColor="#f0f0f0"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </RelativeLayout>
 
         <LinearLayout
             android:layout_width="fill_parent"

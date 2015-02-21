@@ -1,11 +1,14 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.AdapterView;
@@ -57,7 +60,39 @@ public class CampusMapActivity extends ActionBarActivity implements GoogleMap.On
         findViewById(R.id.campusmap_simple_list).setOnClickListener(this);
 
         String[] string = new String[]{"이공관", "천은관", "후생관", "샬롬관", "경천관", "교욱관", "승리관", "목양관", "우원관", "인사관", "예술관", "운동장"};
-        ArrayAdapter<String> mapListAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, string);
+
+        class CampusMapAdapter extends ArrayAdapter<String> {
+            int mResourceId;
+
+            public CampusMapAdapter(Context context, int resource, String[] objects) {
+                super(context, resource, objects);
+                this.mResourceId = resource;
+            }
+
+            @Override
+            public View getView(int position, View convertView, ViewGroup parent) {
+                View view;
+                CampusMapViewHolder viewHolder;
+                if (convertView == null) {
+                    view = LayoutInflater.from(this.getContext()).inflate(mResourceId, parent, false);
+                    viewHolder = new CampusMapViewHolder();
+                    viewHolder.simpleTextview = (TextView) view.findViewById(android.R.id.text1);
+                    view.setTag(viewHolder);
+                    ApplicationUtil.getInstance().setTypeFace(view);
+                } else {
+                    view = convertView;
+                    viewHolder = (CampusMapViewHolder) view.getTag();
+                }
+                viewHolder.simpleTextview.setText(getItem(position));
+                return view;
+            }
+
+            class CampusMapViewHolder {
+                private TextView simpleTextview;
+            }
+        }
+
+        CampusMapAdapter mapListAdapter = new CampusMapAdapter(this, android.R.layout.simple_list_item_1, string);
         listView.setAdapter(mapListAdapter);
         listView.setOnItemClickListener(this);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());

@@ -294,6 +294,11 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
 
                 @Override
                 protected void onPostExecute(ArrayList<LibrarySeatItems> itemses) {
+                    TextView percentView_1 = (TextView) view.findViewById(R.id.textView);
+                    TextView percentView_2 = (TextView) view.findViewById(R.id.textView1);
+                    TextView percentView_3 = (TextView) view.findViewById(R.id.textView2);
+
+                    int usePercent;
                     PieGraph pieGraph = (PieGraph) view.findViewById(R.id.library_usage_piegraph);
                     PieSlice slice = new PieSlice();
                     slice.setColor(Color.parseColor("#2979FF"));
@@ -304,6 +309,8 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     slice.setValue(itemses.get(0).getEmptySeat());
                     pieGraph.addSlice(slice);
                     pieGraph.setThickness(100);
+                    usePercent = (int) Math.round((itemses.get(0).getUseSeat() * 100d) / itemses.get(0).getTotalSeat());
+                    percentView_1.setText(String.valueOf(usePercent));
 
                     PieGraph pieGraph1 = (PieGraph) view.findViewById(R.id.library_usage_piegraph1);
                     PieSlice slice1 = new PieSlice();
@@ -315,6 +322,9 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     slice1.setValue(itemses.get(1).getEmptySeat());
                     pieGraph1.addSlice(slice1);
                     pieGraph1.setThickness(100);
+                    usePercent = (int) Math.round((itemses.get(1).getUseSeat() * 100d) / itemses.get(1).getTotalSeat());
+                    percentView_2.setText(String.valueOf(usePercent));
+
 
                     PieGraph pieGraph2 = (PieGraph) view.findViewById(R.id.library_usage_piegraph2);
                     PieSlice slice2 = new PieSlice();
@@ -326,6 +336,8 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
                     slice2.setValue(itemses.get(1).getEmptySeat());
                     pieGraph2.addSlice(slice2);
                     pieGraph2.setThickness(100);
+                    usePercent = (int) Math.round((itemses.get(2).getUseSeat() * 100d) / itemses.get(2).getTotalSeat());
+                    percentView_3.setText(String.valueOf(usePercent));
 
                     dialog.cancel();
                 }

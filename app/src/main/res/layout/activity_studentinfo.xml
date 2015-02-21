@@ -40,8 +40,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="10dp"
             android:textColor="#FF232323"
-            android:textSize="22sp"/>
-            <!-- android:textStyle="bold" -->
+            android:textSize="22sp" />
+        <!-- android:textStyle="bold" -->
 
     </RelativeLayout>
 
@@ -76,8 +76,8 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="30dp"
                 android:layout_toEndOf="@+id/ic_nickname_imageview"
-                android:layout_toRightOf="@+id/ic_nickname_imageview"
                 android:layout_toLeftOf="@+id/ic_change_nickname_view"
+                android:layout_toRightOf="@+id/ic_nickname_imageview"
                 android:gravity="center_vertical"
                 android:textColor="#FF4D4D4D"
                 android:textSize="17sp" />
@@ -86,11 +86,11 @@
                 android:id="@+id/ic_change_nickname_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_changenickname"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
+                android:layout_alignTop="@+id/ic_nickname_imageview"
                 android:layout_marginRight="40dp"
-                android:layout_alignTop="@+id/ic_nickname_imageview" />
+                android:src="@drawable/ic_changenickname" />
 
             <View
                 android:layout_width="match_parent"
@@ -132,14 +132,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FF4D4D4D"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/studentinfo_studentnumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FF4D4D4D"
-                    android:textSize="16sp"/>
+                    android:textSize="16sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -149,8 +149,8 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_weight="51"
-            android:paddingTop="26dp"
-            android:paddingBottom="4dp">
+            android:paddingBottom="4dp"
+            android:paddingTop="26dp">
 
             <TextView
                 android:id="@+id/studentinfo_mynotify"
