@@ -54,6 +54,9 @@
     <color name="beat_primary_color">#FF0277BD</color>
     <color name="beat_primary_dark_color">#FF0167A3</color>
 
+    <color name="community_primary_color">#FF556e79</color>
+    <color name="community_primary_dark_color">#FF475d66</color>
+
     <color name="background_default_preesed_color">#0D000000</color>
 
     <color name="background_studentground_detail_0">#5e35b1</color>

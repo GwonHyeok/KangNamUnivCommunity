@@ -40,4 +40,9 @@
         <item name="android:colorPrimary">@color/beat_primary_color</item>
         <item name="android:colorPrimaryDark">@color/beat_primary_dark_color</item>
     </style>
+
+    <style name="CommunityTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimaryDark">@color/community_primary_dark_color</item>
+        <item name="android:colorPrimary">@color/community_primary_color</item>
+    </style>
 </resources>

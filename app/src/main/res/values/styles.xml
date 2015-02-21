@@ -27,4 +27,6 @@
 
     <style name="BeatTheme" parent="NoActionBarTheme" />
 
+    <style name="CommunityTheme" parent="NoActionBarTheme" />
+
 </resources>

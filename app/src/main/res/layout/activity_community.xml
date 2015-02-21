@@ -11,12 +11,12 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="#FF556e79" />
+        android:background="@color/community_primary_color" />
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="72dp"
-        android:background="#FF556e79">
+        android:background="@color/community_primary_color">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
             android:id="@+id/imageview"
@@ -226,6 +226,7 @@
                     android:layout_centerVertical="true"
                     android:layout_marginRight="28dp"
                     android:src="@drawable/ic_move" />
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
