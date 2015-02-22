@@ -71,6 +71,8 @@ public class NoticeActivity extends BaseNavigationDrawerActivity implements Scro
         getNoticeData();
         mPagerSlidingTabStrip.setOnPageChangeListener(this);
         mPagerSlidingTabStrip.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.BOLD), Typeface.BOLD);
+        mToolbar.setTitleTextColor(0xffffffff);
+        mToolbar.setTitle(TITLES[0]);
 
         ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.notice_root));
     }
