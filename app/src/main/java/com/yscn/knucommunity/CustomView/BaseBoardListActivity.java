@@ -50,6 +50,12 @@ public abstract class BaseBoardListActivity extends BaseNavigationDrawerActivity
         super.onStart();
         scrollViewInit();
         getBoardListData();
+        setToolbarTitle();
+    }
+
+    private void setToolbarTitle() {
+        mToolbar.setTitle(getActionBarTitle());
+        mToolbar.setTitleTextColor(0xffffffff);
     }
 
     private void scrollViewInit() {
