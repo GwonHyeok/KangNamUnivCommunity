@@ -27,7 +27,6 @@ import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
@@ -145,7 +144,7 @@ public class BeatReplyActivity extends ActionBarActivity implements View.OnClick
             /* Set Profile Image */
             ImageLoaderUtil.getInstance().initImageLoader();
             ImageLoader.getInstance().displayImage(
-                    UrlList.PROFILE_THUMB_IMAGE_URL + dataObject.getStudentnumber(),
+                    NetworkUtil.getInstance().getProfileThumbURL(dataObject.getStudentnumber()),
                     profileImageView,
                     ImageLoaderUtil.getInstance().getDefaultOptions());
 

@@ -30,7 +30,6 @@ import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 
 import org.json.simple.parser.ParseException;
 
@@ -292,7 +291,7 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
     protected void setProfileImage(ImageView profileImageView, String studentNumber) {
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(
-                UrlList.PROFILE_THUMB_IMAGE_URL + studentNumber, profileImageView,
+                NetworkUtil.getInstance().getProfileThumbURL(studentNumber), profileImageView,
                 ImageLoaderUtil.getInstance().getDefaultOptions());
     }
 

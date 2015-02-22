@@ -24,7 +24,6 @@ import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
@@ -59,7 +58,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
 
         ImageLoaderUtil.getInstance().initImageLoader();
         ImageLoader.getInstance().displayImage(
-                UrlList.PROFILE_THUMB_IMAGE_URL + UserData.getInstance().getStudentNumber(),
+                NetworkUtil.getInstance().getProfileThumbURL(UserData.getInstance().getStudentNumber()),
                 circleImageView,
                 ImageLoaderUtil.getInstance().getDefaultOptions());
 
@@ -87,17 +86,65 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
 
     private void showEditProfileChangeDialog() {
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
-                .setTitle(R.string.warning_title)
-                .setMessage(R.string.profileimage_change_text)
-                .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                .setTitle(R.string.text_select_photo_profile_title)
+                .setItems(R.array.profile_photo_list, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        getProfilePicture();
+                        switch (which) {
+                            case 0:
+                                getProfilePicture();
+                                break;
+                            case 1:
+                                deleteProfilePicture();
+                                break;
+                        }
                     }
                 })
-                .setNegativeButton(R.string.NO, null)
                 .show();
         ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
+    }
+
+    private void deleteProfilePicture() {
+        new AsyncTask<Void, Void, JSONObject>() {
+
+            @Override
+            protected void onPreExecute() {
+                showProgressDialog();
+            }
+
+            @Override
+            protected JSONObject doInBackground(Void... params) {
+                try {
+                    return NetworkUtil.getInstance().checkIsLoginUser().deleteProfilePicture();
+                } catch (IOException | ParseException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(JSONObject jsonObject) {
+                cancelProgressDialog();
+                if (jsonObject == null) {
+                    AlertToast.error(getApplicationContext(), R.string.error_to_work);
+                    return;
+                }
+
+                String result = jsonObject.get("result").toString();
+                if (result.equals("success")) {
+                    AlertToast.success(getApplicationContext(), R.string.success_delete_profileimage);
+                } else if (result.equals("fail")) {
+                    AlertToast.error(getApplicationContext(), R.string.error_to_work);
+                }
+
+                ImageLoaderUtil.getInstance().initImageLoader();
+                ImageLoader.getInstance().clearMemoryCache();
+                ImageLoader.getInstance().displayImage(
+                        NetworkUtil.getInstance().getProfileThumbURL(UserData.getInstance().getStudentNumber()),
+                        (CircleImageView) findViewById(R.id.studentinfo_profile_image),
+                        ImageLoaderUtil.getInstance().getDefaultOptions());
+            }
+        }.execute();
     }
 
     private void showNicknameChangeDialog() {
@@ -296,7 +343,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                     ImageLoaderUtil.getInstance().initImageLoader();
                     ImageLoader.getInstance().clearMemoryCache();
                     ImageLoader.getInstance().displayImage(
-                            UrlList.PROFILE_THUMB_IMAGE_URL + UserData.getInstance().getStudentNumber(),
+                            NetworkUtil.getInstance().getProfileThumbURL(UserData.getInstance().getStudentNumber()),
                             (CircleImageView) findViewById(R.id.studentinfo_profile_image),
                             ImageLoaderUtil.getInstance().getDefaultOptions());
                 }

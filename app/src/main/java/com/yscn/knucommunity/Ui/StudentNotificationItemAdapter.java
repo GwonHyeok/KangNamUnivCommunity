@@ -21,7 +21,7 @@ import com.yscn.knucommunity.Items.StudentNotificationItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
-import com.yscn.knucommunity.Util.UrlList;
+import com.yscn.knucommunity.Util.NetworkUtil;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,8 @@ public class StudentNotificationItemAdapter extends RecyclerView.Adapter<Student
             ImageLoaderUtil.getInstance().initImageLoader();
             ImageView imageView = viewHolder.getProfileView();
             imageView.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + notificationItem.getWriter(),
+            ImageLoader.getInstance().displayImage(
+                    NetworkUtil.getInstance().getProfileThumbURL(notificationItem.getWriter()),
                     imageView,
                     ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
         }

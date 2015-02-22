@@ -67,4 +67,8 @@
         <item>@string/text_beat_looknlook</item>
         <item>@string/text_beat_etc</item>
     </string-array>
+    <string-array name="profile_photo_list">
+        <item>@string/text_photo_profile_album</item>
+        <item>@string/text_photo_profile_delete</item>
+    </string-array>
 </resources>

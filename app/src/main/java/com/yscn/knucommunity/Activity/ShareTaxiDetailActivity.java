@@ -25,7 +25,6 @@ import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONArray;
@@ -167,7 +166,8 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 peopleCountTextView.setText(String.format(getString(R.string.taxi_share_people_count), sharePerson));
                 writerNameView.setText(writername);
                 writeTimeView.setText(getSimpleDetailTime(time));
-                ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + writer,
+                ImageLoader.getInstance().displayImage(
+                        NetworkUtil.getInstance().getProfileThumbURL(writer),
                         profileImageView,
                         ImageLoaderUtil.getInstance().getThumbProfileImageOptions()
                 );
@@ -320,7 +320,8 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
     @Override
     protected void setProfileImage(ImageView imageView, String studentnumber) {
         if (!studentnumber.equals("-1")) {
-            ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentnumber,
+            ImageLoader.getInstance().displayImage(
+                    NetworkUtil.getInstance().getProfileThumbURL(studentnumber),
                     imageView,
                     ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
         } else {

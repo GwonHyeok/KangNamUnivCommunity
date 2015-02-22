@@ -33,7 +33,6 @@ import com.yscn.knucommunity.Ui.ShareTaxiPagerAdapter;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
@@ -258,7 +257,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                     // 본인을 합승자 이미지에 보이게
                     CircleImageView taxtRootView = (CircleImageView) view.findViewById(R.id.ui_sharetaxtlist_rootperson_thumbnail);
                     ImageLoader.getInstance().displayImage(
-                            UrlList.PROFILE_THUMB_IMAGE_URL + item.getWriter(),
+                            NetworkUtil.getInstance().getProfileThumbURL(item.getWriter()),
                             taxtRootView,
                             ImageLoaderUtil.getInstance().getDefaultOptions());
 
@@ -268,7 +267,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                         /* 이미 있는 사람일 경우 사람 정보가 -1 로 넘어온다. */
                         if (!person.equals("-1")) {
                             ImageLoader.getInstance().displayImage(
-                                    UrlList.PROFILE_THUMB_IMAGE_URL + person,
+                                    NetworkUtil.getInstance().getProfileThumbURL(person),
                                     imageView,
                                     ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
                         } else {

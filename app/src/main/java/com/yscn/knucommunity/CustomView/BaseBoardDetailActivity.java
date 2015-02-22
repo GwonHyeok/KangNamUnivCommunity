@@ -21,7 +21,6 @@ import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 import com.yscn.knucommunity.Util.UserData;
 
 import org.json.simple.JSONObject;
@@ -268,7 +267,7 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
      */
     protected void setProfileImage(ImageView imageView, String studentNumber) {
         ImageLoaderUtil.getInstance().initImageLoader();
-        ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentNumber,
+        ImageLoader.getInstance().displayImage(NetworkUtil.getInstance().getProfileThumbURL(studentNumber),
                 imageView, ImageLoaderUtil.getInstance().getDefaultOptions());
     }
 

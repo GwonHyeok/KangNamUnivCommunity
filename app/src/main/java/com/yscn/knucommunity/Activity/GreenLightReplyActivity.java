@@ -24,7 +24,6 @@ import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
 import com.yscn.knucommunity.Util.NetworkUtil;
-import com.yscn.knucommunity.Util.UrlList;
 
 import org.json.simple.parser.ParseException;
 
@@ -98,7 +97,7 @@ public class GreenLightReplyActivity extends ActionBarActivity implements View.O
             /* Set Profile Image */
             ImageLoaderUtil.getInstance().initImageLoader();
             ImageLoader.getInstance().displayImage(
-                    UrlList.PROFILE_THUMB_IMAGE_URL + dataObject.getStudentnumber(),
+                    NetworkUtil.getInstance().getProfileThumbURL(dataObject.getStudentnumber()),
                     profileImageView,
                     ImageLoaderUtil.getInstance().getDefaultOptions());
 

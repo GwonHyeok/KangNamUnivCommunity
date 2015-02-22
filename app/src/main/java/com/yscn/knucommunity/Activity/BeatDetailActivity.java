@@ -214,7 +214,7 @@ public class BeatDetailActivity extends ActionBarActivity {
                 } else {
                     /* 학번 데이터가 있는경우에 데이터 삼입 */
                     String name = jsonObject.get("name").toString();
-                    ImageLoader.getInstance().displayImage(UrlList.PROFILE_THUMB_IMAGE_URL + studentnumber,
+                    ImageLoader.getInstance().displayImage(NetworkUtil.getInstance().getProfileThumbURL(studentnumber),
                             profileView, ImageLoaderUtil.getInstance().getThumbProfileImageOptions());
                     nameView.setText(name);
                 }

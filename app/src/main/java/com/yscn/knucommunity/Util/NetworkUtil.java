@@ -162,6 +162,12 @@ public class NetworkUtil {
     }
 
 
+    public JSONObject deleteProfilePicture() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.PROFILE_IMAGE_DELETE_URL);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public LoginStatus LoginAppServer(String studentnumber, String password) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HashMap<String, String> parameters = new HashMap<>();
@@ -1161,6 +1167,11 @@ public class NetworkUtil {
                 new InputStreamReader(httpResponse.getEntity().getContent())
         );
         return checkResultData(object);
+    }
+
+    public String getProfileThumbURL(String studentnumber) {
+        String format = "%s?type=thumbnail&studentnumber=%s";
+        return String.format(format, UrlList.PROFILE_THUMB_IMAGE_URL, studentnumber);
     }
 
     private String URLEncode(String str) {
