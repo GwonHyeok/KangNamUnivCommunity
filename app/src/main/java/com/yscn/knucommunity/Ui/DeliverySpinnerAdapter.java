@@ -32,6 +32,13 @@ public class DeliverySpinnerAdapter extends ArrayAdapter<String> {
     }
 
     @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        View view = super.getView(position, convertView, parent);
+        ApplicationUtil.getInstance().setTypeFace(view);
+        return view;
+    }
+
+    @Override
     public View getDropDownView(int position, View convertView, ViewGroup parent) {
         View view;
         if (convertView == null) {
