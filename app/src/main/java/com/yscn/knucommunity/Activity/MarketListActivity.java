@@ -25,8 +25,8 @@ public class MarketListActivity extends BaseBoardListActivity {
 
     @Override
     public void onCreate(Bundle bundle) {
-        setContentView(R.layout.activity_shop_list);
         super.onCreate(bundle);
+        attatchView(R.layout.activity_shop_list);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 

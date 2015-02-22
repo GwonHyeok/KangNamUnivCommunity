@@ -10,6 +10,7 @@ public class UserDataPreference extends BaseSharedPreference {
     private final String mStudentNumber = "studentnumber";
     private final String mStudentToken = "studenttoken";
     private final String mStudentName = "studentname";
+    private final String mStudentNickname = "studentnickname";
     private final String mStudentRating = "studentrating";
 
     public UserDataPreference(Context mContext) {
@@ -46,5 +47,13 @@ public class UserDataPreference extends BaseSharedPreference {
 
     public void setStudentName(String studentName) {
         putValue(this.mStudentName, studentName);
+    }
+
+    public String getStudentNickname() {
+        return getValue(mStudentNickname, null);
+    }
+
+    public void setStudentNickname(String studentNickname) {
+        putValue(this.mStudentNickname, studentNickname);
     }
 }

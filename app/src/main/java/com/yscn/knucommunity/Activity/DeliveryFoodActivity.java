@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,8 +24,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
-import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.CustomView.NotifiableScrollView;
 import com.yscn.knucommunity.Items.DeliveryListItems;
 import com.yscn.knucommunity.R;
@@ -45,7 +44,7 @@ import java.util.ArrayList;
 /**
  * Created by GwonHyeok on 14. 11. 4..
  */
-public class DeliveryFoodActivity extends MenuBaseActivity {
+public class DeliveryFoodActivity extends BaseNavigationDrawerActivity {
     private DeliverySpinnerAdapter deliverySpinnerAdapter;
     private int page = 1;
     private String searchText;
@@ -54,7 +53,7 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_deliveryfood);
+        attatchView(R.layout.activity_deliveryfood);
 
         actionBarInit();
         viewInit();
@@ -191,17 +190,6 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
             getWindow().setStatusBarColor(getResources().getColor(R.color.delivery_main_dark_color));
             getWindow().setNavigationBarColor(getResources().getColor(R.color.delivery_main_dark_color));
         }
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationIcon(R.drawable.ic_nav_menu_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleSlidingMenu();
-            }
-        });
     }
 
     @Override

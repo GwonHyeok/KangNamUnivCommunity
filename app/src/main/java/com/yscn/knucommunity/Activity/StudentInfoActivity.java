@@ -16,9 +16,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
-import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
 import com.yscn.knucommunity.Util.ApplicationUtil;
@@ -37,7 +37,7 @@ import java.io.IOException;
 /**
  * Created by GwonHyeok on 14. 11. 5..
  */
-public class StudentInfoActivity extends MenuBaseActivity implements View.OnClickListener {
+public class StudentInfoActivity extends BaseNavigationDrawerActivity implements View.OnClickListener {
     private int GET_PICTURE_RESULT_CODE = 0x10;
     private ClearProgressDialog clearProgressDialog;
     private String majorName;
@@ -45,7 +45,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_studentinfo);
+        attatchView(R.layout.activity_studentinfo);
 
         getSimpleProfile();
 
@@ -231,6 +231,7 @@ public class StudentInfoActivity extends MenuBaseActivity implements View.OnClic
                     ((TextView) findViewById(R.id.studentinfo_studentnumber)).setText(UserData.getInstance().getStudentNumber());
                     TextView majorNameView = (TextView) findViewById(R.id.studentinfo_majorinfo);
 
+                    UserData.getInstance().setStudentNickname(jsonObject.get("nickname").toString());
                     if (majorName.isEmpty()) {
                         majorNameView.setText(R.string.error_to_get_majorname);
                     } else {

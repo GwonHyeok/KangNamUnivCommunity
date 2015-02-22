@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.AsyncTask;
-import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
@@ -41,20 +39,15 @@ import java.util.Date;
 /**
  * Created by GwonHyeok on 15. 1. 10..
  */
-public abstract class BaseBoardListActivity extends MenuBaseActivity {
+public abstract class BaseBoardListActivity extends BaseNavigationDrawerActivity {
     private final int BOARD_WRITE_RESPONSE = 0X01;
     protected SwipeRefreshLayout swipeRefreshLayout;
     private int pageIndex = 1;
     private String searchText = null;
 
-    /**
-     * 반드시 자식 액티비티에서
-     * setContentView를 먼저 호출 한 후 super 클래스를 호출해야한다.
-     */
     @Override
-    public void onCreate(Bundle bundle) {
-        super.onCreate(bundle);
-        actionBarInit();
+    public void onStart() {
+        super.onStart();
         scrollViewInit();
         getBoardListData();
     }
@@ -95,22 +88,6 @@ public abstract class BaseBoardListActivity extends MenuBaseActivity {
         } else {
             Log.d(getClass().getSimpleName(), "ScrollView is Must NotifyFooterScrollView");
         }
-    }
-
-    private void actionBarInit() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setTitle(getActionBarTitle());
-        toolbar.setTitleTextColor(getResources().getColor(android.R.color.white));
-        toolbar.setNavigationIcon(R.drawable.ic_nav_menu_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleSlidingMenu();
-            }
-        });
     }
 
     /**

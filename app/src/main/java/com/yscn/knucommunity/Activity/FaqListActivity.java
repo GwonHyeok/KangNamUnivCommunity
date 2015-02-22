@@ -26,8 +26,8 @@ public class FaqListActivity extends BaseBoardListActivity implements View.OnCli
 
     @Override
     public void onCreate(Bundle bundle) {
-        setContentView(R.layout.activity_faq_list);
         super.onCreate(bundle);
+        attatchView(R.layout.activity_faq_list);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 

@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.view.ViewTreeObserver;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 
-import com.yscn.knucommunity.CustomView.MenuBaseActivity;
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 
@@ -22,13 +21,13 @@ import java.util.Random;
 /**
  * Created by GwonHyeok on 14. 11. 3..
  */
-public class StudentGroundActivity extends MenuBaseActivity implements View.OnClickListener {
+public class StudentGroundActivity extends BaseNavigationDrawerActivity implements View.OnClickListener {
     private final String TAG = "StudentGroundActivity";
 
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_studentground);
+        attatchView(R.layout.activity_studentground);
         viewInit();
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
@@ -64,19 +63,6 @@ public class StudentGroundActivity extends MenuBaseActivity implements View.OnCl
         } else {
             linearLayout.setBackgroundDrawable(bitmapDrawable);
         }
-
-        /* remove ActionBar */
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationIcon(R.drawable.ic_nav_menu_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleSlidingMenu();
-            }
-        });
 
         /* Resize view Child From Scrollview  */
         final ScrollView scrollView = (ScrollView) findViewById(R.id.studentgroup_scrollview);

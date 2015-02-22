@@ -255,6 +255,10 @@
             android:name=".Activity.ExternalLinkActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".CustomView.BaseNavigationDrawerActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

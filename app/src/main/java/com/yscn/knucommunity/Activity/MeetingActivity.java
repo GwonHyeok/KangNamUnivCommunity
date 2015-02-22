@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -13,8 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
-import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.CustomView.NotifiableScrollView;
 import com.yscn.knucommunity.Items.MeetingListItems;
 import com.yscn.knucommunity.R;
@@ -32,7 +31,7 @@ import java.util.Date;
 /**
  * Created by GwonHyeok on 14. 11. 5..
  */
-public class MeetingActivity extends MenuBaseActivity implements View.OnClickListener {
+public class MeetingActivity extends BaseNavigationDrawerActivity implements View.OnClickListener {
     private final int BOARD_WRITE_RESPONSE = 0X01;
     private int pageIndex = 1;
     private NotifiableScrollView scrollView;
@@ -41,8 +40,7 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_meeting);
-        toolbarInit();
+        attatchView(R.layout.activity_meeting);
         viewInit();
         getMeetingList();
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
@@ -176,20 +174,6 @@ public class MeetingActivity extends MenuBaseActivity implements View.OnClickLis
             linearLayout.addView(view);
             ApplicationUtil.getInstance().setTypeFace(view);
         }
-    }
-
-    private void toolbarInit() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationIcon(R.drawable.ic_nav_menu_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                toggleSlidingMenu();
-            }
-        });
     }
 
     private void removeAllViewData() {

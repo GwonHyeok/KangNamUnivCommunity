@@ -1,6 +1,5 @@
 package com.yscn.knucommunity.Activity;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,20 +8,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.CustomView.CircleImageView;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.NotifiableScrollView;
@@ -47,7 +43,7 @@ import java.util.Date;
 /**
  * Created by GwonHyeok on 15. 1. 20..
  */
-public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
+public class ShareTaxiActivity extends BaseNavigationDrawerActivity implements ViewPager.OnPageChangeListener, View.OnClickListener {
     private String mDate[][];
     private String mYear[];
     private ViewPager viewPager;
@@ -57,8 +53,7 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_sharetaxi);
-        toolbarInit();
+        attatchView(R.layout.activity_sharetaxi);
 
         // Adapter 에서 필요로 하는 날자 정보를 저장해놓음
         setDayArray();
@@ -68,13 +63,6 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
         viewPager.setAdapter(new ShareTaxiPagerAdapter(this, mDate));
         viewPager.setCurrentItem(1);
         viewPager.setOnPageChangeListener(this);
-
-        // 상단바 투명 KITKAT 이상부터
-        Window w = getWindow();
-        if (Build.VERSION.SDK_INT >= 19) {
-            w.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
-        }
-
 
         findViewById(R.id.share_taxi_nextday).setOnClickListener(this);
         findViewById(R.id.share_taxi_yesterday).setOnClickListener(this);
@@ -182,10 +170,6 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
                 }
             }
         }.execute();
-    }
-
-    private Context getContext() {
-        return this;
     }
 
     private void setTaxiData() {
@@ -346,20 +330,6 @@ public class ShareTaxiActivity extends ActionBarActivity implements ViewPager.On
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.share_taxi_data_view);
         linearLayout.removeAllViews();
         setTaxiData();
-    }
-
-    private void toolbarInit() {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-
-        toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
     }
 
     private String getTime(String src_time) {

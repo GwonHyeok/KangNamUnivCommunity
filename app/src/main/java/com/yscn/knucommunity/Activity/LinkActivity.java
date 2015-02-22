@@ -9,18 +9,18 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
-import com.yscn.knucommunity.CustomView.MenuBaseActivity;
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ApplicationUtil;
 
 /**
  * Created by GwonHyeok on 14. 11. 4..
  */
-public class LinkActivity extends MenuBaseActivity implements View.OnClickListener {
+public class LinkActivity extends BaseNavigationDrawerActivity implements View.OnClickListener {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_link);
+        attatchView(R.layout.activity_link);
         viewInit();
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }

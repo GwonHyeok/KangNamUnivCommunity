@@ -19,6 +19,7 @@ public class UserData {
     private String userRating;
     private String phoneNumber;
     private Bitmap userProfile;
+    private String studentNickname;
 
     private UserData() {
 
@@ -53,6 +54,18 @@ public class UserData {
 
     public void setStudentName(String studentName) {
         this.studentName = studentName;
+    }
+
+    public String getStudentNickname() {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        if (studentNickname == null) {
+            studentNickname = userDataPreference.getStudentNickname();
+        }
+        return studentNickname;
+    }
+
+    public void setStudentNickname(String studentNickname) {
+        this.studentNickname = studentNickname;
     }
 
     public String getUserToken() {

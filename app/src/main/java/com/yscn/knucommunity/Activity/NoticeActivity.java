@@ -13,13 +13,12 @@ import android.support.v4.view.ViewPager;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.nineoldandroids.view.ViewHelper;
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.CustomView.KenBurnsSupportView;
-import com.yscn.knucommunity.CustomView.MenuBaseActivity;
 import com.yscn.knucommunity.CustomView.NoticeListFragment;
 import com.yscn.knucommunity.CustomView.ScrollTabHolder;
 import com.yscn.knucommunity.CustomView.ScrollTabHolderFragment;
@@ -33,7 +32,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder, ViewPager.OnPageChangeListener, View.OnClickListener {
+public class NoticeActivity extends BaseNavigationDrawerActivity implements ScrollTabHolder, ViewPager.OnPageChangeListener {
 
     private final String[] TITLES = {"공지사항", "학사제도", "장학제도"};
     private View mHeader;
@@ -43,7 +42,6 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
     private int mActionBarHeight;
     private int mHeaderHeight;
     private int mMinHeaderTranslation;
-    private TextView actionBarHeaderTitleView;
     private PagerSlidingTabStrip mPagerSlidingTabStrip;
 
     private TypedValue mTypedValue = new TypedValue();
@@ -60,7 +58,7 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
         mHeaderHeight = getResources().getDimensionPixelSize(R.dimen.parallax_header_height);
         mMinHeaderTranslation = -mMinHeaderHeight + getActionBarHeight();
 
-        setContentView(R.layout.activity_notice);
+        attatchView(R.layout.activity_notice);
 
         KenBurnsSupportView mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.notice_header_picture);
         mHeaderPicture.setResourceIds(R.drawable.bg_notice_1, R.drawable.bg_notice_2, R.drawable.bg_notice_3, R.drawable.bg_notice_4);
@@ -73,8 +71,6 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
         getNoticeData();
         mPagerSlidingTabStrip.setOnPageChangeListener(this);
         mPagerSlidingTabStrip.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.BOLD), Typeface.BOLD);
-        actionBarHeaderTitleView = (TextView) findViewById(R.id.notice_header_title);
-        findViewById(R.id.open_menu).setOnClickListener(this);
 
         ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.notice_root));
     }
@@ -88,11 +84,11 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
                 boolean isOnline = ApplicationUtil.getInstance().isOnlineNetwork();
                 if (!isOnline) {
                     cancel(true);
-                    AlertToast.error(getContext(), R.string.error_check_network_state);
+                    AlertToast.error(getApplicationContext(), R.string.error_check_network_state);
                     finish();
                     return;
                 }
-                clearProgressDialog = new ClearProgressDialog(getContext());
+                clearProgressDialog = new ClearProgressDialog(NoticeActivity.this);
                 clearProgressDialog.show();
             }
 
@@ -109,7 +105,7 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
             @Override
             protected void onPostExecute(HashMap<String, ArrayList<NoticeItems>> itemes) {
                 if (itemes == null) {
-                    AlertToast.error(getContext(), R.string.error_to_work);
+                    AlertToast.error(getApplicationContext(), R.string.error_to_work);
                     finish();
                     return;
                 }
@@ -134,7 +130,7 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
 
     @Override
     public void onPageSelected(int position) {
-        actionBarHeaderTitleView.setText(TITLES[position]);
+        mToolbar.setTitle(TITLES[position]);
         SparseArrayCompat<ScrollTabHolder> scrollTabHolders = mPagerAdapter.getScrollTabHolders();
         ScrollTabHolder currentHolder = scrollTabHolders.valueAt(position);
 
@@ -190,12 +186,7 @@ public class NoticeActivity extends MenuBaseActivity implements ScrollTabHolder,
     }
 
     private void setTitleAlpha(float alpha) {
-        actionBarHeaderTitleView.setAlpha(alpha);
-    }
-
-    @Override
-    public void onClick(View v) {
-        openSlidingMenu();
+        mToolbar.setAlpha(alpha);
     }
 
     public class PagerAdapter extends FragmentPagerAdapter {

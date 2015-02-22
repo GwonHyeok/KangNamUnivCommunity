@@ -25,8 +25,8 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
 
     @Override
     public void onCreate(Bundle bundle) {
-        setContentView(R.layout.activity_greenlight_list);
         super.onCreate(bundle);
+        attatchView(R.layout.activity_greenlight_list);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
