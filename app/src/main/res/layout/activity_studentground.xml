@@ -10,7 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50">
+        android:layout_weight="48">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -21,7 +21,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="50">
+        android:layout_weight="52">
 
         <TextView
             android:id="@+id/textView"
@@ -100,7 +100,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="학생회"
+                            android:text="총 여학생회"
                             android:textColor="@android:color/white"
                             android:textSize="15sp" />
                     </LinearLayout>
@@ -262,7 +262,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="외부활동"
+                            android:text="외부활동 정보"
                             android:textColor="@android:color/white"
                             android:textSize="15sp" />
                     </LinearLayout>
