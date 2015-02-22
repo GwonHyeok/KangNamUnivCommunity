@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -94,12 +95,19 @@ public class DeliveryFoodActivity extends MenuBaseActivity {
                     LinearLayout dataView = (LinearLayout) scrollView.getChildAt(0);
                     ImageLoaderUtil.getInstance().initImageLoader();
 
-                    for (DeliveryListItems item : list) {
+                    for (final DeliveryListItems item : list) {
                         View view = LayoutInflater.from(DeliveryFoodActivity.this).inflate(R.layout.ui_deliveryfood_card, dataView, false);
                         TextView nameView = (TextView) view.findViewById(R.id.title);
                         TextView phoneView = (TextView) view.findViewById(R.id.phonen_textview);
                         ImageView foodView = (ImageView) view.findViewById(R.id.delivery_food_iamgeview);
-
+                        view.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent intent = new Intent(Intent.ACTION_DIAL);
+                                intent.setData(Uri.parse("tel:" + item.getTelnum()));
+                                startActivity(intent);
+                            }
+                        });
                         nameView.setText(item.getName());
                         phoneView.setText(item.getTelnum());
                         ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getDiskCacheImageOptions());
