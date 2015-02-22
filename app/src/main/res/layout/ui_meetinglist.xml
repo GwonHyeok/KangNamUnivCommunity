@@ -10,6 +10,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="25dp"
         android:background="#ffffff" />
+
     <TextView
         android:id="@+id/meeting_people_num"
         android:layout_width="wrap_content"
@@ -74,6 +75,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:textSize="12sp"/>
+            android:textSize="12sp" />
     </RelativeLayout>
 </RelativeLayout>

@@ -70,7 +70,7 @@
                 android:paddingLeft="8dp"
                 android:text="성별을 클릭해주세요"
                 android:textColor="#6b6b6b"
-                android:textSize="15sp"/>
+                android:textSize="15sp" />
         </RelativeLayout>
 
         <View

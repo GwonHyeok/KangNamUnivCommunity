@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:textColor="#FF616161"
-            android:textSize="13sp"/>
+            android:textSize="13sp" />
     </LinearLayout>
 
     <TextView
@@ -45,7 +45,7 @@
         android:layout_centerVertical="true"
         android:paddingRight="10dp"
         android:textColor="#757575"
-        android:textSize="12sp"/>
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/market_list_reply"
@@ -56,7 +56,7 @@
         android:layout_toLeftOf="@+id/market_list_time"
         android:layout_toStartOf="@+id/market_list_time"
         android:textSize="15sp"
-        android:textColor="#636363"/>
+        android:textColor="#636363" />
 
     <include
         layout="@layout/ui_boardlist_divider"

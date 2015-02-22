@@ -42,7 +42,7 @@
         android:text="이 달의 룩엔룩 최고의 좋아요를 기록한 학생은 컴미공의 14학번 이우란 학생이 차지했습니다. 그럼 그 학생의 아름다운 패션을 볼까요?!"
         android:lineSpacingExtra="4dp"
         android:textSize="13sp"
-        android:textColor="#ff616161"/>
+        android:textColor="#ff616161" />
 
     <HorizontalScrollView
         android:layout_width="wrap_content"

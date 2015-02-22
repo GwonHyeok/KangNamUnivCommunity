@@ -22,7 +22,7 @@
             android:layout_alignStart="@+id/major_name"
             android:text="학과이름"
             android:textColor="#FFEF5350"
-            android:textSize="13sp"/>
+            android:textSize="13sp" />
 
         <TextView
             android:id="@+id/major_name"

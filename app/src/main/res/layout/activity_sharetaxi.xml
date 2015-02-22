@@ -85,16 +85,16 @@
         android:layout_height="0dp"
         android:layout_weight="65">
 
-    <com.yscn.knucommunity.CustomView.NotifiableScrollView
-        android:id="@+id/share_taxi_scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent">
-
-        <LinearLayout
-            android:id="@+id/share_taxi_data_view"
+        <com.yscn.knucommunity.CustomView.NotifiableScrollView
+            android:id="@+id/share_taxi_scrollview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </com.yscn.knucommunity.CustomView.NotifiableScrollView>
+            android:layout_height="fill_parent">
+
+            <LinearLayout
+                android:id="@+id/share_taxi_data_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </com.yscn.knucommunity.CustomView.NotifiableScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

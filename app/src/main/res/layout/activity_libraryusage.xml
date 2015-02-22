@@ -43,7 +43,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
                     android:textSize="15sp"
-                    android:paddingBottom="12dp"/>
+                    android:paddingBottom="12dp" />
 
                 <TextView
                     android:id="@+id/library_usage_used_textview_1"
@@ -51,14 +51,14 @@
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
                     android:textSize="15sp"
-                    android:paddingBottom="12dp"/>
+                    android:paddingBottom="12dp" />
 
                 <TextView
                     android:id="@+id/library_usage_empty_textview_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -87,8 +87,8 @@
         </LinearLayout>
 
 
-
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
@@ -129,7 +129,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
                     android:textSize="15sp"
-                    android:paddingBottom="12dp"/>
+                    android:paddingBottom="12dp" />
 
                 <TextView
                     android:id="@+id/library_usage_used_textview_2"
@@ -137,7 +137,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
                     android:textSize="15sp"
-                    android:paddingBottom="12dp"/>
+                    android:paddingBottom="12dp" />
 
                 <TextView
                     android:id="@+id/library_usage_empty_textview_2"
@@ -178,6 +178,7 @@
             android:layout_alignParentBottom="true"
             android:background="#525252" />
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
@@ -218,7 +219,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
                     android:textSize="15sp"
-                    android:paddingBottom="12dp"/>
+                    android:paddingBottom="12dp" />
 
                 <TextView
                     android:id="@+id/library_usage_used_textview_3"
@@ -226,14 +227,14 @@
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
                     android:textSize="15sp"
-                    android:paddingBottom="12dp"/>
+                    android:paddingBottom="12dp" />
 
                 <TextView
                     android:id="@+id/library_usage_empty_textview_3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#f0f0f0"
-                    android:textSize="15sp"/>
+                    android:textSize="15sp" />
             </LinearLayout>
         </RelativeLayout>
 

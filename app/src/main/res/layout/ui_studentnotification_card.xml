@@ -7,13 +7,13 @@
     android:orientation="vertical">
 
     <RelativeLayout
-    android:id="@+id/studentnotify_item_root"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:paddingBottom="4dp"
-    android:paddingLeft="8dp"
-    android:paddingRight="4dp"
-    android:paddingTop="6dp">
+        android:id="@+id/studentnotify_item_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="4dp"
+        android:paddingTop="6dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
             android:id="@+id/studentnotify_item_imageview"
@@ -24,15 +24,15 @@
             android:layout_alignParentTop="true"
             android:src="@drawable/ic_profile"
             android:layout_marginRight="8dp"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@+id/studentnotify_item_imageview"
-                android:orientation="vertical"
-                android:paddingRight="8dp"
-                android:paddingBottom="4dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/studentnotify_item_imageview"
+            android:orientation="vertical"
+            android:paddingRight="8dp"
+            android:paddingBottom="4dp">
 
             <TextView
                 android:id="@+id/studentnotify_item_title"
@@ -55,7 +55,7 @@
                 android:textSize="12sp"
                 android:textColor="#8c8c8c"
                 android:layout_below="@+id/studentnotify_item_title"
-                android:layout_alignLeft="@+id/studentnotify_item_title"/>
+                android:layout_alignLeft="@+id/studentnotify_item_title" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

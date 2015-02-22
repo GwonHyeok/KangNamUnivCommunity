@@ -15,7 +15,7 @@
         android:layout_width="60dp"
         android:layout_height="match_parent"
         android:src="@drawable/ic_profile"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical" />
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:text="858-P211p최"
             android:textColor="#757575"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:id="@+id/library_search_book_author_year"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:text="보누스, 2014"
             android:textColor="#757575"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp" />
 
         <TextView
             android:id="@+id/library_search_book_holding_lendtitle"
@@ -54,6 +54,6 @@
             android:layout_height="wrap_content"
             android:text="제1서고 / 대출가능"
             android:textColor="#616161"
-            android:layout_marginTop="2dp"/>
+            android:layout_marginTop="2dp" />
     </LinearLayout>
 </RelativeLayout>

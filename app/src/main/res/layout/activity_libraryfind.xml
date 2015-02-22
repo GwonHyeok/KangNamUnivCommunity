@@ -52,7 +52,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
             android:src="@drawable/ic_seach"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true" />
 
         <EditText
             android:id="@+id/library_edittext"
