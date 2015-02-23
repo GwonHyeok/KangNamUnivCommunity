@@ -131,6 +131,7 @@ public class DeliveryFoodWriteActivity extends ActionBarActivity {
         photoDataView.removeAllViews();
 
         /* 사진 추가해요 */
+        ApplicationUtil.getInstance().setTypeFace(photoChildView);
         photoDataView.addView(photoChildView);
 
         final ImageView photoThumbnailView = (ImageView) photoChildView.findViewById(R.id.board_write_photo_thumbnail);

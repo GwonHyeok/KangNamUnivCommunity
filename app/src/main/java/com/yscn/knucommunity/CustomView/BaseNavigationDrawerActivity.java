@@ -51,6 +51,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         setContentView(R.layout.activity_base_navigationdrawer);
+        ApplicationUtil.getInstance().setTypeFace(findViewById(R.id.navigationdrawer_drawerlayout));
         drawerInit();
     }
 
@@ -272,6 +273,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
                     mDrawerLayout.openDrawer(Gravity.START);
                 }
             });
+            ApplicationUtil.getInstance().setTypeFace(mToolbar);
         } else {
             Log.d(getClass().getSimpleName(), "TOOL BAR IS NULL");
         }
