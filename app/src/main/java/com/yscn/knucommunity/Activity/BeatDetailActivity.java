@@ -202,7 +202,7 @@ public class BeatDetailActivity extends ActionBarActivity {
                 String[] attatchmenturls = new String[attatchmentArray.size()];
                 for (int i = 0; i < attatchmentArray.size(); i++) {
                     JSONObject attatchmentObject = (JSONObject) attatchmentArray.get(i);
-                    attatchmenturls[i] = attatchmentObject.get("filename").toString();
+                    attatchmenturls[i] = UrlList.MAIN_URL + attatchmentObject.get("filename").toString();
                 }
                 addPhotoView(attatchmenturls);
 
@@ -269,7 +269,7 @@ public class BeatDetailActivity extends ActionBarActivity {
 
             final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
             final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
-            ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + url, imageView,
+            ImageLoader.getInstance().displayImage(url, imageView,
                     ImageLoaderUtil.getInstance().getDiskCacheImageOptions(), new ImageLoadingListener() {
                         @Override
                         public void onLoadingStarted(String imageUri, View view) {
