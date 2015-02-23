@@ -96,7 +96,7 @@
             android:background="@android:color/transparent"
             android:gravity="center_vertical"
             android:hint="(- 포함, 031-123-5678)"
-            android:inputType="numberSigned"
+            android:inputType="phone"
             android:paddingLeft="8dp"
             android:singleLine="true"
             android:textColor="#5c5c5c"
@@ -163,12 +163,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
         android:gravity="center_horizontal"
         android:text="* 추후 메뉴판도 입력 가능하도록 업데이트 하겠습니다."
         android:textColor="#5c5c5c"
-        android:textSize="12sp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp" />
+        android:textSize="12sp" />
 
     <RelativeLayout
         android:id="@+id/register_apply_button"
@@ -181,14 +181,14 @@
         android:gravity="center|bottom">
 
         <LinearLayout
+            android:id="@+id/linearLayout4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/delivery_main_color"
             android:gravity="center"
-            android:onClick="onClickWrite"
-            android:id="@+id/linearLayout4">
+            android:onClick="onClickWrite">
 
-            <ImageView
+        <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
