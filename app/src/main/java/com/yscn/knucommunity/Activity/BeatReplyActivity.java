@@ -84,7 +84,7 @@ public class BeatReplyActivity extends ActionBarActivity implements View.OnClick
                 if (itemses != null) {
                     addCommentData(itemses);
                 } else {
-                    /* Error Occured */
+                    AlertToast.error(getContext(), R.string.error_to_work);
                 }
                 clearProgressDialog.cancel();
             }
@@ -133,6 +133,9 @@ public class BeatReplyActivity extends ActionBarActivity implements View.OnClick
     }
 
     private void addCommentData(ArrayList<CommentListItems> itemses) {
+        int visibility = itemses.size() == 0 ? View.VISIBLE : View.GONE;
+        findViewById(R.id.freeboard_reply_emptyview).setVisibility(visibility);
+
         LinearLayout mainView = (LinearLayout) findViewById(R.id.freeboard_reply_scrollview);
         for (final CommentListItems dataObject : itemses) {
             View view = LayoutInflater.from(this).inflate(R.layout.ui_freeboardreply, mainView, false);
