@@ -46,14 +46,13 @@
                 android:id="@+id/linearLayout"
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
-                android:layout_alignParentTop="true"
+                android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
-                    android:paddingTop="4dp"
                     android:src="@drawable/ic_call" />
 
                 <TextView
@@ -62,7 +61,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:textColor="#424242"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:paddingTop="1dp"
+                    android:text="342342342"/>
             </LinearLayout>
 
             <!-- 공유, 더보기 숨겨놓음 -->
