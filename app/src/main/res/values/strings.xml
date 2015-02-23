@@ -155,15 +155,16 @@
     <string name="text_select_delivery_category">음식 카테고리를 선택해주세요</string>
     <string name="double_back_kill_app">뒤로가기를 한번 더 눌러 종료해주세요</string>
     <string name="receive_new_board_comment">회원님의 글에 새로운 댓글이 달렸습니다.</string>
-    <string name="error_to_get_majorname">학과 정보를 가저오는중에 문제가 발생하였습니다.</string>
+    <string name="error_to_get_majorname">학과 정보를 가져오는 중에 문제가 발생하였습니다.</string>
     <string name="text_library_total_seat_format">전체 좌석수 : %1$s</string>
     <string name="text_library_used_seat_format">사용 좌석수 : %1$s</string>
     <string name="text_library_empty_seat_format">잔여 좌석수 : %1$s</string>
     <string name="warning_board_write_title_lenght">제목은 25자를 넘을 수 없습니다</string>
     <string name="warning_input_nickname_lenght">닉네임은 10자를 넘을 수 없습니다</string>
-    <string name="text_select_photo_profile_title">사진선택</string>
+    <string name="text_select_photo_profile_title">사진 선택</string>
     <string name="text_photo_profile_album">사진 앨범</string>
     <string name="text_photo_profile_delete">삭제</string>
-    <string name="success_delete_profileimage">성공적으로 프로필이미지를 삭제하였습니다</string>
-    <string name="text_taxi_no_phonenumber_data">번호 정보가 없습니다.</string>
+    <string name="success_delete_profileimage">성공적으로 프로필 이미지를 삭제하였습니다</string>
+    <string name="text_taxi_no_phonenumber_data">정보가 존재하지 않습니다.</string>
+    <string name="reply_no_data">댓글이 없습니다.\n첫번째 댓글을 달아주세요.</string>
 </resources>

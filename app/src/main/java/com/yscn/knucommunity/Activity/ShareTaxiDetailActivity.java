@@ -279,6 +279,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
 
                         foldedNameView.setText(name);
                         if (studentnumber.equals("-1")) {
+                            foldedNameView.setTextColor(0xff474747);
                             foldedPhoneView.setText(getString(R.string.text_taxi_no_phonenumber_data));
                         } else {
                             foldedPhoneView.setText(phonenumber);
