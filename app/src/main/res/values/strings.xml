@@ -165,4 +165,5 @@
     <string name="text_photo_profile_album">사진 앨범</string>
     <string name="text_photo_profile_delete">삭제</string>
     <string name="success_delete_profileimage">성공적으로 프로필이미지를 삭제하였습니다</string>
+    <string name="text_taxi_no_phonenumber_data">번호 정보가 없습니다.</string>
 </resources>

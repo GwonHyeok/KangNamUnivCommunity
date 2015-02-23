@@ -278,7 +278,11 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                         ApplicationUtil.getInstance().setTypeFace(view);
 
                         foldedNameView.setText(name);
-                        foldedPhoneView.setText(phonenumber);
+                        if (studentnumber.equals("-1")) {
+                            foldedPhoneView.setText(getString(R.string.text_taxi_no_phonenumber_data));
+                        } else {
+                            foldedPhoneView.setText(phonenumber);
+                        }
                         foledGroup.addView(view);
 
                         view.setTag(phonenumber);
