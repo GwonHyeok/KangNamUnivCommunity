@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -239,12 +241,29 @@ public class BeatDetailActivity extends ActionBarActivity {
         }.execute();
     }
 
-    private void addPhotoView(String[] urls) {
+    private void addPhotoView(final String[] urls) {
         ImageLoaderUtil.getInstance().initImageLoader();
         LinearLayout imageGroup = (LinearLayout) findViewById(R.id.beat_detail_scrollview_imagegroup);
 
-        for (String url : urls) {
+        for (int i = 0; i < urls.length; i++) {
+            String url = urls[i];
+            final int imagePosition = i;
+
             View view = getLayoutInflater().inflate(R.layout.ui_board_image_card, imageGroup, false);
+            /* Start Preview Activity */
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), ImageCollectionActivity.class);
+                    intent.putExtra("Imageurls", urls);
+                    intent.putExtra("Position", imagePosition);
+
+                    ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                            BeatDetailActivity.this, v, "imagecollection_transition");
+                    ActivityCompat.startActivity(BeatDetailActivity.this, intent, options.toBundle());
+                }
+            });
+
             final ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
             final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.progressbar);
             ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + url, imageView,
