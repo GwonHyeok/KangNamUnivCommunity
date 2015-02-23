@@ -38,6 +38,8 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 /**
@@ -233,6 +235,7 @@ public class BeatDetailActivity extends ActionBarActivity {
                 try {
                     ((TextView) findViewById(R.id.beat_detail_title)).setText(jsonObject.get("title").toString());
                     ((TextView) findViewById(R.id.beat_detail_content)).setText(jsonObject.get("content").toString());
+                    ((TextView) findViewById(R.id.beat_detail_time)).setText(getSimpleDetailTime(jsonObject.get("time").toString()));
                 } catch (Exception e) {
 
                 }
@@ -337,6 +340,22 @@ public class BeatDetailActivity extends ActionBarActivity {
                 scrollView.setPadding(0, padding, 0, 0);
             }
         });
+    }
+
+    protected String getSimpleDetailTime(String defaulttime) {
+        String dataTimeFormat = "yyyy-MM-dd HH:mm:ss";
+        String newDateTimeFormat = "yyyy.MM.dd HH:mm";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
+        SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
+
+        String time;
+        try {
+            Date date = simpleDateFormat.parse(defaulttime);
+            time = newDateFormat.format(date);
+        } catch (java.text.ParseException ignore) {
+            time = defaulttime;
+        }
+        return time;
     }
 
     @Override
