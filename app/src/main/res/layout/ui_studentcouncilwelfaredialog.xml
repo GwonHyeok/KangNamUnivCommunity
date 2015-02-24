@@ -3,11 +3,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="#fafafa"
+    android:background="@drawable/bg_box_custom_dialog"
     android:minHeight="172dp"
     android:minWidth="308dp"
     android:orientation="vertical"
-    android:padding="10dp">
+    android:paddingTop="18dp"
+    android:paddingLeft="18dp"
+    android:paddingRight="10dp">
 
 
     <TextView
@@ -21,7 +23,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="16dp"
         android:text="혜택"
         android:textColor="#78909c"
         android:textSize="15sp" />
@@ -30,27 +32,29 @@
         android:id="@+id/welfaredialog_welfareinfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="2dp"
         android:text="6인 이상 테이블당 or 정량 주문시 음료 1병"
         android:textColor="#546e7a"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:paddingRight="4dp"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="*현금/카드 결제 모두 복지카드의 혜택이 적용되며 주문시 제시해주세요"
+        android:layout_marginTop="16dp"
+        android:text="*현금/카드 결제 모두 복지카드의 혜택이 적용되며 주문시 제시해주세요."
         android:textColor="#7b7b7b"
-        android:textSize="12sp" />
+        android:textSize="11sp"
+        android:paddingRight="4dp"/>
 
     <TextView
         android:id="@+id/welfaredialog_ok"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right"
-        android:layout_marginTop="10dp"
         android:background="@drawable/bg_default_select_item_effect"
-        android:padding="6dp"
+        android:padding="8dp"
+        android:textSize="18sp"
         android:text="확인"
-        android:textColor="#4285f4" />
+        android:textColor="#4285f4"
+        android:layout_gravity="right|bottom" />
 </LinearLayout>
