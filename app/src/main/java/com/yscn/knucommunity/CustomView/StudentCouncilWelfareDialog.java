@@ -2,6 +2,8 @@ package com.yscn.knucommunity.CustomView;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -28,6 +30,7 @@ public class StudentCouncilWelfareDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        super.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         setContentView(R.layout.ui_studentcouncilwelfaredialog);
         viewInit();
     }
