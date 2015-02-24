@@ -25,6 +25,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/external_link_externalscholarInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="52dp"
@@ -32,13 +33,13 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/bg_button_external_link"
             android:gravity="center"
-            android:onClick="externalscholarInfo"
             android:padding="8dp"
             android:text="외부 장학금 정보"
             android:textColor="@android:color/white"
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/external_link_contestInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="52dp"
@@ -46,13 +47,13 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_button_external_link"
             android:gravity="center"
-            android:onClick="contestInfo"
             android:padding="8dp"
             android:text="공모전 정보"
             android:textColor="@android:color/white"
             android:textSize="22sp" />
 
         <TextView
+            android:id="@+id/external_link_externalactivityInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="52dp"
@@ -60,7 +61,6 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/bg_button_external_link"
             android:gravity="center"
-            android:onClick="externalactivityInfo"
             android:padding="8dp"
             android:text="대외 활동 정보"
             android:textColor="@android:color/white"
