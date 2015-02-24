@@ -7,7 +7,7 @@
     android:minWidth="308dp"
     android:orientation="vertical"
     android:paddingLeft="18dp"
-    android:paddingRight="10dp"
+    android:paddingRight="4dp"
     android:paddingTop="18dp">
 
 
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
-        android:paddingRight="4dp"
+        android:paddingRight="10dp"
         android:text="6인 이상 테이블당 or 정량 주문시 음료 1병"
         android:textColor="#546e7a"
         android:textSize="16sp" />
@@ -41,18 +41,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:paddingRight="4dp"
-        android:text="*현금/카드 결제 모두 복지카드의 혜택이 적용되며 주문시 제시해주세요."
+        android:paddingRight="10dp"
+        android:text="* 현금/카드 결제 모두 복지카드의 혜택이 적용되며 주문시 제시해주세요."
         android:textColor="#7b7b7b"
         android:textSize="11sp" />
 
     <TextView
         android:id="@+id/welfaredialog_ok"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="right|bottom"
         android:background="@drawable/bg_default_select_item_effect"
-        android:padding="8dp"
+        android:padding="12dp"
         android:text="확인"
         android:textColor="#4285f4"
         android:textSize="18sp" />
