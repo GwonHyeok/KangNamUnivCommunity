@@ -109,8 +109,6 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
             }
         } else if (id == R.id.register_profile) {
             getProfilePicture();
-        } else if (id == R.id.actionbar_center_base_image) {
-            finish();
         }
     }
 
