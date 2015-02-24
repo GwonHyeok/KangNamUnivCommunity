@@ -32,27 +32,11 @@ public class StudentNotificationActivity extends ActionBarActivity {
     private void viewInit() {
         mSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.studentnotify_pagertabstrip);
         mViewPager = (ViewPager) findViewById(R.id.studentnotify_viewpager);
-        mNotificationPagerAdapter = new StudentNotificationPagerAdapter(this);
+        mNotificationPagerAdapter = new StudentNotificationPagerAdapter(getSupportFragmentManager());
         mNotificationPagerAdapter.setPageTitle(getResources().getStringArray(R.array.studentinfo_tab_title));
         mViewPager.setAdapter(mNotificationPagerAdapter);
         mSlidingTabStrip.setViewPager(mViewPager);
         mSlidingTabStrip.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.BOLD), Typeface.BOLD);
-        mSlidingTabStrip.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                mNotificationPagerAdapter.resetRefresh();
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
     }
 
     private void toolbarInit() {

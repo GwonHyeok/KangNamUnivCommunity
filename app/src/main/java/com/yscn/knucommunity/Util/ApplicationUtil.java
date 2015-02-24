@@ -54,6 +54,9 @@ public class ApplicationUtil {
     }
 
     public void finishAllActivity() {
+        if (activities == null) {
+            return;
+        }
         for (Activity activity : activities) {
             if (activity != null) {
                 activity.finish();
