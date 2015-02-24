@@ -1,19 +1,14 @@
 package com.yscn.knucommunity.Activity;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.util.TypedValue;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.R;
@@ -39,16 +34,16 @@ public class ShuttleBusActivity extends ActionBarActivity {
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(0xFFE8E8E8);
         }
-        ActionBar actionBar = getSupportActionBar();
-        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_center_base, null);
-        ((ImageView) view.findViewById(R.id.actionbar_center_base_image)).setImageResource(R.drawable.ic_nav_blue_back);
-        ((TextView) view.findViewById(R.id.actionbar_center_base_title)).setText("달구지");
-        ((TextView) view.findViewById(R.id.actionbar_center_base_title)).setTextColor(0xFF455A64);
-        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
-        actionBar.setCustomView(view, layout);
-        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFE8E8E8")));
-        actionBar.setDisplayShowCustomEnabled(true);
-        actionBar.setElevation(0);
+//        ActionBar actionBar = getSupportActionBar();
+//        View view = LayoutInflater.from(this).inflate(R.layout.actionbar_center_base, null);
+//        ((ImageView) view.findViewById(R.id.actionbar_center_base_image)).setImageResource(R.drawable.ic_nav_blue_back);
+//        ((TextView) view.findViewById(R.id.actionbar_center_base_title)).setText("달구지");
+//        ((TextView) view.findViewById(R.id.actionbar_center_base_title)).setTextColor(0xFF455A64);
+//        ActionBar.LayoutParams layout = new ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT);
+//        actionBar.setCustomView(view, layout);
+//        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#FFE8E8E8")));
+//        actionBar.setDisplayShowCustomEnabled(true);
+//        actionBar.setElevation(0);
     }
 
     private class ShuttleBusAdpater extends PagerAdapter {
