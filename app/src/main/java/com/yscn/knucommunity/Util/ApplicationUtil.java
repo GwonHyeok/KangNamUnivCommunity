@@ -1,5 +1,6 @@
 package com.yscn.knucommunity.Util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -20,6 +21,8 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by GwonHyeok on 2015. 1. 23..
  */
@@ -27,6 +30,8 @@ public class ApplicationUtil {
 
     private static ApplicationUtil instance;
     private static Typeface normalTypeface, boldTypeface;
+    private static ArrayList<Activity> activities;
+
     private ApplicationUtil() {
     }
 
@@ -46,6 +51,25 @@ public class ApplicationUtil {
         if (boldTypeface == null) {
             boldTypeface = Typeface.createFromAsset(ApplicationContextProvider.getContext().getAssets(), "fonts/NanumBarunGothicBold.otf");
         }
+    }
+
+    public void finishAllActivity() {
+        for (Activity activity : activities) {
+            if (activity != null) {
+                activity.finish();
+            }
+        }
+    }
+
+    public ArrayList<Activity> getActivities() {
+        return activities;
+    }
+
+    public void addActivity(Activity activity) {
+        if (activities == null) {
+            activities = new ArrayList<>();
+        }
+        activities.add(activity);
     }
 
     public Typeface getTypeFace(int style) {

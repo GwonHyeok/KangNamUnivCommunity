@@ -57,6 +57,7 @@ public class DeliveryFoodActivity extends BaseNavigationDrawerActivity {
 
         actionBarInit();
         viewInit();
+        ApplicationUtil.getInstance().addActivity(this);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 

@@ -36,6 +36,7 @@ public class CommunittyActivity extends ActionBarActivity implements View.OnClic
         findViewById(R.id.communitty_metting_board).setOnClickListener(this);
         findViewById(R.id.communitty_delivery_food).setOnClickListener(this);
         findViewById(R.id.communitty_share_taxi).setOnClickListener(this);
+        ApplicationUtil.getInstance().addActivity(this);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
@@ -55,6 +56,11 @@ public class CommunittyActivity extends ActionBarActivity implements View.OnClic
         } else if (id == R.id.communitty_share_taxi) {
             startActivity(new Intent(this, ShareTaxiActivity.class));
         }
-        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        ApplicationUtil.getInstance().finishAllActivity();
     }
 }

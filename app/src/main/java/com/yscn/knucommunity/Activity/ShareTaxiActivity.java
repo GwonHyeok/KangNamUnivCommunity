@@ -89,6 +89,7 @@ public class ShareTaxiActivity extends BaseNavigationDrawerActivity implements V
         checkHasPhoneNumber();
         setTaxiData();
         scrollViewInit();
+        ApplicationUtil.getInstance().addActivity(this);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 

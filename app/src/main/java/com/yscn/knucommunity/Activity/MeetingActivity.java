@@ -43,6 +43,7 @@ public class MeetingActivity extends BaseNavigationDrawerActivity implements Vie
         attatchView(R.layout.activity_meeting);
         viewInit();
         getMeetingList();
+        ApplicationUtil.getInstance().addActivity(this);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 

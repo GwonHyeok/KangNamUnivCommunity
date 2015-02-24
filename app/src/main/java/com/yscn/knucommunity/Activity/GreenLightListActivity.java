@@ -27,6 +27,7 @@ public class GreenLightListActivity extends BaseBoardListActivity implements Vie
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
         attatchView(R.layout.activity_greenlight_list);
+        ApplicationUtil.getInstance().addActivity(this);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 

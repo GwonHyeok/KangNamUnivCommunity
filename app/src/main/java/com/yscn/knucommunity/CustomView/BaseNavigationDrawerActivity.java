@@ -71,6 +71,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), StudentInfoActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -78,6 +79,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), StudentNotificationActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -85,6 +87,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), NoticeActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -92,6 +95,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), StudentGroundActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -99,6 +103,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), MarketMainActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -106,6 +111,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), CommunittyActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -113,6 +119,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), LinkActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -120,6 +127,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 startNewActivity(new Intent(getContext(), SettingActivity.class));
+                ApplicationUtil.getInstance().finishAllActivity();
             }
         });
 
@@ -137,6 +145,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
                             }
                         })
                         .show();
+                ApplicationUtil.getInstance().finishAllActivity();
                 ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
             }
         });
