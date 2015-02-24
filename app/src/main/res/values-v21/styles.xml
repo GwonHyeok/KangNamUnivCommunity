@@ -45,4 +45,9 @@
         <item name="android:colorPrimaryDark">@color/community_primary_dark_color</item>
         <item name="android:colorPrimary">@color/community_primary_color</item>
     </style>
+
+    <style name="StudentCouncilTheme" parent="NoActionBarTheme">
+        <item name="android:colorPrimary">@color/studentcountil_main_primary_color</item>
+        <item name="android:colorPrimaryDark">@color/studentcountil_main_primary_dark_color</item>
+    </style>
 </resources>

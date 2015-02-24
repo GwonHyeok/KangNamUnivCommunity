@@ -20,8 +20,8 @@
     <color name="setting_main_color">#FF5b33a1</color>
     <color name="setting_main_dark_color">#FF5321A8</color>
 
-    <color name="studentcountil_main_primary_color">#FF0277BD</color>
-    <color name="studentcountil_main_primary_dark_color">#FF0167A3</color>
+    <color name="studentcountil_main_primary_color">#8e24aa</color>
+    <color name="studentcountil_main_primary_dark_color">#7b1f94</color>
 
     <color name="major_main_primary_color">#FF0097A7</color>
     <color name="major_main_primary_dark_color">#FF008694</color>

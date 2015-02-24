@@ -17,7 +17,6 @@ import com.yscn.knucommunity.Items.MeetingListItems;
 import com.yscn.knucommunity.Items.NoticeItems;
 import com.yscn.knucommunity.Items.SchoolRestrauntItems;
 import com.yscn.knucommunity.Items.ShareTaxiListItems;
-import com.yscn.knucommunity.Items.StudentCouncilListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
 
@@ -488,36 +487,19 @@ public class NetworkUtil {
         return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 
-    public HashMap<String, ArrayList<StudentCouncilListItems>> getCouncilInfo() throws IOException, ParseException {
-        HashMap<String, ArrayList<StudentCouncilListItems>> dataMap = new HashMap<>();
-        ArrayList<StudentCouncilListItems> riffleItem = new ArrayList<>();
-        ArrayList<StudentCouncilListItems> dragItem = new ArrayList<>();
+    public JSONObject getCouncilInfo() throws IOException, ParseException {
         HttpResponse httpResponse = postData(UrlList.STUDENT_GET_COUNCIL_INFO, null);
         JSONParser jsonParser = new JSONParser();
-        JSONObject object = (JSONObject) jsonParser.parse(
+        return (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
-
-        if (!checkResultData(object)) {
-            return null;
-        }
-        JSONArray jsonArray = (JSONArray) object.get("data");
-        for (Object obj : jsonArray) {
-            JSONObject jsonObject = (JSONObject) obj;
-            String type = jsonObject.get("type").toString();
-            String title = jsonObject.get("title").toString();
-            String message = jsonObject.get("message").toString();
-
-            if (type.equals("riffle")) {
-                riffleItem.add(new StudentCouncilListItems(title, message));
-            } else if (type.equals("drag")) {
-                dragItem.add(new StudentCouncilListItems(title, message));
-            }
-        }
-        dataMap.put("riffle", riffleItem);
-        dataMap.put("drag", dragItem);
-        return dataMap;
     }
 
+    public JSONObject getCouncilWelfareInfo() throws IOException, ParseException {
+        HttpResponse httpResponse = postData(UrlList.STUDENT_COUNCIL_GET_WELFARE, null);
+        JSONParser jsonParser = new JSONParser();
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
 
     public boolean writeMeetingContent(String content, String schoolname, String majorname,
                                        String studentcount, String gender) throws IOException, ParseException {

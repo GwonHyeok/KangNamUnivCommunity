@@ -8,7 +8,8 @@ public class UrlList {
     public static final String SCHOOL_SERVER_LIBRARY_URL = "https://m.kangnam.ac.kr/knusmart/s/s240.do";
     public static final String LIBRARY_SEAT_URL = "http://223.194.112.88/SEAT/domian5.asp";
     public static final String MAIN_URL = "http://api.knuc.kr/";
-    public static final String STUDENT_GET_COUNCIL_INFO = MAIN_URL + "studentCouncil/get/";
+    public static final String STUDENT_GET_COUNCIL_INFO = MAIN_URL + "studentCouncil/getPartnerShip/";
+    public static final String STUDENT_COUNCIL_GET_WELFARE = MAIN_URL + "studentCouncil/getWelfare/";
     public static final String MAJOR_GET_SIMPLE_INFO = MAIN_URL + "majorInfo/get/";
     public static final String SCHOOL_RESTRAUNT_INFO = MAIN_URL + "schoolRestraunt/get/";
     public static final String PROFESSOR_GET_DETAIL_INFO = MAIN_URL + "professorInfo/get/";

@@ -18,12 +18,12 @@
         android:layout_height="48dp"
         android:layout_below="@id/toolbar"
         android:background="@color/studentcountil_main_primary_color"
+        android:paddingLeft="30dp"
         android:textColor="#ffffff"
         android:textSize="16sp"
         app:pstsDividerColor="@android:color/transparent"
-        app:pstsIndicatorColor="#ffffee58"
+        app:pstsIndicatorColor="#ff55e6c1"
         app:pstsIndicatorHeight="2dp"
-        app:pstsShouldExpand="true"
         app:pstsTextSelectedStyle="bold"
         app:pstsTextStyle="normal"
         app:pstsUnderlineHeight="0dp" />
@@ -44,6 +44,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/floating_action_button_margin"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_rifflegroup" />
+        android:src="@drawable/ic_rifflegroup"
+        android:visibility="gone" />
 
 </RelativeLayout>

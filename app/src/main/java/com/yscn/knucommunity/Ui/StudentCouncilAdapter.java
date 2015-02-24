@@ -1,31 +1,48 @@
 package com.yscn.knucommunity.Ui;
 
 import android.content.Context;
-import android.support.v4.view.PagerAdapter;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
+import com.yscn.knucommunity.CustomView.DividerItemDecoration;
+import com.yscn.knucommunity.CustomView.StudentCouncilWelfareDialog;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
+import com.yscn.knucommunity.Items.StudentCouncilWelfareListItems;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
+import com.yscn.knucommunity.Util.NetworkUtil;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.ParseException;
+
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Date;
 
 /**
  * Created by GwonHyeok on 14. 11. 3..
  */
 
-public class StudentCouncilAdapter extends PagerAdapter {
+public class StudentCouncilAdapter extends FragmentPagerAdapter {
 
-    private final String[] TITLES = {"여울림", "끌림"};
+    private final String[] TITLES = {"제휴정보", "복지카드"};
     private Context mContext;
 
-    /* 학생회 정보 관련 데이터 */
-    private HashMap<String, ArrayList<StudentCouncilListItems>> infoMap;
-
-    public StudentCouncilAdapter(Context context) {
-        this.mContext = context;
+    public StudentCouncilAdapter(FragmentManager fm) {
+        super(fm);
     }
 
     @Override
@@ -39,34 +56,313 @@ public class StudentCouncilAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup viewGroup, int position) {
-        ListView listView = new ListView(mContext);
-        listView.setBackgroundColor(0xFFF5F5F5);
-        ArrayList<StudentCouncilListItems> itemses = new ArrayList<StudentCouncilListItems>();
-        switch (position) {
-            case 0:
-                itemses = infoMap.get("riffle");
-                break;
-            case 1:
-                itemses = infoMap.get("drag");
-                break;
+    public Fragment getItem(int position) {
+        if (position == 0) {
+            return partnershipInfoFragment.newInstance();
+        } else if (position == 1) {
+            return welfareCardFragment.newInstance();
+        } else {
+            return null;
         }
-        listView.setAdapter(new StudentCouncilListAdapter(mContext, R.layout.ui_studentcouncillist, itemses));
-        viewGroup.addView(listView);
-        return listView;
     }
 
-    @Override
-    public void destroyItem(ViewGroup pager, int position, Object view) {
-        pager.removeView((View) view);
+    public static class partnershipInfoFragment extends Fragment {
+        private ParternerShipInfoAdapter mAdapter;
+        private ProgressBar mProgressBar;
+        private RecyclerView mRecyclerView;
+        private SwipeRefreshLayout mSwipeRefreshLayout;
+
+        static partnershipInfoFragment newInstance() {
+            return new partnershipInfoFragment();
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.activity_beat_list, container, false);
+            mAdapter = new ParternerShipInfoAdapter();
+            mProgressBar = (ProgressBar) view.findViewById(R.id.beat_progressbar);
+            mRecyclerView = (RecyclerView) view.findViewById(R.id.beat_list_recyclerview);
+            mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.beat_list_swiperefreshlayout);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+            mRecyclerView.setAdapter(mAdapter);
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    updatePartnerInfo();
+                }
+            });
+            return view;
+        }
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            updatePartnerInfo();
+        }
+
+        private void updatePartnerInfo() {
+            new AsyncTask<Void, Void, JSONObject>() {
+
+                @Override
+                protected void onPreExecute() {
+                    if (!mSwipeRefreshLayout.isRefreshing()) {
+                        mProgressBar.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                protected JSONObject doInBackground(Void... params) {
+                    try {
+                        return NetworkUtil.getInstance().getCouncilInfo();
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(JSONObject jsonObject) {
+                    if (!mSwipeRefreshLayout.isRefreshing()) {
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+                    mSwipeRefreshLayout.setRefreshing(false);
+
+                    if (jsonObject == null) {
+                        AlertToast.error(getActivity(), R.string.error_to_work);
+                        return;
+                    }
+                    String result = jsonObject.get("result").toString();
+                    if (result.equals("success")) {
+                        mAdapter.clearItems();
+                        JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+                        for (Object object : jsonArray) {
+                            JSONObject dataObject = (JSONObject) object;
+//                            "id": "1",
+//                                    "type": "riffle",
+//                                    "title": "테스트",
+//                                    "message": "테스트 메세지 입니다.",
+//                                    "writer": "권혁",
+//                                    "time": "2014-11-19 00:59:05"
+                            String title = dataObject.get("title").toString();
+                            String message = dataObject.get("time").toString();
+                            mAdapter.addItem(new StudentCouncilListItems(title, message));
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+            }.execute();
+        }
     }
 
-    @Override
-    public boolean isViewFromObject(View view, Object o) {
-        return view == o;
+    public static class welfareCardFragment extends Fragment {
+        private WelfareInfoAdapter mAdapter;
+        private ProgressBar mProgressBar;
+        private RecyclerView mRecyclerView;
+        private SwipeRefreshLayout mSwipeRefreshLayout;
+
+        static welfareCardFragment newInstance() {
+            return new welfareCardFragment();
+        }
+
+        @Override
+        public void onCreate(Bundle savedInstanceState) {
+            super.onCreate(savedInstanceState);
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View view = inflater.inflate(R.layout.activity_beat_list, container, false);
+            mAdapter = new WelfareInfoAdapter();
+            mProgressBar = (ProgressBar) view.findViewById(R.id.beat_progressbar);
+            mRecyclerView = (RecyclerView) view.findViewById(R.id.beat_list_recyclerview);
+            mSwipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.beat_list_swiperefreshlayout);
+            mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+            mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL_LIST));
+            mRecyclerView.setAdapter(mAdapter);
+            mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    updatePartnerInfo();
+                }
+            });
+            return view;
+        }
+
+        @Override
+        public void onActivityCreated(Bundle savedInstanceState) {
+            super.onActivityCreated(savedInstanceState);
+            updatePartnerInfo();
+        }
+
+        private void updatePartnerInfo() {
+            new AsyncTask<Void, Void, JSONObject>() {
+
+                @Override
+                protected void onPreExecute() {
+                    if (!mSwipeRefreshLayout.isRefreshing()) {
+                        mProgressBar.setVisibility(View.VISIBLE);
+                    }
+                }
+
+                @Override
+                protected JSONObject doInBackground(Void... params) {
+                    try {
+                        return NetworkUtil.getInstance().getCouncilWelfareInfo();
+                    } catch (IOException | ParseException e) {
+                        e.printStackTrace();
+                    }
+                    return null;
+                }
+
+                @Override
+                protected void onPostExecute(JSONObject jsonObject) {
+                    if (!mSwipeRefreshLayout.isRefreshing()) {
+                        mProgressBar.setVisibility(View.GONE);
+                    }
+                    mSwipeRefreshLayout.setRefreshing(false);
+
+                    if (jsonObject == null) {
+                        AlertToast.error(getActivity(), R.string.error_to_work);
+                        return;
+                    }
+                    String result = jsonObject.get("result").toString();
+                    if (result.equals("success")) {
+                        mAdapter.clearItems();
+                        JSONArray jsonArray = (JSONArray) jsonObject.get("data");
+                        for (Object object : jsonArray) {
+                            JSONObject dataObject = (JSONObject) object;
+//                            "id": "1",
+//                                    "shopname": "동촌동 샤브샤브 칼국수",
+//                                    "welfareinfo": "6인 이상 테이블당 or 정량 주문시 음료 1병",
+//                                    "geo": null
+                            String title = dataObject.get("shopname").toString();
+                            String message = dataObject.get("welfareinfo").toString();
+                            mAdapter.addItem(new StudentCouncilWelfareListItems(title, message));
+                        }
+                        mAdapter.notifyDataSetChanged();
+                    }
+                }
+            }.execute();
+        }
     }
 
-    public void setInfoMap(HashMap<String, ArrayList<StudentCouncilListItems>> infoMap) {
-        this.infoMap = infoMap;
+    private static class WelfareInfoAdapter extends RecyclerView.Adapter<WelfareInfoViewHolder> {
+
+        private ArrayList<StudentCouncilWelfareListItems> itemses = new ArrayList<>();
+
+        @Override
+        public WelfareInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ui_beat_list_card, parent, false);
+            return new WelfareInfoViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(WelfareInfoViewHolder holder, final int position) {
+            holder.titleView.setText(itemses.get(position).getTitle());
+            holder.rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    StudentCouncilWelfareDialog dialog = new StudentCouncilWelfareDialog(v.getContext());
+                    dialog.setShopInfo(itemses.get(position).getTitle());
+                    dialog.setWelfareinfo(itemses.get(position).getSummary());
+                    dialog.show();
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return itemses.size();
+        }
+
+        public void clearItems() {
+            itemses.clear();
+        }
+
+        public void addItem(StudentCouncilWelfareListItems item) {
+            itemses.add(item);
+        }
+
+    }
+
+    private static class WelfareInfoViewHolder extends RecyclerView.ViewHolder {
+        private TextView titleView, timeView;
+        private View rootView;
+
+        public WelfareInfoViewHolder(View itemView) {
+            super(itemView);
+            rootView = itemView;
+            ApplicationUtil.getInstance().setTypeFace(itemView);
+            itemView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
+            titleView = (TextView) itemView.findViewById(R.id.beat_list_title);
+            timeView = (TextView) itemView.findViewById(R.id.beat_list_time);
+            timeView.setVisibility(View.GONE);
+        }
+    }
+
+    private static class ParternerShipInfoAdapter extends RecyclerView.Adapter<ParternerShipInfoViewHolder> {
+
+        private ArrayList<StudentCouncilListItems> itemses = new ArrayList<>();
+
+        @Override
+        public ParternerShipInfoViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.ui_beat_list_card, parent, false);
+            return new ParternerShipInfoViewHolder(view);
+        }
+
+        @Override
+        public void onBindViewHolder(ParternerShipInfoViewHolder holder, int position) {
+            holder.titleView.setText(itemses.get(position).getTitle());
+            holder.timeView.setText(getSimpleDetailTime(itemses.get(position).getSummary()));
+        }
+
+        @Override
+        public int getItemCount() {
+            return itemses.size();
+        }
+
+        public void clearItems() {
+            itemses.clear();
+        }
+
+        public void addItem(StudentCouncilListItems item) {
+            itemses.add(item);
+        }
+
+        public String getSimpleDetailTime(String defaulttime) {
+            String dataTimeFormat = "yyyy-MM-dd HH:mm:ss";
+            String newDateTimeFormat = "yyyy.MM.dd";
+            SimpleDateFormat simpleDateFormat = new SimpleDateFormat(dataTimeFormat);
+            SimpleDateFormat newDateFormat = new SimpleDateFormat(newDateTimeFormat);
+
+            String time;
+            try {
+                Date date = simpleDateFormat.parse(defaulttime);
+                time = newDateFormat.format(date);
+            } catch (java.text.ParseException ignore) {
+                time = defaulttime;
+            }
+            return time;
+        }
+    }
+
+    private static class ParternerShipInfoViewHolder extends RecyclerView.ViewHolder {
+        private TextView titleView, timeView;
+
+        public ParternerShipInfoViewHolder(View itemView) {
+            super(itemView);
+            ApplicationUtil.getInstance().setTypeFace(itemView);
+            itemView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
+            titleView = (TextView) itemView.findViewById(R.id.beat_list_title);
+            timeView = (TextView) itemView.findViewById(R.id.beat_list_time);
+        }
     }
 }

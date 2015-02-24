@@ -34,5 +34,5 @@
     </style>
     <style name="MarketListTheme" parent="NoActionBarTheme" />
 
-
+    <style name="StudentCouncilTheme" parent="NoActionBarTheme" />
 </resources>
