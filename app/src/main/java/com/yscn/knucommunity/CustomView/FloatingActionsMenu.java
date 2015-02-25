@@ -1,5 +1,7 @@
 package com.yscn.knucommunity.CustomView;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -18,11 +20,6 @@ import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
-import com.nineoldandroids.animation.AnimatorSet;
-import com.nineoldandroids.animation.ObjectAnimator;
-import com.nineoldandroids.util.FloatProperty;
-import com.nineoldandroids.util.Property;
-import com.nineoldandroids.view.animation.AnimatorProxy;
 import com.yscn.knucommunity.R;
 
 public class FloatingActionsMenu extends ViewGroup {
@@ -528,48 +525,6 @@ public class FloatingActionsMenu extends ViewGroup {
         }
     }
 
-    /**
-     * Support compatibility for Property pre-honeycomb version
-     */
-    static class PreHoneycombCompat {
-        static Property<View, Float> ALPHA = new FloatProperty<View>("alpha") {
-            @Override
-            public void setValue(View object, float value) {
-                AnimatorProxy.wrap(object).setAlpha(value);
-            }
-
-
-            @Override
-            public Float get(View object) {
-                return AnimatorProxy.wrap(object).getAlpha();
-            }
-        };
-        static Property<View, Float> TRANSLATION_Y = new FloatProperty<View>("translationY") {
-            @Override
-            public void setValue(View object, float value) {
-                AnimatorProxy.wrap(object).setTranslationY(value);
-            }
-
-
-            @Override
-            public Float get(View object) {
-                return AnimatorProxy.wrap(object).getTranslationY();
-            }
-        };
-        static Property<View, Float> TRANSLATION_X = new FloatProperty<View>("translationX") {
-            @Override
-            public void setValue(View object, float value) {
-                AnimatorProxy.wrap(object).setTranslationX(value);
-            }
-
-
-            @Override
-            public Float get(View object) {
-                return AnimatorProxy.wrap(object).getTranslationX();
-            }
-        };
-    }
-
     private class LayoutParams extends ViewGroup.LayoutParams {
 
         private ObjectAnimator mExpandDir = new ObjectAnimator();
@@ -586,22 +541,22 @@ public class FloatingActionsMenu extends ViewGroup {
             mCollapseDir.setInterpolator(sCollapseInterpolator);
             mCollapseAlpha.setInterpolator(sCollapseInterpolator);
 
-            mCollapseAlpha.setProperty(PreHoneycombCompat.ALPHA);
+            mExpandAlpha.setPropertyName("alpha");
             mCollapseAlpha.setFloatValues(1f, 0f);
 
-            mExpandAlpha.setProperty(PreHoneycombCompat.ALPHA);
+            mCollapseAlpha.setPropertyName("alpha");
             mExpandAlpha.setFloatValues(0f, 1f);
 
             switch (mExpandDirection) {
                 case EXPAND_UP:
                 case EXPAND_DOWN:
-                    mCollapseDir.setProperty(PreHoneycombCompat.TRANSLATION_Y);
-                    mExpandDir.setProperty(PreHoneycombCompat.TRANSLATION_Y);
+                    mCollapseDir.setPropertyName("translationY");
+                    mExpandDir.setPropertyName("translationY");
                     break;
                 case EXPAND_LEFT:
                 case EXPAND_RIGHT:
-                    mCollapseDir.setProperty(PreHoneycombCompat.TRANSLATION_X);
-                    mExpandDir.setProperty(PreHoneycombCompat.TRANSLATION_X);
+                    mCollapseDir.setPropertyName("translationX");
+                    mExpandDir.setPropertyName("translationX");
                     break;
             }
         }
