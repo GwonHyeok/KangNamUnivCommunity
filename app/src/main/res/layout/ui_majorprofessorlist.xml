@@ -2,19 +2,12 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="104dp"
     android:layout_gravity="center"
-    android:layout_marginLeft="6dp"
-    android:layout_marginRight="6dp"
-    android:layout_marginTop="10dp"
-    android:layout_marginBottom="10dp"
     android:background="@drawable/bg_professor_box"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingLeft="10dp"
-    android:paddingRight="4dp"
-    android:paddingTop="4dp"
-    android:paddingBottom="4dp">
+    android:paddingLeft="7dp">
 
     <TextView
         android:id="@+id/professor_name"
@@ -47,7 +40,6 @@
         android:id="@+id/professor_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dp"
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
         android:textColor="#ff424242" />

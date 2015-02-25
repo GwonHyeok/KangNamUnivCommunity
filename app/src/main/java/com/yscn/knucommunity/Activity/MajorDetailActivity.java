@@ -125,7 +125,7 @@ public class MajorDetailActivity extends ActionBarActivity implements View.OnCli
                         View view = LayoutInflater.from(getContext()).inflate(R.layout.ui_majorprofessorlist, linearLayout, false);
                         linearLayout.addView(view);
                         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) view.getLayoutParams();
-                        params.setMargins(30, 5, 30, 5);
+                        params.setMargins(18, 10, 18, 2);
                         view.setLayoutParams(params);
                         TextView nameTextView = (TextView) view.findViewById(R.id.professor_name);
                         TextView majorTextView = (TextView) view.findViewById(R.id.professor_major);
