@@ -126,6 +126,10 @@
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
         <activity
+            android:name=".Activity.MarketBoardDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
+        <activity
             android:name=".Activity.DeliveryFoodActivity"
             android:screenOrientation="portrait"
             android:theme="@style/DeliveryFoodListTheme" />

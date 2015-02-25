@@ -15,12 +15,15 @@ import android.util.AttributeSet;
 import android.view.ContextThemeWrapper;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.DecelerateInterpolator;
 import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
+import com.nineoldandroids.view.ViewHelper;
 import com.yscn.knucommunity.R;
+import com.yscn.knucommunity.Util.ApplicationUtil;
 
 public class FloatingActionsMenu extends ViewGroup {
     public static final int EXPAND_UP = 0;
@@ -56,6 +59,9 @@ public class FloatingActionsMenu extends ViewGroup {
     private int mLabelsStyle;
     private int mLabelsPosition;
     private int mButtonsCount;
+    private final Interpolator mInterpolator = new AccelerateDecelerateInterpolator();
+    private boolean mHidden = false;
+    private float mYDisplayed = -1;
     private OnFloatingActionsMenuUpdateListener mListener;
 
     public FloatingActionsMenu(Context context) {
@@ -347,6 +353,9 @@ public class FloatingActionsMenu extends ViewGroup {
 
                 break;
         }
+        if (mYDisplayed == -1) {
+            mYDisplayed = ViewHelper.getY(this);
+        }
     }
 
     @Override
@@ -575,6 +584,21 @@ public class FloatingActionsMenu extends ViewGroup {
                 mExpandAnimation.play(mExpandDir);
                 animationsSetToPlay = true;
             }
+        }
+    }
+
+    public void hide(boolean hide) {
+        // If the hidden state is being updated
+        if (mHidden != hide) {
+
+            // Store the new hidden state
+            mHidden = hide;
+
+            // Animate the FAB to it's new Y position
+            int mYHidden = ApplicationUtil.getInstance().getScreenHeight();
+            ObjectAnimator animator = ObjectAnimator.ofFloat(this, "y", mHidden ? mYHidden : mYDisplayed).setDuration(500);
+            animator.setInterpolator(mInterpolator);
+            animator.start();
         }
     }
 }

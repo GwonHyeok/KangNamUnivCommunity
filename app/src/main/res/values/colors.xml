@@ -98,4 +98,5 @@
     <!-- Floating Action Button BackPorting -->
     <color name="holo_blue_dark">#ff0099cc</color>
     <color name="holo_blue_light">#ff33b5e5</color>
+
 </resources>

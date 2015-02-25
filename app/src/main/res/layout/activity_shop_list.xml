@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
@@ -42,4 +43,36 @@
                 android:orientation="vertical" />
         </com.yscn.knucommunity.CustomView.NotifiableScrollView>
     </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.yscn.knucommunity.CustomView.FloatingActionsMenu
+        android:id="@+id/shop_menu_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        fab:fab_addButtonColorNormal="#ff14c75e"
+        fab:fab_addButtonSize="normal"
+        fab:fab_labelStyle="@style/menu_labels_style"
+        fab:fab_labelsPosition="position_left">
+
+        <com.yscn.knucommunity.CustomView.FloatingActionButton
+            android:id="@+id/shop_all_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="#00e676"
+            fab:fab_icon="@drawable/ic_view_all_on"
+            fab:fab_size="mini"
+            fab:fab_title="전체보기" />
+
+        <com.yscn.knucommunity.CustomView.FloatingActionButton
+            android:id="@+id/shop_category_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_colorNormal="#f2f2f2"
+            fab:fab_icon="@drawable/ic_view_category_off"
+            fab:fab_size="mini"
+            fab:fab_title="카테고리 보기" />
+
+    </com.yscn.knucommunity.CustomView.FloatingActionsMenu>
 </RelativeLayout>

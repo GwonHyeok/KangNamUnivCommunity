@@ -102,7 +102,8 @@ public abstract class BaseBoardDetailActivity extends ActionBarActivity {
         Intent intent;
         if (boardType == NetworkUtil.BoardType.FREE
                 || boardType == NetworkUtil.BoardType.FAQ
-                || boardType == NetworkUtil.BoardType.GREENLIGHT) {
+                || boardType == NetworkUtil.BoardType.GREENLIGHT
+                || boardType == NetworkUtil.BoardType.MARKET) {
             intent = new Intent(getContext(), BoardWriteActivity.class);
             intent.putExtra("boardType", boardType.getValue());
             intent.putExtra("isEditMode", true);

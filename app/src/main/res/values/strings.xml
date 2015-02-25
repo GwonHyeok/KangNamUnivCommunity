@@ -167,4 +167,18 @@
     <string name="success_delete_profileimage">성공적으로 프로필 이미지를 삭제하였습니다</string>
     <string name="text_taxi_no_phonenumber_data">정보가 존재하지 않습니다.</string>
     <string name="reply_no_data">댓글이 없습니다.\n첫번째 댓글을 달아주세요.</string>
+
+    <string name="market_cloth">의류</string>
+    <string name="market_fashion">패션잡화</string>
+    <string name="market_beauty">미용</string>
+    <string name="market_computer">컴퓨터</string>
+    <string name="market_mobile">모바일</string>
+    <string name="market_camera">카메라</string>
+    <string name="market_music">음악</string>
+    <string name="market_game">게임</string>
+    <string name="market_book">도서</string>
+    <string name="market_share">무료나눔</string>
+    <string name="market_etc">기타</string>
+    <string name="select_board_category">카테고리를 선택해주세요</string>
+    <string name="warning_board_write_select_category">카테고리를 선택해주세요</string>
 </resources>

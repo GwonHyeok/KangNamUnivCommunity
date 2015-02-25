@@ -42,15 +42,21 @@ import java.util.Date;
 public abstract class BaseBoardListActivity extends BaseNavigationDrawerActivity {
     private final int BOARD_WRITE_RESPONSE = 0X01;
     protected SwipeRefreshLayout swipeRefreshLayout;
+    protected int mCategory = 0;
     private int pageIndex = 1;
     private String searchText = null;
+    private boolean isFirst = true;
+    private FloatingActionsMenu mFloatingButton;
 
     @Override
     public void onStart() {
         super.onStart();
-        scrollViewInit();
-        getBoardListData();
-        setToolbarTitle();
+        if (isFirst) {
+            scrollViewInit();
+            getBoardListData();
+            setToolbarTitle();
+            isFirst = false;
+        }
     }
 
     private void setToolbarTitle() {
@@ -89,12 +95,34 @@ public abstract class BaseBoardListActivity extends BaseNavigationDrawerActivity
 
                 @Override
                 public void onScroll(ScrollView view, int l, int t, int oldl, int oldt) {
+                    if (oldt == t || mFloatingButton == null) {
+                        return;
+                    }
 
+                    /* 스크롤이 가장 위로 올라갔을때는 무조건 버튼이 보여야합 */
+                    if (t == 0) {
+                        mFloatingButton.hide(false);
+                        return;
+                    }
+
+                    if (oldt > t) {
+                        mFloatingButton.hide(false);
+                    } else if (oldt < t) {
+                        mFloatingButton.hide(true);
+                    }
                 }
             });
         } else {
             Log.d(getClass().getSimpleName(), "ScrollView is Must NotifyFooterScrollView");
         }
+    }
+
+    protected void attatchFloatingButton(FloatingActionsMenu view) {
+        this.mFloatingButton = view;
+    }
+
+    private void showFloatingButton() {
+        this.mFloatingButton.getHeight();
     }
 
     /**
@@ -152,7 +180,7 @@ public abstract class BaseBoardListActivity extends BaseNavigationDrawerActivity
             @Override
             protected ArrayList<DefaultBoardListItems> doInBackground(Void... params) {
                 try {
-                    return NetworkUtil.getInstance().getDefaultboardList(getBoardType(), getPageIndex(), searchText);
+                    return NetworkUtil.getInstance().getDefaultboardList(getBoardType(), getPageIndex(), searchText, mCategory);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }
@@ -291,6 +319,20 @@ public abstract class BaseBoardListActivity extends BaseNavigationDrawerActivity
      */
     protected void setPageIndex(int pageIndex) {
         this.pageIndex = pageIndex;
+    }
+
+    /**
+     * @return get Category Index
+     */
+    protected int getCategory() {
+        return this.mCategory;
+    }
+
+    /**
+     * @param category 개시판 카테고리 ID 값
+     */
+    protected void setCategory(int category) {
+        this.mCategory = category;
     }
 
     /**

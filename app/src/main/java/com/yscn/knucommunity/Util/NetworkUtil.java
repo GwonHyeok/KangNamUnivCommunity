@@ -563,16 +563,15 @@ public class NetworkUtil {
     }
 
     public JSONObject writeBoardContent(int boardType, String title, String content, HashMap<String, Uri> file,
-                                        boolean isEditMode, String contentid) throws IOException, ParseException, JSONException {
+                                        boolean isEditMode, String contentid, int category) throws IOException, ParseException, JSONException {
         JSONParser jsonParser = new JSONParser();
         MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.create();
         HttpResponse httpResponse;
 
         multipartEntityBuilder.addTextBody("title", title, getDefaultContentType());
         multipartEntityBuilder.addTextBody("content", content, getDefaultContentType());
-//        multipartEntityBuilder.addTextBody("studentnumber", UserData.getInstance().getStudentNumber(), getDefaultContentType());
-//        multipartEntityBuilder.addTextBody("token", UserData.getInstance().getUserToken());
         multipartEntityBuilder.addTextBody("isEditmode", String.valueOf(isEditMode));
+        multipartEntityBuilder.addTextBody("category", String.valueOf(category));
 
         /* 수정 모드일 경우 콘텐트 아이디 post */
         if (isEditMode) {
@@ -746,17 +745,18 @@ public class NetworkUtil {
         }
     }
 
-    public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType,
-                                                                int page, String content) throws IOException, ParseException {
+    public ArrayList<DefaultBoardListItems> getDefaultboardList(BoardType boardType, int page, String content,
+                                                                int category) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
-        HashMap<String, String> parameter = null;
+        HashMap<String, String> parameter = new HashMap<>();
         HttpResponse httpResponse;
 
         // 검색할 경우 Content 파라미터에 검색을 위한 텍스트가 넘어옴
         if (content != null) {
-            parameter = new HashMap<>();
             parameter.put("content", content);
         }
+        // 카테고리 인덱스 값을 넣어줌
+        parameter.put("category", String.valueOf(category));
 
         if (boardType == BoardType.FREE) {
             httpResponse = postData(UrlList.FREEBOARD_GET_LIST + page, parameter);

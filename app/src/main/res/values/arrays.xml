@@ -71,4 +71,18 @@
         <item>@string/text_photo_profile_album</item>
         <item>@string/text_photo_profile_delete</item>
     </string-array>
+
+    <string-array name="market_category">
+        <item>@string/market_cloth</item>
+        <item>@string/market_fashion</item>
+        <item>@string/market_beauty</item>
+        <item>@string/market_computer</item>
+        <item>@string/market_mobile</item>
+        <item>@string/market_camera</item>
+        <item>@string/market_music</item>
+        <item>@string/market_game</item>
+        <item>@string/market_book</item>
+        <item>@string/market_share</item>
+        <item>@string/market_etc</item>
+    </string-array>
 </resources>

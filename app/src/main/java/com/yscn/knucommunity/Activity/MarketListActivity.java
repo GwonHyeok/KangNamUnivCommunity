@@ -11,6 +11,9 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.yscn.knucommunity.CustomView.BaseBoardListActivity;
+import com.yscn.knucommunity.CustomView.BoardListCategoryDialog;
+import com.yscn.knucommunity.CustomView.FloatingActionButton;
+import com.yscn.knucommunity.CustomView.FloatingActionsMenu;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ApplicationUtil;
@@ -28,6 +31,42 @@ public class MarketListActivity extends BaseBoardListActivity {
         super.onCreate(bundle);
         attatchView(R.layout.activity_shop_list);
         ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
+        viewInit();
+    }
+
+    private void viewInit() {
+        final String[] items = getResources().getStringArray(R.array.market_category);
+        final BoardListCategoryDialog categoryDialog = new BoardListCategoryDialog(getContext());
+        categoryDialog.setCategoryItems(items);
+        categoryDialog.setOnCategorySelectListener(new BoardListCategoryDialog.onCategorySelectListener() {
+            @Override
+            public void onSelectCategory(String categoryName, int categoryPosition) {
+                setCategory(categoryPosition);
+                reloadViewData();
+            }
+        });
+
+        final FloatingActionsMenu floatingActionsMenu = (FloatingActionsMenu) findViewById(R.id.shop_menu_button);
+        attatchFloatingButton(floatingActionsMenu);
+
+        FloatingActionButton categoryButton = (FloatingActionButton) findViewById(R.id.shop_category_button);
+        categoryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                categoryDialog.show();
+                floatingActionsMenu.collapse();
+            }
+        });
+
+        FloatingActionButton allButton = (FloatingActionButton) findViewById(R.id.shop_all_button);
+        allButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setCategory(0);
+                reloadViewData();
+                floatingActionsMenu.collapse();
+            }
+        });
     }
 
     @Override
@@ -65,7 +104,7 @@ public class MarketListActivity extends BaseBoardListActivity {
                 listView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(getContext(), FreeBoardDetailActivity.class);
+                        Intent intent = new Intent(getContext(), MarketBoardDetailActivity.class);
                         intent.putExtra("contentID", listItems.getContentid());
                         intent.putExtra("writerName", listItems.getName());
                         intent.putExtra("writerStudentNumber", listItems.getStudentnumber());

@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.CustomView.BoardListCategoryDialog;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
@@ -43,7 +44,9 @@ import java.util.HashMap;
  */
 public class BoardWriteActivity extends ActionBarActivity implements View.OnClickListener {
     private EditText titleView, contentView;
+    private TextView boardTypeView;
     private int boardType;
+    private int mCategory;
     private int GET_PICTURE_RESULT_CODE = 0X10;
     private boolean isEditMode = false;
     private String contentID;
@@ -66,7 +69,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
         String boardTypeMessage;
         this.titleView = (EditText) findViewById(R.id.board_write_title);
         this.contentView = (EditText) findViewById(R.id.board_write_content);
-        TextView boardTypeView = (TextView) findViewById(R.id.board_write_boardtype);
+        this.boardTypeView = (TextView) findViewById(R.id.board_write_boardtype);
         this.boardType = getIntent().getIntExtra("boardType", -1);
         this.isEditMode = getIntent().getBooleanExtra("isEditMode", false);
 
@@ -90,6 +93,29 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
         this.findViewById(R.id.board_write_photo_main).setOnClickListener(this);
 
+        /* 장터일경우 카테고리 선택 */
+        switch (boardType) {
+            case 6:
+                boardTypeMessage = getString(R.string.select_board_category);
+                boardTypeView.setText(boardTypeMessage);
+                boardTypeView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String[] items = getResources().getStringArray(R.array.market_category);
+                        BoardListCategoryDialog dialog = new BoardListCategoryDialog(getContext());
+                        dialog.setCategoryItems(items);
+                        dialog.setOnCategorySelectListener(new BoardListCategoryDialog.onCategorySelectListener() {
+                            @Override
+                            public void onSelectCategory(String categoryName, int categoryPosition) {
+                                mCategory = categoryPosition;
+                                boardTypeView.setText(categoryName);
+                            }
+                        });
+                        dialog.show();
+                    }
+                });
+                break;
+        }
     }
 
     private boolean isValidData() {
@@ -101,6 +127,10 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
             return false;
         } else if (titleView.getText().length() > 25) {
             AlertToast.warning(getContext(), getString(R.string.warning_board_write_title_lenght));
+            return false;
+        } else if (boardType == 6 && mCategory == 0) {
+            /* 보드 타입이 장터이고, 카테고리 설정이 안되어 있으면 Warning */
+            AlertToast.warning(getContext(), getString(R.string.warning_board_write_select_category));
             return false;
         } else {
             return true;
@@ -142,6 +172,13 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
                     for (Object fileURL : fileArray) {
                         addBoardPhotoData(fileURL.toString());
+                    }
+
+                    if (boardType == 6) {
+                        String category = jsonObject.get("category").toString();
+                        mCategory = Integer.parseInt(category);
+                        String[] items = getResources().getStringArray(R.array.market_category);
+                        boardTypeView.setText(items[mCategory - 1]);
                     }
                 }
                 clearProgressDialog.dismiss();
@@ -199,7 +236,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
                     String title = titleView.getText().toString();
                     String content = contentView.getText().toString();
                     result = NetworkUtil.getInstance().checkIsLoginUser().writeBoardContent(boardType, title, content,
-                            fileListMap, isEditMode, contentID);
+                            fileListMap, isEditMode, contentID, mCategory);
                 } catch (IOException | ParseException | JSONException e) {
                     e.printStackTrace();
                 }
