@@ -62,6 +62,8 @@ public class BoardListCategoryDialog extends Dialog {
                 dismiss();
             }
         });
+
+        ApplicationUtil.getInstance().setTypeFace(getWindow().getDecorView());
     }
 
     @Override
