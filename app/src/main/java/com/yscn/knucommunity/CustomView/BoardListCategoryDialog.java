@@ -39,7 +39,9 @@ public class BoardListCategoryDialog extends Dialog {
 
     private void viewInit() {
         okView = (TextView) findViewById(R.id.board_category_dialog_ok);
+        ApplicationUtil.getInstance().setTypeFace(okView);
         cancelView = (TextView) findViewById(R.id.board_category_dialog_cancel);
+        ApplicationUtil.getInstance().setTypeFace(cancelView);
         mCategoryRecyclerView = (RecyclerView) findViewById(R.id.board_category_dialog_recyclerview);
 
         /* init Recycler View */
