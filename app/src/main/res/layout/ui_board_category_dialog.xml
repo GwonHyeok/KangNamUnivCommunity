@@ -12,7 +12,6 @@
 
 
     <TextView
-        android:id="@+id/welfaredialog_shopname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="카테고리를 선택해주세요"
