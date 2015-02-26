@@ -39,7 +39,9 @@ public class BoardListCategoryDialog extends Dialog {
 
     private void viewInit() {
         okView = (TextView) findViewById(R.id.board_category_dialog_ok);
+        ApplicationUtil.getInstance().setTypeFace(okView);
         cancelView = (TextView) findViewById(R.id.board_category_dialog_cancel);
+        ApplicationUtil.getInstance().setTypeFace(cancelView);
         mCategoryRecyclerView = (RecyclerView) findViewById(R.id.board_category_dialog_recyclerview);
 
         /* init Recycler View */
@@ -98,7 +100,7 @@ public class BoardListCategoryDialog extends Dialog {
         @Override
         public BoardListCategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             TextView textView = new TextView(getContext());
-            textView.setTextColor(0xFF4285f4);
+            textView.setTextColor(0xFF607d8b);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             textView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
 
