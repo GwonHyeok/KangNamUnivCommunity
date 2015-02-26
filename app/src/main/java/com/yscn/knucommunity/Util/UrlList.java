@@ -55,6 +55,8 @@ public class UrlList {
     public static final String LOGOUT_WITH_SESSION = MAIN_URL + "appLogin/doLogoutWithSession/";
     public static final String DELETE_ACCOUNT_URL = MAIN_URL + "user/doDeleteAccount/";
     public static final String SERVER_STATUS_CHECK_URL = MAIN_URL + "appLogin/serverStatusCheck/";
+    public static final String GET_SCHOOL_CLUB_INFO = MAIN_URL + "school/getClubInfo/";
+    public static final String GET_SCHOOL_CLUB_DETAIL = MAIN_URL + "school/getClubdetail/";
 
     /* Beat */
     public static final String BEAT_LOOKNLOOK_URL = MAIN_URL + "beat/getLooknLook/";

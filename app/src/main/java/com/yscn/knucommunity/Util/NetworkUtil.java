@@ -1151,6 +1151,24 @@ public class NetworkUtil {
         return checkResultData(object);
     }
 
+    public JSONObject getSchoolClubInfo() throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.GET_SCHOOL_CLUB_INFO);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
+    public JSONObject getSchoolClubDetail(String clubid) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("clubid", clubid);
+        HttpResponse httpResponse = getData(UrlList.GET_SCHOOL_CLUB_DETAIL, parameter);
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent())
+        );
+    }
+
     public String getProfileThumbURL(String studentnumber) {
         String format = "%s?type=thumbnail&studentnumber=%s";
         return String.format(format, UrlList.PROFILE_THUMB_IMAGE_URL, studentnumber);

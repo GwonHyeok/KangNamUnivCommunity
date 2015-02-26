@@ -6,6 +6,12 @@
     android:orientation="vertical"
     android:weightSum="100">
 
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout2"
@@ -18,17 +24,17 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView"
-            android:layout_alignEnd="@+id/textView"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignRight="@+id/textView"
-            android:layout_alignStart="@+id/textView"
+            android:layout_above="@+id/clubdetail_clubname"
+            android:layout_alignEnd="@+id/clubdetail_clubname"
+            android:layout_alignLeft="@+id/clubdetail_clubname"
+            android:layout_alignRight="@+id/clubdetail_clubname"
+            android:layout_alignStart="@+id/clubdetail_clubname"
             android:text="동아리이름"
             android:textColor="#FFFFEA00"
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/clubdetail_clubname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
@@ -38,7 +44,6 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="32dp"
             android:layout_marginTop="3dp"
-            android:text="올클리어"
             android:textColor="@android:color/white"
             android:textSize="27sp" />
 
@@ -46,9 +51,9 @@
             android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:layout_alignLeft="@+id/textView"
-            android:layout_alignStart="@+id/textView"
-            android:layout_below="@+id/textView"
+            android:layout_alignLeft="@+id/clubdetail_clubname"
+            android:layout_alignStart="@+id/clubdetail_clubname"
+            android:layout_below="@+id/clubdetail_clubname"
             android:layout_marginRight="12dp"
             android:layout_marginTop="5dp"
             android:background="#FFFFEA00" />
@@ -69,7 +74,7 @@
             android:id="@+id/textView5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/textView4"
+            android:layout_above="@+id/clubdetail_clubsummary"
             android:layout_alignEnd="@+id/textView3"
             android:layout_alignLeft="@+id/textView3"
             android:layout_alignRight="@+id/textView3"
@@ -80,7 +85,7 @@
             android:textSize="12sp" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/clubdetail_clubsummary"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/view"
@@ -88,7 +93,6 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/view"
-            android:text="춤을 즐길 줄 아는 사람들의 모임 ALL CLEAR"
             android:textColor="#FFFFAB91"
             android:textSize="12sp" />
 
@@ -113,18 +117,18 @@
                     android:id="@+id/imageView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_club_name"
+                    android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
+                    android:src="@drawable/ic_club_name" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_centerVertical="true"
-                    android:layout_toRightOf="@+id/imageView"
+                    android:layout_marginLeft="20dp"
                     android:layout_toEndOf="@+id/imageView"
-                    android:layout_marginLeft="20dp">
+                    android:layout_toRightOf="@+id/imageView"
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -133,9 +137,9 @@
                         android:textColor="#424242" />
 
                     <TextView
+                        android:id="@+id/clubdetail_chairman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="권혁(kh4975@naver.com)"
                         android:textColor="#757575"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -144,25 +148,25 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="8dp">
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="20dp">
 
                 <ImageView
                     android:id="@+id/imageView1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_club_name"
+                    android:paddingBottom="10dp"
                     android:paddingTop="10dp"
-                    android:paddingBottom="10dp" />
+                    android:src="@drawable/ic_club_name" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_marginLeft="20dp"
                     android:layout_toEndOf="@+id/imageView1"
                     android:layout_toRightOf="@+id/imageView1"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="20dp">
+                    android:orientation="vertical">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -171,9 +175,9 @@
                         android:textColor="#424242" />
 
                     <TextView
+                        android:id="@+id/clubdetail_vicechairman"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="서홍일(suhhongyiel@gmail.com)"
                         android:textColor="#757575"
                         android:textSize="13sp" />
                 </LinearLayout>
@@ -187,11 +191,11 @@
                 android:background="#bdbdbd" />
 
             <TextView
+                android:id="@+id/clubdetail_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="57dp"
                 android:layout_marginTop="15dp"
-                android:text="상세 정보가 없습니다."
                 android:textColor="#424242" />
 
         </LinearLayout>
