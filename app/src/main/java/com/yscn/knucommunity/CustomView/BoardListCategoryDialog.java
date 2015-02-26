@@ -96,7 +96,7 @@ public class BoardListCategoryDialog extends Dialog {
         @Override
         public BoardListCategoryViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             TextView textView = new TextView(getContext());
-            textView.setTextColor(0xFF4285f4);
+            textView.setTextColor(0xFF607d8b);
             textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             textView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
 
