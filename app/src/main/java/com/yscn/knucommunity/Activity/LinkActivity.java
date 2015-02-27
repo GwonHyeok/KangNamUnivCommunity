@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.R;
@@ -26,9 +27,6 @@ public class LinkActivity extends BaseNavigationDrawerActivity implements View.O
     }
 
     private void viewInit() {
-        if (Build.VERSION.SDK_INT >= 21) {
-            getWindow().setStatusBarColor(0xFF545486);
-        }
         getSupportActionBar().hide();
         findViewById(R.id.link_app_knu).setOnClickListener(this);
         findViewById(R.id.link_app_knu_sugang).setOnClickListener(this);
@@ -49,6 +47,10 @@ public class LinkActivity extends BaseNavigationDrawerActivity implements View.O
             view.setBackground(new BitmapDrawable(getResources(), bitmap));
         } else {
             view.setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
+        }
+
+        if (Build.VERSION.SDK_INT >= 19) {
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
 
