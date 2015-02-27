@@ -41,6 +41,11 @@ public class MarketListActivity extends BaseBoardListActivity {
         categoryDialog.setOnCategorySelectListener(new BoardListCategoryDialog.onCategorySelectListener() {
             @Override
             public void onSelectCategory(String categoryName, int categoryPosition) {
+                if (getCategory() == categoryPosition) {
+                    return;
+                }
+                mToolbar.setTitle(categoryName);
+                toggleFloatingButtonImage(true);
                 setCategory(categoryPosition);
                 reloadViewData();
             }
@@ -62,11 +67,33 @@ public class MarketListActivity extends BaseBoardListActivity {
         allButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (getCategory() == 0) {
+                    return;
+                }
+                mToolbar.setTitle(R.string.community_market_title);
+                toggleFloatingButtonImage(false);
                 setCategory(0);
                 reloadViewData();
                 floatingActionsMenu.collapse();
             }
         });
+    }
+
+    private void toggleFloatingButtonImage(boolean isCategoryMode) {
+        FloatingActionButton categoryButton = (FloatingActionButton) findViewById(R.id.shop_category_button);
+        FloatingActionButton allButton = (FloatingActionButton) findViewById(R.id.shop_all_button);
+
+        if (isCategoryMode) {
+            allButton.setIcon(R.drawable.ic_view_all_off);
+            categoryButton.setIcon(R.drawable.ic_view_category_on);
+            allButton.setColorNormal(0xfff2f2f2);
+            categoryButton.setColorNormal(0xff00e676);
+        } else {
+            allButton.setIcon(R.drawable.ic_view_all_on);
+            categoryButton.setIcon(R.drawable.ic_view_category_off);
+            allButton.setColorNormal(0xff00e676);
+            categoryButton.setColorNormal(0xfff2f2f2);
+        }
     }
 
     @Override
