@@ -49,6 +49,7 @@ public class UrlList {
     public static final String LOGIN_CHECK_URL = MAIN_URL + "appLogin/isLoginUser";
     public static final String MYINFO_MYNOTIFY_URL = MAIN_URL + "user/myNotification";
     public static final String MYINFO_MYBOARD_URL = MAIN_URL + "user/myBoardlist";
+    public static final String MYINFO_MYCOMMENT_URL = MAIN_URL + "user/myCommentList/";
     public static final String GET_MEETING_CONTENT_URL = MAIN_URL + "board/getMeetingData/";
     public static final String GET_AUTHOR_DEVICES_URL = MAIN_URL + "appLogin/checkLogin/";
     public static final String LOGOUT_URL = MAIN_URL + "appLogin/doLogout/";

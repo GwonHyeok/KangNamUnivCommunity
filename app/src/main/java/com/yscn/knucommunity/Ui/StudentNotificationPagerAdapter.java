@@ -156,6 +156,8 @@ public class StudentNotificationPagerAdapter extends FragmentPagerAdapter {
                             return NetworkUtil.getInstance().checkIsLoginUser().getMyNotify(currentPage);
                         } else if (mPosition == 1) {
                             return NetworkUtil.getInstance().checkIsLoginUser().getMyBoardList(currentPage);
+                        } else if (mPosition == 2) {
+                            return NetworkUtil.getInstance().checkIsLoginUser().getMyCommentList(currentPage);
                         }
                     } catch (IOException | ParseException e) {
                         e.printStackTrace();
@@ -194,7 +196,7 @@ public class StudentNotificationPagerAdapter extends FragmentPagerAdapter {
                             }
                             itemses.add(new StudentNotificationItems(StudentNotificationItems.Type.Notify, writer, new_title, boardid, contentid, time));
                         }
-                    } else if (mPosition == 1) {
+                    } else if (mPosition == 1 || mPosition == 2) {
                         for (Object obj : jsonArray) {
                             JSONObject dataObject = (JSONObject) obj;
                             String contentTitle = dataObject.get("title").toString();

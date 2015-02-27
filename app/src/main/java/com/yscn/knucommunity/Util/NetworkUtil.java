@@ -366,6 +366,14 @@ public class NetworkUtil {
         return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 
+    public JSONObject getMyCommentList(int page) throws IOException, ParseException {
+        JSONParser jsonParser = new JSONParser();
+        HashMap<String, String> paramter = new HashMap<>();
+        paramter.put("page", String.valueOf(page));
+        HttpResponse httpResponse = postData(UrlList.MYINFO_MYCOMMENT_URL, paramter);
+        return (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public JSONObject getMeetingData(String contentid) throws IOException, ParseException {
         JSONParser jsonParser = new JSONParser();
         HttpResponse httpResponse = postData(UrlList.GET_MEETING_CONTENT_URL + contentid, null);

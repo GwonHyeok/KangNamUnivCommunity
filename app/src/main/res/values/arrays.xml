@@ -57,6 +57,7 @@
     <string-array name="studentinfo_tab_title">
         <item>@string/text_studentinfo_notify_mynotify</item>
         <item>@string/text_studentinfo_notify_myboard</item>
+        <item>@string/text_studentinfo_notify_mycomment</item>
     </string-array>
 
     <string-array name="beat_tab_title">
@@ -85,4 +86,5 @@
         <item>@string/market_share</item>
         <item>@string/market_etc</item>
     </string-array>
+    <string name="text_studentinfo_notify_mycomment">내가 쓴 댓글</string>
 </resources>

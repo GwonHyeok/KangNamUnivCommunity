@@ -58,6 +58,7 @@ public class StudentNotificationItemAdapter extends RecyclerView.Adapter<Student
     }
 
     private void setItemClickLietener(final String boardid, final String contentid, View rootView) {
+        rootView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
         rootView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
