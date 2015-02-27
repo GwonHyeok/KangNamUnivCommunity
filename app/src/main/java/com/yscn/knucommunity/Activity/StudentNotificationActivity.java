@@ -35,6 +35,7 @@ public class StudentNotificationActivity extends ActionBarActivity {
         mNotificationPagerAdapter = new StudentNotificationPagerAdapter(getSupportFragmentManager());
         mNotificationPagerAdapter.setPageTitle(getResources().getStringArray(R.array.studentinfo_tab_title));
         mViewPager.setAdapter(mNotificationPagerAdapter);
+        mViewPager.setOffscreenPageLimit(mNotificationPagerAdapter.getCount());
         mSlidingTabStrip.setViewPager(mViewPager);
         mSlidingTabStrip.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.BOLD), Typeface.BOLD);
     }
