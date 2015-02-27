@@ -181,8 +181,8 @@
     <string name="market_etc">기타</string>
     <string name="select_board_category">카테고리를 선택해주세요</string>
     <string name="warning_board_write_select_category">카테고리를 선택해주세요</string>
-    <string name="share_taxi_sure_you_want_leave">정말로 택시를 출발 시키겠습니까?</string>
-    <string name="share_taxi_sure_you_want_unwith">정말로 택시를 내리시겠습니까?</string>
-    <string name="share_taxi_sure_you_want_with">정말로 택시를 함께 타시겠습니까?</string>
+    <string name="share_taxi_sure_you_want_leave">정말로 택시를 타고 출발합니까?</string>
+    <string name="share_taxi_sure_you_want_unwith">정말로 택시합승을 취소하시겠습니까?</string>
+    <string name="share_taxi_sure_you_want_with">택시합승을 하시겠습니까?</string>
     <string name="text_ban_nickname">사용할 수 없는 닉네임입니다</string>
 </resources>
