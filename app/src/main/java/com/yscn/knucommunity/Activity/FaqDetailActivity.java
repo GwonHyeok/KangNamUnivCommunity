@@ -287,6 +287,23 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
             @Override
             protected void onPostExecute(JSONObject value) {
+                clearProgressDialog.cancel();
+                if (value == null) {
+                    AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    return;
+                }
+
+                String result = value.get("result").toString();
+                if (result.equals("fail")) {
+                    String reason = value.get("reason").toString();
+                    if (reason.equals("notexist")) {
+                        AlertToast.error(getContext(), R.string.error_notexist_board_content);
+                    } else if (reason.equals("dataerror")) {
+                        AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    }
+                    return;
+                }
+
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = value.get("content").toString();
                 String title = getDefaulttFaqTitle(value.get("title").toString());

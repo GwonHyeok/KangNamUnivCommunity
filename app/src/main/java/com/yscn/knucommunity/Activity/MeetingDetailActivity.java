@@ -67,6 +67,17 @@ public class MeetingDetailActivity extends BaseBoardDetailActivity implements Vi
                 clearProgressDialog.cancel();
                 if (boardContentObject != null && meetingDataObject != null) {
 
+                    String result = boardContentObject.get("result").toString();
+                    if (result.equals("fail")) {
+                        String reason = boardContentObject.get("reason").toString();
+                        if (reason.equals("notexist")) {
+                            AlertToast.error(getContext(), R.string.error_notexist_board_content);
+                        } else if (reason.equals("dataerror")) {
+                            AlertToast.error(getContext(), getString(R.string.error_to_work));
+                        }
+                        return;
+                    }
+
                     String peopleCount = meetingDataObject.get("studentcount").toString();
                     String school = meetingDataObject.get("schoolname").toString();
                     String major = meetingDataObject.get("majorname").toString();

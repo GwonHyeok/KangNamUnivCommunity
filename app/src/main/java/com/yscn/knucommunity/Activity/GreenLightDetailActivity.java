@@ -81,9 +81,21 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
 
             @Override
             protected void onPostExecute(Void value) {
+                clearProgressDialog.cancel();
                 if (contentObject != null && greenLightObject != null) {
 
-                    String result = greenLightObject.get("result").toString();
+                    String result = contentObject.get("result").toString();
+                    if (result.equals("fail")) {
+                        String reason = contentObject.get("reason").toString();
+                        if (reason.equals("notexist")) {
+                            AlertToast.error(getContext(), R.string.error_notexist_board_content);
+                        } else if (reason.equals("dataerror")) {
+                            AlertToast.error(getContext(), getString(R.string.error_to_work));
+                        }
+                        return;
+                    }
+
+                    result = greenLightObject.get("result").toString();
                     if (result.equals("fail")) {
                         String reason = greenLightObject.get("reason").toString();
                         if (reason.equals("emptyuserinfo")) {

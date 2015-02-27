@@ -806,9 +806,6 @@ public class NetworkUtil {
         HttpResponse httpResponse = postData(UrlList.DEFAULTBOARD_GET_CONTENT + contentID, null);
         JSONObject object = (JSONObject) jsonParser.parse(
                 new InputStreamReader(httpResponse.getEntity().getContent()));
-        if (!checkResultData(object)) {
-            return null;
-        }
         return object;
     }
 

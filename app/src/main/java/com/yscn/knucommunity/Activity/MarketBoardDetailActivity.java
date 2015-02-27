@@ -77,6 +77,18 @@ public class MarketBoardDetailActivity extends BaseBoardDetailActivity implement
                     progressDialog.cancel();
                     return;
                 }
+
+                String result = object.get("result").toString();
+                if (result.equals("fail")) {
+                    String reason = object.get("reason").toString();
+                    if (reason.equals("notexist")) {
+                        AlertToast.error(getContext(), R.string.error_notexist_board_content);
+                    } else if (reason.equals("dataerror")) {
+                        AlertToast.error(getContext(), getString(R.string.error_to_work));
+                    }
+                    return;
+                }
+
                 /* 에러 처리 필요함 NULL 일 경우 */
                 ImageLoaderUtil.getInstance().initImageLoader();
                 String content = object.get("content").toString();
