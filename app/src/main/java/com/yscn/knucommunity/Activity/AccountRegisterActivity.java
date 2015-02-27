@@ -204,6 +204,9 @@ public class AccountRegisterActivity extends ActionBarActivity implements View.O
                     case FAIL:
                         showToastMessage(getString(R.string.register_fail));
                         break;
+                    case BANNICKNAME:
+                        showToastMessage(getString(R.string.text_ban_nickname));
+                        break;
                 }
                 progressDialog.cancel();
             }

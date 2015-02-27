@@ -232,6 +232,10 @@ public class StudentInfoActivity extends BaseNavigationDrawerActivity implements
                     TextView majorNameView = (TextView) findViewById(R.id.studentinfo_majorinfo);
 
                     UserData.getInstance().setStudentNickname(jsonObject.get("nickname").toString());
+
+                    /* 드로워에 있는 닉네임 설정 */
+                    setNickname();
+
                     if (majorName.isEmpty()) {
                         majorNameView.setText(R.string.error_to_get_majorname);
                     } else {
@@ -296,6 +300,8 @@ public class StudentInfoActivity extends BaseNavigationDrawerActivity implements
                     if (reason.equals("emptyuserinfo")) {
                         AlertToast.error(getContext(), R.string.error_empty_studentnumber_info);
                         UserData.getInstance().logoutUser();
+                    } else if (reason.equals("bannickname")) {
+                        AlertToast.error(getContext(), R.string.text_ban_nickname);
                     }
                 }
             }

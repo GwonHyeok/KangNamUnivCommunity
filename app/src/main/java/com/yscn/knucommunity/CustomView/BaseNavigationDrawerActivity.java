@@ -46,6 +46,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
     protected ActionBarDrawerToggle mDrawerToggle;
     protected DrawerLayout mDrawerLayout;
     protected Toolbar mToolbar;
+    private TextView mNicknameView;
 
     @Override
     public void onCreate(Bundle bundle) {
@@ -63,8 +64,8 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
         TextView nameTextview = (TextView) findViewById(R.id.navigationdrawer_name);
         nameTextview.setText(UserData.getInstance().getStudentName());
 
-        TextView nicknameTextview = (TextView) findViewById(R.id.navigationdrawer_nickname);
-        setNickname(nicknameTextview);
+        mNicknameView = (TextView) findViewById(R.id.navigationdrawer_nickname);
+        setNickname();
 
         /* 사용자 정보 */
         findViewById(R.id.navigationdrawer_studentinfo).setOnClickListener(new View.OnClickListener() {
@@ -211,14 +212,14 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
         return this;
     }
 
-    private void setNickname(final TextView nicknameView) {
+    protected void setNickname() {
         new AsyncTask<Void, Void, JSONObject>() {
 
             @Override
             protected void onPreExecute() {
                 String nickName = UserData.getInstance().getStudentNickname();
-                nicknameView.setText(nickName);
                 if (nickName != null) {
+                    mNicknameView.setText(nickName);
                     cancel(true);
                 }
             }
@@ -242,7 +243,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
                 String result = jsonObject.get("result").toString();
                 if (result.equals("success")) {
                     UserData.getInstance().setStudentNickname(jsonObject.get("nickname").toString());
-                    nicknameView.setText(UserData.getInstance().getStudentNickname());
+                    mNicknameView.setText(UserData.getInstance().getStudentNickname());
                 }
             }
         }.execute();

@@ -126,6 +126,9 @@ public class NetworkUtil {
             if (status.equals("hasmember")) {
                 /* 이미 회원이 있으나 회원가입을 요청 했을때 */
                 return LoginStatus.HASMEMBER;
+            } else if (status.equals("bannickname")) {
+                /* 사용할 수 없는 닉네임일때 */
+                return LoginStatus.BANNICKNAME;
             } else if (status.equals("registersuccess")) {
                 /* 회원 가입 성공 */
                 return LoginStatus.SUCCESS;
@@ -1254,7 +1257,7 @@ public class NetworkUtil {
 
     public static enum SchoolRestraunt {SHAL, GYUNG, GISUK, INSA}
 
-    public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER}
+    public static enum LoginStatus {FAIL, NOMEMBER, SUCCESS, HASMEMBER, BANNICKNAME}
 
     private enum NoticeType {NOTICE, HAKSA, JANGHAK}
 

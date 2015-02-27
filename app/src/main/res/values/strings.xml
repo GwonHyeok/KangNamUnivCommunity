@@ -184,4 +184,5 @@
     <string name="share_taxi_sure_you_want_leave">정말로 택시를 출발 시키겠습니까?</string>
     <string name="share_taxi_sure_you_want_unwith">정말로 택시를 내리시겠습니까?</string>
     <string name="share_taxi_sure_you_want_with">정말로 택시를 함께 타시겠습니까?</string>
+    <string name="text_ban_nickname">사용할 수 없는 닉네임입니다</string>
 </resources>
