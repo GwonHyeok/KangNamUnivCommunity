@@ -52,7 +52,7 @@ public class StudentCouncilActivity extends ActionBarActivity implements ViewPag
         /* ViewPager Init */
         tabStrip = (PagerSlidingTabStrip) findViewById(R.id.student_council_tabs);
         viewPager = (ViewPager) findViewById(R.id.student_council_viewpager);
-        tabStrip.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.NORMAL), Typeface.NORMAL);
+        tabStrip.setTypeface(ApplicationUtil.getInstance().getTypeFace(Typeface.BOLD), Typeface.BOLD);
         tabStrip.setOnPageChangeListener(this);
         councilAdapter = new StudentCouncilAdapter(getSupportFragmentManager());
         viewPager.setAdapter(councilAdapter);
