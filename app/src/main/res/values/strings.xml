@@ -185,4 +185,19 @@
     <string name="share_taxi_sure_you_want_unwith">정말로 택시합승을 취소하시겠습니까?</string>
     <string name="share_taxi_sure_you_want_with">택시합승을 하시겠습니까?</string>
     <string name="text_ban_nickname">사용할 수 없는 닉네임입니다</string>
+    <string name="text_studentinfo_notify_mycomment">내가 쓴 댓글</string>
+
+    <!-- Helper String -->
+    <string name="text_helper_1">- 다른 메뉴로 쉽게 바로 이동하시려면 왼쪽에서 오른쪽 방향으로 밀거나 좌측 상단에 세개의 가로선으로 된 버튼을 누르세요.\n\n
+                                 - 새로고침을 하시려면 게시글 리스트 화면에서 위에서 아래로 당기면 새로고침이 됩니다.</string>
+    <string name="text_helper_2">- 장터게시판은 안전거래를 위하여 실명제를 사용합니다.\n\n
+                                 - 장터 메인의 리스트 화면에서 오른쪽 하단의 버튼을 누르면 카테고리로 분류하여 보실 수 있습니다.</string>
+    <string name="text_helper_3">- 자유게시판과 질문과 답변은 닉네임으로 운영되며, 그린라이트는 익명으로 운영되니 마음껏 글을 많이 작성해주세요.</string>
+    <string name="text_helper_4">- 미팅 메인의 게시글 좌측 색상은 파랑색은 남자, 핑크색은 여자, 초록색은 미팅성공을 의미합니다.\n\n
+                                 - 미팅 주선자(미팅게시판에 글을 적으신 분)께서는 미팅이 주선되면 본인의 글로 들어가서 미팅 성공버튼을 눌러주세요.</string>
+    <string name="text_helper_5">- 택시합승 메인의 게시글 좌측 색상은 노랑색은 택시 출발 안함, 빨간색은 택시가 이미 출발한 상태를 의미합니다.\n\n
+                                 - 택시를 함께 타고 싶으시면 게시글에 들어가 택시 합승버튼을 눌러주세요. (만약 합승을 취소하고 싶으시면 합승 취소버튼을 눌러 취소할 수 있습니다.)\n\n
+                                 - 택시가 출발하면 글쓴이나 택시합승자 중 한명이 해당 게시글의 택시 출발버튼을 눌러주세요.</string>
+    <string name="text_helper_6">- 학교 주변에 있는 배달음식점이 많기 때문에 사용자들이 배달음식점을 적어주시는 방식의 시스템으로 구성하였으니, 활성화를 위해 많이 적어주세요.\n\n
+                                 - 원하시는 음식점의 카드를 누르면 바로 통화로 연결됩니다.</string>
 </resources>

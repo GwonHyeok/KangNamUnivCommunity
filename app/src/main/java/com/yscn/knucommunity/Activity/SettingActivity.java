@@ -61,7 +61,7 @@ public class SettingActivity extends ActionBarActivity {
     public static class PreferenceItem extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
         private Preference mMyInfoNamePreference, mMyInfoAccountPreference,
                 mMyInfoAuthorDevices, mMyInfoPhoneNumber, mDeleteAccountPreference,
-                mDeveloperInfo, mFeedBack;
+                mDeveloperInfo, mFeedBack, mHelpPreference;
         private CheckBoxPreference mNotificationPreference;
 
 
@@ -78,6 +78,7 @@ public class SettingActivity extends ActionBarActivity {
             mDeveloperInfo = findPreference("setting_preference_developerinfo");
             mFeedBack = findPreference("setting_preference_feedback");
             mNotificationPreference = (CheckBoxPreference) findPreference("setting_preference_notification");
+            mHelpPreference = findPreference("setting_preference_helper");
 
             mMyInfoNamePreference.setTitle(UserData.getInstance().getStudentName());
             mMyInfoNamePreference.setSummary(UserData.getInstance().getStudentNumber());
@@ -91,6 +92,7 @@ public class SettingActivity extends ActionBarActivity {
             mDeveloperInfo.setOnPreferenceClickListener(this);
             mFeedBack.setOnPreferenceClickListener(this);
             mNotificationPreference.setOnPreferenceChangeListener(this);
+            mHelpPreference.setOnPreferenceClickListener(this);
         }
 
         private void initNeedNetworkData() {
@@ -330,6 +332,9 @@ public class SettingActivity extends ActionBarActivity {
                 Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:kh4975@gmail.com"));
                 intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.setting_feedback_subject));
                 startActivity(Intent.createChooser(intent, null));
+                return true;
+            } else if (key.equals(mHelpPreference.getKey())) {
+                startActivity(new Intent(getActivity(), HelpActivity.class));
                 return true;
             }
             return false;

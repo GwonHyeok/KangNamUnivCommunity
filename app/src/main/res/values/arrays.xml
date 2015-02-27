@@ -86,5 +86,13 @@
         <item>@string/market_share</item>
         <item>@string/market_etc</item>
     </string-array>
-    <string name="text_studentinfo_notify_mycomment">내가 쓴 댓글</string>
+
+    <string-array name="help_text_array">
+        <item>@string/text_helper_1</item>
+        <item>@string/text_helper_2</item>
+        <item>@string/text_helper_3</item>
+        <item>@string/text_helper_4</item>
+        <item>@string/text_helper_5</item>
+        <item>@string/text_helper_6</item>
+    </string-array>
 </resources>

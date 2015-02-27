@@ -36,6 +36,12 @@
         <com.yscn.knucommunity.CustomView.TypefacePreference android:title="친구 초대" />
     </com.yscn.knucommunity.CustomView.TypefacePreferenceCategory>
 
+    <com.yscn.knucommunity.CustomView.TypefacePreferenceCategory android:title="도움말">
+        <com.yscn.knucommunity.CustomView.TypefacePreference
+            android:key="setting_preference_helper"
+            android:title="도움말" />
+    </com.yscn.knucommunity.CustomView.TypefacePreferenceCategory>
+    
     <com.yscn.knucommunity.CustomView.TypefacePreferenceCategory android:title="개발자 정보">
         <com.yscn.knucommunity.CustomView.TypefacePreference
             android:key="setting_preference_developerinfo"

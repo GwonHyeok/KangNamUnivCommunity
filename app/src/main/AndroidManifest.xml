@@ -263,6 +263,10 @@
             android:name=".CustomView.BaseNavigationDrawerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".Activity.HelpActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>
