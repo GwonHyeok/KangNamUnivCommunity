@@ -2,6 +2,8 @@ package com.yscn.knucommunity.Activity;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -184,7 +186,18 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                         @Override
                         public void onClick(View v) {
                                 /* 택시 출발 하고 싶어요 버튼 */
-                            setisLeave(contentid, "1");
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                                    .setTitle(R.string.notify_title)
+                                    .setMessage(getString(R.string.share_taxi_sure_you_want_leave))
+                                    .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            setisLeave(contentid, "1");
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.NO, null)
+                                    .show();
+                            ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
                         }
                     });
                     isButton2 = true;
@@ -196,7 +209,18 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                         @Override
                         public void onClick(View v) {
                             /* 택시가 타고싶어요 리스너 */
-                            setisWith(contentid, "1");
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                                    .setTitle(R.string.notify_title)
+                                    .setMessage(getString(R.string.share_taxi_sure_you_want_with))
+                                    .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            setisWith(contentid, "1");
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.NO, null)
+                                    .show();
+                            ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
                         }
                     });
                 }
@@ -221,7 +245,18 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                             @Override
                             public void onClick(View v) {
                                 /* 택시 출발 하고 싶어요 버튼 */
-                                setisLeave(contentid, "1");
+                                AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                                        .setTitle(R.string.notify_title)
+                                        .setMessage(getString(R.string.share_taxi_sure_you_want_leave))
+                                        .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                                            @Override
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                setisLeave(contentid, "1");
+                                            }
+                                        })
+                                        .setNegativeButton(R.string.NO, null)
+                                        .show();
+                                ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
                             }
                         });
                     }
@@ -236,7 +271,18 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                     taxiButton2.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            setisWith(contentid, "0");
+                            AlertDialog alertDialog = new AlertDialog.Builder(getContext())
+                                    .setTitle(R.string.notify_title)
+                                    .setMessage(getString(R.string.share_taxi_sure_you_want_unwith))
+                                    .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            setisWith(contentid, "0");
+                                        }
+                                    })
+                                    .setNegativeButton(R.string.NO, null)
+                                    .show();
+                            ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
                         }
                     });
                 }
