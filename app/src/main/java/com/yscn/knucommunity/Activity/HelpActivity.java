@@ -156,8 +156,9 @@ public class HelpActivity extends ActionBarActivity {
         }
 
         private void viewInit(TextView view) {
-            int textviewPadding = (int) ApplicationUtil.getInstance().dpToPx(20);
+            int textviewPadding = (int) ApplicationUtil.getInstance().dpToPx(18);
             view.setText(helperTexts[mPosition]);
+            view.setTextSize(16);
             view.setPadding(textviewPadding, textviewPadding, textviewPadding, 0);
             view.setBackgroundColor(0xfff5f5f5);
             ApplicationUtil.getInstance().setTypeFace(view);
