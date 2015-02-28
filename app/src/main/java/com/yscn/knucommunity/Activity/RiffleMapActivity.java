@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -125,7 +124,7 @@ public class RiffleMapActivity extends ActionBarActivity implements AdapterView.
          * 다이얼로그에서 지도 좌표를 받아서 넘기고 그 좌표값으로 마커 설정. (String geo)
          * geo = geo:0.000000,0.000000
          */
-        Log.d(getClass().getSimpleName(), location);
+//        Log.d(getClass().getSimpleName(), location);
         mMap.clear();
         BitmapDescriptor icon = BitmapDescriptorFactory.fromResource(R.drawable.ic_marker);
         String M_geo = location.split(":")[1];

@@ -173,7 +173,7 @@ public class Splash extends ActionBarActivity {
                         int currentAppVersion = getAppVersion(getContext());
                         NetworkUtil.getInstance().checkIsLoginUser().registerGCMID(currentAppVersion, registerID);
                     }
-                    Log.d(getClass().getSimpleName(), "Register ID : " + registerID);
+//                    Log.d(getClass().getSimpleName(), "Register ID : " + registerID);
                 } catch (IOException | ParseException e) {
                     e.printStackTrace();
                 }

@@ -15,7 +15,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -172,7 +171,7 @@ public class LibraryActivity extends ActionBarActivity implements View.OnClickLi
 
         @Override
         public void onCreateOptionsMenu(Menu menu, MenuInflater menuInflater) {
-            Log.d(getClass().getSimpleName(), "onCreateOptionsMenu");
+//            Log.d(getClass().getSimpleName(), "onCreateOptionsMenu");
             super.onCreateOptionsMenu(menu, menuInflater);
             menuInflater.inflate(R.menu.board_menu, menu);
 

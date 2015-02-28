@@ -8,7 +8,6 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationManagerCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -141,7 +140,7 @@ public class ShareTaxiWriteActivity extends ActionBarActivity implements View.On
                     finish();
                 } else if (result.equals("fail")) {
                     String reason = jsonObject.get("reason").toString();
-                    Log.d(getClass().getSimpleName(), reason);
+//                    Log.d(getClass().getSimpleName(), reason);
                 }
             }
         }.execute();

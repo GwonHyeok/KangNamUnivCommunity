@@ -9,7 +9,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.NotificationManagerCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -129,7 +128,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                     return;
                 }
 
-                Log.d(getClass().getSimpleName(), itemes.toJSONString());
+//                Log.d(getClass().getSimpleName(), itemes.toJSONString());
 
                 ImageLoaderUtil.getInstance().initImageLoader();
 
@@ -160,7 +159,7 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                 String sharePerson = itemes.get("sharePerson").toString();
                 String isSharePerson = itemes.get("isSharePerson").toString();
                 JSONArray sharePersonArray = (JSONArray) itemes.get("personInfo");
-                Log.d(getClass().getSimpleName(), sharePersonArray.toJSONString());
+//                Log.d(getClass().getSimpleName(), sharePersonArray.toJSONString());
 
                 contentTextView.setText(content);
                 departureTextView.setText(departure);

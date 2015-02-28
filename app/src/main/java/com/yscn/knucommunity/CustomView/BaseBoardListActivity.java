@@ -12,7 +12,6 @@ import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -113,7 +112,7 @@ public abstract class BaseBoardListActivity extends BaseNavigationDrawerActivity
                 }
             });
         } else {
-            Log.d(getClass().getSimpleName(), "ScrollView is Must NotifyFooterScrollView");
+//            Log.d(getClass().getSimpleName(), "ScrollView is Must NotifyFooterScrollView");
         }
     }
 

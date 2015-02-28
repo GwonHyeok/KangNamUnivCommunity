@@ -14,7 +14,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -240,8 +239,8 @@ public class BeatViewPagetAdapter extends FragmentPagerAdapter {
                     intent.putExtra("beatindex", mBeatIndex);
                     intent.putExtra("contentid", list.get(position).getId());
                     v.getContext().startActivity(intent);
-                    Log.d(getClass().getSimpleName(), "Clicked ID : " + list.get(position).getId());
-                    Log.d(getClass().getSimpleName(), "Clicked BEAT : " + mBeatIndex);
+//                    Log.d(getClass().getSimpleName(), "Clicked ID : " + list.get(position).getId());
+//                    Log.d(getClass().getSimpleName(), "Clicked BEAT : " + mBeatIndex);
                 }
             });
         }

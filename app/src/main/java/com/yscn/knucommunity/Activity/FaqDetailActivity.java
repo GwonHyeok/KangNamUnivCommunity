@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -254,7 +253,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
         LinearLayout linearLayout = (LinearLayout) findViewById(R.id.fatdetail_main_scroll_activity);
         int childCount = linearLayout.getChildCount();
         if (childCount > 1) {
-            Log.d(getClass().getSimpleName(), "removeAllReplyData");
+//            Log.d(getClass().getSimpleName(), "removeAllReplyData");
             linearLayout.removeViews(1, childCount - 1);
         }
     }

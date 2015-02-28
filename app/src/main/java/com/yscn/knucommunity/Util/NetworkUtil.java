@@ -5,7 +5,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Base64;
-import android.util.Log;
 
 import com.yscn.knucommunity.Items.CommentListItems;
 import com.yscn.knucommunity.Items.DefaultBoardListItems;
@@ -614,7 +613,7 @@ public class NetworkUtil {
                     realPath = ApplicationUtil.getInstance().UriToPath(value);
                     realPathFile = new File(realPath);
                     multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
-                    Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
+                    log("file[" + i + "] :  " + realPath);
                 } else {
                     i--;
                     fileArray.put(strKey);
@@ -622,7 +621,7 @@ public class NetworkUtil {
                 fileObject.put("existfile", fileArray);
             }
             multipartEntityBuilder.addTextBody("existfile", fileObject.toString());
-            Log.d(getClass().getSimpleName(), "already Exist : " + fileObject.toString());
+            log("already Exist : " + fileObject.toString());
         }
 
         if (boardType == -1) {
@@ -663,7 +662,7 @@ public class NetworkUtil {
                     realPath = ApplicationUtil.getInstance().UriToPath(value);
                     realPathFile = new File(realPath);
                     multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
-                    Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
+                    log("file[" + i + "] :  " + realPath);
                 } else {
                     i--;
                     fileArray.put(strKey);
@@ -671,7 +670,7 @@ public class NetworkUtil {
                 fileObject.put("existfile", fileArray);
             }
             multipartEntityBuilder.addTextBody("existfile", fileObject.toString());
-            Log.d(getClass().getSimpleName(), "already Exist : " + fileObject.toString());
+            log("already Exist : " + fileObject.toString());
         }
 
         HttpPost httpPost = new HttpPost(UrlList.DELIVERY_BOARD_WRITE);
@@ -1104,7 +1103,7 @@ public class NetworkUtil {
                     realPath = ApplicationUtil.getInstance().UriToPath(value);
                     realPathFile = new File(realPath);
                     multipartEntityBuilder.addBinaryBody("file[" + i + "]", realPathFile);
-                    Log.d(getClass().getSimpleName(), "file[" + i + "] :  " + realPath);
+                    log("file[" + i + "] :  " + realPath);
                 } else {
                     i--;
                     fileArray.put(strKey);
@@ -1112,7 +1111,7 @@ public class NetworkUtil {
                 fileObject.put("existfile", fileArray);
             }
             multipartEntityBuilder.addTextBody("existfile", fileObject.toString());
-            Log.d(getClass().getSimpleName(), "already Exist : " + fileObject.toString());
+            log("already Exist : " + fileObject.toString());
         }
 
         if (boardType == -1) {
@@ -1229,12 +1228,12 @@ public class NetworkUtil {
             }
         }
         HttpGet httpGet = new HttpGet(URL);
-        Log.d(getClass().getSimpleName(), "Get Url : " + URL);
+        log("Get Url : " + URL);
         return httpClient.execute(httpGet);
     }
 
     private HttpResponse postData(String URL, HashMap<String, String> parameter) throws IOException {
-        Log.d(getClass().getSimpleName(), "POST URL : " + URL);
+        log("POST URL : " + URL);
         HttpPost httpPost = new HttpPost(URL);
         ContentType contentType = ContentType.create("text/plain", Charset.forName("UTF-8"));
         if (parameter != null) {
@@ -1271,7 +1270,8 @@ public class NetworkUtil {
 
     private void log(String message) {
         String tag = getClass().getSimpleName();
-        Log.d(tag, message);
+        /* Release disable network util logging */
+//        Log.d(tag, message);
     }
 
     public static enum SchoolRestraunt {SHAL, GYUNG, GISUK, INSA}

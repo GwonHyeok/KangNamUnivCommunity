@@ -3,7 +3,6 @@ package com.yscn.knucommunity.CustomView;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -55,7 +54,7 @@ public class KenBurnsSupportView extends FrameLayout {
     }
 
     private void swapImage() {
-        Log.d(TAG, "swapImage active=" + mActiveImageIndex);
+//        Log.d(TAG, "swapImage active=" + mActiveImageIndex);
         if (mActiveImageIndex == -1) {
             mActiveImageIndex = 0;
             animate(mImageViews[mActiveImageIndex]);
@@ -64,7 +63,7 @@ public class KenBurnsSupportView extends FrameLayout {
 
         int inactiveIndex = mActiveImageIndex;
         mActiveImageIndex = (1 + mActiveImageIndex) % mImageViews.length;
-        Log.d(TAG, "new active=" + mActiveImageIndex);
+//        Log.d(TAG, "new active=" + mActiveImageIndex);
 
         final ImageView activeImageView = mImageViews[mActiveImageIndex];
         ViewHelper.setAlpha(activeImageView, 0.0f);
@@ -95,7 +94,7 @@ public class KenBurnsSupportView extends FrameLayout {
                 .setDuration(duration);
 
         propertyAnimator.start();
-        Log.d(TAG, "starting Ken Burns animation " + propertyAnimator);
+//        Log.d(TAG, "starting Ken Burns animation " + propertyAnimator);
     }
 
     private float pickScale() {

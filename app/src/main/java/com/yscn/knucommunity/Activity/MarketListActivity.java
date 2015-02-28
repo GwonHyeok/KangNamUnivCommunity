@@ -2,7 +2,6 @@ package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -118,7 +117,7 @@ public class MarketListActivity extends BaseBoardListActivity {
 
         if (childView instanceof LinearLayout) {
             for (final DefaultBoardListItems listItems : listItemses) {
-                Log.d(getClass().getSimpleName(), listItems.getTitle());
+//                Log.d(getClass().getSimpleName(), listItems.getTitle());
                 View listView = LayoutInflater.from(getContext()).inflate(R.layout.ui_marketillist, (ViewGroup) childView, false);
                 ((TextView) listView.findViewById(R.id.market_list_title)).setText(getHighLightText(listItems.getTitle()));
                 ((TextView) listView.findViewById(R.id.market_list_time)).setText(getSimpleListTime(listItems.getTime()));

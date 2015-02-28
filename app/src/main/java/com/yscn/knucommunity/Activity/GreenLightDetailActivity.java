@@ -8,7 +8,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -170,7 +169,7 @@ public class GreenLightDetailActivity extends BaseBoardDetailActivity implements
                     }
 
                     if (isChecked.equals("checked")) {
-                        Log.d(getClass().getSimpleName(), "Checked GreenLight");
+//                        Log.d(getClass().getSimpleName(), "Checked GreenLight");
                         String positiveSize = greenLightObject.get("positivesize").toString();
                         String negativeSize = greenLightObject.get("negativesize").toString();
                         setGreenLightOn(positiveSize, negativeSize);

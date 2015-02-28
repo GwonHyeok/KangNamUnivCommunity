@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,7 +171,7 @@ public class StudentNotificationPagerAdapter extends FragmentPagerAdapter {
                         AlertToast.error(mContext, R.string.error_to_work);
                         return;
                     }
-                    Log.d(getClass().getSimpleName(), jsonObject.toJSONString());
+//                    Log.d(getClass().getSimpleName(), jsonObject.toJSONString());
                     JSONArray jsonArray = (JSONArray) jsonObject.get("data");
                     ArrayList<StudentNotificationItems> itemses = mNotificationItemAdapter.getItemses();
 

@@ -10,7 +10,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -250,7 +249,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
     }
 
     protected void attatchView(int layoutid) {
-        Log.d(getClass().getSimpleName(), "ATTATCH VIEW");
+//        Log.d(getClass().getSimpleName(), "ATTATCH VIEW");
         FrameLayout frameLayout = (FrameLayout) findViewById(R.id.navigationdrawer_content_root);
         View view = LayoutInflater.from(this).inflate(layoutid, frameLayout, false);
         frameLayout.addView(view);
@@ -285,7 +284,7 @@ public class BaseNavigationDrawerActivity extends ActionBarActivity {
             });
             ApplicationUtil.getInstance().setTypeFace(mToolbar);
         } else {
-            Log.d(getClass().getSimpleName(), "TOOL BAR IS NULL");
+//            Log.d(getClass().getSimpleName(), "TOOL BAR IS NULL");
         }
     }
 }

@@ -8,7 +8,6 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -110,7 +109,7 @@ public class StudentCouncilDetailActivity extends ActionBarActivity {
                     return;
                 }
 
-                Log.d(getClass().getSimpleName(), jsonObject.toJSONString());
+//                Log.d(getClass().getSimpleName(), jsonObject.toJSONString());
                 JSONArray attatchmentArray = (JSONArray) jsonObject.get("file");
 
                 String[] attatchmenturls = new String[attatchmentArray.size()];

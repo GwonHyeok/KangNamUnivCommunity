@@ -9,7 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -139,7 +138,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
 
     private void setPreContent() {
         contentID = getIntent().getStringExtra("contentid");
-        Log.d(getClass().getSimpleName(), "Pre Content : " + contentID);
+//        Log.d(getClass().getSimpleName(), "Pre Content : " + contentID);
 
         new AsyncTask<Void, Void, JSONObject>() {
             private ClearProgressDialog clearProgressDialog;
@@ -356,7 +355,7 @@ public class BoardWriteActivity extends ActionBarActivity implements View.OnClic
             @Override
             public void onClick(View v) {
                 String tagUri = (String) v.getTag();
-                Log.d(getClass().getSimpleName(), "Child URI TAG: " + tagUri);
+//                Log.d(getClass().getSimpleName(), "Child URI TAG: " + tagUri);
                 photoDataView.removeView(photoChildView);
                 fileListMap.remove(tagUri);
                 invalidateScrollView();
