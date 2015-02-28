@@ -31,6 +31,7 @@
         android:paddingTop="5dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
+            android:id="@+id/developer_info_hyeok_profile"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="center"
@@ -98,6 +99,7 @@
         android:paddingTop="4dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
+            android:id="@+id/developer_info_mhwan_profile"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="center"
@@ -165,6 +167,7 @@
         android:paddingTop="5dp">
 
         <com.yscn.knucommunity.CustomView.CircleImageView
+            android:id="@+id/developer_info_wooran_profile"
             android:layout_width="56dp"
             android:layout_height="56dp"
             android:layout_gravity="center"

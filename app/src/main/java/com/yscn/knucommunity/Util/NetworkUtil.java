@@ -1191,6 +1191,11 @@ public class NetworkUtil {
         return String.format(format, UrlList.PROFILE_THUMB_IMAGE_URL, studentnumber);
     }
 
+    public String getDeveloperProfileThumbURL(String name) {
+        String format = "%s?name=%s";
+        return String.format(format, UrlList.DEVELOPER_PROFILE_THUMB_IMAGE_URL, name);
+    }
+
     private String URLEncode(String str) {
         try {
             return URLEncoder.encode(str, "UTF-8");

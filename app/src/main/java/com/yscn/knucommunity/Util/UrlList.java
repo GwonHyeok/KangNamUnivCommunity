@@ -35,6 +35,7 @@ public class UrlList {
     public static final String UPDATE_MEETING_RESULT = MAIN_URL + "board/updateMeetingResult/";
     public static final String PROFILE_IMAGE_EDIT_URL = MAIN_URL + "image/editProfilePicture/";
     public static final String PROFILE_THUMB_IMAGE_URL = MAIN_URL + "image/getProfileimage/";
+    public static final String DEVELOPER_PROFILE_THUMB_IMAGE_URL = MAIN_URL + "image/getDeveloperProfile/";
     public static final String PROFILE_IMAGE_DELETE_URL = MAIN_URL + "image/deleteProfileimage/";
     public static final String PHONE_REGISTER_URL = MAIN_URL + "appLogin/registerPhonenumber";
     public static final String GET_PHONE_NUMBER_URL = MAIN_URL + "appLogin/getPhoneNumber";
