@@ -139,7 +139,8 @@
             android:theme="@style/FaqboardListTheme" />
         <activity
             android:name=".Activity.LinkActivity"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
         <activity
             android:name=".Activity.NoticeActivity"
             android:screenOrientation="portrait"

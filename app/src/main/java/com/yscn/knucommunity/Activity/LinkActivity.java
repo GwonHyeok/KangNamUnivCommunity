@@ -26,7 +26,6 @@ public class LinkActivity extends BaseNavigationDrawerActivity implements View.O
     }
 
     private void viewInit() {
-        getSupportActionBar().hide();
         findViewById(R.id.link_app_knu).setOnClickListener(this);
         findViewById(R.id.link_app_knu_sugang).setOnClickListener(this);
         findViewById(R.id.link_app_knu_timetable).setOnClickListener(this);
