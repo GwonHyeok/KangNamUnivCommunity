@@ -201,4 +201,5 @@
     <string name="text_helper_6">- 학교 주변에 있는 배달음식점이 많기 때문에 사용자들이 배달음식점을 적어주시는 방식의 시스템으로 구성하였으니, 활성화를 위해 많이 적어주세요.\n\n
                                  - 원하시는 음식점의 카드를 누르면 바로 통화로 연결됩니다.</string>
     <string name="receive_new_taxi_action">회원님의 택시합승 글에 누군가가 합승을 누르셨습니다</string>
+    <string name="text_invite_friend_message">같은 학교 학생끼리의 친구초대는 입소문만으로도 충분하곘죠 ~?\n지금 당장 친구한테 가서 이 어플을 소개해주세요!</string>
 </resources>

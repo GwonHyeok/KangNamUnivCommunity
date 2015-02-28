@@ -61,7 +61,7 @@ public class SettingActivity extends ActionBarActivity {
     public static class PreferenceItem extends PreferenceFragment implements Preference.OnPreferenceClickListener, Preference.OnPreferenceChangeListener {
         private Preference mMyInfoNamePreference, mMyInfoAccountPreference,
                 mMyInfoAuthorDevices, mMyInfoPhoneNumber, mDeleteAccountPreference,
-                mDeveloperInfo, mFeedBack, mHelpPreference;
+                mDeveloperInfo, mFeedBack, mHelpPreference, mInviteFriendPreference;
         private CheckBoxPreference mNotificationPreference;
 
 
@@ -79,6 +79,7 @@ public class SettingActivity extends ActionBarActivity {
             mFeedBack = findPreference("setting_preference_feedback");
             mNotificationPreference = (CheckBoxPreference) findPreference("setting_preference_notification");
             mHelpPreference = findPreference("setting_preference_helper");
+            mInviteFriendPreference = findPreference("setting_preference_invite_friend");
 
             mMyInfoNamePreference.setTitle(UserData.getInstance().getStudentName());
             mMyInfoNamePreference.setSummary(UserData.getInstance().getStudentNumber());
@@ -93,6 +94,7 @@ public class SettingActivity extends ActionBarActivity {
             mFeedBack.setOnPreferenceClickListener(this);
             mNotificationPreference.setOnPreferenceChangeListener(this);
             mHelpPreference.setOnPreferenceClickListener(this);
+            mInviteFriendPreference.setOnPreferenceClickListener(this);
         }
 
         private void initNeedNetworkData() {
@@ -335,6 +337,14 @@ public class SettingActivity extends ActionBarActivity {
                 return true;
             } else if (key.equals(mHelpPreference.getKey())) {
                 startActivity(new Intent(getActivity(), HelpActivity.class));
+                return true;
+            } else if (key.equals(mInviteFriendPreference.getKey())) {
+                AlertDialog alertDialog = new AlertDialog.Builder(getActivity())
+                        .setTitle(R.string.notify_title)
+                        .setMessage(R.string.text_invite_friend_message)
+                        .setPositiveButton(R.string.OK, null)
+                        .show();
+                ApplicationUtil.getInstance().setTypeFace(alertDialog.getWindow().getDecorView());
                 return true;
             }
             return false;
