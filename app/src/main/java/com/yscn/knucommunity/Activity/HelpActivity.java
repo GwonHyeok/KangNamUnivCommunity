@@ -1,9 +1,11 @@
 package com.yscn.knucommunity.Activity;
 
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -116,6 +118,16 @@ public class HelpActivity extends ActionBarActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        /* 화면이 끝나면 isneedshowhelp 값을 false 로 변경 다시는 뜨지 않도록 */
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean("isneedshowhelp", false);
+        editor.apply();
     }
 
     public static class HelpFragment extends Fragment {

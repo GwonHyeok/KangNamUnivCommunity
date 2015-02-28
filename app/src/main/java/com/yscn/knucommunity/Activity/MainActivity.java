@@ -1,8 +1,10 @@
 package com.yscn.knucommunity.Activity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 
 import com.yscn.knucommunity.CustomView.BaseDoubleKillActivity;
@@ -19,6 +21,7 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
         super.onCreate(bundle);
         setContentView(R.layout.activity_main);
         viewInit();
+        isShowingHelp();
         findViewById(R.id.main_studentground).setOnClickListener(this);
         findViewById(R.id.main_notice).setOnClickListener(this);
         findViewById(R.id.main_market).setOnClickListener(this);
@@ -33,6 +36,14 @@ public class MainActivity extends BaseDoubleKillActivity implements View.OnClick
             getWindow().setStatusBarColor(getResources().getColor(R.color.board_white_pirmary_dark_color));
         }
         getSupportActionBar().hide();
+    }
+
+    private void isShowingHelp() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean isNeedShowHelp = sharedPreferences.getBoolean("isneedshowhelp", true);
+        if (isNeedShowHelp) {
+            startActivity(new Intent(this, HelpActivity.class));
+        }
     }
 
     @Override
