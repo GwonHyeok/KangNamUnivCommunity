@@ -10,14 +10,13 @@ import android.os.Bundle;
 import android.preference.CheckBoxPreference;
 import android.preference.Preference;
 import android.preference.PreferenceFragment;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.yscn.knucommunity.CustomView.BaseNavigationDrawerActivity;
 import com.yscn.knucommunity.CustomView.ClearProgressDialog;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Ui.AlertToast;
@@ -33,11 +32,11 @@ import java.io.IOException;
 /**
  * Created by GwonHyeok on 15. 2. 5..
  */
-public class SettingActivity extends ActionBarActivity {
+public class SettingActivity extends BaseNavigationDrawerActivity {
     @Override
     public void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        setContentView(R.layout.activity_setting);
+        attatchView(R.layout.activity_setting);
         toolbarInit();
         getFragmentManager().beginTransaction()
                 .replace(R.id.setting_framelayout, new PreferenceItem()).commit();
@@ -46,13 +45,6 @@ public class SettingActivity extends ActionBarActivity {
 
     private void toolbarInit() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_nav_back_white);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
         toolbar.setTitle(getString(R.string.text_setting_title));
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundColor(getResources().getColor(R.color.setting_main_color));
