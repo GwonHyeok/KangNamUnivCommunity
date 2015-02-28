@@ -66,7 +66,7 @@
             android:layout_alignParentBottom="true"
             android:layout_alignStart="@+id/textView2"
             android:layout_marginBottom="14dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="12dp"
             android:layout_marginTop="2dp"
             android:background="#FFFFAB91" />
 
@@ -94,7 +94,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignStart="@+id/view"
             android:textColor="#FFFFAB91"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:paddingRight="8dp" />
 
     </RelativeLayout>
 
