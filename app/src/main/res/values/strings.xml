@@ -27,7 +27,7 @@
     <string name="base_text_register_studentnumber">학번 : %1$s</string>
     <string name="warning_input_studentnumber">학번을 입력해 주세요</string>
     <string name="warning_input_password">비밀번호 정보가 없습니다</string>
-    <string name="warning_input_nickname">닉네임을 입력해 주세요</string>
+    <string name="warning_input_nickname">닉네임을 입력해주세요</string>
     <string name="warning_input_name">이름을 입력해 주세요</string>
     <string name="warning_input_profileimage">프로필 이미지를 선택해주세요</string>
     <string name="warning_no_homepage">홈페이지 정보가 없습니다</string>
@@ -52,7 +52,7 @@
     <string name="community_reply_text">댓글달기</string>
     <string name="community_reply_need_text">입력해주세요</string>
 
-    <string name="community_gender_dialog_title">성별을 선택하여주세요</string>
+    <string name="community_gender_dialog_title">성별을 선택해주세요</string>
     <string name="gender_male">남자</string>
     <string name="gender_female">여자</string>
     <string name="community_meeting_male_count">남자 %1$s명</string>
@@ -144,7 +144,7 @@
     <string name="text_beat_looknlook_time_format">yyyy년 M월</string>
     <string name="text_developer_info">개발자 정보</string>
     <string name="developer_special_thanks">Special Thanks to..\n김성민, 김용범, 서홍일, 임소담이</string>
-    <string name="text_meeting_success_notyet">미팅, 성공적</string>
+    <string name="text_meeting_success_notyet">미팅 성공</string>
     <string name="text_meeting_success">만남이 이루어졌습니다.</string>
     <string name="text_are_you_sure_meeting_success">정말로 미팅 약속이 잡히셨습니까?</string>
     <string name="success_update_meeting">미팅 정보를 성공적으로 업데이트 하였습니다</string>
@@ -183,7 +183,7 @@
     <string name="warning_board_write_select_category">카테고리를 선택해주세요</string>
     <string name="share_taxi_sure_you_want_leave">정말로 택시를 타고 출발합니까?</string>
     <string name="share_taxi_sure_you_want_unwith">정말로 택시합승을 취소하시겠습니까?</string>
-    <string name="share_taxi_sure_you_want_with">택시합승을 하시겠습니까?</string>
+    <string name="share_taxi_sure_you_want_with">택시를 같이 타시겠습니까?</string>
     <string name="text_ban_nickname">사용할 수 없는 닉네임입니다</string>
     <string name="text_studentinfo_notify_mycomment">내가 쓴 댓글</string>
 
@@ -200,6 +200,6 @@
                                  - 택시가 출발하면 글쓴이나 택시합승자 중 한명이 해당 게시글의 택시 출발버튼을 눌러주세요.</string>
     <string name="text_helper_6">- 학교 주변에 있는 배달음식점이 많기 때문에 사용자들이 배달음식점을 적어주시는 방식의 시스템으로 구성하였으니, 활성화를 위해 많이 적어주세요.\n\n
                                  - 원하시는 음식점의 카드를 누르면 바로 통화로 연결됩니다.</string>
-    <string name="receive_new_taxi_action">회원님의 택시합승 글에 누군가가 합승을 누르셨습니다</string>
-    <string name="text_invite_friend_message">같은 학교 학생끼리의 친구초대는 입소문만으로도 충분하곘조 ~?\n지금 당장 친구한테 가서 이 어플을 소개해주세요!</string>
+    <string name="receive_new_taxi_action">회원님의 택시합승 글에 다른 사용자가 합승을 했습니다.</string>
+    <string name="text_invite_friend_message">같은 학교 학생끼리의 친구초대는 입소문만으로도 충분하겠죠 ~?\n지금 당장 친구에게 이 어플을 소개해주세요!</string>
 </resources>
