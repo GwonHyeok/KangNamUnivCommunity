@@ -162,6 +162,7 @@ public class StudentInfoActivity extends BaseNavigationDrawerActivity implements
         /* Nickname Edittext default text is current nickname */
         TextView nicknameView = (TextView) findViewById(R.id.studentinfo_nickname);
         editText.setText(nicknameView.getText());
+        editText.setSingleLine();
 
         AlertDialog alertDialog = new AlertDialog.Builder(getContext())
                 .setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
