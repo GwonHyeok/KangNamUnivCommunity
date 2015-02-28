@@ -13,10 +13,12 @@ import android.util.Log;
 
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.nostra13.universalimageloader.core.ImageLoader;
+import com.yscn.knucommunity.Activity.ShareTaxiDetailActivity;
 import com.yscn.knucommunity.Activity.Splash;
 import com.yscn.knucommunity.Activity.StudentNotificationActivity;
 import com.yscn.knucommunity.R;
 import com.yscn.knucommunity.Util.ImageLoaderUtil;
+import com.yscn.knucommunity.Util.UserData;
 
 /**
  * Created by GwonHyeok on 15. 1. 17..
@@ -99,6 +101,24 @@ public class GcmIntentService extends IntentService {
                                     new Intent(this, StudentNotificationActivity.class), 0))
                             .setContentText(getString(R.string.receive_new_board_comment));
             mNotificationManager.notify(NOTIFICATION_ID, mBuilder.build());
+        } else if (type.equals("TAXI_NOTIFY")) {
+            String contentid = extra.getString("contentid");
+            Intent intent = new Intent(this, ShareTaxiDetailActivity.class);
+            intent.putExtra("contentID", contentid);
+            intent.putExtra("writerStudentNumber", UserData.getInstance().getStudentNumber());
+            intent.putExtra("isFromNotify", false);
+            PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+            NotificationCompat.Builder mBuilder =
+                    new NotificationCompat.Builder(this)
+                            .setSmallIcon(R.drawable.ic_launcher)
+                            .setAutoCancel(true)
+                            .setVibrate(vib_pattern)
+                            .setContentIntent(pendingIntent)
+                            .setStyle(new NotificationCompat.BigTextStyle()
+                                    .bigText(getString(R.string.receive_new_taxi_action)))
+                            .setContentText(getString(R.string.receive_new_taxi_action))
+                            .setContentTitle(getString(R.string.app_name));
+            mNotificationManager.notify(0x13, mBuilder.build());
         } else {
             NotificationCompat.Builder mBuilder =
                     new NotificationCompat.Builder(this)

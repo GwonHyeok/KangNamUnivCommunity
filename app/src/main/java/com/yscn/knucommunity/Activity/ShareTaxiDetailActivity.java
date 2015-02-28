@@ -299,6 +299,14 @@ public class ShareTaxiDetailActivity extends BaseBoardDetailActivity implements 
                     profileGroup.removeAllViews();
                     foledGroup.removeAllViews();
 
+                    /* profileGroup 을 선택 하였을때도 폴더가 열리도록 */
+                    profileGroup.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ShareTaxiDetailActivity.this.onClick(findViewById(R.id.share_taxi_detail_with_info_root_view));
+                        }
+                    });
+
                     /* 합승자 일경우 합승자 정보를 보여줌 */
                     for (Object object : sharePersonArray) {
                         JSONObject dataObject = (JSONObject) object;
