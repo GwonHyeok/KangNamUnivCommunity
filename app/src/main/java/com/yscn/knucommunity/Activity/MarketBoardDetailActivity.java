@@ -128,7 +128,7 @@ public class MarketBoardDetailActivity extends BaseBoardDetailActivity implement
                 String[] tmpurls = new String[fileArray.size()];
                 for (int i = 0; i < fileArray.size(); i++) {
                     Object obj = fileArray.get(i);
-                    tmpurls[i] = UrlList.MAIN_URL + obj.toString();
+                    tmpurls[i] = UrlList.MAIN_URL_IMAGE + obj.toString();
                 }
 
                 final String[] urls = tmpurls;

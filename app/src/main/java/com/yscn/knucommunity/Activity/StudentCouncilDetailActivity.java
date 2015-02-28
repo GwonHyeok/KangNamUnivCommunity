@@ -116,7 +116,7 @@ public class StudentCouncilDetailActivity extends ActionBarActivity {
                 String[] attatchmenturls = new String[attatchmentArray.size()];
                 for (int i = 0; i < attatchmentArray.size(); i++) {
                     JSONObject attatchmentObject = (JSONObject) attatchmentArray.get(i);
-                    attatchmenturls[i] = UrlList.MAIN_URL + attatchmentObject.get("filename").toString();
+                    attatchmenturls[i] = UrlList.MAIN_URL_IMAGE + attatchmentObject.get("filename").toString();
                 }
                 addPhotoView(attatchmenturls);
 

@@ -332,7 +332,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
 
                 String[] tmpurls = new String[fileArray.size()];
                 for (int i = 0; i < tmpurls.length; i++) {
-                    tmpurls[i] = UrlList.MAIN_URL + fileArray.get(i).toString();
+                    tmpurls[i] = UrlList.MAIN_URL_IMAGE + fileArray.get(i).toString();
                 }
 
                 final String[] urls = tmpurls;
