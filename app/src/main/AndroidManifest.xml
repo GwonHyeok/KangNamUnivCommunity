@@ -267,6 +267,10 @@
             android:name=".Activity.HelpActivity"
             android:screenOrientation="portrait"
             android:theme="@style/NoActionBarTheme" />
+        <activity
+            android:name=".Activity.StudentCouncilDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 
 </manifest>

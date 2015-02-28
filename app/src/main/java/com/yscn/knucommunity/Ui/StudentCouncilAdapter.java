@@ -1,6 +1,7 @@
 package com.yscn.knucommunity.Ui;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.yscn.knucommunity.Activity.StudentCouncilDetailActivity;
 import com.yscn.knucommunity.CustomView.DividerItemDecoration;
 import com.yscn.knucommunity.CustomView.StudentCouncilWelfareDialog;
 import com.yscn.knucommunity.Items.StudentCouncilListItems;
@@ -150,9 +152,10 @@ public class StudentCouncilAdapter extends FragmentPagerAdapter {
 //                                    "message": "테스트 메세지 입니다.",
 //                                    "writer": "권혁",
 //                                    "time": "2014-11-19 00:59:05"
+                            String id = dataObject.get("id").toString();
                             String title = dataObject.get("title").toString();
                             String message = dataObject.get("time").toString();
-                            mAdapter.addItem(new StudentCouncilListItems(title, message));
+                            mAdapter.addItem(new StudentCouncilListItems(id, title, message));
                         }
                         mAdapter.notifyDataSetChanged();
                     }
@@ -319,9 +322,17 @@ public class StudentCouncilAdapter extends FragmentPagerAdapter {
         }
 
         @Override
-        public void onBindViewHolder(ParternerShipInfoViewHolder holder, int position) {
+        public void onBindViewHolder(ParternerShipInfoViewHolder holder, final int position) {
             holder.titleView.setText(itemses.get(position).getTitle());
             holder.timeView.setText(getSimpleDetailTime(itemses.get(position).getSummary()));
+            holder.rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), StudentCouncilDetailActivity.class);
+                    intent.putExtra("contentid", itemses.get(position).getId());
+                    v.getContext().startActivity(intent);
+                }
+            });
         }
 
         @Override
@@ -356,6 +367,7 @@ public class StudentCouncilAdapter extends FragmentPagerAdapter {
 
     private static class ParternerShipInfoViewHolder extends RecyclerView.ViewHolder {
         private TextView titleView, timeView;
+        private View rootView;
 
         public ParternerShipInfoViewHolder(View itemView) {
             super(itemView);
@@ -363,6 +375,7 @@ public class StudentCouncilAdapter extends FragmentPagerAdapter {
             itemView.setBackgroundResource(R.drawable.bg_default_select_item_effect);
             titleView = (TextView) itemView.findViewById(R.id.beat_list_title);
             timeView = (TextView) itemView.findViewById(R.id.beat_list_time);
+            rootView = itemView;
         }
     }
 }

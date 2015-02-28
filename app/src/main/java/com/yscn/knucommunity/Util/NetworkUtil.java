@@ -505,6 +505,15 @@ public class NetworkUtil {
                 new InputStreamReader(httpResponse.getEntity().getContent()));
     }
 
+    public JSONObject getCouncilInfoDetail(String contentid) throws IOException, ParseException {
+        HashMap<String, String> parameter = new HashMap<>();
+        parameter.put("contentid", contentid);
+        HttpResponse httpResponse = getData(UrlList.STUDENT_GET_COUNCIL_DETAIL_INFO, parameter);
+        JSONParser jsonParser = new JSONParser();
+        return (JSONObject) jsonParser.parse(
+                new InputStreamReader(httpResponse.getEntity().getContent()));
+    }
+
     public JSONObject getCouncilWelfareInfo() throws IOException, ParseException {
         HttpResponse httpResponse = postData(UrlList.STUDENT_COUNCIL_GET_WELFARE, null);
         JSONParser jsonParser = new JSONParser();
