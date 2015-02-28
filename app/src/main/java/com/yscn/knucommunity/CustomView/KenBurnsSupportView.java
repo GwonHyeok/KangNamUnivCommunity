@@ -1,9 +1,6 @@
 package com.yscn.knucommunity.CustomView;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.os.Build;
 import android.os.Handler;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -15,8 +12,9 @@ import com.nineoldandroids.animation.AnimatorSet;
 import com.nineoldandroids.animation.ObjectAnimator;
 import com.nineoldandroids.view.ViewHelper;
 import com.nineoldandroids.view.ViewPropertyAnimator;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.yscn.knucommunity.R;
-import com.yscn.knucommunity.Util.ApplicationUtil;
+import com.yscn.knucommunity.Util.ImageLoaderUtil;
 
 import java.util.Random;
 
@@ -148,18 +146,11 @@ public class KenBurnsSupportView extends FrameLayout {
     }
 
     private void fillImageViews() {
+        ImageLoaderUtil.getInstance().initImageLoader();
         for (int i = 0; i < mImageViews.length; i++) {
-            Bitmap bitmap = ApplicationUtil.getInstance().decodeSampledBitmap(
-                    getResources(),
-                    mResourceIds[i],
-                    ApplicationUtil.getInstance().getScreenWidth(),
-                    ApplicationUtil.getInstance().getScreenHeight()
-            );
-            if (Build.VERSION.SDK_INT >= 16) {
-                mImageViews[i].setBackground(new BitmapDrawable(getResources(), bitmap));
-            } else {
-                mImageViews[i].setBackgroundDrawable(new BitmapDrawable(getResources(), bitmap));
-            }
+            ImageLoader.getInstance().displayImage("drawable://" + mResourceIds[i],
+                    mImageViews[i],
+                    ImageLoaderUtil.getInstance().getDiskCacheImageOptions());
         }
     }
 
