@@ -11,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -158,7 +159,7 @@ public class HelpActivity extends ActionBarActivity {
         private void viewInit(TextView view) {
             int textviewPadding = (int) ApplicationUtil.getInstance().dpToPx(18);
             view.setText(helperTexts[mPosition]);
-            view.setTextSize(16);
+            view.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
             view.setPadding(textviewPadding, textviewPadding, textviewPadding, 0);
             view.setBackgroundColor(0xfff5f5f5);
             ApplicationUtil.getInstance().setTypeFace(view);
