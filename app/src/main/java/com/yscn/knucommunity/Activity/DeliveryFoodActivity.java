@@ -110,7 +110,7 @@ public class DeliveryFoodActivity extends BaseNavigationDrawerActivity {
                         });
                         nameView.setText(item.getName());
                         phoneView.setText(item.getTelnum());
-                        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getDiskCacheImageOptions());
+                        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL_IMAGE + item.getImagepath(), foodView, ImageLoaderUtil.getInstance().getDiskCacheImageOptions());
                         view.setBackgroundResource(R.drawable.bg_default_select_item_effect);
                         dataView.addView(view);
                         ApplicationUtil.getInstance().setTypeFace(view);

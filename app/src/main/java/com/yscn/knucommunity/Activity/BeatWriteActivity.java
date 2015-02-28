@@ -254,7 +254,7 @@ public class BeatWriteActivity extends ActionBarActivity implements View.OnClick
 
                 /* 사진 썸네일 적용 */
         ImageLoaderUtil.getInstance().initImageLoader();
-        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL + url, photoThumbnailView,
+        ImageLoader.getInstance().displayImage(UrlList.MAIN_URL_IMAGE + url, photoThumbnailView,
                 ImageLoaderUtil.getInstance().getDefaultOptions());
 
         photoCancelView.setOnClickListener(new View.OnClickListener() {
