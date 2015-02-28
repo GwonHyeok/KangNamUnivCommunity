@@ -61,7 +61,7 @@ public class NoticeActivity extends BaseNavigationDrawerActivity implements Scro
         attatchView(R.layout.activity_notice);
 
         KenBurnsSupportView mHeaderPicture = (KenBurnsSupportView) findViewById(R.id.notice_header_picture);
-        mHeaderPicture.setResourceIds(R.drawable.bg_notice_1, R.drawable.bg_notice_2, R.drawable.bg_notice_3, R.drawable.bg_notice_4);
+        mHeaderPicture.setResourceIds(R.drawable.bg_notice_2, R.drawable.bg_notice_4);
         mHeader = findViewById(R.id.header);
 
         mPagerSlidingTabStrip = (PagerSlidingTabStrip) findViewById(R.id.notice_tabs);
