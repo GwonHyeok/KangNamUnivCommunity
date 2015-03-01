@@ -59,7 +59,7 @@ public class CampusMapActivity extends ActionBarActivity implements GoogleMap.On
         findViewById(R.id.campusmap_hide_maplist).setOnClickListener(this);
         findViewById(R.id.campusmap_simple_list).setOnClickListener(this);
 
-        String[] string = new String[]{"이공관", "천은관", "후생관", "샬롬관", "경천관", "교욱관", "승리관", "목양관", "우원관", "인사관", "예술관", "운동장"};
+        String[] string = new String[]{"이공관", "천은관", "후생관", "샬롬관", "경천관", "교육관", "승리관", "목양관", "우원관", "인사관", "예술관", "운동장"};
 
         class CampusMapAdapter extends ArrayAdapter<String> {
             int mResourceId;
