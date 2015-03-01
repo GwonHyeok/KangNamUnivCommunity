@@ -415,7 +415,7 @@ public class FaqDetailActivity extends BaseBoardDetailActivity implements View.O
     public void onClick(View v) {
         int id = v.getId();
         if (id == R.id.view) {
-            final View replyImageView = findViewById(R.id.imageView);
+            final View replyImageView = findViewById(R.id.reply_imageView);
             final EditText replyEditText = (EditText) findViewById(R.id.reply_edittext);
             View replyButtonView = findViewById(R.id.reply_textview);
 
