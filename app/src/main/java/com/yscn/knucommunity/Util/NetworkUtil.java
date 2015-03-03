@@ -83,11 +83,7 @@ public class NetworkUtil {
 
     public NetworkUtil checkIsLoginUser() {
         try {
-            JSONParser jsonParser = new JSONParser();
-            HttpResponse httpResponse = postData(UrlList.LOGIN_CHECK_URL, null);
-            JSONObject jsonObject = (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
-            String result = jsonObject.get("result").toString();
-            if (result.equals("fail")) {
+            if (!isLoginUser()) {
                 new Handler(Looper.getMainLooper()).post(new Runnable() {
                     @Override
                     public void run() {
@@ -100,6 +96,15 @@ public class NetworkUtil {
             e.printStackTrace();
         }
         return instance;
+    }
+
+    public boolean isLoginUser() throws IOException, ParseException {
+        log("isLoginUser Check Logic");
+        JSONParser jsonParser = new JSONParser();
+        HttpResponse httpResponse = getData(UrlList.LOGIN_CHECK_URL);
+        JSONObject jsonObject = (JSONObject) jsonParser.parse(new InputStreamReader(httpResponse.getEntity().getContent()));
+        String result = jsonObject.get("result").toString();
+        return !result.equals("fail");
     }
 
     public LoginStatus RegisterAppServer(String studentnumber, String password, String nickname, String name, Uri profileURI) throws IOException, ParseException {
@@ -283,7 +288,6 @@ public class NetworkUtil {
      * @throws ParseException
      */
     public String[] getGCMRegisterData() throws IOException, ParseException {
-        syncCookie();
         JSONParser jsonParser = new JSONParser();
         HttpResponse httpResponse = postData(UrlList.APP_GET_GCM_REGISTERID, null);
         JSONObject jsonObject = (JSONObject) jsonParser.parse(

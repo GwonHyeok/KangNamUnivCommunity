@@ -25,7 +25,7 @@ public class UserData {
 
     }
 
-    public static UserData getInstance() {
+    public synchronized static UserData getInstance() {
         if (instance == null) {
             instance = new UserData();
         }
@@ -41,6 +41,8 @@ public class UserData {
     }
 
     public void setStudentNumber(String studentNumber) {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        userDataPreference.setStudentNumber(studentNumber);
         this.studentNumber = studentNumber;
     }
 
@@ -53,6 +55,8 @@ public class UserData {
     }
 
     public void setStudentName(String studentName) {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        userDataPreference.setStudentName(studentName);
         this.studentName = studentName;
     }
 
@@ -65,6 +69,8 @@ public class UserData {
     }
 
     public void setStudentNickname(String studentNickname) {
+        UserDataPreference userDataPreference = getUserDataPreference();
+        userDataPreference.setStudentNickname(studentNickname);
         this.studentNickname = studentNickname;
     }
 
